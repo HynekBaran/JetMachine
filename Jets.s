@@ -75,7 +75,10 @@
 # * old resolve is default
 #
 # v. 5.76
-# * apply fixed (last ERROR replaced with unevaluated ‘apply’)
+# * apply fixed (last ERROR replaced with unevaluated apply)
+#
+# v 5.77
+# * `derive/1` : treating of polynoms and sums disabled (a bug found)
 
 
 ###########################################################################################
@@ -85,7 +88,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.76 for Maple 15 as of Sep 19, 2012`);
+print(`Jets 5.77 for Maple 15 as of Oct 3, 2012`);
 
 #
 # Source code configuration, options and parameters
@@ -2454,22 +2457,22 @@ noderives():
   # HB:
   # deal with some special types of a - try to estimate what are good directions
   vs := convert(us,list); # vars of a
-  # polynomial
-  aux := select(v -> type(a, polynom(anything,v)), vs); # polynomial vars
-  if nops(aux) > 0 and nops(aux) < nops(us) then
-    if rt > 1 then report(lb,[`Deriving polynom, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
-    us := convert(aux,set);
-  # sum
-  elif type(a, `+`) then
-     Vs := MaP(`vars/1`@Vars, convert(a,list)); # vars of unknowns in subitems
-     cs := map(v -> nops(select(`=`, map(has,Vs, v), true)), vs); # count occurrences of vars in subitems
-     M := min(cs);
-     aux := zip((v,c)-> if c<=M then v fi , vs, cs); # vs :=  'nice' vars
-     if nops(aux) > 0 and nops(aux) < nops(us) then
-       if rt > 1 then report(lb,[`Deriving sum, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
-       us := convert(aux,set);
-     fi
-  fi;
+  ## polynomial
+  #aux := select(v -> type(a, polynom(anything,v)), vs); # polynomial vars
+  #if nops(aux) > 0 and nops(aux) < nops(us) then
+  #  if rt > 1 then report(lb,[`Deriving polynom, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
+  #  us := convert(aux,set);
+  ## sum
+  #elif type(a, `+`) then
+  #   Vs := MaP(`vars/1`@Vars, convert(a,list)); # vars of unknowns in subitems
+  #   cs := map(v -> nops(select(`=`, map(has,Vs, v), true)), vs); # count occurrences of vars in subitems
+  #   M := min(cs);
+  #   aux := zip((v,c)-> if c<=M then v fi , vs, cs); # vs :=  'nice' vars
+  #   if nops(aux) > 0 and nops(aux) < nops(us) then
+  #     if rt > 1 then report(lb,[`Deriving sum, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
+  #     us := convert(aux,set);
+  #   fi
+  #fi;
   if rt > 5 then report(lb,[`us`,us]) fi;    
   # :HB
   ns := us;  # just anything nonempty if us nonempty
@@ -2763,11 +2766,11 @@ end:
         if type(op(1,r), linear(op(2,r))) then 
           tprint(`linear resolving failed for`, op(2,r));
           print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
-          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
+          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvn√≠ho druhu
         else 
           tprint(`resolving failed for`, op(2,r), `nonlinear `);
           print (op(1,r));
-          [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
+          [op(1,r), op(2,r)] # [a,x1] FAIL druh√©ho druhu
         fi
       end, rs);
     # :HB
@@ -3055,11 +3058,11 @@ end:
 #        if type(op(1,r), linear(op(2,r))) then 
 #          tprint(`linear resolving failed for`, op(2,r));
 #          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
-#          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
+#          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvn√≠ho druhu
 #        else 
 #          tprint(`resolving failed for`, op(2,r), `nonlinear `);
 #          print (op(1,r));
-#          [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
+#          [op(1,r), op(2,r)] # [a,x1] FAIL druh√©ho druhu
 #        fi
 #      end, rs);
 #    # :HB
@@ -3130,11 +3133,11 @@ end:
 #        if type(op(1,r), linear(op(2,r))) then 
 #          tprint(`linear resolving failed for`, op(2,r));
 #          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
-#          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
+#          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvn√≠ho druhu
 #        else 
 #          tprint(`resolving failed for`, op(2,r), `nonlinear `);
 #          print (op(1,r));
-#          [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
+#          [op(1,r), op(2,r)] # [a,x1] FAIL druh√©ho druhu
 #        fi
 #      end, rs);
 #    # :HB
@@ -4360,7 +4363,7 @@ testcovering := proc ()
   map(simpl,ans)
 end:
 
-# Introducing a Bäcklund transformation
+# Introducing a B√§cklund transformation
 
 BT := proc()
   global `BT/list`;
