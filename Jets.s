@@ -26,7 +26,7 @@
 # A c k n o w l e d g m e n t s
 #
 # The first-named author was supported by GACR under project 201/07/P224
-#
+# Developement of Jets was gratefully supported by project CZ.1.07/2.3.00/20.0002. 
 
 
 #
@@ -95,6 +95,7 @@
 # * `resolve/nonresrat` reimplemented, resolve() FAILs when size condition is triggered
 # * minor reporting improvements in `run/l`()
 # * JetsProfiler introduced
+
 # * BasisExtractor function to symmetries/laws basis extraction introduced
 # * `divideout/unks` improved (treating exponents)
 # * `resolve/lin` unifyed
@@ -113,6 +114,13 @@
 # 
 # v 5.81
 # * version mismatch cleanup
+# * apply -> vfapply M.M. 20 Feb. 2014
+# * run() HB bugfix #if Bytes() > Blimit then reduce() fi
+# * `divideout/unks`() bugfix: nonnegative numeric exponents only are divided out
+# * jetorder() uses max()
+# * `size/*/<`() at lest one result is always returned (low ressize and putsize settings do not cause error)
+# * derive reporting slightly changed
+
 
 ###########################################################################################
 ###########################################################################################
@@ -121,7 +129,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.81 for Maple 15 as of Feb 25, 2014`);
+print(`Jets 5.81 for Maple 15 as of Mar 9, 2015`);
 
 #
 # Source code configuration, options and parameters
@@ -448,13 +456,11 @@ varorder := proc(q)
 end:
 
 jetorder := proc(f)
-  local js;
-  js := sort([op(map(varorder,`vars/1`(f)))]);
-  op(nops(js),js)
+  max(jetorders(f)) # HB
 end:
 
 jetorders := proc(f) # HB
-  op(map(varorder,`vars/1`(f)))
+  map(varorder,`vars/1`(f))
 end:
 
 # Creating aliases for jet variables. Arguments are:
@@ -1950,7 +1956,7 @@ BasisExtractor := proc(U, Cs::sequential(symbol), {Indexer::symbol:=index})
     "  where for j<>i all C_j are substituted to 0"
     "  and C_j set to 1 if is constant (and left untouched if function).";
   if not(assigned(cat(`BasisExtractor/Indexer/`, Indexer))) then error "Unknown result type %1", Indexer fi;
-  return [eval(seq( cat(`BasisExtractor/Indexer/`, Indexer)(Cs,i) = `BasisExtractor/1`(U, Cs, i), i=1..nops(Cs)))];
+  return map(simpl, [eval(seq( cat(`BasisExtractor/Indexer/`, Indexer)(Cs,i) = `BasisExtractor/1`(U, Cs, i), i=1..nops(Cs)))]);
 end:
 
 `BasisExtractor/Indexer/index` := proc(cs,i) i end: # indexed by integers
@@ -2349,7 +2355,7 @@ end:
         fi;
       fi; 
       aux := `size/*/<`(ders, ressize);
-      if nops(aux)=0 then WARNING("ressize too low"); aux := {sizemin(ders, size)} fi; # TODO(eff): 
+      #if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders, size)} fi; # TODO(eff): 
                                                                     # udelej nove rychle `size/*/<`
       if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
       if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
@@ -2367,42 +2373,42 @@ end:
       if rt > 3 then report(lb,[`cc+dc LVar=[size,VarL] resolved:`, op(map(a->lhs(a)=[size(a),VarL(rhs(a))], [res]))]) fi;                            
       if rt > 5 then report(lb,[`cc+dc resolved:`, res]) fi;
  
-      # put the resolved results
-      # lprint("BEFORE PUT");
-      # `pd/tab/print/unk`(g11);
-     
       aux := `size/*/<`({res}, putsize);
       if rt > 1 then 
         report(lb,[`for put, selected`, nops(aux), `out of`, nops([res]), `of sizes`, op(sort(map(size,[op(aux)])))]) 
       fi;
-      if aux = {} then ERROR(`putsize too low`) fi;
+      #if aux = {} then ERROR(`putsize %1 too low`, putsize) fi;
+      if aux = {} then ERROR(`Nothing to do, this shoud not happen`) fi;
 
       `run/put`(op(aux));
-      #if as<>{} and map(simpl,as)<>{0} then print(CHYBA,as) fi;
-      # lprint("AFTER  PUT");
-      # `pd/tab/print/unk`(g11);
        
-      if Bytes() > Blimit then reduce() fi
+      #if Bytes() > Blimit then reduce() fi # HB 2015: This was a bug (causing loosing of compatibility conditions)
     fi
   od;        
 end:
 
 `run/l/extraders` := proc() NULL end:
 
-`size/*/<` := proc(as,upb) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
-  local aux,bs,ans,i,m,n;
+`size/*/<` := proc(as,upb_name::evaln) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
+  local upb, aux,bs,ans,i,m,n;
+  upb := eval(upb_name);
   n := 1;
   ans := {};
   aux := sort([op(map(size, as))]);
-  for m in aux do
-    bs := select(`size/=`, as, m);
-    for i to nops(bs) do
-      n := n*m;
-      if n > upb then RETURN(ans)
-      else ans := ans union {op(i,bs)}
-      fi      
-    od
-  od;
+  if aux[1] > upb then 
+    WARNING("`%1`: size bound %2=%3 reached by first expression of size %4 but returning of single result enforced", 'procname', upb_name, upb, aux[1]);
+    return {as[1]}; 
+  else
+    for m in aux do
+      bs := select(`size/=`, as, m);
+      for i to nops(bs) do
+        n := n*m;
+        if n > upb then RETURN(ans)
+        else ans := ans union {op(i,bs)}
+        fi      
+      od
+    od;
+  end;
 end:
 
 `size/=` := proc(a,upb) evalb(size(a) = upb) end:
@@ -2425,7 +2431,7 @@ end:
 
 microprint := proc(p)
   option inline;
-  `if`(evalb(length (p) > 1000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
+  `if`(evalb(length (p) > 5000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
 end:
 
 smartprint := proc(p)
@@ -2561,13 +2567,16 @@ derive := proc()
        error "Unknown `derive/version` %1", `derive/version`;
       fi;
       ds := `vars/1`(a) minus  m;
-      Report(0, ["Final ", VarL(a)," noderives:", m, "Final derives:",  ds]);     
+      Report(2, ["Expression", VarL(a)," report:", m]);     
+      Report(0, ["Final noderives:", m]);     
+      Report(0, ["Final derives:",  ds]);     
       `derive/tab`[a,1] := ds;      
     fi;
     if not assigned(`derive/pd/tab`[a,1]) then 
       `derive/pd/tab`[a,1] := a
     fi
   od;  
+  Report(1, ["Lets derive ", nops(a), "expressions." ]);     
   ans := seq(`derive/1`(a,1), a = [args]);
   inc(`derive/time`, time()-time0);
   return(ans);
@@ -2635,7 +2644,7 @@ doderives():
     RETURN(Simpl(evalTD(`derive/pd/tab`[a,c])))
   fi;
   ds := `derive/tab`[a,c];
-  if rt > 3 then report(lb,[`variables:`, op(ds)]) fi;
+  if rt > 1 then report(lb,[`variables:`, op(ds)]) fi;
   if nargs > 2 then us := args[3] intersect ds;
     if rt > 3 then report(lb,[`usable variables:`, op(us)]) fi    
   else us := ds
@@ -3350,11 +3359,17 @@ divideout := proc(a)
 end:
 
 `divideout/unks` := proc(a)  # treats explicit products and powers
+ local e;
  if a = 0 then 0
  elif type (a, `divideout`) then 1
  elif type (a,`*`) then map(procname,a)
  elif type (a,`^`) then
-   if not(type (op(2,a), negative)) then procname(op(1,a)) else a fi # H.B. 2004, MM 2013
+   e := op(2,a); # H.B. 2004, MM 2013 and bugfix HB 2015
+   if type (e, nonnegative) then procname(op(1,a)) 
+   elif type(e, negative) then a
+   else printf("`%s`: Warning, cannot determine whether non-numeric exponent `%a` is positive thus dividing out is not possible.", 'procname', e) ; a 
+   # see Maple help: The functions type(x, positive),... return true if x is a positive extended_numeric number. Otherwise, false is returned
+   fi 
  else `divideout/unks/1`(a)
  fi
 end:
@@ -3975,9 +3990,9 @@ end:
   fi
 end:
 
-unprotect(apply):
+unprotect(vfapply):
 
-apply := proc(x,f) 
+vfapply := proc(x,f) 
   local s;
   if x = 0 then 0
   elif type (x,`+`) then map (procname, x, f)  
@@ -3990,13 +4005,13 @@ apply := proc(x,f)
   elif type (x,`vectorfield/pd`) then pd(f,op(x))
   elif type (x,`vectorfield/TD`) then TD(f,op(x))
   elif type (x,`vectorfield/c`) then 
-    apply(op(1,x), apply(op(2,x),f))
-     - apply(op(2,x), apply(op(1,x),f))
+    vfapply(op(1,x), vfapply(op(2,x),f))
+     - vfapply(op(2,x), vfapply(op(1,x),f))
   elif type (x,'name') then
-    if type (x,`vectorfield`) then `apply/~`(f,x)
+    if type (x,`vectorfield`) then `vfapply/~`(f,x)
     else ERROR (`not a vectorfield`, x)
     fi
-  else 'apply'(x,f) ## M.M. Sept. 19, 2O12
+  else 'vfapply'(x,f) ## M.M. Sept. 19, 2O12
   fi
 end:
 
@@ -4005,17 +4020,17 @@ end:
 
 `pd/indexed/TD` := proc(x,p) 
   if type (p,'nonlocal') then 0
-  else 'apply'(pd[p],TD[x])
+  else 'vfapply'(pd[p],TD[x])
   fi
 end:
 
 `TD/indexed/pd` := proc(q,x) 0 end:
 
 `TD/indexed/TD` := proc(x,y) 
-  'apply'(TD[y],TD[x])
+  'vfapply'(TD[y],TD[x])
 end:
 
-`apply/~` := proc(f,x) 
+`vfapply/~` := proc(f,x) 
   if type (x,'tail') and type (f,'dep') then
     if ars(f) intersect `nonlocal/s` = {} then
       RETURN (0)
@@ -4025,28 +4040,28 @@ end:
   elif type (f,'name') then 
     if type (f,'var') then 
       if type (x,'tail') then 0 
-      else 'apply'(x,f)
+      else 'vfapply'(x,f)
       fi
     elif type (f,'dep') then
       if `dep/tab`[f] = {} then 0
       elif type (x,'tail') and ars(f) intersect `nonlocal/s` = {} then 0
-      else 'apply'(x,f)
+      else 'vfapply'(x,f)
       fi
     elif type (f,{`vectorfield/TD`,`vectorfield/pd`}) then
       if type (x,'tail') then 0 
-      else 'apply'(x,f)
+      else 'vfapply'(x,f)
       fi 
-    else 'apply'(x,f)
+    else 'vfapply'(x,f)
     fi
   elif type (f,`+`) then map (procname, f, x)  
   elif type (f,`*`) then `der/*` (procname, f, x)
   elif type (f,`^`) then `der/^` (procname, op(f), x)
   elif type (f,'function') then 
-    if op(0,f) = 'apply' then 'apply'(x,f)
-    elif type (f, specfunc(anything,{pd,TD})) then 'apply'(x,f)
+    if op(0,f) = 'vfapply' then 'vfapply'(x,f)
+    elif type (f, specfunc(anything,{pd,TD})) then 'vfapply'(x,f)
     elif type (f, specfunc(anything,'jet')) then 
       if type (x,'tail') then 0 
-      else 'apply'(x,f)
+      else 'vfapply'(x,f)
       fi
     elif Existing(`der/`,op(0,f)) then
       Call(`der/`,op(0,f))(procname,op(f),x)
@@ -4056,7 +4071,7 @@ end:
   fi
 end:
 
-`der/apply` := proc(pd,f,p) 'pd'(f,p) end:
+`der/vfapply` := proc(pd,f,p) 'pd'(f,p) end:
 
 # Commutator
 
@@ -4070,19 +4085,19 @@ comm := proc(x,y)
     if s = 1 then ERROR (`no vectorfield in a product`, x) 
     elif type (s,`*`) then
       ERROR (`too many vectorfields in a product`, x) 
-    else RETURN(x/s*procname(s,y) - apply(y,x/s)*s)
+    else RETURN(x/s*procname(s,y) - vfapply(y,x/s)*s)
     fi;
   elif type (y,`*`) then
     s := select(type,y,'vectorfield');
     if s = 1 then ERROR (`no vectorfield in a product`, y) 
     elif type(s,`*`) then
       ERROR(`too many vectorfields in a product`, y) 
-    else RETURN(y/s*procname(x,s) + apply(x,y/s)*s)
+    else RETURN(y/s*procname(x,s) + vfapply(x,y/s)*s)
     fi
   elif type (x,`vectorfield/TD`) then RETURN (`comm/TD`(x,y))
   elif type (y,`vectorfield/TD`) then RETURN (-`comm/TD`(y,x))
-  elif type (x,`vectorfield/pd`) then RETURN (apply(x,y))
-  elif type (y,`vectorfield/pd`) then RETURN (-apply(y,x))
+  elif type (x,`vectorfield/pd`) then RETURN (vfapply(x,y))
+  elif type (y,`vectorfield/pd`) then RETURN (-vfapply(y,x))
   fi;
   if `comm/<<`(y,x) then -comm(y,x)
   elif type (y,`vectorfield/c`) and `comm/<<`(x,op(1,y)) then 
@@ -4093,7 +4108,7 @@ end:
 
 `comm/TD` := proc(x,y)
   if type (y,`vectorfield/TD`) then RETURN (0)
-  elif type (y,'tail') then apply(x,y)
+  elif type (y,'tail') then vfapply(x,y)
   else 'comm'(x,y)
   fi
 end:
@@ -4122,7 +4137,7 @@ end:
 
 # Evolutionary differentiation
 
-eapply := proc(v,f)
+evfapply := proc(v,f)
   convert(map(
     proc(q,v,f) 
       if type (q,`f/var`) then coeff(v,pd[q])*pd(f,q)
@@ -4133,26 +4148,26 @@ end:
 
 # Point symmetries
 
-papply := proc(v,f)
+pvfapply := proc(v,f)
   convert(map(
     proc(q,v,f) 
       if type (q,`b/var`) then coeff(v,pd[q])*pd(f,q)
       elif type (q,`f/var`) then coeff(v,pd[q])*pd(f,q)
-      else `papply/j`(op(q),v)*pd(f,q)
+      else `pvfapply/j`(op(q),v)*pd(f,q)
       fi
     end, [op(`vars/1`(f))], v, f), `+`)
 end:
 
-`papply/j` := proc(u,x,v)
+`pvfapply/j` := proc(u,x,v)
   if `count/length`(x) = 1 then TD(coeff(v,pd[u]),x)
-    - convert(map(`papply/j/1`, [op(`b/var/s`)], `count/f`(x), 1, u, v), `+`)
-  else TD(`papply/j`(u,`count/r`(x),v),`count/f`(x))
-    - convert(map(`papply/j/1`, [op(`b/var/s`)], `count/f`(x),`count/r`(x),
+    - convert(map(`pvfapply/j/1`, [op(`b/var/s`)], `count/f`(x), 1, u, v), `+`)
+  else TD(`pvfapply/j`(u,`count/r`(x),v),`count/f`(x))
+    - convert(map(`pvfapply/j/1`, [op(`b/var/s`)], `count/f`(x),`count/r`(x),
       u, v), `+`)
   fi
 end:
 
-`papply/j/1` := proc(y,x,z,u,v)
+`pvfapply/j/1` := proc(y,x,z,u,v)
   TD(coeff(v,pd[y]),x)*jet(u,z*y)
 end:
 
@@ -5709,11 +5724,11 @@ end:
 JetsProfiler := module ()
   export 
       Print,
-      ModuleApply;  
+      Modulevfapply;  
   local printer, profilername, profiledprocs;    
   global `cc/time`, `derive/time`, `resolve/time`;
   
-  ModuleApply := proc(profiler::symbol:='none')   
+  Modulevfapply := proc(profiler::symbol:='none')   
     if assigned(profilername) and profilername <> profiler then
     	 error "Profiler change not implemented. Please do it manually."
     end;
@@ -5820,7 +5835,7 @@ TransactionWriter := proc(  BaseDirPath::string  := ".",
       baseDirPath,
       mainFileName, mainFile, 
       ModulePrint,
-      ModuleApply,
+      Modulevfapply,
       AppendLine;
     local
       Init,
@@ -5850,13 +5865,13 @@ TransactionWriter := proc(  BaseDirPath::string  := ".",
       fi;
       # setup the mode, i. e. the default write function and its behavior
       if mode = append then 
-        ModuleApply := AppendLine;
+        Modulevfapply := AppendLine;
         # touch the main file    
         fd := FileTools[Text][Open](mainFile, create=true, overwrite=true);
         FileTools[Text][WriteString](fd,""); 
         FileTools[Text][Close](fd);     
       elif mode = none then
-        ModuleApply := proc() error "Default mode not set, use the explicit call." end
+        Modulevfapply := proc() error "Default mode not set, use the explicit call." end
       else
         error ("unknown mode %1", mode);
       fi;
@@ -5901,7 +5916,7 @@ TransactionReader := proc(  BaseDirPath::string,
       baseDirPath,
       mainFileName, mainFile, 
       ModulePrint,
-      ModuleApply,
+      Modulevfapply,
       ReadFile;
     local
       Init,
@@ -5923,7 +5938,7 @@ TransactionReader := proc(  BaseDirPath::string,
       print("reader:", locking, skip, baseDirPath, mainFileName, mainFile, tempFile);  
     end:
     
-    ModuleApply := ReadFile;
+    Modulevfapply := ReadFile;
     
     ReadFile := proc()
       local s, n, N;
@@ -5993,7 +6008,7 @@ else
     export Pop, Write, Init,
       RefreshReaders,
       ModulePrint,
-      ModuleApply;
+      Modulevfapply;
     local
       mCCDir, mCCProducersListFile,
       writer,
@@ -6024,7 +6039,7 @@ else
       writer:-mainFile;
     end:
     
-    ModuleApply := Init;
+    Modulevfapply := Init;
     
     ModulePrint := proc()
       print(mCCDir, mCCProducersListFile);
@@ -6080,7 +6095,7 @@ CreateDataReporter := proc(baseFileName::string, {ext::string:=".log", dir::stri
            # icremental - there is created a new file on every index value (by default, indexes 1, 2, ... are appended to the file name)
            # Incremental - ditto, but output is appended if (indexed) file already exists
   module()
-    export ModuleApply;
+    export Modulevfapply;
     local Init,
           N, M, myIncProc,
           mainFilePath, backupFilePath;
@@ -6105,7 +6120,7 @@ CreateDataReporter := proc(baseFileName::string, {ext::string:=".log", dir::stri
     
     Init();
     
-    ModuleApply := proc({comment::{string}:=""})
+    Modulevfapply := proc({comment::{string}:=""})
       local fd, bf, nf, i;
       i := myIncProc(); 
       nf, bf := mainFilePath(i), backupFilePath(i);

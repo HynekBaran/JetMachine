@@ -83,6 +83,16 @@
 <Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
 <Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
 </Styles>
+<Metadata-table>
+    <Metadata-category name="&lt;default&gt;"/>
+    <Metadata-tag id="0" category="&lt;default&gt;" name="Document Properties">
+        <Metadata-attribute name="Subject" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Author" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Item List" value="true"/>
+        <Metadata-attribute name="Keywords" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Title" value="&lt;default&gt;"/>
+    </Metadata-tag>
+</Metadata-table>
 <Task-table>
     <Task-category name="&lt;default&gt;"/>
 </Task-table>
@@ -97,7 +107,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUpKZXRzfjUuODF+Zm9yfk1hcGxlfjE1fmFzfm9mfkZlYn4yNSx+MjAxNEc2Ig==</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUlKZXRzfjUuODF+Zm9yfk1hcGxlfjE1fmFzfm9mfk1hcn45LH4yMDE1RzYi</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L936" drawlabel="true">
@@ -485,9 +495,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">`Incorrect result`, {1}
-`instead of`, {(1+a)^r}
-`while testing`, `divideout 2d`</Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">`divideout/unks`: Warning, cannot determine whether non-numeric exponent `r` is positive thus dividing out is not possible.</Text-field>
 </Output>
 </Group>
 <Group labelreference="L26" drawlabel="true">
@@ -715,20 +723,20 @@
 <Group labelreference="L44" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(w): nonlocal(w):</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(0,f), 0, `apply 1`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(A + B, f), 'apply(A,f)' + 'apply(B,f)', `apply 2`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(2*A, f), 2*'apply(A, f)', `apply 3a`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(x*A, f), x*'apply(A, f)', `apply 3b`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(x*w*A, f), x*w*'apply(A, f)', `apply 3c`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[x],f), pd(f,x), `apply 4a`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[x],pd[u]), 0, `apply 4b`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[w],TD[x]), 0, `apply 4c`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],TD[x]), 'apply'(pd[u],TD[x]), `apply 4d`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(TD[x],f), TD(f,x), `apply 5`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(comm(A,B), f), apply(A,apply(B,f))</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">     - apply(B,apply(A,f)), `apply 6`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],2*TD[x]), 2*'apply'(pd[u],TD[x]), `apply 4e`); </Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],2*pd[x]), 0, `apply 4f`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(0,f), 0, `vfapply 1`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(A + B, f), 'vfapply(A,f)' + 'vfapply(B,f)', `vfapply 2`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(2*A, f), 2*'vfapply(A, f)', `vfapply 3a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(x*A, f), x*'vfapply(A, f)', `vfapply 3b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(x*w*A, f), x*w*'vfapply(A, f)', `vfapply 3c`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[x],f), pd(f,x), `vfapply 4a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[x],pd[u]), 0, `vfapply 4b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[w],TD[x]), 0, `vfapply 4c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[u],TD[x]), 'vfapply'(pd[u],TD[x]), `vfapply 4d`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(TD[x],f), TD(f,x), `vfapply 5`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(comm(A,B), f), vfapply(A,vfapply(B,f))</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">     - vfapply(B,vfapply(A,f)), `vfapply 6`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[u],2*TD[x]), 2*'vfapply'(pd[u],TD[x]), `vfapply 4e`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vfapply(pd[u],2*pd[x]), 0, `vfapply 4f`); </Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
@@ -742,14 +750,14 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, B + C), comm(A, B) + comm(A, C), `comm 2b`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(2*A, B), 2*comm(A, B), `comm 3a`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, 2*B), 2*comm(A, B), `comm 3b`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(x*A, B), x*comm(A, B) - 'apply'(B,x)*A, `comm 4a`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, x*B), x*comm(A, B) + 'apply'(A,x)*B, `comm 4b`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(2*x*A, B), 2*x*comm(A, B) - 2*'apply'(B,x)*A, `comm 4c`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, 2*x*B), 2*x*comm(A, B) + 2*'apply'(A,x)*B, `comm 4d`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(x*A, B), x*comm(A, B) - 'vfapply'(B,x)*A, `comm 4a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, x*B), x*comm(A, B) + 'vfapply'(A,x)*B, `comm 4b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(2*x*A, B), 2*x*comm(A, B) - 2*'vfapply'(B,x)*A, `comm 4c`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, 2*x*B), 2*x*comm(A, B) + 2*'vfapply'(A,x)*B, `comm 4d`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(TD[x], TD[t]), 0, `comm 5a`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(TD[x], A), 'comm'(TD[x], A), -'comm'(A,TD[x]), `comm 5b`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(pd[x], A), apply(pd[x],A), `comm 6a`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, pd[x]), -apply(pd[x],A), `comm 6b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(pd[x], A), vfapply(pd[x],A), `comm 6a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, pd[x]), -vfapply(pd[x],A), `comm 6b`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(A,B), 'comm'(A,B), -'comm'(B,A), `comm 7`); </Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(A,comm(B,C)), 'comm(A,comm(B,C))', '-comm(A,comm(C,B))',</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">   'comm(B,comm(A,C)) - comm(C,comm(A,B))',</Text-field>
@@ -774,8 +782,14 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">`O.K.`</Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SScwfnNlYy5HNiI=</Equation></Text-field>
+</Output>
 </Group>
-<Group labelreference="L958" drawlabel="true">
+<Group labelreference="L964" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
