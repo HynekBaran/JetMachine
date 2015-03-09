@@ -73,6 +73,9 @@
 #
 # v 5.75 
 # * old resolve is default
+#
+# v. 5.76
+# * apply fixed (last ERROR replaced with unevaluated ‘apply’)
 
 
 ###########################################################################################
@@ -82,7 +85,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.75 for Maple 15 as of 4 Sep 2012`);
+print(`Jets 5.76 for Maple 15 as of Sep 19, 2012`);
 
 #
 # Source code configuration, options and parameters
@@ -3913,7 +3916,7 @@ apply := proc(x,f)
     if type (x,`vectorfield`) then `apply/~`(f,x)
     else ERROR (`not a vectorfield`, x)
     fi
-  else ERROR (`a vectorfield of unknown type`, f)
+  else 'apply'(x,f) ## M.M. Sept. 19, 2O12
   fi
 end:
 
