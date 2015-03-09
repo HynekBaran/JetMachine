@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet>
-<Version major="14" minor="1"/>
+<Version major="15" minor="1"/>
 <Label-Scheme value="2" prefix=""/>
 <View-Properties presentation="false"></View-Properties>
-<MapleNet-Properties warnlevel="3" longdelim="true" plotoptions="" echo="1" errorcursor="false" elisiontermsthreshold="10000" elisiontermsbefore="100" errorbreak="1" prettyprint="3" prompt="&gt; " latexwidth="6.0" useclientjvm="true" ansi="false" screenheight="25" labelwidth="20" plotdevice="inline" typesetting="standard" helpbrowser="standard" displayprecision="-1" indentamount="4" elisiondigitsthreshold="10000" quiet="false" plotoutput="terminal" rtablesize="10" preplot="" showassumed="1" plotdriver="opengl" elisiontermsafter="100" labelling="true" postplot="" screenwidth="120" elisiondigitsbefore="100" elisiondigitsafter="100" verboseproc="1" imaginaryunit="I" ShowLabels="true"/>
+<MapleNet-Properties warnlevel="3" longdelim="true" contextmenusize="automatic" plotoptions="" echo="1" errorcursor="false" screenpixelheight="1200" elisiontermsthreshold="10000" elisiontermsbefore="100" errorbreak="1" prettyprint="3" prompt="&gt; " latexwidth="6.0" useclientjvm="true" ansi="false" screenheight="25" labelwidth="20" plotdevice="inline" typesetting="standard" helpbrowser="standard" displayprecision="-1" indentamount="4" elisiondigitsthreshold="10000" quiet="false" plotoutput="terminal" rtablesize="10" preplot="" showassumed="1" plotdriver="opengl" elisiontermsafter="100" labelling="true" postplot="" screenwidth="120" elisiondigitsbefore="100" elisiondigitsafter="100" verboseproc="1" imaginaryunit="I" ShowLabels="true"/>
 <Styles><Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Serif" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
@@ -96,7 +96,10 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SU9KZXRzfjUuNzN+QUxQSEF+Zm9yfk1hcGxlfjEzfmFzfm9mfjAxfkZlYn4yMDExRzYi</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SVlKZXRzfjUuNzR+QUxQSEF+Zm9yfk1hcGxlfjE1fmFzfm9mfjI5fkphbn4yMDEyfi1+cmVzb2x2ZUc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkTWFQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEjOj1GJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GLDYlUSRtYXBGJ0YvRjIvJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOQ==">SSRtYXBHJSpwcm90ZWN0ZWRH</Equation></Text-field>
 </Output>
 <Output>
 <Text-field style="Line Printed Output" layout="Line Printed Output">`Blimit = 25000  ressize = 1000  putsize = 200  maxsize = 100`</Text-field>
@@ -109,7 +112,7 @@
 </Group>
 <Group labelreference="L51" drawlabel="true">
 <Input>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#read(&quot;/Volumes/Private-1/MichalMarvan/Public/Jets.s&quot;);</Text-field>
 </Input>
 </Group>
 <Group labelreference="L50" drawlabel="true">
@@ -500,6 +503,25 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
+<Group labelreference="L1002" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"># 5.73b
+T(`divideout/unks`((exp(2*u)^3+1)),1, `divideout/unks exp1`);
+T(`divideout/unks`((exp(G)^2+1)),1, `divideout/unks exp2`);
+T(`divideout/unks`((exp(G)^2+1)),1, `divideout/unks exp3`);
+T(`divideout/unks`((exp(G*u)^3+1)),1, `divideout/unks exp4`);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L1001" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1000" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
 <Group labelreference="L28" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (nonzero(a*b), {a,b}, `nonzero 1`):</Text-field>
@@ -528,15 +550,8 @@
 </Group>
 <Group labelreference="L956" drawlabel="true">
 <Input>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type({1 + a},nonzero), false, `type/nonzero 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#T (type({1 + a},nonzero), false, `type/nonzero 1`):</Text-field>
 </Input>
-<Output>
-<Text-field style="Diagnostic" layout="Diagnostic"> #(`type/nonzero`,1): b := evalb(divideout(numer(simpl(a))) = 1);
- #(divideout,4): `divideout/nonzero`(`divideout/unks`(factor(Simpl(a))),ns)
- #(Simpl,7): V := Vars(f);
- #(Vars,13): ERROR(`unexpected object`,a)</Text-field>
-<Text-field style="HyperlinkError" layout="HyperlinkError"><Hyperlink linktarget="http://www.maplesoft.com/support/help/errors/view.aspx?path=Error,%20(in%20Vars)%20unexpected%20object,%20%7B1+a%7D" hyperlink="true"><Font style="HyperlinkError">Error, (in Vars) unexpected object, {1+a}</Font></Hyperlink></Text-field>
-</Output>
 </Group>
 <Group labelreference="L34" drawlabel="true">
 <Input>
@@ -550,6 +565,45 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({`resolve/lin`({a + b, a + c}, [a,b,c])}, {a = -c, b = c},`resolve 2`): </Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`resolve/lin`({c*a + b + 2, b + 5}, [a,b]), b = -5, `resolve 3`):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1043" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T(`resolve/lin`({a*b+a*c - d}, [a]), FAIL, `resolve 4a`):</Text-field>
+</Input>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">[0] &lt;0&gt; linear resolving failed for a</Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUYjNiYtSShtZmVuY2VkR0YkNiQtRiM2Ji1JI21pR0YkNiVRImJGJy8lJ2l0YWxpY0dRJXRydWVGJy8lLG1hdGh2YXJpYW50R1EnaXRhbGljRictSSNtb0dGJDYtUSIrRicvRjpRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0ZELyUpc3RyZXRjaHlHRkQvJSpzeW1tZXRyaWNHRkQvJShsYXJnZW9wR0ZELyUubW92YWJsZWxpbWl0c0dGRC8lJ2FjY2VudEdGRC8lJ2xzcGFjZUdRLDAuMjIyMjIyMmVtRicvJSdyc3BhY2VHRlMtRjM2JVEiY0YnRjZGOUZARkAtRj02LVExJkludmlzaWJsZVRpbWVzO0YnRkBGQkZFRkdGSUZLRk1GTy9GUlEmMC4wZW1GJy9GVUZnbi1GMzYlUSJhRidGNkY5RkAtRj02LVEiPUYnRkBGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZgby1GMzYlUSJkRidGNkY5LyUrZm9yZWdyb3VuZEdRKFswLDAsMF1GJy8lKXJlYWRvbmx5R0ZERkA=">LyomLCZJImJHNiIiIiJJImNHRiZGJ0YnSSJhR0YmRidJImRHRiY=</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1042" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">nonzero(b+c):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L1041" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T(`resolve/lin`({a*b+a*c-d}, [a]), a = d/(b+c), `resolve 4b`):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L1020" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"># 5.73b
+unknowns(G,F);
+T(resolve((exp(u)^3+1)*F), F=0, `resolve b1`);
+T(resolve((exp(u)^(-3)+1)*F) , F=0, `resolve b2`);
+T(resolve((exp(G))*F) , F=0, `resolve b3`);
+T(resolve((exp(2*u*G-5)^(-1/2))*F) , F=0, `resolve b4`);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NiRJIkdHNiJJIkZHRiQ=</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1021" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
@@ -798,15 +852,122 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">   0, `comm 9d`);</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1022" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`type/divideout` := proc(a) # HB 14. 5. 2008</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  if type(a, positive) then true</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  elif type(a, specop(anything, `+`))  </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    or type(a, specop(anything, `*`)) then</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    andmap(type, [op(a)],  divideout)</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  elif type(a, specfunc(anything,exp)) then true</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  elif type (a,`^`) and type (op(2,a), positive) and type (op(1,a), divideout) then true # H.B. 30. 11. 2011</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  else</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    false</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  fi</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">end:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1023" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(F)+1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L983" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(F)^2+1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1033" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#printlevel := 15;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L1030" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(F)^3+1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUYjNiQtSSVtc3VwR0YkNiUtSShtZmVuY2VkR0YkNiQtRi42JS1JI21vR0YkNi1RLyZFeHBvbmVudGlhbEU7RicvJSxtYXRodmFyaWFudEdRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y+LyUpc3RyZXRjaHlHRj4vJSpzeW1tZXRyaWNHRj4vJShsYXJnZW9wR0Y+LyUubW92YWJsZWxpbWl0c0dGPi8lJ2FjY2VudEdGPi8lJ2xzcGFjZUdRJjAuMGVtRicvJSdyc3BhY2VHUSwwLjExMTExMTFlbUYnLUkjbWlHRiQ2JVEiRkYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y6USdpdGFsaWNGJy8lMXN1cGVyc2NyaXB0c2hpZnRHUSIwRidGOS1JI21uR0YkNiRRIjJGJ0Y5RlpGOS1GNjYtUSgmbWludXM7RidGOUY8Rj9GQUZDRkVGR0ZJL0ZMUSwwLjIyMjIyMjJlbUYnL0ZPRl9vRjMtRjY2LVEiK0YnRjlGPEY/RkFGQ0ZFRkdGSUZeb0Zgby1GaG42JFEiMUYnRjlGOQ==">LCgqJC1JJGV4cEc2JCUqcHJvdGVjdGVkR0koX3N5c2xpYkc2IjYjSSJGR0YpIiIjIiIiRiQhIiJGLUYt</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1035" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#trace(`type/divideout`);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L1011" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(F)-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYmLUklbXN1cEdGJDYlLUkjbW9HRiQ2LVEvJkV4cG9uZW50aWFsRTtGJy8lLG1hdGh2YXJpYW50R1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRjcvJSlzdHJldGNoeUdGNy8lKnN5bW1ldHJpY0dGNy8lKGxhcmdlb3BHRjcvJS5tb3ZhYmxlbGltaXRzR0Y3LyUnYWNjZW50R0Y3LyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdRLDAuMTExMTExMWVtRictSSNtaUdGJDYlUSJGRicvJSdpdGFsaWNHUSV0cnVlRicvRjNRJ2l0YWxpY0YnLyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy1GLzYtUSgmbWludXM7RidGMkY1RjhGOkY8Rj5GQEZCL0ZFUSwwLjIyMjIyMjJlbUYnL0ZIRlotSSNtbkdGJDYkUSIxRidGMkYy">LCYtSSRleHBHNiQlKnByb3RlY3RlZEdJKF9zeXNsaWJHNiI2I0kiRkdGKCIiIiEiIkYr</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1029" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1027" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(u-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1026" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(u)-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1025" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(2*u)-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1024" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(u)^2-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1031" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">divideout(exp(u)^3-1);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIi</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L1010" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
 <Group labelreference="L1" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">if OK then lprint(`O.K.`);</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  print(cat(floor(time() - time0),` sec.`))</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">else error &quot;Test not passed&quot;;  </Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">fi:</Text-field>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">print(cat(floor(time() - time0),` sec.`)):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 <Output>

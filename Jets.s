@@ -45,7 +45,21 @@
 #
 # v 5.73 alpha
 # * first attempt to fix a critical bug in `cc/new` (some cc's was omitted by run)
-
+#
+# v 5.73 beta
+# * `divideout/unks`, `type/divideout`: fixed (it was ok in very old jets but broken later)
+#   and little improved ((exp(F)+1) is divided out now)
+# * Varordering: new ordering revdeg implemented;
+#   [degree, revdeg] is equivalent to the graded reverse lexicographic order (tdeg or grevlex)
+# * `resolve/normalizer` added
+# * Reporter implemented (quite primitive, resolve only)  
+#
+# v 5.74 alpha
+# * started use of parallel MaP version of map (in resolve and derive)
+# * resolve completely rewritten
+# * derive redesigned
+# * new functions Varl, VarL, LVar
+# * minor evalTD bug fixed (wrong result on matrices) 
 
 
 ###########################################################################################
@@ -55,14 +69,14 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.73 ALPHA for Maple 13 as of 01 Feb 2011`);
+print(`Jets 5.74 ALPHA for Maple 15 as of 29 Jan 2012 - resolve`);
 
 #
 # Source code configuration, options and parameters
 #
 
 ### version info
-`Jets/opts`["Version", "core"]  := [5,7,3]:
+`Jets/opts`["Version", "core"]  := [5,7,4]:
 `Jets/opts`["Version", "CC"]    := ["MM_SSICOS", 2, 0] :
 `Jets/opts`["Version", "Maple"] := table(["Tested"={13}, "Minimal"=13]):
 
@@ -121,6 +135,14 @@ if assigned(cat(`jets/read/flag/`,__FILE__)) then error "source file %1 already 
 if assigned(cat(`jets/read/flag/`,__FILE__)) then `quit`(255); fi; # force immediate exit from read() statement
 assign(cat(`jets/read/flag/`,__FILE__), true):
 
+### aux macros
+$define Report(l, m) if rt > l then report(lb,[cat('procname','`:`'), op(m)]) fi;
+
+
+##############################
+#MaP := evalf(Threads[Map]);
+MaP := evalf(map);
+
 
 ###########################################################################################
 ###########################################################################################
@@ -147,16 +169,17 @@ Existing := proc(c,a) assigned(c||a) end:
 Call := proc(c,a) c||a end: # || replaces . since 6.0
     
 size := proc() # HB generalized size of any number of arguments
-  try 
+  #try 
     add(`size/1`(a), a in [args]);
-  catch:
-    printf("\nsize: failed and returned infinity: %q\n", 
-           StringTools[FormatMessage](lastexception[2..-1]));
-    infinity;
-  end:
+  #catch:
+  #  printf("\nsize: failed and returned infinity: %q\n", 
+  #         StringTools[FormatMessage](lastexception[2..-1]));
+  #  infinity;
+  #end:
 end:
 
 `size/1` := proc(a) # MM size evaluator
+  option inline;
   evalf(nops(Vars(a)) + length(a)/1000000000)
 end:
 
@@ -657,21 +680,27 @@ evalTD := proc (f)
   local a,b,`EVALTD/b/old`,`EVALTD/s/old`;
   global `EVALTD/b`, `EVALTD/s`;
   `EVALTD/b/old` := `EVALTD/b`; `EVALTD/s/old` := `EVALTD/s`;
-  if nargs = 1 then `EVALTD/b` := true
-  elif type (args[2], set(name)) then `EVALTD/b` := false;
-   `EVALTD/s` := args[2]
-  else ERROR (`second argument must be a set of names`)
-  fi; 
-  b := eval(f); 
-  a := {}; # a either different from a or evalTD(a) = a
-  while hasfun(b,TD) and b <> a do
-    a := b;
-    b := traperror(eval(a))
-  od;
-  `EVALTD/b` := `EVALTD/b/old`; `EVALTD/s` := `EVALTD/s/old`;
-  if b = lasterror then ERROR (lasterror) fi;
-  b
+  if type(f,sequential) or type(f, matrix) then # HB
+    map('procname', f, args[2..-1])
+  else
+    if nargs = 1 then `EVALTD/b` := true
+		elif type (args[2], set(name)) then `EVALTD/b` := false;
+		 `EVALTD/s` := args[2]
+		else ERROR (`second argument must be a set of names`)
+		fi; 
+		b := eval(f); 
+		a := {}; # a either different from a or evalTD(a) = a
+		while hasfun(b,TD) and b <> a do
+			a := b;
+			b := traperror(eval(a))
+		od;
+		`EVALTD/b` := `EVALTD/b/old`; `EVALTD/s` := `EVALTD/s/old`;
+		if b = lasterror then ERROR (lasterror) fi;
+		b
+  fi;
 end: 
+
+
 
 `EVALTD/s` := {}:
 `EVALTD/b` := false:
@@ -1568,7 +1597,8 @@ Simpl := proc(f)
     if nargs > 2 then
       error "Too much arguments"
     elif nargs = 2 then
-      V := args[2]
+      V := args[2];
+      assert(type(V,sequential));
     else
       V := Vars(f) ;
       V := select(proc(v,f) type(f,polynom(anything,v)) end, V, f);
@@ -2025,10 +2055,19 @@ end:
   fi
 end:
 
+
+`rep/res` := proc() end:
+`rep/cc` := proc() end:
+`rep/der` := proc() end:
+
+`run/getstep` := proc() global `run/currentstep`; `run/currentstep` end:
+
+`run/currentstep` := 0:
+
 `run/l` := proc()
   local as,eqs,aux,i,imax,ders, res,t,rt,lb,ncc, aux1;
   global `run/time`,`run/bytes`, putsize, ressize, runtransformations,
-         RESOLVE;
+         RESOLVE, `run/currentstep`;
   if `unk/<</list` = [] then
     ERROR (`please set unknowns(name1, name2, ...)`) 
   fi;
@@ -2037,6 +2076,7 @@ end:
   `run/bytes` := kernelopts(bytesalloc);
   lb := `RUN:`; rt := `report/tab`[run];
   do i := 0;
+    `run/currentstep` := `run/currentstep` + 1;
     if rt > 0 then report(lb,`Compatibility conditions ...`) fi;
     
     ### cc
@@ -2044,7 +2084,6 @@ end:
     #as := cc(pop,maxnumP=1); 
     as := cc();
     #as = the lowest compatibility conditions
-    if rt > 1 then report(lb,[`c.c.: `, op(sort(map(size,[op(as)])))]) fi;
     #MM#   as := map(derive, as); # derive differential consequences of cc
     #   if rt > 1 then
     #     report(lb,[`d.c.c.: `, op(sort(map(size,[op(as)])))])
@@ -2070,13 +2109,17 @@ end:
 
       #print(LOLO);
       
-      if rt > 1 then report(lb,[`cc to be resolved #:`, nops(as)]) fi;
-      if rt > 4 then report(lb,[`cc to be resolved:`, as]) fi;       
+      if rt > 1 then report(lb,[`cc sizes to be resolved(`, nops(as),`): `, op(sort(map(size,[op(as)])))]) fi;
+      if rt > 2 then report(lb,[`cc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], as)]) fi;       
+      if rt > 5 then report(lb,[`cc to be resolved:`, as]) fi;       
     fi;
     MultiOrdCC:-Write(op(as)); # send intermediate cc's to the world   
 
     
     ### dc
+    if rt > 4 then report(lb,[`args to be derived:`, args]) fi;           
+    if rt > 3 then report(lb,[`args to be derived [size,LVar]:`, map(a->[LVar(a)=size(a)], [args])]) fi;       
+    
     ders := {derive(args)};
     #ders := map(simpl,ders); # TODO(eff): je to simpl nutne?
     ders := select(proc(a) evalb(a <> 0) end, ders); 
@@ -2091,7 +2134,7 @@ end:
         if rt > 3 then report(lb,[`transformed c.c.: `], op(as)) fi;
       fi
     fi;
-    if rt > 3 then report(lb,[`all derived: `], op(ders)) fi;
+    if rt > 5 then report(lb,[`all derived: `], op(ders)) fi;
 
     ### are we done?
     if nops(as)+nops(ders)=0 then 
@@ -2117,22 +2160,25 @@ end:
 		### resolve ALL compatibility conditions cc and some of differential consequences (dc)		
 		if nops(ders)=0 then
       if rt > 1 then report(lb,[`no dc to be resolved`]) fi;
-		  res := resolve(op(as));
+		  res := `resolve/1`(op(as));
 		else
       aux := `size/*/<`(ders, ressize);
       if nops(aux)=0 then WARNING("ressize too low"); aux := {sizemin(ders, size)} fi; # TODO(eff): 
                                                                     # udelej nove rychle `size/*/<`
-      if rt > 1 then report(lb,[`dc to be resolved: `, op(sort(map(size,[op(aux)])))]) fi;
-      if rt > 4 then report(lb,[`dc to be resolved: `, op(aux), `selected of totally`, nops(ders)]) fi;
-      res := resolve(op(as),op(aux));
+      if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
+      if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], aux)]) fi;       
+      if rt > 5 then report(lb,[`dc to be resolved: `, op(aux), `selected of totally`, nops(ders)]) fi;
+      res := `resolve/1`(op(as),op(aux));
     fi;  
       
     if res = FAIL then
       if ncc=0 then WARNING("Cannot resolve differential consequence(s) only, no cc present."); fi;
       RETURN (FAIL);
     else 
-      if rt > 1 then report(lb,[`cc+dc resolved:`, op(sort(map(size,[res])))]) fi;
-      if rt > 4 then report(lb,[`cc+dc resolved:`, res]) fi;
+      if rt > 1 then report(lb,[`cc+dc sizes resolved:`, op(sort(map(size,[res])))]) fi;
+      if rt > 2 then report(lb,[`cc+dc [LVar=size] resolved:`, op(map(a->[lhs(a)=size(a)], [res]))]) fi;    
+      if rt > 3 then report(lb,[`cc+dc LVar=[size,VarL] resolved:`, op(map(a->lhs(a)=[size(a),VarL(rhs(a))], [res]))]) fi;                            
+      if rt > 5 then report(lb,[`cc+dc resolved:`, res]) fi;
  
       # put the resolved results
       # lprint("BEFORE PUT");
@@ -2144,7 +2190,7 @@ end:
        
       if Bytes() > Blimit then reduce() fi
     fi
-  od
+  od;        
 end:
 
 `size/*/<` := proc(as,upb) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
@@ -2310,10 +2356,12 @@ end:
 noderives():
 
 `derive/1` := proc(a,c)
-  local ds,us,ps,p,aux,t,ns,s,b,rt,lb;
+  local ds,us,ps,p,aux,t,ns,s,b,rt,lb, vs, Vs, cs, M;
   global `derive/tab`,`derive/pd/tab`, `derive/depth`;
   rt := `report/tab`[derive]; lb := `DERIVE:`;
-  if rt > 3 then report(lb,[`expression:`], `derive/pd/tab`[a,c]) fi;
+  if rt > 1 then report(lb,['procname', `input arg1:`, LVar(a)=size(a), `arg2`, c]) fi;
+  if rt > 4 then report(lb,['procname', `input arguments:`, a,c]) fi;
+  if rt > 3 then report(lb,[`expression:`, `derive/pd/tab`[a,c]]) fi;
   if assigned(`derive/depth`) and `count/length`(c) > `derive/depth` then
     if rt > 3 then report(lb,[`evalTD forced by derive/depth, length is :`, `count/length`(c)]) fi;
     RETURN(Simpl(evalTD(`derive/pd/tab`[a,c])))
@@ -2324,12 +2372,36 @@ noderives():
     if rt > 3 then report(lb,[`usable variables:`, op(us)]) fi    
   else us := ds
   fi;
+  # HB:
+  # deal with some special types of a - try to estimate what are good directions
+  vs := convert(us,list); # vars of a
+  # polynomial
+  aux := select(v -> type(a, polynom(anything,v)), vs); # polynomial vars
+  if nops(aux) > 0 and nops(aux) < nops(us) then
+    if rt > 1 then report(lb,[`Deriving polynom, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
+    us := convert(aux,set);
+  # sum
+  elif type(a, `+`) then
+     Vs := MaP(`vars/1`@Vars, convert(a,list)); # vars of unknowns in subitems
+     cs := map(v -> nops(select(`=`, map(has,Vs, v), true)), vs); # count occurrences of vars in subitems
+     M := min(cs);
+     aux := zip((v,c)-> if c<=M then v fi , vs, cs); # vs :=  'nice' vars
+     if nops(aux) > 0 and nops(aux) < nops(us) then
+       if rt > 1 then report(lb,[`Deriving sum, reducing usable variables`, op(us), `to`, op(aux)]) fi;    
+       us := convert(aux,set);
+     fi
+  fi;
+  if rt > 5 then report(lb,[`us`,us]) fi;    
+  # :HB
   ns := us;  # just anything nonempty if us nonempty
   while ns <> {} do
     ps := `remove/vars/<`(us,us);  # top vars
+    if rt > 5 then report(lb,[`ps:`, ps]) fi;    
     aux := [seq(p = `derive/pd`(a,c,p), p = ps)];  # [p = pd(a,p), ...]
     aux := select(proc(e) op(2,e) <> 0 end, aux);  # select pd <> 0
+    if rt > 5 then report(lb,[`aux selected:`, aux]) fi;
     ns := ps minus map(proc(e) op(1,e) end, {op(aux)});  # top, but pd = 0
+    if rt > 5 then report(lb,[`ns:`, ns]) fi;  
     if ns <> {} then
       if rt > 3 then report (lb,[`no dependence on`, op(ns)]) fi;
       us := us minus ns;
@@ -2342,6 +2414,7 @@ noderives():
     RETURN(Simpl(evalTD(`derive/pd/tab`[a,c])))
   fi;
   if rt > 3 then report(lb,[`top vars:`, op(ps)]) fi;
+  if rt > 5 then report(lb,[`aux:`, aux]) fi;  
   aux := [seq([op(p),size(op(2,p))], p = aux)];  # [[p, pd(a,p), size], ...]
 # aux := sort(aux, proc(t1,t2) evalb(op(3,t1) < op(3,t2)) end);  # sort by size
   s := size(`derive/pd/tab`[a,c]);
@@ -2385,16 +2458,29 @@ end:
 
 
 `derive/pd` := proc(a,c,q)
-  local ans,rt,lb;
+  local ans,rt,lb,e;
   global `derive/pd/tab`;
   rt := `report/tab`[derive]: lb := `DERIVE:`;
   if assigned(`derive/pd/tab`[a,c*q]) then 
     ans := Simpl(evalTD(`derive/pd/tab`[a,c*q]))
   elif assigned(`derive/pd/tab`[a,c]) then
     if rt > 3 then report(lb,[`actually deriving;`, q]) fi;
+    if rt > 4 then report(lb,[`actually deriving`, VarL(`derive/pd/tab`[a,c]),`by`,q]) fi;
     ans := Simpl(evalTD(pd(`derive/pd/tab`[a,c],q)))
   else ERROR (`this should not happen`)
   fi;
+   if rt > 4 then 
+     try
+       report(lb,[`actually derived`, [LVar(a),c,q]]);
+       report(lb,[`with result`, [size(ans),VarL(ans)]]);       
+     catch:
+        e := lastexception;
+        printf("\nPROBLEM (is radnormal used in simpl? maybe that is  bug #3 described in http://www.mapleprimes.com/posts/101122-Possible-Maple-Bugs-I-Found-Blog): %q\n", 
+           StringTools[FormatMessage](e[2..-1]));   
+        printf("Derived:\na=%a\nc=%a\nq=%a\nans=%a\n\n", a,c,q,ans);  
+        error ;
+     end:
+   fi;  
   `derive/pd/tab`[a,c*q] := ans;
   ans
 end:
@@ -2414,24 +2500,287 @@ end:
 #  R e s o l v e
 #
 
+
+reporters[resolve]:= []:  # no reporting by default
+ 
+AddReporter[resolve] := proc({mode:=incremental, incProc:=`run/getstep`, 
+                              handler::name:=default, handlerOpts:=NULL})
+  global reporters;
+  local r;
+  r := CreateDataReporter(args,_options, 
+                          ':-outputProc'=`resolve/reporter`, 
+                          addOutArgs=(':-handler'=handler, ':-handlerOpts'=handlerOpts));
+  reporters[resolve] := [op(reporters[resolve]), r];
+end:
+
+`resolve/reporter`:= proc(as,{handler:=default}) # may be used
+  local H, hopts, n := 0;
+  #printf("Resolving %a expressions (step %a)...\n",nops(as), `run/getstep`());
+  if type(handler, indexed) then 
+    H := cat(`resolve/reporter/`,op(0,handler)); hopts := op(handler) 
+  else 
+    H := cat(`resolve/reporter/`,handler) ; hopts := NULL 
+  fi;
+  cat(op(map(H, as, proc() n := n+1 end, hopts)));
+  #printf("(end of resolving step %a).\n", `run/getstep`());
+  end:
+
+`resolve/reporter/default` := proc(a, N, {collectFun:=`reporter/CF/id`})
+ # [N,i]=[Var=[length,vars], ...]
+ local vs, c, e;
+ try
+   vs := VarL(a);
+   c := collect(a, vs, collectFun, distributed);
+   #c := polynomMOSortL(a, CF=collectFun);
+   sprintf("[%a,%a,%a]=%q\n", `run/getstep`(), N(), size(c), c);
+  catch:
+    e := lastexception;
+    print(e);
+    cat(StringTools[FormatMessage](e[2..-1]), " original expression: ", convert(a,string));
+  end try;
+end:
+
+`reporter/CF/id` := proc(e) e end:
+
+`reporter/CF/X` := proc(e) X[e] end:
+
+`reporter/CF/L` := proc(e)
+  local L := length(e);
+  if L <= 5 then e
+  else [length(e)] fi;
+end:
+
+`reporter/CF/Lv` := proc(e)
+  local L := length(e);
+  if L <= 5 then e
+  else [length(e),vars(e)] fi;
+end:
+
+coeffsV := proc(F, {CF::{procedure,name}:=proc(x) option inline; x end})
+  description "collects a given polynomial and returns list of coefficients and list of monomials"
+               "keyword CF may specify a collecting function (applied to coefficients)";
+  local f, vs, k, l ;
+  vs := Vars(F);
+  f := collect(F, vs, CF, distributed);
+  k := coeffs(f, vs, l); 
+  [k],[l];
+end:
+
+
+#polynomMOSortL := proc(F)
+#  description "Sorts polynomial using monomial order `Vars/<<` "
+#              "and returns a (sorted) list of its terms"
+#              "keyword CF may specify a collecting function (applied to coefficients)";
+#  # polynomials in maple cannot be sorted by user-defined ordering  so list must be returned
+#  local K, L, S, R;
+#  K, L := coeffsV(_passed,_options);
+#  S := table(zip(`=`,L,K));
+#  R := sort(L, (a,b)->`Vars/<<`(a,b));
+#  map(a->S[a]*a, R);
+#end:
+#
+#polynomMOSortCM := proc(F)
+#  description "Sorts polynomial using monomial order `Vars/<<` "
+#              "and returns a pair of (sorted) lists: coefficients and monomials"
+#              "keyword CF may specify a collecting function (applied to coefficients)";
+#  # polynomials in maple cannot be sorted by user-defined ordering  so list must be returned
+#  local K, L, S, R;
+#  K, L := coeffsV(_passed,_options);
+#  S := table(zip(`=`,L,K));
+#  R := sort(L, (a,b)->`Vars/<<`(a,b));
+#  map(a->S[a], R), R;
+#end:
+
+
+
+###
+
+`resolve/normalizer` := normal:
+`resolve/time` := 0.0:
+
+#`resolve/nonlinrat` := 3;
+
 resolve := proc()
-  local as,bs,vl,i,rt,lb;
+  global `resolve/normalizer`, `resolve/time`;
+  local res, time0 := time();
+  res := `resolve/1`(op(map(`resolve/normalizer`,{args})));
+  inc(`resolve/time`, time()-time0);
+  return (res);
+end:
+
+`resolve/1` := proc()
+  local as,bs,as1, as2, cs,  ds, vl,i,rt,lb,ans, A, AL, AN, A1, A0, A1S, A1H, B;
+  global `resolve/nonlinrat`;
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
-  as := map(numer@normal,{args}) minus {0};
-  if rt > 3 then report(lb,cat(`input `, nops(as), ` eqns`), as) fi; 
-  as := map(divideout, as); # remove nonzero factors
-  if rt > 3 then report(lb,cat(`divideout `, nops(as), ` eqns `), as) fi; 
+  if rt > 0 then report(lb,cat(`input `, nops([args]))) fi;   
+  as := MaP(numer,{args}) minus {0};
+  if rt > 1 then report(lb,cat(`numer `, nops(as))) fi; 
+  as := MaP(divideout, as)  minus {0}; # remove nonzero factors
+  if rt > 1 then report(lb,cat(`divideout `, nops(as))) fi; 
   bs := select(type, as, nonzero);
   if rt > 3 then report(lb,cat(`contradictory `, nops(bs), ` eqns `), bs) fi; 
   if bs <> {} then print(op(map(proc(b) b = 0 end, bs)));
     ERROR(`there are contradictory equations`)
   fi;
-  vl := [op(`union`(op(map(Vars,as))))]; # present Vars 
-  if vl = [] then ERROR(`no unknowns`, as) fi;
-  vl := sort(vl,`Vars/<<`); # Vars in current Varordering
-  vl := [seq(vl[nops(vl) - i], i = 0..nops(vl) - 1)];  # reverse 
-  `resolve/lin`(as,vl)
+  
+  #as := MaP(Simpl,as);
+  #if rt > 1 then report(lb,cat(`Simpl `, nops(as))) fi; 
+  as := MaP(reduceprod,as) minus {0};  
+  if rt > 1 then report(lb,cat(`reduceprod `, nops(as))) fi; 
+  
+  A := MaP(proc(b) 
+              local a, V, V1, LC, LV, r,s;
+              V := VarL(b);
+              if nops(V)=0 then # no unknowns
+                a := Simpl(b);
+                printf("No unknowns in %q\n", a);
+                return Record[packed]('expr'=a, 'Vars'=V, 
+                                      'price'=0, 
+                                      'size'=size(a),
+                                      #'coeffs'=[C], 'monoms'=[M],
+                                      'leadLinCoeff'=0,
+                                      'leadLinCoeffVars'=FAIL,
+                                      'rest'=0,
+                                      'subs'=FAIL);
+              fi;
+              V1 := V[1];
+              a := Simpl(b, [V1]);
+              try
+                LC := coeff(a,V1, 1);  # coefficient of monomial linear in highest Var                
+              catch "unable to compute coeff": # not polynomial in highest Var
+                LC := FAIL;
+              end:
+              if LC=0 or LC=FAIL then  # nonlinear case (higner polynomial or non-polynomial)
+                assert([not(type(a, linear(V1))), 
+                      "Implementation error, failed to compute leading coeff (in VarL %a) of linear expression %a", 
+                      V,a], callstackskip=1);
+                return Record[packed]('expr'=a, 'Vars'=V, 
+                                      'price'=`resolve/lin/price`(a), 
+                                      'size'=size(a),
+                                      #'coeffs'=[C], 'monoms'=[M],
+                                      'leadLinCoeff'=LC,
+                                      'leadLinCoeffVars'=FAIL,
+                                      'rest'=a,
+                                      'subs'=FAIL) 
+              else # linear case
+                assert([type(a, linear(V1)), 
+                        "Implementation error, found leading coeff %a (in VarL %a) of nonlinear expression %a", 
+                        LC, V, a], callstackskip=1);
+                LC := collect(LC, V, simpl, distributed);
+                r := collect(a-LC*V1, V, simpl, distributed);
+                s := collect(r/LC, V, simpl, distributed);
+                LV := Vars(LC);
+                ### TODO: compatibility - Record[packed] since Maple 15
+                return Record[packed]('expr'=a, 'Vars'=V, 
+                                      'price'=`resolve/lin/price`(s, LC, LV, r), 
+                                      'size'=size(a),
+                                      #'coeffs'=[C], 'monoms'=[M],
+                                      'leadLinCoeff'=LC,
+                                      'leadLinCoeffVars'=LV,
+                                      'rest'=r,
+                                      'subs'=s) 
+              fi
+            end, 
+            convert(as,list));
+  A := sizesort(A, a->a:-price);
+  AN, AL := selectremove(a->a:-leadLinCoeff in {0, FAIL}, A); # nonlin, lin
+  A1, A0 := selectremove(a->type(a:-leadLinCoeff,nonzero), AL); # resolvable, nonresolvable
+  A1S, A1H := selectremove( a -> (nops(a:-Vars)<=1 or a:-rest=0 or type(a:-subs, monomial(constant, a:-Vars))) # simple, hard
+                            #a->a:-price<2 
+                            #or type(a:-leadLinCoeff, numeric) or a:-leadLinCoeffVars={} 
+                            , A1);
+  if rt > 1 then report(lb, sprintf("There are %a linear resolvable (%a simple and %a hard),"
+                            " %a linear NONresolvable and %a NONlinear eqs. Prices are:\n"
+                            "LIN. resolv.: %a, simple: %a, non-resolv: %a;  NONLIN: %a.", 
+                            nops(A1), nops(A1S), nops(A1H), nops(A0), nops(AN), 
+                            map(a->a:-price, A1), map(a->a:-price, A1S), map(a->a:-price, A0), map(a->a:-price, AN))) fi; 
+  if rt > 2 then report(lb, `if`(nops(A1)>0, 
+                                 sprintf("linear resolvable eqs properties are [price, size, VarL, LeadLinCoeff]:\n%s",
+                                    StringTools:-Join(map(a -> sprintf("%q\n",[a:-price,a:-size,a:-Vars, a:-leadLinCoeff]), A1))),
+                                 "No linear resolvable equation found.")) fi; 
+  if rt > 3 or (rt > 2 and nops(A1)=0) then 
+                 report(lb, cat("linear NONresolvable eqs properties are [price, size, VarL, LeadLinCoeff]:\n%s",
+                                "NONlinear eqs properties are [price, size, Vars]:\n%s"), 
+                            StringTools:-Join(map(a -> sprintf("%q\n",[a:-price, a:-size, a:-Vars, a:-leadLinCoeff]), A0)),
+                            StringTools:-Join(map(a -> sprintf("%q\n",[a:-price, a:-size, a:-Vars]), AN))) fi; 
+  
+DoReports(resolve,  [op(map(a->a:-expr,AL)),  op(map(a->a:-expr,AN))], 
+     comment=cat(sprintf(" resolve input (#lin resolvable: %a (%a of them simple), #lin non-res.: %a #nonlin: %a):\n", 
+				nops(A1), nops(A1S), nops(A0), nops(AN)), 
+       sprintf("# prices(res-lin)=%q\n", map(a->a:-price, A1)),
+       sprintf("# sizes(res-lin) =%q\n", map(a->a:-size, A1)),
+       sprintf("# LVars(res-lin)=%q\n", map(a->a:-Vars[1], A1)),
+       sprintf("# prices(nonres-lin)=%q\n", map(a->a:-price, A0)),
+       sprintf("# sizes(nonres-lin) =%q\n", map(a->a:-size, A0)),
+       sprintf("# LVars(nonres-lin)=%q\n", map(a->a:-Vars[1], A0)),
+       sprintf("# prices(nonlin)=%q\n", map(a->a:-price, AN)),
+       sprintf("# sizes(nonlin) =%q\n", map(a->a:-size, AN)),
+       sprintf("# LVars(nonlin)=%q\n", map(a->a:-Vars[1], AN))));
+    
+  if nops(A1) = 0 then
+    `resolve/fail`(AL,AN);  
+    print("OLD FASHION RESOLVE failure handling");
+    B := A;
+  #####                                                  
+  else 
+    B := A1S;
+    if nops(A1H)>0 then B:= [op(B), A1H[1]] fi; # all simple and 1 hard (if exists)  
+  fi; ####
+  #map(lprint@lprint, AL);lprint(); map(lprint@lprint, AN);
+  
+
+  if assigned(`resolve/nonlinrat`) and nops(A1)>0 and nops(A0)>0 
+    and A1[1]:-price>A0[1]:-price*`resolve/nonlinrat` then
+    printf("Warning, resolvable expression of price %a and size %a overlapped nonresolvable expression price %a and size %a (`resolve/nonlinrat´=%a).\n",
+         A1[1]:-price,  A1[1]:-size, A0[1]:-price,  A0[1]:-size,  `resolve/nonlinrat` );
+    #B := A0;  
+  fi;
+  
+  vl := ListTools:-Reverse(sort([op(`union`(op(map(a -> convert(a:-Vars,set), B))))],  `Vars/<<`)); # present Vars in resolvable eqs.
+  if vl = [] then ERROR(`no unknowns`, as) fi;  cs := map(a -> a:-expr, B);
+  
+  DoReports(resolve, cs,comment=cat(" resolve selection:\n", 
+       sprintf("# prices=%q\n", map(a->a:-price, B)),
+       sprintf("# sizes =%q\n", map(size, B)),
+       sprintf("# LVars=%q\n", map(a->a:-Vars[1], B))));  
+  ans := `resolve/lin`(convert(cs,set), vl);
+  DoReports(resolve, [ans],comment=" resolve output");
+  return (ans);
+  #####fi;
 end:
+
+`resolve/lin/price` := proc(s, LC, LV, r) 
+  evalf((nops(`unk/<</list`)+1)^(nops(Vars(s))) + length(s)/1000 + (nops(LV) 
+         + length(LC)/100)*(nops(Vars(r))+1/nops(`unk/<</list`) )):
+end:
+
+#`resolve/lin/price` := proc(s) 
+#  evalf(nops(Vars(s)) * length(s)/(nops(`unk/<</list`))):
+#end:
+
+#`resolve/lin/price1` := proc(a) 
+#  local Vs, V, ans;
+#  Vs := ListTools:-Reverse(sort([op(Vars(a))],`Vars/<<`));
+#  V := Vs[1]; 
+#  ans := evalf(nops(Vars(a)) + length(a)/1e10 + length(coeff(a,V))/1e4):
+#  #print(KOKO, V, BOBO, Vs, CCC, coeff(a,V), ANS, ans);
+#  ans;
+#end:
+
+`resolve/fail` := proc(AL, AN)
+  map(`resolve/fail/report1`, AL);
+  map(`resolve/fail/report1`, AN);
+  tprint(sprintf("Resolve failed (%a linear, %a NONlinear).", nops(AL), nops(AN)));  
+  FAIL;
+end:
+
+`resolve/fail/report1` := proc(a)
+  tprint(sprintf(StringTools:-Join([`if`(a:-leadLinCoeff=0, "Nonlinear", "Linear"), " resolving failed for %a:"]), a:-Vars[1]));
+  #print(a:-expr);
+  print(a:-leadLinCoeff*a:-Vars[1]=-a:-rest);
+end:
+
+
 
 `type/nounks` := proc(a) evalb(unks(a) = {}) end:
 
@@ -2441,6 +2790,81 @@ end:
 
 
 `resolve/lin` := proc(as,vl)
+  local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb;
+  global maxsize, RESOLVE, `resolve/result/suppressedminsize`;
+  `resolve/result/suppressedminsize` := NULL;
+  
+  lb := `RESOLVE:`; rt := `report/tab`[resolve];
+  bs := map(Simpl, as, vl);
+  if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
+  bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
+  if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
+  if bs = {} then RETURN () fi;  # no eq.
+  ans := {}; rs := {}; 
+  # Correction: rvl removed 12.7.2007
+  for v in vl do # for v running through all Vars in reverse Varordering
+    if rt > 4 then report(lb,`resolving with respect to`, v) fi; 
+    bs := map(divideout, bs); # remove nonzero factors
+    bs := map(Simpl, bs, vl); # Simplify
+    bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
+    bs := map(reduceprod, bs);  # reduce products
+    cs := select(has, bs, v);  # cs = subset of bs with v 
+    if rt > 4 then report(lb,`resolving equations:`, cs) fi; 
+    bs := bs minus cs;  # bs = subset without v
+    ls := select(type, cs, linear(v));  # ls = subset of cs linear in v
+    if rt > 4 then report(lb,`of them linear:`, ls) fi; 
+    ps := select(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
+    if ps <> {} then                            # if solvable eqs,
+      qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
+      if rt > 4 then report(lb,`available solutions:`, qs) fi; 
+      qs := sizesort([op(qs)], size);
+      q := op(1,qs);
+      if rt > 4 then report(lb,`using solution:`, q) fi; 
+      bs := bs union map(`resolve/subs`, cs, v, q);
+      if rt > 4 then report(lb,`back substituted system:`, bs) fi; 
+      ans := {v = q} union map(
+        proc(a,v,q) op(1,a) = `resolve/subs`(op(2,a), v, q) end, ans, v, q)
+    else 
+      # try to subtract pairs of equations; not implemented yet
+      rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs
+    fi
+  od;
+  if rt > 2 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
+  if rt > 2 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
+  if rt > 2 then report(lb,cat(`left `, nops(bs), ` eq.`)) fi; 
+  ans := map(Simpl, map(eval,ans), vl);
+  rs := map(proc(r,vl) [Simpl(op(1,r), vl), op(2,r)] end, rs, vl);
+  rs := select(proc(r) evalb(op(1,r) <> 0) end, rs);
+  aux := ans;
+  ans := select(proc(a) size(a) < maxsize end, ans);
+  aux := aux minus ans;
+  if ans = {} then
+    if aux <> {} then lprint(`There are`, nops(aux),`suppressed solutions of sizes:`, op(map(size,aux)));
+        `resolve/result/suppressedminsize` := min(op(map(size,aux))); # HB
+    else
+       `resolve/result/suppressedminsize` := NULL : # HB
+    fi;
+    # HB: store what failed to the global variable RESOLVE
+    RESOLVE := map(
+      proc(r) 
+        if type(op(1,r), linear(op(2,r))) then 
+          tprint(`linear resolving failed for`, op(2,r));
+          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
+          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvn’ho druhu
+        else 
+          tprint(`resolving failed for`, op(2,r), `nonlinear `);
+          print (op(1,r));
+          [op(1,r), op(2,r)] # [a,x1] FAIL druhŽho druhu
+        fi
+      end, rs);
+    # :HB
+    FAIL
+  else op(ans)
+  fi;
+end:
+
+
+`resolve/lin/old` := proc(as,vl)
   local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb;
   global maxsize, RESOLVE, `resolve/result/suppressedminsize`;
   `resolve/result/suppressedminsize` := NULL;
@@ -2514,6 +2938,7 @@ end:
   fi;
 end:
 
+
 `resolve/lin/1` := proc(p,v) -coeff(p,v,0)/coeff(p,v,1) end:
 
 `resolve/subs` := proc(a,v,q)
@@ -2531,7 +2956,9 @@ end:
 
 Vars := proc(a)
   global `unk/s`;
-  if type (a,{'constant','ar'}) then {}
+  if nargs > 1 then error "Too many arguments" # `union`(op(map(procname, {args})))
+  elif type (a,{'constant','ar'}) then {}
+  #elif type(a, sequential) then `union`(op(map(procname, convert(a,set))))
   elif type (a,'name') then
     if member(a,`unk/s`) then {a} else {} fi
   elif type (a,{`+`,`*`,`^`,`=`}) then `union`(op(map(procname, [op(a)])))
@@ -2543,6 +2970,21 @@ Vars := proc(a)
     fi
   else ERROR (`unexpected object`, a) 
   fi
+end:
+
+Varl := proc()
+  description "an unsorted list of Vars";
+  convert(Vars(args),list);
+end:
+
+VarL := proc()
+  description "list of Vars sorted by current Varordering, maximal element is first";
+   ListTools:-Reverse(sort(Varl(args),  `Vars/<<`));
+end:
+
+LVar := proc()
+  description "Leading Var w.r. to current Varordering";
+  ListTools[FindMaximalElement](Varl(args),  `Vars/<<`);
 end:
 
 `Vars/TD` := proc(f,x)
@@ -2614,37 +3056,36 @@ end:
 divideout := proc(a)
   local ns;
   if nargs = 1 then ns := `nonzero/s` else ns := args[2] fi;
-  `divideout/nonzero`(`divideout/unks`(factor(Simpl(a))), ns)
-  # Correction: Simpl added 9.7.2004
+  `divideout/nonzero`(`divideout/unks`(factor(Simpl(a))), ns) # Correction: Simpl added 9.7.2004
 end:
 
 `divideout/unks` := proc(a)  # treats explicit products and powers
-  if a = 0 then 0
-  elif type(a, `divideout`) then 1
-  elif type (a,`^`) then
-    if type (op(2,a), positive) then procname(op(1,a)) else a fi # H.B. 2004
-  elif type (a,`*`) then map(procname,a)
-  else `divideout/unks/1`(a)
-  fi
+ if a = 0 then 0
+ elif type (a, `divideout`) then 1
+ elif type (a,`*`) then map(procname,a)
+ elif type (a,`^`) then
+   if type (op(2,a), positive) then procname(op(1,a)) else a fi # H.B. 2004
+ else `divideout/unks/1`(a)
+ fi
 end:
 
 # `type/divideout` := {specfunc(anything,exp)}: 
 `type/divideout` := proc(a) # HB 14. 5. 2008
-  if type(a, positive) or type(a,negative) then true
+  if type(a, positive) then true
   elif type(a, specop(anything, `+`))  
     or type(a, specop(anything, `*`)) then
     andmap(type, [op(a)],  divideout)
-  elif type(a, specfunc(anything,exp)) then
-    true
+  elif type(a, specfunc(anything,exp)) then true
+  elif type (a,`^`) and type (op(2,a), positive) and type (op(1,a), divideout) then true # H.B. 30. 11. 2011
   else
     false
   fi
 end:
 
-
 `divideout/unks/1` := proc(a)
   local us,vs,aux, cs, v1, v2;
   us := unks(a);
+  if unks(a) = {} then return 1 fi;
   # MM  vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
   # HB:
   v1 := `vars/1`(a, noWarn) ;
@@ -2736,14 +3177,13 @@ report := proc(lb,text)
   global `run/time`,`run/bytes`;
   local i,t,s; 
   appendto (reportfile);
-  printf("%s <%a, %a>", convert(lb,string), floor(time() - `run/time`), Bytes()); # HB
-  if type(text,name) then printf(" %s", text)
+  printf("%s <%a, %a> ", convert(lb,string), floor(time() - `run/time`), Bytes()); # HB
+  if type(text,name) then printf("%s %q", args[2..-1]);
+  elif type(text, string) then printf(args[2..-1]);
   #elif type(text,list) then map(t->printf(" %s", convert(t,string)), text)
-  else  printf(" %q", op(text))
+  else  printf("%q", op(text))
   fi;
-  printf("\n");
-  for i from 3 to nargs do print(args[i]) od;
-  print();
+  printf("\n\n");
   writeto (terminal); NULL
 end:
 
@@ -2756,7 +3196,7 @@ end:
 
 lb := NULL:
 
-tprint := proc() printf("<%a> %s %q\n", floor(time() - `run/time`),  args) end: # HB
+tprint := proc() printf("[%a] <%a> %s %q\n", `run/getstep`(), floor(time() - `run/time`),  args) end: # HB
 
 #
 #   O r d e r i n g s
@@ -2927,6 +3367,16 @@ end:
   fi 
 end:
 
+`Vars/<</revdeg` := proc(u1,x1,u2,x2)
+  `Vars/<</rd/1`(x2/x1);
+end:
+ 
+`Vars/<</rd/1` := proc(x)
+  local y;
+  y := convert(`vars/1`(x),`*`)^degree(x)/x;
+  return degree(y)>0;
+end:
+
 `Var/<</opt` := ['function','degree','reverse']:
 
 Varordering := proc()
@@ -2965,6 +3415,21 @@ end:
 `unk/tab` := table([]):
 
 `type/Var` := {'name',specfunc(anything,pd)}:
+
+
+### ordering of polynomials in Vars
+
+`monom/degree` := proc(a)
+  description "";
+  # cannot be inlined since recursive
+  `if` (type(a,`*`),
+     `+`(op(map('procname', convert(a,list)))),
+     `if`(type(a, `^`),
+          op(2,a),
+          1))
+end:
+
+
 
 #
 #   P r o c e d u r e s   t o   a s s i s t   c o m p u t a t i o n s
@@ -5215,6 +5680,90 @@ else
     end:
   end module:
 fi:
+
+
+################################################################################
+################################################################################
+# Data report ouput routines 
+################################################################################
+################################################################################
+
+# Reporter() returns a configured callable module.
+# On its invocation the parameters are writen to the disc (in the way specified when output module was created)
+CreateDataReporter := proc(baseFileName::string, {ext::string:=".log", dir::string:=".",
+           mode::{identical(append, Append, rewrite, incremental,Incremental)}:=append,
+           incProc::procedure:=NULL,
+           suppressComments::truefalse:=false, incDelim::string:="_",
+           outputProc := sprintf,
+           addOutArgs := NULL})
+           ### mode - single output file modes:
+           # append - at startup, clears the output file; all the output is appended
+           # Append - all the output is appended (even to already existing file)
+           # rewrite - output file is cleared before every output
+           ### mode - multiple output file modes:
+           # icremental - there is created a new file on every index value (by default, indexes 1, 2, ... are appended to the file name)
+           # Incremental - ditto, but output is appended if (indexed) file already exists
+  module()
+    export ModuleApply;
+    local Init,
+          N, M, myIncProc,
+          mainFilePath, backupFilePath;
+    
+    Init := proc()
+      N := 0;
+      myIncProc := `if`(incProc=NULL, proc() N := N + 1; end, incProc);
+      FileTools[MakeDirectory](dir, recurse=true);
+      if mode='incremental' or mode='Incremental' then  
+        mainFilePath := proc(i) FileTools[AbsolutePath](cat(baseFileName, incDelim, i, ext), dir) end:
+        backupFilePath := proc(i) FileTools[AbsolutePath](cat(baseFileName, incDelim, i, ext, ".bak"), dir) end:        
+     else 
+        mainFilePath := proc(i) FileTools[AbsolutePath](cat(baseFileName, ext), dir) end:
+        backupFilePath := proc(i) FileTools[AbsolutePath](cat(baseFileName, ext, ".bak"), dir) end:   
+        TransactionIOTools:-removeFile(backupFilePath());  
+        if FileTools:-Exists(mainFilePath(i)) then 
+          if mode='Append' then FileTools:-Copy(mainFilePath(i),backupFilePath(i))
+          else FileTools:-Rename(mainFilePath(i),backupFilePath(i)) fi;
+        fi;    
+      fi;
+    end:
+    
+    Init();
+    
+    ModuleApply := proc({comment::{string}:=""})
+      local fd, bf, nf, i;
+      i := myIncProc(); 
+      nf, bf := mainFilePath(i), backupFilePath(i);
+      if i <> M then
+        # backup and cleanup
+        TransactionIOTools:-removeFile(bf);
+        if FileTools:-Exists(nf) then
+          if mode='incremental' or mode='rewrite' or (type(mode, indexed) and i <> M) then 
+               FileTools:-Rename(nf,bf) 
+          else FileTools:-Copy(nf,bf)  
+          fi;
+        fi;
+      fi;
+      # the output
+      fd := FileTools[Text][Open](nf, create=true, append=true);
+      if not(suppressComments) then 
+        FileTools[Text][WriteString](fd, 
+          cat( `if`(i=M,"", "#################\n"),
+               sprintf("### STEP %q ###\n", i), 
+               `if`(comment="", "", sprintf("# %s\n", comment)))); 
+      fi;
+      FileTools[Text][WriteString](fd,outputProc(args, addOutArgs)); 
+      FileTools[Text][Close](fd);  
+      M := i;
+    end:       
+  end:
+  
+end:
+
+DoReports := proc(a::evaln, es)
+  global reporters;
+  local ops := _passed[3..-1];
+  map(r -> r(es,ops) , reporters[a]);
+end:
 
 
 ################################################################################
