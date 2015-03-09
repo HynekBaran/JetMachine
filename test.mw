@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet>
-<Version major="14" minor="0"/>
+<Version major="14" minor="1"/>
 <Label-Scheme value="2" prefix=""/>
 <View-Properties presentation="false"></View-Properties>
 <MapleNet-Properties warnlevel="3" longdelim="true" plotoptions="" echo="1" errorcursor="false" elisiontermsthreshold="10000" elisiontermsbefore="100" errorbreak="1" prettyprint="3" prompt="&gt; " latexwidth="6.0" useclientjvm="true" ansi="false" screenheight="25" labelwidth="20" plotdevice="inline" typesetting="standard" helpbrowser="standard" displayprecision="-1" indentamount="4" elisiondigitsthreshold="10000" quiet="false" plotoutput="terminal" rtablesize="10" preplot="" showassumed="1" plotdriver="opengl" elisiontermsafter="100" labelling="true" postplot="" screenwidth="120" elisiondigitsbefore="100" elisiondigitsafter="100" verboseproc="1" imaginaryunit="I" ShowLabels="true"/>
@@ -96,13 +96,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUVKZXRzLnN+Zm9yfk1hcGxlfjEzfmFzfm9mfjh+RGVjfjIwMTBHNiI=</Equation></Text-field>
-</Output>
-<Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">STdkZWJ1Z2dpbmd+bW9kZX5lbmFibGVkRzYi</Equation></Text-field>
-</Output>
-<Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SWhuTWFwbGV+MTQuMDAsfkFQUExFflVOSVZFUlNBTH5PU1gsfkFwcn42fjIwMTAsfkJ1aWxkfklEfjQ3OTMyNkc2Ig==</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SU9KZXRzfjUuNzN+QUxQSEF+Zm9yfk1hcGxlfjEzfmFzfm9mfjAxfkZlYn4yMDExRzYi</Equation></Text-field>
 </Output>
 <Output>
 <Text-field style="Line Printed Output" layout="Line Printed Output">`Blimit = 25000  ressize = 1000  putsize = 200  maxsize = 100`</Text-field>
@@ -537,6 +531,10 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type({1 + a},nonzero), false, `type/nonzero 1`):</Text-field>
 </Input>
 <Output>
+<Text-field style="Diagnostic" layout="Diagnostic"> #(`type/nonzero`,1): b := evalb(divideout(numer(simpl(a))) = 1);
+ #(divideout,4): `divideout/nonzero`(`divideout/unks`(factor(Simpl(a))),ns)
+ #(Simpl,7): V := Vars(f);
+ #(Vars,13): ERROR(`unexpected object`,a)</Text-field>
 <Text-field style="HyperlinkError" layout="HyperlinkError"><Hyperlink linktarget="http://www.maplesoft.com/support/help/errors/view.aspx?path=Error,%20(in%20Vars)%20unexpected%20object,%20%7B1+a%7D" hyperlink="true"><Font style="HyperlinkError">Error, (in Vars) unexpected object, {1+a}</Font></Hyperlink></Text-field>
 </Output>
 </Group>
@@ -604,12 +602,29 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
-<Group labelreference="L40" drawlabel="true">
+<Group labelreference="L962" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"># sort Vars</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L964" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+</Input>
+</Group>
+<Group labelreference="L966" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u,v],2): </Text-field>
+</Input>
+</Group>
+<Group labelreference="L967" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L958" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">fvarord(u,v):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">bvarord(t,x):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">unknowns(U,V):</Text-field>
@@ -661,7 +676,15 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u,jet(u,x*t))):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (convert(jet(u,x) + pd(f,jet(u,x*t)^2*u*x^2), TD, u=h^2),</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">  '2*h*TD(h,x) + pd(f,jet(u,x*t)^2*u*x^2)', `convert/TD`):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L960" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations():</Text-field>
+</Input>
+</Group>
+<Group labelreference="L40" drawlabel="true">
+<Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>

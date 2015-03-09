@@ -42,6 +42,9 @@
 # * `index/traceless` matrix index function added
 # * store(): formatting of output of assignments changed (each on separate line now)
 # * new `jet/gen/all` and `count/gen/all` functions 
+#
+# v 5.73 alpha
+# * first attempt to fix a critical bug in `cc/new` (some cc's was omitted by run)
 
 
 
@@ -52,14 +55,14 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.72 for Maple 13 as of 01 Feb 2011`);
+print(`Jets 5.73 ALPHA for Maple 13 as of 01 Feb 2011`);
 
 #
 # Source code configuration, options and parameters
 #
 
 ### version info
-`Jets/opts`["Version", "core"]  := [5,7,1]:
+`Jets/opts`["Version", "core"]  := [5,7,3]:
 `Jets/opts`["Version", "CC"]    := ["MM_SSICOS", 2, 0] :
 `Jets/opts`["Version", "Maple"] := table(["Tested"={13}, "Minimal"=13]):
 
@@ -322,7 +325,7 @@ end:
 
 `transform/count` := op(numer):
 
-`count/gen/all` := proc(b::list, m::{posint,0})::seq(count); # HB
+`count/gen/all` := proc(b::list, m::{posint,0}) # HB
   description "Generates all counts in variables b up to m-th order";
   `count/gen/all/1`(b,m)[2..-1]; # 1 is not a count
 end:
@@ -940,6 +943,16 @@ end:
   fi
 end:
 
+`pd/tab/print/unk` := proc(u) # print all assigments of unknown u stored in pd/tab
+  global `pd/tab`;
+  if assigned(`pd/tab`[u]) then
+    map(i -> lprint('pd'(u,op(i))=pd(u,op(i))), [indices(`pd/tab`[u])])
+  else
+    printf("%a not found in pd/tab\n", u);
+  fi
+end:
+
+
 #`pd/decomp` := proc(e)
 #	 # decomposes pd(f,p) to (f,p) and f to (f,1)
 #   if type (e,'name') then (e,1)
@@ -1130,8 +1143,11 @@ end:
 
 # The old cc implementation
 # This cc implementation is deprecated but still available, 
-# if you need to use it globally, call cc := op(`cc/old`);
+# if you need to use it globally, set 
+# cc := proc() `cc/old`(args, _options) end:
 # or you may call `cc/old`() at any moment without any side-effects
+
+cc := proc() `cc/new`(args, _options) end:
 
 `cc/old` := proc()
   local e,el,f,ft,zl,p,pl,q,i,j,p1,q1,z,ans,sl,aux,rt,lb,time0; 
@@ -1288,7 +1304,87 @@ end:
     return (size(P)), `vars/1`(P);
   end:
 
-cc := proc({leaveTrivial::truefalse:=evalb(resultType=list), 
+
+#`cc/new` := proc({leaveTrivial::truefalse:=evalb(resultType=list), 
+#            resultType::identical(set,list):=set, 
+#            pop::truefalse:=false,
+#            totalNumber::symbol:='None', # output parameter: 
+#                              # total number of cc remaining (including the portion returned)
+#            ##  keywords for selection of a "portion" of cc's
+#            # In all parameters below, -1 means no limitation.
+#            # At least 1 cc (if exists) is ALWAYS returned regardless of any selecting criteria.
+#            # See CC:-cc for details.
+#            maxnum::{posint,identical(-1)} := -1, # total maximum number of returned cc's
+#            maxnumP::{posint,identical(-1)} := -1, # return the first maxnumP items and add all cc's of equal prices
+#            maxprice::{numeric,infinity} := infinity # maximal price of cc's to be returned
+#           }, $)
+#  local T, ans, time0, cs, as, i; 
+#  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/time`, cctab;
+#  lb := `CC:`; rt := `report/tab`[cc];
+#  time0 := time();
+#  
+#  T := j2J(`cc/pd/listall`()); 
+#  
+#  forget(CCSidePrice1);
+#  cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
+#	             ':-pop'=pop, 
+#	             ':-totalNumber'=totalNumber, # TODO(eff): viz nize
+#							 ':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice); 
+#  as := map(`cc/ass`, J2j(cs));
+#  rprintf(1, ["cc found %a are assembled as %a", cs, as]);
+#  as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+#  rprintf(1, ["cc found are %a", as]);
+#  inc(`cc/count/total`, nops(cs));
+#  if leaveTrivial then  
+#    ans := as;
+#    if rt > 0 then report(lb,[`number of c.c.:`, nops(ans)]) fi;
+#  else 
+#	  # remove 1=1 unless prohibited by leaveTrivial
+#    ans := remove(`=`, as, 0); 
+#    if nops(ans)=0 and eval(totalNumber) > nops(cs) then 
+#			# at least 1 cc must be returned
+#			i := 1;
+#			while nops(ans)=0 and eval(totalNumber) > nops(cs) do
+#        cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
+#				             ':-pop'=pop, 
+#				             ':-totalNumber'=totalNumber, 
+#				             ':-maxnum'=i);		
+#				  # TODO(eff): Pravdepodobne bude rychlejsi namisto opakovaneho volani CC:-cc(':-pop'=pop)		
+#				  # zavolat jen jednou cc(':-pop'=false), 
+#				  # vybrat z vysledku co je potreba  a nakonec zavolat CC:-markFF na zvoleny vyber            
+#			  as := map(`cc/ass`, J2j(cs));
+#		    as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+#			  rprintf(1, ["additional cc found %a and assembled as %a", cs, as]);
+#        inc(`cc/count/total`, nops(cs));
+#				ans := remove(`=`, as, 0);				
+#				if not(pop) then i := i+1 fi;				
+#			od;
+#			if nops(ans)>0 then
+#        if rt > 0 then report(lb,[`nontrivial cc (regardless of selecting criteria given) found`]) fi; 
+#      else
+#	      if rt > 0 then report(lb,[`None nontrivial cc (regardless of selecting criteria given) found`]) fi; 		  
+#      fi;				
+#	  else
+#      if rt > 0 then report(lb,[`numbers of c.c.: nontrivial`, nops(ans), `trivial`, nops(as)-nops(ans)]) fi;   
+#		fi;		
+#  fi; 
+#  forget(CCSidePrice1);
+#  
+#  inc(`cc/count/computed`, nops(ans));
+#  inc(`cc/time`, time()-time0);
+#  rprintf(1, ["There are %a cc at the moment. We have had computed %a of totally %a.", 
+#              nops(ans),  `cc/count/computed`, `cc/count/total`]);
+#  rprintf(3, ["cc are %q", ans]);
+#  
+#  if rt > 0 then report(lb,[`total c.c. number: `, `cc/count/total`, 
+#                            `computed:`, `cc/count/computed`, `time:`, `cc/time`]) 
+#  fi;
+#  
+#  map(eval, convert(ans,resultType));
+#end:
+
+
+`cc/new` := proc({leaveTrivial::truefalse:=evalb(resultType=list), 
             resultType::identical(set,list):=set, 
             pop::truefalse:=false,
             totalNumber::symbol:='None', # output parameter: 
@@ -1302,20 +1398,22 @@ cc := proc({leaveTrivial::truefalse:=evalb(resultType=list),
             maxprice::{numeric,infinity} := infinity # maximal price of cc's to be returned
            }, $)
   local T, ans, time0, cs, as, i; 
-  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/time`;
+  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/time`, cctab;
   lb := `CC:`; rt := `report/tab`[cc];
   time0 := time();
   
   T := j2J(`cc/pd/listall`()); 
   
   forget(CCSidePrice1);
+  if pop<>false then error "Unsupported pop option value %1", pop; fi;
   cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
-	             ':-pop'=pop, ':-totalNumber'=totalNumber, # TODO(eff): viz nize
+	             ':-totalNumber'=totalNumber, # TODO(eff): viz nize
 							 ':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice); 
   as := map(`cc/ass`, J2j(cs));
-  rprintf(5, ["cc found %a are assembled as %a", cs, as]);
-  as := map(Simpl, as) ; # map(simplify, as, size); ### ???
-  rprintf(3, ["cc found are %a", as]);
+  rprintf(1, ["cc found %a are assembled as %a", cs, as]);
+  as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+  `cc/FF`(cs,as);
+  rprintf(1, ["cc found are %a", as]);
   inc(`cc/count/total`, nops(cs));
   if leaveTrivial then  
     ans := as;
@@ -1328,14 +1426,15 @@ cc := proc({leaveTrivial::truefalse:=evalb(resultType=list),
 			i := 1;
 			while nops(ans)=0 and eval(totalNumber) > nops(cs) do
         cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
-				             ':-pop'=pop, ':-totalNumber'=totalNumber, 
-				             ':-maxnum'=i);		
+				             ':-totalNumber'=totalNumber, 
+				             ':-maxnum'=maxnum+i);		
 				  # TODO(eff): Pravdepodobne bude rychlejsi namisto opakovaneho volani CC:-cc(':-pop'=pop)		
 				  # zavolat jen jednou cc(':-pop'=false), 
 				  # vybrat z vysledku co je potreba  a nakonec zavolat CC:-markFF na zvoleny vyber            
 			  as := map(`cc/ass`, J2j(cs));
-		    as := map(simpl, as) ; # map(simplify, as, size); ### ???
-			  rprintf(3, ["additional cc found %a and assembled as %a", cs, as]);
+		    as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+		    `cc/FF`(cs,as);
+			  rprintf(1, ["additional cc found %a and assembled as %a", cs, as]);
         inc(`cc/count/total`, nops(cs));
 				ans := remove(`=`, as, 0);				
 				if not(pop) then i := i+1 fi;				
@@ -1363,6 +1462,21 @@ cc := proc({leaveTrivial::truefalse:=evalb(resultType=list),
   
   map(eval, convert(ans,resultType));
 end:
+
+
+`cc/FF` := proc(cs, as)
+  zip(`cc/FF/1`, cs, as)
+end:
+
+`cc/FF/1` :=proc(c,a)
+  if a=0 then 
+    CC:-markFF(c[2],lhs(c[3]),rhs(c[3]),CC:-getHS()[c[1]]);
+    return NULL;
+  else
+    return c
+  fi;
+end:
+    
 
 `cc/pd/listall` := proc()
   global `dep/tab`, `pd/tab`;
@@ -1415,6 +1529,8 @@ end:
       pd1( `pd/noeval`(u,p), r/p) -  pd1( `pd/noeval`(u,q), r/q);  			
     end:
     
+    
+
 `pd/noeval` := proc(F,U)
   global `pd/tab`;
   local res;
@@ -1924,9 +2040,10 @@ end:
     if rt > 0 then report(lb,`Compatibility conditions ...`) fi;
     
     ### cc
-    as := cc(pop,maxnumP=1); 
-    #as := cc(pop);
-    # as = the lowest compatibility conditions
+    #print(KOKO,CC:-HS[g11]);
+    #as := cc(pop,maxnumP=1); 
+    as := cc();
+    #as = the lowest compatibility conditions
     if rt > 1 then report(lb,[`c.c.: `, op(sort(map(size,[op(as)])))]) fi;
     #MM#   as := map(derive, as); # derive differential consequences of cc
     #   if rt > 1 then
@@ -1946,6 +2063,13 @@ end:
     if nops(as) = 0 then
       if rt > 1 then report(lb,[`no cc to be resolved`]) fi;
 	  else
+      #print(BOBO,CC:-HS[g11]);
+      #print(LOLO);
+      #map(print,as);
+      #`pd/tab/print/unk`(g11);
+
+      #print(LOLO);
+      
       if rt > 1 then report(lb,[`cc to be resolved #:`, nops(as)]) fi;
       if rt > 4 then report(lb,[`cc to be resolved:`, as]) fi;       
     fi;
@@ -1953,7 +2077,7 @@ end:
 
     
     ### dc
-    ders := {derive(args)}; 
+    ders := {derive(args)};
     #ders := map(simpl,ders); # TODO(eff): je to simpl nutne?
     ders := select(proc(a) evalb(a <> 0) end, ders); 
     if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(ders)])))]) fi;
@@ -2011,8 +2135,13 @@ end:
       if rt > 4 then report(lb,[`cc+dc resolved:`, res]) fi;
  
       # put the resolved results
+      # lprint("BEFORE PUT");
+      # `pd/tab/print/unk`(g11);
       `run/put`(res);
-      
+      #if as<>{} and map(simpl,as)<>{0} then print(CHYBA,as) fi;
+      # lprint("AFTER  PUT");
+      # `pd/tab/print/unk`(g11);
+       
       if Bytes() > Blimit then reduce() fi
     fi
   od
@@ -2516,12 +2645,12 @@ end:
 `divideout/unks/1` := proc(a)
   local us,vs,aux, cs, v1, v2;
   us := unks(a);
-  # MM # vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
+  # MM  vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
   # HB:
   v1 := `vars/1`(a, noWarn) ;
   v2 := select(e -> type(a, polynom(anything, e)), v1);
   vs := v2 minus vars(op(us), noWarn);
-  DOE(if v1 <> v2 then lprint('procname', v1<>v2, a) fi);
+  #DOE(if v1 <> v2 then lprint('procname', v1<>v2, a) fi);
   # :HB
   if vs = {} then a # presumably a = 0 can have a solution
   elif type(a, polynom(anything,vs)) then
@@ -4229,7 +4358,7 @@ module CC ()
     `cs/I`(L, R, M, H1);
     `cs/II`(L, R, M, H1);
     res := `cs/combine`(L, H1);
-    rprintf(2, ["classess(%a)\n=%a.", L, res]);  
+    rprintf(3, ["classess(%a)\n =%a.", L, res]);  
     DOE(map(`cs/H/checktype`, [indices(H1, nolist)], H1, level=5));  
     return res;
   end:
@@ -4522,7 +4651,8 @@ module CC ()
 	   # mark selected cc's as fullfilled
 	   if pop then map(c -> markFF(c[2], lhs(c[3]), rhs(c[3]), eval(Hs['c'[1]])), ccs) fi;
 	   # return selected cc's
-     rprintf(2, ["Returning %a (of totally %a) cc's of %q", nops(ccs), N, op(map(U -> ''U''=LT[U], Us))]); 
+     rprintf(1, ["Returning %a (of totally %a) cc's of %q. ", nops(ccs), N, op(map(U -> ''U'', Us))]); 
+	   rprintf(2, ["cc()=%q\n",ccs]);
 	   return ccs;
 	 end:
 	 
@@ -4530,10 +4660,10 @@ module CC ()
               {sidePriceFunction:= stupidSidePrice,
 						   combinePriceFunction:= `combinePrices/+`}, $)
 	   local ccs, prcs;
- 	   rprintf(3, ["Computing cc(%q)...", args]);
+ 	   rprintf(4, ["Computing cc(%q)...", args]);
 	   ccs := convert(classess(L, `if`(Hs=NULL, NULL, Hs[U])), list);
 	   prcs := map(`cc/1/attr/ass`, ccs, U, _options);
-	   rprintf(2, ["cc(%a,%a)=%a", L, U, map(r -> attributes(r)=r, prcs)]);
+	   rprintf(3, ["cc(%a,%a)=%a", L, U, map(r -> attributes(r)=r, prcs)]);
 	   return op(prcs);
 	 end:
 
