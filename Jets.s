@@ -1,33 +1,126 @@
-print(`JETS 5.0`);
+# J e t s 
+#
+# Differential calculus on jet spaces and diffieties
+#
 
-# Jets -- Differential calculus on jet spaces and diffieties
+#
+# See http://jets.math.slu.cz/ for further details
+#
+
+#
+# A u t h o r s
 #
 # (c) 1999-2004 by Michal Marvan
+# (c) 2005-2010 by Hynek Baran and Michal Marvan
 #
-# Instructions: (1) Read this file into a fresh Maple session.
-# (2) Check the installation by reading in the file Jet.t (if any)
-
-print(`Differential calculus on jet spaces and diffieties`);
-print(`for Maple 6, 7, 8, 9`);
-print(`as of 12 July 2004`);
-
 #
 #  L i c e n s e
 #
-
 # JETS is a free software distributed under the terms of the GNU General 
 # Public License <http://www.gnu.org/copyleft/gpl.html> as published by 
 # the Free Software Foundation.
 #
 # In particular, JETS comes with ABSOLUTELY NO WARRANTY.
+#
+# 
+# A c k n o w l e d g m e n t s
+#
+# The first-named author was supported by GACR under project 201/07/P224
+#
+
 
 #
-#  C h a n g e s   i n   M a p l e   s y n t a x
+# History of changes
+#
+# Based on Jets code v. 5.6 as of 20 Jan 2010
+#
+#
+#
 #
 
-Existing := proc(c,a) assigned(c||a) end:
-Call := proc(c,a) c||a end:
-# || replaces . since 6.0
+
+
+###########################################################################################
+###########################################################################################
+# Initialization and configuration
+###########################################################################################
+###########################################################################################
+
+interface(screenwidth=120):
+print(`Jets.s for Maple 13 as of 8 Dec 2010`);
+
+#
+# Source code configuration, options and parameters
+#
+
+### version info
+`Jets/opts`["Version", "core"]  := [5,7]:
+`Jets/opts`["Version", "CC"]    := ["MM_SSICOS", 2, 0] :
+`Jets/opts`["Version", "Maple"] := table(["Tested"={13}, "Minimal"=13]):
+
+### optional features
+# Some parts of Jets source code is disbbled by default,
+# since it is not proprely finished or tested yet.
+# Use assignments bellow (before reading Jets.s in) to enable such additional code.
+
+#`Jets/opts`["Optionals"]["Multiord"] := true:
+
+
+#
+# Debugging
+#
+
+### reporting
+#
+# Reporting about the progression of calculation is available independently of debug mode bellow.
+# Syntax: reporting(derive = 0, resolve = 0, run = 0, cc = 0, pd = 0); 
+
+### debug mode switch
+#
+# Some debugging functionality (as fuction arguments type checks, assumptions or logging) 
+# is disabled by default but may be turned on by the macro bellow. 
+# A lot of computing time is saved when debug mode is disabled, 
+# but the AssertLevel() function and some more debugging functionality is not available.
+# Turning debugging mode on may dramatically harm the time and memory usage.
+#
+# In the case of any problem (as an error raised or wrong result returned),
+# please turn the debugging mode ON by removing the very first character # in the line bellow:
+#
+#$define jets_mode_debugging # <<<- TURN ON DEBUG MODE HERE by UNcommenting this line #  <- DEBUG ON/OFF
+
+
+### debugging code
+$ifdef jets_mode_debugging
+# the case when debugging is ON:
+print(`debugging mode enabled`);
+print(kernelopts(version));
+kernelopts(opaquemodules=false): 
+$define ATC(a,t) a::t # Arguments Type Control enabled
+$define DOE(a) a      # Debug Only Expressions enabled
+$else
+# the case when debugging is OFF:
+$define ATC(a,t) a # Arguments Type Control disabled
+$define DOE(a)     # Debug Only Expressions ignored
+$endif
+
+#
+# Initialization tests
+#
+
+### single load test
+# make sure that this source file is not already loaded:
+if assigned(cat(`jets/read/flag/`,__FILE__)) then error "source file %1 already loaded.", __FILE__; fi;
+if assigned(cat(`jets/read/flag/`,__FILE__)) then `quit`(255); fi; # force immediate exit from read() statement
+assign(cat(`jets/read/flag/`,__FILE__), true):
+
+
+###########################################################################################
+###########################################################################################
+# Jets - Main procedures
+###########################################################################################
+###########################################################################################
+
+# This is a set of main routines based on the original Jets.s by MM
 
 #
 #  D e c l a r a t i o n s
@@ -41,19 +134,37 @@ Call := proc(c,a) c||a end:
 #
 #  A u x i l i a r y   p r o c e d u r e s
 #
+
+Existing := proc(c,a) assigned(c||a) end:
+Call := proc(c,a) c||a end: # || replaces . since 6.0
     
-size := proc(a)
+size := proc() # HB generalized size of any number of arguments
+  try 
+    add(`size/1`(a), a in [args]);
+  catch:
+    printf("\nsize: failed and returned infinity: %q\n", 
+           StringTools[FormatMessage](lastexception[2..-1]));
+    infinity;
+  end:
+end:
+
+`size/1` := proc(a) # MM size evaluator
   evalf(nops(Vars(a)) + length(a)/1000000000)
 end:
 
 # sorting by size
 
-sizesort := proc(ql,pr)  # ql = list of expressions, pr = sizeing proc
-  local qls;
-  qls := map(proc(q,pr) [q,pr(q)] end, ql, pr);
-  qls := sort(qls, proc(a,b) evalb(op(2,a) < op(2,b)) end);
-  map (proc(a) op(1,a) end, qls)
-end:
+#sizesort := proc(ql,pr)  # ql = list of expressions, pr = sizeing proc
+#  local qls;
+#  qls := map(proc(q,pr) [q,pr(q)] end, ql, pr);
+#  qls := sort(qls, proc(a,b) evalb(op(2,a) < op(2,b)) end);
+#  map (proc(a) op(1,a) end, qls)
+#end:
+sizesort := proc(L::list, sizef)
+local l;
+    return map(attributes,sort([seq](setattribute(SFloat(sizef(l),0),l), l=L),`<`));
+end proc:
+# see http://www.mapleprimes.com/blog/joe-riel/sorting-with-attributes
 
 # reducing products
 
@@ -169,7 +280,7 @@ end:
 # `count/r`(x) := x/`count/f`(x);
 # `count/length`(x) := the sum of the powers in x;
 # `count/sgn`(x) := the parity of `count/length`x;
-# `transform/count`(x) :=  the product of non-negative powers in x
+# `transform/count`(x) :=  the product of non-negative powers in x # = numerator 
 # (transforms x into 1 or count).
 
 `count/f` := proc (x)
@@ -196,13 +307,15 @@ end:
 
 `count/sgn` := proc (x) 1 - 2*(`count/length`(x) mod 2) end:
 
-`transform/count` := proc(x)
-  local aux;
-  if type (x,`^`) then if op(2,x) < 0 then 1 else x fi
-  elif type (x,`*`) then aux := map(`transform/count`, x);
-  else x
-  fi
-end:
+#`transform/count` := proc(x)
+#  local aux;
+#  if type (x,`^`) then if op(2,x) < 0 then 1 else x fi
+#  elif type (x,`*`) then aux := map(`transform/count`, x);
+#  else x
+#  fi
+#end:
+
+`transform/count` := op(numer):
 
 # Jet order of a variable q
 
@@ -214,8 +327,12 @@ end:
 
 jetorder := proc(f)
   local js;
-  js := sort([op(map(varorder,vars(f)))]);
+  js := sort([op(map(varorder,`vars/1`(f)))]);
   op(nops(js),js)
+end:
+
+jetorders := proc(f) # HB
+  op(map(varorder,`vars/1`(f)))
 end:
 
 # Creating aliases for jet variables. Arguments are:
@@ -390,11 +507,12 @@ end:
 # Names may depend on variables:
 
 dependence := proc ()
-  local f,fs,es,e; 
+  local f,fs,es,e, opts; 
   global `dep/tab`;
   fs := select(type, {args}, function);
   es := select(type, {args}, `=`);
-  if fs union es <> {args} then
+  opts := select(type, {args}, symbol); # HB
+  if fs union es union opts <> {args} then # HB
     ERROR (`wrong arguments`, op({args} minus fs minus es)) 
   fi; 
   es := es union map(proc(f) op(0,f) = {op(f)} end, fs);
@@ -405,6 +523,7 @@ dependence := proc ()
   if fs <> {} then
     ERROR (`name(s) already used`, op(fs))
   fi; 
+
   for e in es do 
     if type (op(2,e), set('ar')) then `dep/tab`[op(1,e)] := op(2,e)
     else ERROR (`forbidden type of dependence`)
@@ -413,7 +532,13 @@ dependence := proc ()
   refresh(); 
   es := {op(op(2,op(`dep/tab`)))};
   es := select(proc(e) evalb(op(1,e) = eval(op(1,e))) end, es);
-  seq(op(1,e) = op(2,e), e = es)
+  # HB:
+  if `subs` in opts then
+    seq((op(1,e)=op(1,e)(op(op(2,e)))), e = es) 
+  else  
+  # :HB
+    seq(op(1,e) = op(2,e), e = es)
+  fi   
 end:
 
 `dep/tab` := table ():
@@ -442,14 +567,14 @@ TD := proc (f, x::`b/count`)
   global `EVALTD/s`,`EVALTD/b`,`EVALTD/n`;
   if nargs = 1 then RETURN (`TD~`(procname,f)) fi;
   if nargs > 2 then RETURN (TD(TD(f, args[2..nargs-1]), args[nargs])) fi;
-  if type (f,'numeric') then 0
+  if type (f,{'numeric', 'complex'}) then 0 # HB 5. 5. 2008
   elif type (f,'name') then
     if member (f,[constants]) then 0
     elif type (f,`b/var`) then if f = x then 1 else 0 fi
     elif type (f,`f/var`) then jet(f,x)
     elif type (f,'parameter') then 0
     elif type (f,'dep') then
-      if vars(f) minus `b/var/s` = {} then pd(f,x)
+      if `vars/1`(f) minus `b/var/s` = {} then pd(f,x)
       elif not `EVALTD/b` and not member(f,`EVALTD/s`)
         and `count/length`(x) > `EVALTD/n` then 'TD'(f,x) 
       elif type (x,'name') then 
@@ -465,7 +590,7 @@ TD := proc (f, x::`b/count`)
     if type (f, `j/var`) then jet(op(1,f),x*op(2,f)) 
     elif type (f, specfunc(anything,pd)) then
       if type (op(1,f),'dep') then 
-        if vars(op(1,f)) minus `b/var/s` = {} then pd(op(1,f), x*op(2,f))
+        if `vars/1`(op(1,f)) minus `b/var/s` = {} then pd(op(1,f), x*op(2,f))
         elif not `EVALTD/b` and not member (op(1,f),`EVALTD/s`)
           and `count/length`(x) > `EVALTD/n` then 'TD'(f,x)
         elif type (x,'name') then `TD/dep/s`(f,x,`dep/tab`[op(1,f)]) 
@@ -536,7 +661,7 @@ end:
 pd := proc (f, p::`ar/count`)
   if nargs = 1 then RETURN (`pd~`(procname,f)) fi;
   if nargs > 2 then RETURN(pd(pd(f, args[2..nargs-1]), args[nargs])) fi;
-  if type (f,'numeric') then 0
+  if type (f,{'numeric', 'complex'}) then 0 # HB 5. 5. 2008
   elif type (f,'name') then
     if member (f,[constants]) then 0
     elif type (f,'ar') then if f = p then 1 else 0 fi
@@ -584,7 +709,7 @@ end:
 `pd/TD/1` := proc (f,x,p)
   option remember; 
   local qs;
-  qs := [op(vars(f))];
+  qs := [op(`vars/1`(f))];
   TD(pd(f,p),x) + convert(map(
     proc(q,f,x,p)
       local qp; qp := pd(TD(q,x),p); 
@@ -645,6 +770,13 @@ end:
     add(DER[i](f(op(as)))*der(as[i], x), i = 1..(nargs - 3))
     fi
 end:
+# HB:
+# there is an example how to specify derivatives of general function:
+`der/MyFun`    := proc (der,f,x) 'D_MyFun'(f)*der(f,x) end:
+`der/D_MyFun`  := proc (der,f,x) 'D2_MyFun'(f)*der(f,x) end:
+`der/D2_MyFun` := proc (der,f,x) 'D3_MyFun'(f)*der(f,x) end:
+`der/D3_MyFun` := proc (der,f,x) 'D4_MyFun'(f)*der(f,x) end:
+# :HB
 
 `der/exp` := proc (der,f,x) exp(f)*der(f,x) end:
 `der/ln`  := proc (der,f,x) der(f,x)/f end:
@@ -672,6 +804,10 @@ end:
 `der/arccosh` := proc (der,f,x) der(f,x)/sqrt(f^2-1) end:
 `der/arccoth` := proc (der,f,x) der(f,x)/(f^2-1) end:
 `der/arctanh` := proc (der,f,x) der(f,x)/(1-f^2) end:
+
+`der/dilog` := proc (der,f,x) # AS
+  (ln(f)/(1-f))*der(f,x)
+end:
 
 `der/LambertW` := proc (der,f,x)
   LambertW(f)/(1 + LambertW(f))*der(f,x)/f
@@ -737,10 +873,10 @@ end:
     el := op(2,op(`pd/tab`)[f]); # list of already assigned derivatives
     el := map(proc(e,p) p/op(1,e) = op(2,e) end, el, p); # reciprocals
     el := select(proc(e) type (op(1,e),'count') end, el); # select counts 
-      if el = [] then RETURN('pd'(f,p)) fi; # if no counts at all
+    if el = [] then RETURN('pd'(f,p)) fi; # if no counts at all
     el1 := select(proc(e) not type (op(1,e),{`*`,`^`}) end, el); # 1st order 
     if el1 <> [] then
-      if select(type, el1, anything='numeric') <> [] then ans := 0
+      if select(type, el1, anything='numeric') <> [] then ans := 0  
       else
         if rt > 3 then report(lb,[`extending table 1 step: `, nops(el1)]) fi;
         el1 := map(proc(e) Simpl(eval(pd(op(2,e),op(1,e)))) end, el1); 
@@ -784,30 +920,44 @@ end:
   fi
 end:
 
-# put assigns values to pd's via `pd/tab` or `dep/tab`
+#`pd/decomp` := proc(e)
+#	 # decomposes pd(f,p) to (f,p) and f to (f,1)
+#   if type (e,'name') then (e,1)
+#   elif type (e,specfunc(anything,'pd')) then	(op(1,e), op(2,e))
+#  else error e, "cannot be decomposed, its not symbol or pd" fi;
+#end:
 
+
+
+
+# put assigns values to pd's via `pd/tab` or `dep/tab`
 put := proc()
   local e;
   if type ([args], 'list'(`=`)) then
-    for e in args do `put/1`(op(e)) od
+    for e in args do 
+    	#`put/items/add`(lhs(e));
+    	`put/1`(op(e)) 
+    od
   else ERROR (`wrong arguments`)
   fi;
   `put/evaluate`();
   NULL
 end:
 
+
+
 `put/1` := proc(p,a)
   global `unk/s`,`unk/<</list`,`dep/tab`,`pd/tab`;
   if type (p,'name') then
     `unk/s` := map(`put/1/remove`, `unk/s`, p);
     `unk/<</list` := map(`put/1/remove`, `unk/<</list`, p);
-    assign(p = a)
+    assign(p = a);
   elif type (p,specfunc(anything,'pd')) then
     if a = 0 and type (op(1,p),'dep') and type(op(2,p),'var') then 
       `dep/tab`[op(1,p)] := `dep/tab`[op(1,p)] minus {op(2,p)}
     else 
       `pd/tab`[op(1,p)][op(2,p)] := a
-    fi
+    fi;
   else lprint (`ignoring unexpected input`, p = a)
   fi
 end:
@@ -842,6 +992,33 @@ end:
     end, `nonzero/s`);
 end:
 
+
+#`put/items/add` := proc(e)
+#  global `put/items/table`;
+#  local f, p;
+#  f, p := `pd/decomp`(e);
+#  `put/items/table`[f] := `put/items/table`[f] union {p};
+#end:
+#
+#`index/put/items/table` := proc(Idx::list,Tbl::table,Entry::list)
+#    if (nargs = 2) then # get returns {} if unassigned
+#        if assigned(Tbl[op(Idx)]) then Tbl[op(Idx)];
+#        else {};
+#        end if;
+#    else # assign
+#        Tbl[op(Idx)] := op(Entry);
+#    end if;
+#end proc:
+#
+#`clear/put/items` := proc()
+#	 global `put/items/table`;
+#	 `put/items/table` := table(`put/items/table`):
+#end:
+#
+#`clear/put/items`():
+
+
+
 # To convert the pd table into a list:
 
 pds := proc()
@@ -855,7 +1032,7 @@ end:
      end, op(2,op(2,p)), op(1,p))) 
 end:
 
-# To convert the pd table into a set of expressions while clearing all
+# To convert the pd table into a list of expressions while clearing all
 # assignments to pd's:
 
 `clear/pds` := proc()
@@ -865,8 +1042,9 @@ end:
   t := copy(`pd/tab`);
   `pd/tab` := table([]);
   refresh();
+  #`clear/put/items`():
   aux := op(map(`pds/1`, op(2,op(t))));
-  map(proc(e) op(1,e) - op(2,e) end, {aux});
+  map(proc(e) op(1,e) - op(2,e) end, sizesort([aux], size)); # HB
 end:
 
 
@@ -898,7 +1076,7 @@ end:
       # remove by independence
       if type(f,'dep') then
         pl := select(proc(p,f) global `dep/tab`;
-            evalb(vars(p) minus `dep/tab`[f] = {}) 
+            evalb(`vars/1`(p) minus `dep/tab`[f] = {}) 
           end, pl, f)
       fi;
       qs := {op(pl)}; qe := {};
@@ -928,20 +1106,30 @@ end:
 
 # Checking still unresolved compatibility conditions
 
-cc := proc()
-  local e,el,f,ft,zl,p,pl,q,i,j,p1,q1,z,ans,sl,aux,rt,lb; 
-  global `dep/tab`,`pd/tab`,`cc/s`,`cc/tab`;
+`cc/time` := 0.0 :
+
+# The old cc implementation
+# This cc implementation is deprecated but still available, 
+# if you need to use it globally, call cc := op(`cc/old`);
+# or you may call `cc/old`() at any moment without any side-effects
+
+`cc/old` := proc()
+  local e,el,f,ft,zl,p,pl,q,i,j,p1,q1,z,ans,sl,aux,rt,lb,time0; 
+  global `dep/tab`,`pd/tab`,`cc/s`,`cc/tab`,`cc/time`;
+  time0 := time();
   ans := NULL; 
   zl := [];
   lb := `CC:`; rt := `report/tab`[cc];
+  
   el := op(2,op(`dep/tab`)); # list of stored dependences
+  if rt > 3 then report(lb,["looking for cc - dep/tab"]) fi;
   for e in el do 
     f := op(1,e); # an unknown
     ft := op(2,e); # its dependence set
     if rt > 3 then report(lb,[`dependence set:`, 'f' = f, 'ft'= ft]) fi;
     aux := NULL;
     if f <> eval(f) then # f assigned
-      for p in vars(eval(f)) minus ft do
+      for p in `vars/1`(eval(f)) minus ft do
         # pd(f,p) should be zero
         aux := aux, [f, eval(f), p, 0, 1, 1] 
       od;
@@ -949,6 +1137,8 @@ cc := proc()
       if rt > 2 then report(lb,[f, cat(`ass/dep: `,nops(zl),` c.c.`)]) fi
     fi
   od;  
+  
+  if rt > 2 then report(lb,["looking for cc - pd/tab"]) fi;
   el := op(2,op(`pd/tab`)); # list of stored partial derivatives
   for e in el do
     f := op(1,e); ft := op(2,e);
@@ -965,14 +1155,14 @@ cc := proc()
     else 
       if type(f,'dep') then # dependence
         for p in pl do
-          if vars(p) minus `dep/tab`[f] <> {} then
+          if `vars/1`(p) minus `dep/tab`[f] <> {} then
               # pd(f,p) should be zero 
             if ft[p] <> 0 then
               aux := aux, [f, ft[p], 1, 0, 1, `count/length`(p)]
             fi
           fi; 
           if ft[p] <> 0 then
-            for q in vars(ft[p]) minus `dep/tab`[f] do
+            for q in `vars/1`(ft[p]) minus `dep/tab`[f] do
               # pd(f,p*q) should vanish for each q from pd(f,p)
               aux := aux, [f, ft[p], q, 0, 1, `count/length`(p*q)]
             od
@@ -987,8 +1177,8 @@ cc := proc()
         for j to i - 1 do p := op(i,pl); q := op(j,pl);
           if ft[p] <> 0 or ft[q] <> 0 then 
             p1 := `transform/count`(p/q); q1 := `transform/count`(q/p);
-            if p*q1 <> q*p1 then ERROR(`this should not happen`) fi;
-            aux := aux, [f, ft[p], q1, ft[q], p1, `count/length`(p*q1)] 
+            if p*q1 <> q*p1 then ERROR(`this should not happen`) fi; # NejSpolNas
+            aux := aux, [f, ft[p], q1, ft[q], p1, `count/length`(p*q1)] # ii kind
           fi
         od
       od;
@@ -996,11 +1186,13 @@ cc := proc()
       zl := [op(zl), aux];
     fi
   od;  
+  
   if rt > 1 then report(lb,[cat(`total number: `,nops(zl),` c.c.`)]) fi;
   zl := [op({op(zl)} minus `cc/s`)];
+  inc(`cc/count/total`, nops(zl));
   if rt > 1 then report(lb,[cat(`of them new: `,nops(zl),` c.c.`)]) fi;
   zl := select(proc(z,m) evalb(op(6,z) = m) end,
-    zl, min(op(map(proc(z) op(6,z) end, zl))));
+    zl, min(op(map(proc(z) op(6,z) end, zl)))); ## !
 #   zl := select(
 #     proc(z,zl) local z1;
 #       for z1 in zl do
@@ -1008,6 +1200,7 @@ cc := proc()
 #       od;
 #       false
 #     end, zl, zl);
+   inc(`cc/count/computed`, nops(zl));
   if rt > 1 then report(lb,[cat(`of them minimal: `,nops(zl),` c.c.`)]) fi;
   if rt > 1 then report(lb,[`to be computed:`, nops(zl),` c.c.`]) fi; 
   for z in zl do 
@@ -1018,6 +1211,7 @@ cc := proc()
     fi;
   od;
   if rt > 0 then report(lb,[`number of c.c.:`, nops({ans})]) fi;
+  inc(`cc/time`, time()-time0);
   {ans}
 end:
 
@@ -1037,11 +1231,183 @@ end:
   fi
 end:
 
+# The common initialization
+
 `clear/cc` := proc()
   global `cc/s`,`cc/tab`;
+  local T;
   `cc/s` := {};
-  `cc/tab` := table([]);
+  `cc/tab` := table([]);  
+  if type(CC, `module`) then  ### new !
+    CC:-init():
+  fi;
   NULL
+end:
+
+### New cc iplementation
+
+  CCSidePrice1:= proc(U, p, m)::numeric;
+   option remember;
+   local q, v, s;
+   if `JetMonomTools/J`:-divide1(p,m,q) then
+     s, v := `CCSidePrice1/1`(U,p); 
+     if nops(`vars/1`(J2j(q)) minus v) > 0 then # trik: pd(U,p) does not depend on q=p/m
+       return 0
+     else
+       return degree(q)*nops(v)*s; 
+     fi
+   else 
+     error "Cannot compute price at %1: %2 |/ %3 ", U, p, m; 
+   fi; 
+  end:
+  
+  `CCSidePrice1/1` := proc(U,p)
+    option remember;
+    local P;
+    P := pd(U,J2j(p));
+    return (size(P)), `vars/1`(P);
+  end:
+
+cc := proc({leaveTrivial::truefalse:=evalb(resultType=list), 
+            resultType::identical(set,list):=set, 
+            pop::truefalse:=false,
+            totalNumber::symbol:='None', # output parameter: 
+                              # total number of cc remaining (including the portion returned)
+            ##  keywords for selection of a "portion" of cc's
+            # In all parameters below, -1 means no limitation.
+            # At least 1 cc (if exists) is ALWAYS returned regardless of any selecting criteria.
+            # See CC:-cc for details.
+            maxnum::{posint,identical(-1)} := -1, # total maximum number of returned cc's
+            maxnumP::{posint,identical(-1)} := -1, # return the first maxnumP items and add all cc's of equal prices
+            maxprice::{numeric,infinity} := infinity # maximal price of cc's to be returned
+           }, $)
+  local T, ans, time0, cs, as, i; 
+  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/time`;
+  lb := `CC:`; rt := `report/tab`[cc];
+  time0 := time();
+  
+  T := j2J(`cc/pd/listall`()); 
+  
+  forget(CCSidePrice1);
+  cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
+	             ':-pop'=pop, ':-totalNumber'=totalNumber, # TODO(eff): viz nize
+							 ':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice); 
+  as := map(`cc/ass`, J2j(cs));
+  rprintf(5, ["cc found %a are assembled as %a", cs, as]);
+  as := map(Simpl, as) ; # map(simplify, as, size); ### ???
+  rprintf(3, ["cc found are %a", as]);
+  inc(`cc/count/total`, nops(cs));
+  if leaveTrivial then  
+    ans := as;
+    if rt > 0 then report(lb,[`number of c.c.:`, nops(ans)]) fi;
+  else 
+	  # remove 1=1 unless prohibited by leaveTrivial
+    ans := remove(`=`, as, 0); 
+    if nops(ans)=0 and eval(totalNumber) > nops(cs) then 
+			# at least 1 cc must be returned
+			i := 1;
+			while nops(ans)=0 and eval(totalNumber) > nops(cs) do
+        cs := CC:-cc(T,  sidePriceFunction=CCSidePrice1,
+				             ':-pop'=pop, ':-totalNumber'=totalNumber, 
+				             ':-maxnum'=i);		
+				  # TODO(eff): Pravdepodobne bude rychlejsi namisto opakovaneho volani CC:-cc(':-pop'=pop)		
+				  # zavolat jen jednou cc(':-pop'=false), 
+				  # vybrat z vysledku co je potreba  a nakonec zavolat CC:-markFF na zvoleny vyber            
+			  as := map(`cc/ass`, J2j(cs));
+		    as := map(simpl, as) ; # map(simplify, as, size); ### ???
+			  rprintf(3, ["additional cc found %a and assembled as %a", cs, as]);
+        inc(`cc/count/total`, nops(cs));
+				ans := remove(`=`, as, 0);				
+				if not(pop) then i := i+1 fi;				
+			od;
+			if nops(ans)>0 then
+        if rt > 0 then report(lb,[`nontrivial cc (regardless of selecting criteria given) found`]) fi; 
+      else
+	      if rt > 0 then report(lb,[`None nontrivial cc (regardless of selecting criteria given) found`]) fi; 		  
+      fi;				
+	  else
+      if rt > 0 then report(lb,[`numbers of c.c.: nontrivial`, nops(ans), `trivial`, nops(as)-nops(ans)]) fi;   
+		fi;		
+  fi; 
+  forget(CCSidePrice1);
+  
+  inc(`cc/count/computed`, nops(ans));
+  inc(`cc/time`, time()-time0);
+  rprintf(1, ["There are %a cc at the moment. We have had computed %a of totally %a.", 
+              nops(ans),  `cc/count/computed`, `cc/count/total`]);
+  rprintf(3, ["cc are %q", ans]);
+  
+  if rt > 0 then report(lb,[`total c.c. number: `, `cc/count/total`, 
+                            `computed:`, `cc/count/computed`, `time:`, `cc/time`]) 
+  fi;
+  
+  map(eval, convert(ans,resultType));
+end:
+
+`cc/pd/listall` := proc()
+  global `dep/tab`, `pd/tab`;
+  local T, e, el, f, ft, ds;
+  T := table();
+  
+  el := op(2,op(`dep/tab`)); # list of stored dependences
+  for e in el do 
+    f := op(1,e); # an unknown
+    ft := op(2,e); # its dependence set
+    T[f] := `vars/1`(eval(f)) minus ft;
+		if f <> eval(f) then T[f] := T[f] union {1} fi; # f assigned
+  od;
+  #print('T'=eval(T)); 
+  
+  el := op(2,op(`pd/tab`)); # list of stored partial derivatives
+  for e in el do
+    f := op(1,e); # an unknown
+    ft := op(2,e); # table of its derivatives
+    ds := {op(map(lhs, op(2,op(ft))))};
+		#print(DS1, f, ft, ds);
+		if type(f,'dep') then
+		 ds := map(proc(p) p, 
+								       op(`vars/1`(p) minus `dep/tab`[f]),
+								       op(`vars/1`(ft[p]) minus `dep/tab`[f])
+							 end, ds);
+		 #print(DS2, f, ft, ds);
+		fi;
+    if f <> eval(f) then ds := ds union {1} fi; # f assigned
+    if assigned(T[f]) then T[f] := T[f] union ds else  T[f] := ds fi;
+  od;
+   
+  return(eval(T));
+end:
+
+
+`cc/ass` := proc(c::uneval)
+      local u, r, p, q;
+      u := c[1];
+      r := c[2];
+      p := lhs(c[3]);
+      q := rhs(c[3]);
+      #printf("cc of %a at %a:\n", u, r);
+      #printf("%q\n", [''pd1''( 'PdNE'(u,p), r/p)            =  ''pd1''( 'PdNE'(u,q), r/q)]);
+      #printf("%q\n", [''pd1''( `pd/noeval`(u,p), r/p)       =  ''pd1''( `pd/noeval`(u,q), r/q)]);
+      #printf("%q\n", [pd1( `pd/noeval`(u,p), r/p)           =  pd1( `pd/noeval`(u,q), r/q)]);
+      #printf("%q\n", [`pd/noeval`( `pd/noeval`(u,p), r/p)   =  `pd/noeval`( `pd/noeval`(u,q), r/q)]);
+
+      #pd1( pd1(u,p), r/p) -  pd1( pd1(u,q), r/q);
+      pd1( `pd/noeval`(u,p), r/p) -  pd1( `pd/noeval`(u,q), r/q);  			
+    end:
+    
+`pd/noeval` := proc(F,U)
+  global `pd/tab`;
+  local res;
+  if U=1 then
+    return eval(F)
+  else
+    res := eval(`pd/tab`[evaln(F)][U], 1); 
+    if type(res, indexed) then # not found in `pd/tab`
+			pd(F,U);
+    else
+     res
+    fi;
+  fi
 end:
 
 #
@@ -1057,45 +1423,61 @@ unprotect(normal):
 simpl := proc(f) normal(f) end:
 
 Simpl := proc(f)
-# option remember, system;
   local V;
-  if  hasfun(f, TD) then simpl(f)
-  else 
-    if nargs > 1 then V := args[2] else V := Vars(f) fi;
-    V := select(proc(v,f) type(f,polynom(anything,v)) end, V, f);
-#   V := V union unks(f); # obsolete
+  global `Simpl/nocollect/s`;
+  if  hasfun(f, TD) then 
+    WARNING("Simpl has TD!!!"); 
+    simpl(f);
+  else
+    if nargs > 2 then
+      error "Too much arguments"
+    elif nargs = 2 then
+      V := args[2]
+    else
+      V := Vars(f) ;
+      V := select(proc(v,f) type(f,polynom(anything,v)) end, V, f);
+      V := convert(V,set) minus `Simpl/nocollect/s`;
+    fi;
     collect(f, V, distributed, simpl)
-  fi
+  fi;
 end:
+
+`Simpl/nocollect/s` := {}:
 
 #
 #   F i n d i n g   d e p e n d e n c e   s e t 
 #
 
-vars := proc(f)
+vars := proc({noWarn::truefalse:=false})
+  `union`(op(map(`vars/1`, [_rest], _options))); # HB multiple arguments
+end:
+
+`vars/1` := proc(f, {noWarn::truefalse:=false})
 # option remember;
   if type (f,'constant') then {}
   elif type (f,'name') then 
     if type (f,{`b/var`,`f/var`}) then {f}
     elif type (f,'parameter') then {}
     elif type (f,'dep') then select (type,`dep/tab`[f],'var')   
-    else ERROR (`unknown dependence`, f)
+    else if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
+         {f}
     fi
-  elif type (f,{`+`,`*`,`^`}) then `union`(op(map(vars,[op(f)])))
+  elif type (f,{`+`,`*`,`^`,sequential}) then `union`(op(map(procname,[op(f)], _options))) # HB
   elif type (f,'function') then 
     if type (f, specfunc(anything,jet)) then {f}
-    elif type (f, specfunc(anything,pd)) then vars(op(1,f))
+    elif type (f, specfunc(anything,pd)) then procname(op(1,f), _options)
     elif type (f, specfunc(anything,TD)) then `vars/TD` (op(f))
-    else `union`(op(map(vars,[op(f)])))
+    else `union`(op(map(procname,[op(f)], _options)))
     fi
-  else ERROR (`unexpected object`, f) 
+  else error("unexpected object %1 in vars.", f);
   fi
 end:
+
 
 `vars/TD` := proc (f,x) 
   option remember;
   if type (x,'name') then
-    vars(f) union `union`(op(map(`vars/TD/1`,vars(f),x)))
+    `vars/1`(f) union `union`(op(map(`vars/TD/1`,`vars/1`(f),x)))
   else `vars/TD`(f,`count/r`(x)) union
     `union`(op(map(`vars/TD/1`,`vars/TD`(f,`count/r`(x)), `count/f`(x))))
   fi
@@ -1103,7 +1485,7 @@ end:
 
 `vars/TD/1` := proc (q,x) 
   option remember;
-  vars(evalTD(TD(q,x))) 
+  `vars/1`(evalTD(TD(q,x))) 
 end:
 
 #
@@ -1189,7 +1571,7 @@ symmetries := proc ()
     lhs := `dummy/j`(op(1,e)); rhs := op(2,e);
     `symm/1`(lhs,Q) - convert (map (proc (q,rhs,Q) 
       `symm/1`(q,Q) * pd(rhs,q)
-    end, [op(vars (rhs) minus `b/var/s`)], rhs, Q), `+`)
+    end, [op(`vars/1` (rhs) minus `b/var/s`)], rhs, Q), `+`)
   end, `eqn/list`, Q))
 end:
 
@@ -1205,7 +1587,7 @@ lin := proc (f)
   local Q; 
   Q := table([args[2..nargs]]);
   convert (map (proc (q,f,Q) `symm/1`(q,Q)*pd(f,q)
-    end, [op(vars (f) minus `b/var/s`)], f, Q), `+`)
+    end, [op(`vars/1` (f) minus `b/var/s`)], f, Q), `+`)
 end:
 
 # Jacobi bracket
@@ -1226,7 +1608,7 @@ end:
       if type (q,`f/var`) then member(q,`f/var/list`,k); fl[k]*pd(g,q)
       else member (op(1,q),`f/var/list`,k); TD(fl[k],op(2,q))*pd(g,q)
       fi
-    end, [op(vars(g) minus `b/var/s`)], fl, g), `+`)
+    end, [op(`vars/1`(g) minus `b/var/s`)], fl, g), `+`)
 end:
 
 # Conservation laws
@@ -1239,7 +1621,7 @@ laws := proc ()
     e := `eqn/list`[k]; lhs := `dummy/j`(op(1,e)); rhs := op(2,e);
     aux[op(1,lhs)] := aux[op(1,lhs)]
       + `count/sgn`(op(2,lhs)) * TD(P[k],op(2,lhs));
-    for q in (vars (rhs) minus `b/var/s`) do
+    for q in (`vars/1` (rhs) minus `b/var/s`) do
       if type (q, `f/var`) then aux[q] := aux[q] - pd(rhs,q)*P[k]
       else aux[op(1,q)] := aux[op(1,q)]
         - `count/sgn`(op(2,q)) * TD(pd(rhs,q)*P[k],op(2,q))
@@ -1261,7 +1643,7 @@ zcr := proc ()
     e := `eqn/list`[k]; lhs := `dummy/j`(op(1,e)); rhs := op(2,e);
     aux[op(1,lhs)] := aux[op(1,lhs)]
       + `count/sgn`(op(2,lhs))*`zc/TD`(op(Z[k]),op(2,lhs),Z);
-    for q in (vars (rhs) minus `b/var/s`) do
+    for q in (`vars/1` (rhs) minus `b/var/s`) do
       if type (q, `f/var`) then aux[q] := aux[q] - pd(rhs,q)*Z[k]
       else aux[op(1,q)] := aux[op(1,q)] + (`count/sgn`(op(2,q))
         *`zc/TD`(evalm(-pd(rhs,q)*op(Z[k])),op(2,q),Z))
@@ -1295,7 +1677,7 @@ pseudosymmetries := proc ()
     lhs := `dummy/j`(op(1,e)); rhs := op(2,e);
     evalm(`psymm/1`(lhs,Q) - convert (map (proc (q,rhs,Q) 
       `psymm/1`(q,Q) * pd(rhs,q)
-    end, [op(vars (rhs) minus `b/var/s`)], rhs, Q), `+`))
+    end, [op(`vars/1` (rhs) minus `b/var/s`)], rhs, Q), `+`))
   end, `eqn/list`, Q))
 end:
 
@@ -1359,17 +1741,17 @@ end:
   local qs,f1;
   if type (f,'constant') then f
   elif type (f,'name') then
-    if type (f,`f/var`) then eval(subs(es,f))
+    if type (f,`ar`) then eval(subs(es,f)) # HB
     else qs := ars(f);
       if qs <> {} then f(op(eval(subs(es,qs))))
       else f
       fi
     fi
   elif type (f,{`+`,`*`,`^`}) then map (procname, f, es)
-  elif type (f,'function') then 
+  elif type (f,'function') then  
     if type (f,`j/var`) then eval(subs(es,f))
     elif type (f, specfunc(anything,pd)) then f1 := op(1,f); qs := ars(f1); 
-      diff(f1(op(eval(subs(es,qs)))),`count//seq`(eval(subs(es,op(2,f))))) 
+      'diff'(f1(op(eval(subs(es,qs)))),`count//seq`(eval(subs(es,op(2,f))))) # HB
     elif type (f, specfunc(anything,TD)) then 
       ERROR(`unevaluated total derivative`)
     else map (procname, f, es)
@@ -1378,12 +1760,31 @@ end:
   fi
 end:
 
+# HB:
+# converting diff to pd
+
+`convert/pd` := proc (f)
+  if op(0,f)= 'diff' then `convert/pd/diff`(f)
+  elif type (f, atomic) then f
+  else map('procname', op(0,f)(op([seq(op(i,f),i=1..nops(f))])))
+  fi
+end:
+
+`convert/pd/diff` := proc(f)
+  if op(0,op(1, f))= 'diff' then
+    pd(`convert/pd/diff`(op(1, f)), op(2,f))
+  else
+    pd(op(0,op(1, f)), op(2,f));
+  fi
+end:
+# :HB
+
 # Declaring unknowns
 
 unks := proc(a)
   if type (a,{'constant','ar'}) then {}
   elif type (a,'name') then {a}
-  elif type (a,{`+`,`*`,`^`,'set'}) then `union`(op(map(unks,[op(a)])))
+  elif type (a,{`+`,`*`,`^`,'sequential'}) then `union`(op(map(unks,[op(a)])))
   elif type (a,'function') then 
     if type (a,specfunc(anything,pd)) then {op(1,a)}
     elif type (a,specfunc(anything,TD)) then `unks/TD`(op(a))
@@ -1396,7 +1797,7 @@ end:
 `unks/TD` := proc(f,x)
   option remember;
   if type (x,'name') then
-    unks(f) union `union`(op(map(`unks/TD/1`,vars(f),x)))
+    unks(f) union `union`(op(map(`unks/TD/1`,`vars/1`(f),x)))
   else `unks/TD`(f,`count/r`(x)) union
     `union`(op(map(`unks/TD/1`,`vars/TD`(f,`count/r`(x)), `count/f`(x))))
   fi
@@ -1428,7 +1829,7 @@ end:
 `pars/TD` := proc(f,x)
   option remember;
   if type (x,'name') then
-    pars(f) union `union`(op(map(`pars/TD/1`,vars(f),x)))
+    pars(f) union `union`(op(map(`pars/TD/1`,`vars/1`(f),x)))
   else `pars/TD`(f,`count/r`(x)) union
     `union`(op(map(`pars/TD/1`,`vars/TD`(f,`count/r`(x)), `count/f`(x))))
   fi
@@ -1443,12 +1844,15 @@ end:
 
 ars := proc(a) vars(a) union pars(a) end:
 
-
-
-
-
 run := proc()
-  `run/l`(op(map(`run/1`,[args])))
+  global `cc/count/total`, `cc/count/computed`, `derive/time`, `cc/time`;
+  `cc/count/total`, `cc/count/computed` := 0,0;
+   `derive/time`, `cc/time` := 0.0, 0.0;
+  if nargs = 0 then
+    error "Missing arguments"
+  else
+   `run/l`(op(map(`run/1`,[args])))
+  fi;
 end:
 
 `run/1` := proc(a)  # applies run/l to entries of lists, sets, and matrices
@@ -1464,8 +1868,9 @@ end:
 end:
 
 `run/l` := proc()
-  local as,eqs,aux,i,imax,res,t,rt,lb;
-  global `run/time`,`run/bytes`, putsize, ressize, runtransformations;
+  local as,eqs,aux,i,imax,ders, res,t,rt,lb,ncc, aux1;
+  global `run/time`,`run/bytes`, putsize, ressize, runtransformations,
+         RESOLVE;
   if `unk/<</list` = [] then
     ERROR (`please set unknowns(name1, name2, ...)`) 
   fi;
@@ -1475,15 +1880,17 @@ end:
   lb := `RUN:`; rt := `report/tab`[run];
   do i := 0;
     if rt > 0 then report(lb,`Compatibility conditions ...`) fi;
-    as := cc();
+    
+    ### cc
+    as := cc(pop,maxnumP=1); 
+    #as := cc(pop);
     # as = the lowest compatibility conditions
-    as := select(proc(a) evalb(a <> 0) end, as);
     if rt > 1 then report(lb,[`c.c.: `, op(sort(map(size,[op(as)])))]) fi;
-#   as := map(derive, as); # derive differential consequences of cc
-#   if rt > 1 then
-#     report(lb,[`d.c.c.: `, op(sort(map(size,[op(as)])))])
-#   fi;
-    if as <> {} then 
+    #MM#   as := map(derive, as); # derive differential consequences of cc
+    #   if rt > 1 then
+    #     report(lb,[`d.c.c.: `, op(sort(map(size,[op(as)])))])
+    #   fi; #MM#
+    if nops(as) > 0 then 
       if runtransformations <> {} then
         for t in runtransformations do
           as := as union map(Simpl@t,as)
@@ -1494,48 +1901,82 @@ end:
         fi
       fi
     fi;
-    if rt > 3 then report(lb,[`all c.c.: `], op(as)) fi;
-    aux := {derive(args)};
-    aux := select(proc(a) evalb(a <> 0) end, aux); 
-    if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(aux)])))]) fi;
+    if nops(as) = 0 then
+      if rt > 1 then report(lb,[`no cc to be resolved`]) fi;
+	  else
+      if rt > 1 then report(lb,[`cc to be resolved #:`, nops(as)]) fi;
+      if rt > 4 then report(lb,[`cc to be resolved:`, as]) fi;       
+    fi;
+    MultiOrdCC:-Write(op(as)); # send intermediate cc's to the world   
+
+    
+    ### dc
+    ders := {derive(args)}; 
+    #ders := map(simpl,ders); # TODO(eff): je to simpl nutne?
+    ders := select(proc(a) evalb(a <> 0) end, ders); 
+    if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(ders)])))]) fi;
     if runtransformations <> {} then
       for t in runtransformations do
-        aux := aux union map(Simpl@t,aux)
+        ders := ders union map(Simpl@t,ders)
       od;
-      aux := select(proc(a) evalb(a <> 0) end, aux); 
+      ders := select(proc(a) evalb(a <> 0) end, ders); 
       if rt > 1 then
-        report(lb,[`transformed derived: `, op(sort(map(size,[op(aux)])))]);
+        report(lb,[`transformed derived: `, op(sort(map(size,[op(ders)])))]);
         if rt > 3 then report(lb,[`transformed c.c.: `], op(as)) fi;
       fi
     fi;
-    if rt > 3 then report(lb,[`all derived: `], op(aux)) fi;
-    as := as union aux;
-    if as = {} or as = {0} then tprint(`Success!`);
-      RETURN(op(as))
-    fi;
-    aux := `size/*/<`(as, ressize);
-    if rt > 1 then
-      report(lb,[`to resolve: `, op(sort(map(size,[op(aux)])))])
-    fi;
-    if rt > 4 then
-      report(lb,[`to resolve: `, op(aux)])
-    fi;
-    if aux = {} then ERROR(`ressize too low`) fi;
-    res := resolve(op(aux));
-    if res = FAIL then RETURN (FAIL)
-    else eqs := {res};  # solved
-      if rt > 1 then report(lb,[`resolved:`, op(sort(map(size,[op(eqs)])))]) fi;
-      if rt > 4 then report(lb,[`resolved:`, op(eqs)]) fi
-    fi;
-    aux := `size/*/<`(eqs, putsize);
-    if rt > 1 then report(lb,[`selected:`, op(sort(map(size,[op(eqs)])))]) fi;
-    if aux = {} then ERROR(`putsize too low`) fi;
-    `run/put`(op(aux));
-    if Bytes() > Blimit then reduce() fi
+    if rt > 3 then report(lb,[`all derived: `], op(ders)) fi;
+
+    ### are we done?
+    if nops(as)+nops(ders)=0 then 
+      tprint(`Success!`);
+		  if nops(cc()) > 0 then error "Implementation error: There are remaining cc's" fi;
+		  RESOLVE := {};
+      RETURN(op(as)) # TODO: co vratime???
+		fi;       
+
+    # take cc's from the outside
+    #aux1 := MultiOrdCC:-Pop(); 
+    ##aux := map(simpl, aux1); ### ???
+    #aux := aux1; ### ???
+    #aux := remove(`=`, aux, 0);
+    #if nops(aux1)>0 then
+    #  if rt > 5 then report(lb,[`imported cc: `], aux1) 
+    #  elif rt > 3 then report(lb,[`imported cc sizes: `], map(size, aux1)) 
+    #  elif rt > 0 then report(lb,[`imported cc #: `, nops(aux1), `of them nontrivial #:`, nops(aux)] ) fi;
+    #fi;
+    ncc := nops(as);
+    #as := as union aux;
+
+		### resolve ALL compatibility conditions cc and some of differential consequences (dc)		
+		if nops(ders)=0 then
+      if rt > 1 then report(lb,[`no dc to be resolved`]) fi;
+		  res := resolve(op(as));
+		else
+      aux := `size/*/<`(ders, ressize);
+      if nops(aux)=0 then WARNING("ressize too low"); aux := {sizemin(ders, size)} fi; # TODO(eff): 
+                                                                    # udelej nove rychle `size/*/<`
+      if rt > 1 then report(lb,[`dc to be resolved: `, op(sort(map(size,[op(aux)])))]) fi;
+      if rt > 4 then report(lb,[`dc to be resolved: `, op(aux), `selected of totally`, nops(ders)]) fi;
+      res := resolve(op(as),op(aux));
+    fi;  
+      
+    if res = FAIL then
+      if ncc=0 then WARNING("Cannot resolve differential consequence(s) only, no cc present."); fi;
+      RETURN (FAIL);
+    else 
+      if rt > 1 then report(lb,[`cc+dc resolved:`, op(sort(map(size,[res])))]) fi;
+      if rt > 4 then report(lb,[`cc+dc resolved:`, res]) fi;
+ 
+      # put the resolved results
+      `run/put`(res);
+      
+      if Bytes() > Blimit then reduce() fi
+    fi
   od
 end:
 
-`size/*/<` := proc(as,upb) 
+`size/*/<` := proc(as,upb) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
   local aux,bs,ans,i,m,n;
   n := 1;
   ans := {};
@@ -1549,7 +1990,6 @@ end:
       fi      
     od
   od;
-  ans
 end:
 
 `size/=` := proc(a,upb) evalb(size(a) = upb) end:
@@ -1558,11 +1998,29 @@ runtransformations := {}:
 
 Blimit := 25000:
 
+
 `run/put` := proc()
   put(args);
-  tprint(`Put: `); map(print, [args]);
+  tprint(`Put: `); map(`run/put/print`, [args]);
   if `storing/b` then store(`store/file`) fi
 end:
+
+miniprint := proc(p)
+  option inline;
+  printf("%q\n\n", p)
+end:
+
+microprint := proc(p)
+  option inline;
+  `if`(evalb(length (p) > 1000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
+end:
+
+smartprint := proc(p)
+  option inline;
+  `if`(evalb(length (p) > 300),  microprint(p), print(p));
+end:
+
+`run/put/print` := op(smartprint):
 
 
 pds := proc()
@@ -1576,7 +2034,9 @@ end:
      end, op(2,op(2,p)), op(1,p))) 
 end:
 
-`store/pds` := proc()
+
+`store/pds` := proc(fd)
+  # HB:
   global `pd/tab`;
   local p,el,e,f,b; 
   reduce(); b := false;
@@ -1584,25 +2044,47 @@ end:
     el := op(2,op(2,p));
     f := op(1,p);
     for e in el do
-      if b then lprint(`, `) else b := true fi;
-      lprint('pd'(f,op(1,e)) = op(2,e))
+      if b then fprintf(fd, ",\n") else b := true fi; 
+      fprintf(fd, "  pd(%a, %a) = %a", f,op(1,e), op(2,e));
     od
   od
+  # :HB
 end:
 
 store := proc(file)
-  print(cat(`storing in `, file));
-  if nargs > 0 then writeto (file) else writeto(terminal) fi;
-  lprint('assign'({`unks/assignments`()}));
-  lprint(`; `);
-  lprint('dependence'(dependence()));
-  lprint(`; `);
-  lprint(`put(`);
-  `store/pds`();
-  lprint(`); `);
-  lprint('nonzero'(op(nonzero())));
-  lprint(`; `);
-  writeto (terminal)
+  # HB: 
+  local fd;
+  fd := fopen(file, WRITE, TEXT):
+  try
+    print(cat(`storing in `, file));
+    if nargs = 0 then error "Missing file, cannot store to terminal." fi;
+    #fprintf(fd, "\n# assign begin : \n");
+    fprintf(fd, "put(%q);\n", `unks/assignments`());
+    #map (
+    #  proc (x)  
+    #      lprint('`put`'(x));  
+    #      printf(";\n");
+    #  end proc, 
+    #  {`unks/assignments`()}): 
+    #fprintf(fd,"# : assign end\n");
+    # HB  
+    fprintf(fd, "dependence(%q);\n", dependence());
+  
+    fprintf(fd, "put(\n");
+    `store/pds`(fd);
+    fprintf(fd, "\n);\n");
+    
+    fprintf(fd,"nonzero(%q);\n", op(nonzero()));
+    
+    # TODO: Varodering must be stored here
+   
+    #fprintf(fd,"\n# RESOLVE=%a\n",RESOLVE); # store also RESOLVE var as a comment
+    #cannot be here, becouse when RESOLVE is too long, is printed to several lines 
+    #(but only the first one begins with # what causes syntax error when reading later)
+  finally
+    fclose(fd);
+  end
+  # :HB
 end:
 
 Bytes := proc() floor(kernelopts(bytesalloc)/1024) end:
@@ -1623,26 +2105,32 @@ end:
 # maxsize = the maximal size of result of resolve
 # putsize = the product of sizes of expressions to be put
 
-ressize := 500:
-putsize := 40:
-maxsize := 20:
+ressize := 1000:
+putsize := 200:
+maxsize := 100:
 
 `run/time` := time():
 `run/bytes` := kernelopts(bytesalloc):
+`derive/time` := 0.0:
 
+
+#`derive/seq` := Threads[Seq]: #TODO:
 
 derive := proc()
-  local a;
-  global `derive/tab`,`derive/pd/tab`,`noderive/s`;
+  local a, ans, time0;
+  global `derive/tab`,`derive/pd/tab`,`noderive/s`, `derive/time`;
+  time0 := time();
   for a in [args] do
     if not assigned(`derive/tab`[a,1]) then 
-      `derive/tab`[a,1] := vars(a) minus `noderive/s`
+      `derive/tab`[a,1] := `vars/1`(a) minus `noderive/s`
     fi;
     if not assigned(`derive/pd/tab`[a,1]) then 
       `derive/pd/tab`[a,1] := a
     fi
   od;
-  seq(`derive/1`(a,1), a = [args])
+  ans := seq(`derive/1`(a,1), a = [args]);
+  inc(`derive/time`, time()-time0);
+  return(ans);
 end:
 
 noderives := proc()
@@ -1654,9 +2142,13 @@ noderives():
 
 `derive/1` := proc(a,c)
   local ds,us,ps,p,aux,t,ns,s,b,rt,lb;
-  global `derive/tab`,`derive/pd/tab`;
+  global `derive/tab`,`derive/pd/tab`, `derive/depth`;
   rt := `report/tab`[derive]; lb := `DERIVE:`;
   if rt > 3 then report(lb,[`expression:`], `derive/pd/tab`[a,c]) fi;
+  if assigned(`derive/depth`) and `count/length`(c) > `derive/depth` then
+    if rt > 3 then report(lb,[`evalTD forced by derive/depth, length is :`, `count/length`(c)]) fi;
+    RETURN(Simpl(evalTD(`derive/pd/tab`[a,c])))
+  fi;
   ds := `derive/tab`[a,c];
   if rt > 3 then report(lb,[`variables:`, op(ds)]) fi;
   if nargs > 2 then us := args[3] intersect ds;
@@ -1687,7 +2179,7 @@ noderives():
   if rt > 3 then report(lb,[`current size:`, s]) fi;
   aux := select(proc(t,s) op(3,t) < s end, aux, s);  # select < a
   if aux = [] then if rt > 3 then report(lb,`none makes less`) fi; 
-    if rt > 2 then report(lb,[`derivation finished`]) fi;
+    if rt > 2 then report(lb,[`derivation finished`, a,c]) fi;
     RETURN(Simpl(evalTD(`derive/pd/tab`[a,c])))
   fi;
   ns := ps minus map(proc(e) op(1,e) end, {op(aux)});  # vars failing < a
@@ -1775,13 +2267,15 @@ end:
 `type/nounks` := proc(a) evalb(unks(a) = {}) end:
 
 `type/resolv` := proc(x)
-  evalb(vars(a) minus `union`(op(map(vars,unks(a)))) = {})
+  evalb(`vars/1`(a) minus `union`(op(map(`vars/1`,unks(a)))) = {})
 end:
 
 
 `resolve/lin` := proc(as,vl)
   local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb;
-  global maxsize;
+  global maxsize, RESOLVE, `resolve/result/suppressedminsize`;
+  `resolve/result/suppressedminsize` := NULL;
+  
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
   bs := map(Simpl, as, vl);
   if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
@@ -1827,18 +2321,25 @@ end:
   ans := select(proc(a) size(a) < maxsize end, ans);
   aux := aux minus ans;
   if ans = {} then
-    if aux <> {} then lprint(`There are`, nops(aux),
-      `suppressed solutions of sizes:`, op(map(size,aux)))
+    if aux <> {} then lprint(`There are`, nops(aux),`suppressed solutions of sizes:`, op(map(size,aux)));
+        `resolve/result/suppressedminsize` := min(op(map(size,aux))); # HB
+    else
+       `resolve/result/suppressedminsize` := NULL : # HB
     fi;
-    map(
+    # HB: store what failed to the global variable RESOLVE
+    RESOLVE := map(
       proc(r) 
         if type(op(1,r), linear(op(2,r))) then 
           tprint(`linear resolving failed for`, op(2,r));
-          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0))
-        else tprint(`resolving failed for`, op(2,r), `nonlinear `);
-          print (op(1,r))
+          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
+          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
+        else 
+          tprint(`resolving failed for`, op(2,r), `nonlinear `);
+          print (op(1,r));
+          [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
         fi
       end, rs);
+    # :HB
     FAIL
   else op(ans)
   fi;
@@ -1852,7 +2353,7 @@ end:
 
 `type/resolvable` := proc(a)
   if unks(a) <> {} and
-    vars(a) minus `union`(op(map(vars,unks(a)))) = {} then false
+    `vars/1`(a) minus `union`(op(map(`vars/1`,unks(a)))) = {} then false
   else true
   fi
 end:
@@ -1878,9 +2379,9 @@ end:
 `Vars/TD` := proc(f,x)
   option remember;
   if type (x,'name') then
-      `union`(op(map(`Vars/TD/0`, vars(f), f, x)))
+      `union`(op(map(`Vars/TD/0`, `vars/1`(f), f, x)))
     union
-      `union`(op(map(`Vars/TD/1`,vars(f),x)))
+      `union`(op(map(`Vars/TD/1`,`vars/1`(f),x)))
   else `union`(op(map(
       `Vars/TD/0`,`vars/TD`(f,`count/r`(x)),TD(f,`count/r`(x)),`count/f`(x))))
     union
@@ -1926,8 +2427,8 @@ end:
 `nonzero/s` := {}:
 
 `nonzero/1` :=  proc(a)  # treats explicit products and powers
-  if unks(a) = {} then NULL
-  elif type (a,`^`) then
+  #if unks(a) = {} and a <> 0 then NULL elif # Bug fix 25. 04. 2008
+  if type (a,`^`) then
     if type (op(2,a), rational) and op(2,a) > 0 then procname(op(1,a))
     else a
     fi
@@ -1937,23 +2438,53 @@ end:
 end:
 
 # Dividing out nonzero factors.
-# Nonzero is either declared nonzero or free of unknowns
-# (and not equal to zero).
+# An expression is nonzero if either declared nonzero or different
+# from zero for all values of unknowns 
+# M.M. 2008
 
-divideout := proc(a)   
+divideout := proc(a)
   local ns;
   if nargs = 1 then ns := `nonzero/s` else ns := args[2] fi;
-  `divideout/nonzero`(`divideout/nounks`(factor(Simpl(a))),ns) 
+  `divideout/nonzero`(`divideout/unks`(factor(Simpl(a))), ns)
   # Correction: Simpl added 9.7.2004
 end:
 
-`divideout/nounks` := proc(a)  # treats explicit products and powers
-  if a = 0 then 0 # Correction: 0 added 9.12.2004
-  elif unks(a) = {} then 1
+`divideout/unks` := proc(a)  # treats explicit products and powers
+  if a = 0 then 0
+  elif type(a, `divideout`) then 1
   elif type (a,`^`) then
-    if type (op(2,a), posint) then procname(op(1,a)) else a fi
+    if type (op(2,a), positive) then procname(op(1,a)) else a fi # H.B. 2004
   elif type (a,`*`) then map(procname,a)
-  else a
+  else `divideout/unks/1`(a)
+  fi
+end:
+
+# `type/divideout` := {specfunc(anything,exp)}: 
+`type/divideout` := proc(a) # HB 14. 5. 2008
+  if type(a, positive) then true
+  elif type(a, specop(anything, `+`))  
+    or type(a, specop(anything, `*`)) then
+    andmap(type, [op(a)],  divideout)
+  elif type(a, specfunc(anything,exp)) then
+    true
+  else
+    false
+  fi
+end:
+
+
+`divideout/unks/1` := proc(a)
+  local us,vs,aux;
+  us := unks(a);
+  vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
+  if vs = {} then a # presumably a = 0 can have a solution
+  elif type(a,polynom(anything,vs)) then
+    aux := collect(a, vs, distributed, simpl);
+    #if select(type, {coeffs(aux, vs)}, nonzero) <> {} then 1
+    if ormap(type, [coeffs(aux, vs)], nonzero) then 1
+    else a # all coeffs can be zero
+    fi
+  else a # does not know
   fi
 end:
 
@@ -1962,10 +2493,10 @@ end:
   g := normal(a);
   for f in ns do h := normal(g/f);
     while `divideout/size`(h) < `divideout/size`(g) do
-      g := h; h := normal(g/f); 
+      g := h; h := normal(g/f);
     od
   od;
-  if type (g,'constant') then 1 else g fi
+  if type (g,'constant') then if g = 0 then 0 else 1 fi else g fi # H.B. 2004
 end:
 
 `divideout/size` := proc(x) `size/alg`(x,2) end:
@@ -1981,7 +2512,17 @@ end:
 
 # Recognizing nonzero expressions
 
-`type/nonzero` := proc (b) evalb(divideout(numer(simpl(b))) = 1) end:
+`type/nonzero` := proc (a) 
+  local b; global NONZERO, ZERO;
+  b := evalb(divideout(numer(simpl(a))) = 1);
+  if b then NONZERO := NONZERO union {a}
+  else ZERO := ZERO union {a}
+  fi;
+  b
+end:
+
+NONZERO := {}:
+ZERO := {}:
 
 `clear/nonzero` := proc()
   local ans;
@@ -2018,13 +2559,14 @@ end:
 
 report := proc(lb,text)
   global `run/time`,`run/bytes`;
-  local i,t,w; 
+  local i,t,s; 
   appendto (reportfile);
-  t := cat(`<`,floor(time() - `run/time`),`>`);
-  w := cat(`<`,Bytes(),`>`);
-  if type (text,'name') then lprint(lb, t, w, text) 
-  else lprint(lb, t, w, op(text)) 
+  printf("%s <%a, %a>", convert(lb,string), floor(time() - `run/time`), Bytes()); # HB
+  if type(text,name) then printf(" %s", text)
+  #elif type(text,list) then map(t->printf(" %s", convert(t,string)), text)
+  else  printf(" %q", op(text))
   fi;
+  printf("\n");
   for i from 3 to nargs do print(args[i]) od;
   print();
   writeto (terminal); NULL
@@ -2035,10 +2577,11 @@ end:
 `report/tab`[run] := 0:
 `report/tab`[cc] := 0:
 `report/tab`[pd] := 0:
+`report/tab`[nonzero] := 0: # HB
 
 lb := NULL:
 
-tprint := proc() lprint(cat(`<`,floor(time() - `run/time`),`>`), args) end:
+tprint := proc() printf("<%a> %s %q\n", floor(time() - `run/time`),  args) end: # HB
 
 #
 #   O r d e r i n g s
@@ -2126,7 +2669,7 @@ end:
 # fvariables := proc() global `f/<</list`; `f/<</list` := [args] end:
 
 `Vars/<<` := proc(q1,q2)
-  local x1,x2,u1,u2,o;
+  local x1,x2,u1,u2,o,pars;
   global `Var/<</opt`;
   if type (q2,'name') then u2 := q2; x2 := 1
   elif type (q2,specfunc(anything,pd)) then u2 := op(1,q2); x2 := op(2,q2)
@@ -2139,11 +2682,29 @@ end:
   else ERROR (`wrong argument`, q1)
   fi;
   for o in `Var/<</opt` do
+    if type(o,function) then pars := op(o); o := op(0,o) else  pars := NULL fi;
     if not Existing(`Vars/<</`,o) then ERROR (`invalid option`, o) fi;
-    if Call(`Vars/<</`,o)(u1,x1,u2,x2) then RETURN (true) fi;
-    if Call(`Vars/<</`,o)(u2,x2,u1,x1) then RETURN (false) fi 
+    if Call(`Vars/<</`,o)(u1,x1,u2,x2,pars) then RETURN (true) fi;
+    if Call(`Vars/<</`,o)(u2,x2,u1,x1,pars) then RETURN (false) fi 
   od;
   false
+end:
+
+`Vars/<</params` := proc(u1,x1,u2,x2,Fs)
+  local pars, uu, o;
+  pars := args[6..-1];
+  if u1 in Fs then
+    if u2 in Fs then
+      for o in pars do 
+        if not Existing(`Vars/<</`,o) then ERROR (`invalid option`, o) fi;
+        if Call(`Vars/<</`,o)(u1,x1,u2,x2) then RETURN (true) fi;
+        if Call(`Vars/<</`,o)(u2,x2,u1,x1) then RETURN (false) fi 
+      od
+    else RETURN(true)
+    fi
+  elif u2 in Fs then RETURN(false)
+  else RETURN (FAIL)
+  fi;
 end:
 
 `Vars/<</degree` := proc(u1,x1,u2,x2)
@@ -2165,10 +2726,10 @@ end:
   elif type (x,'var') then true
   elif type (x,`^`) then type(op(2,x),'posint')
   elif type (x,`*`) then 
-    yl := [op(vars(x))];
+    yl := [op(`vars/1`(x))];
     yl := sort(yl,`vars/<<`);
     y := op(nops(yl), yl); 
-    member(y, [op(vars(`transform/count`(x)))])
+    member(y, [op(`vars/1`(`transform/count`(x)))])
   else ERROR (`not a count`, x)
   fi 
 end:
@@ -2183,10 +2744,10 @@ end:
   elif type (x,'var') then true
   elif type (x,`^`) then type(op(2,x),'posint')
   elif type (x,`*`) then 
-    yl := [op(vars(x))];
+    yl := [op(`vars/1`(x))];
     yl := sort(yl,`vars/<<`);
     y := op(1, yl);
-    member(y, [op(vars(`transform/count`(x)))])
+    member(y, [op(`vars/1`(`transform/count`(x)))])
   else ERROR (`not a count`, x)
   fi 
 end:
@@ -2222,6 +2783,7 @@ unknowns := proc()
   `unk/tab` := table([args]);
   op(`unk/<</list`)
 end:
+
 
 `unk/<</list` := []:
 `unk/s` := {}:
@@ -2591,7 +3153,7 @@ eapply := proc(v,f)
       if type (q,`f/var`) then coeff(v,pd[q])*pd(f,q)
       else TD(coeff(v,pd[op(1,q)]),op(2,q))*pd(f,q)
       fi
-    end, [op(vars(f) minus `b/var/s`)], v, f), `+`)
+    end, [op(`vars/1`(f) minus `b/var/s`)], v, f), `+`)
 end:
 
 # Point symmetries
@@ -2603,7 +3165,7 @@ papply := proc(v,f)
       elif type (q,`f/var`) then coeff(v,pd[q])*pd(f,q)
       else `papply/j`(op(q),v)*pd(f,q)
       fi
-    end, [op(vars(f))], v, f), `+`)
+    end, [op(`vars/1`(f))], v, f), `+`)
 end:
 
 `papply/j` := proc(u,x,v)
@@ -2755,7 +3317,7 @@ variation := proc (f,p)
       `count/sgn`(op(2,q)) * TD(pd(f,q), op(2,q))
     else 0
     fi
-  end, [op(vars (f) minus `b/var/s`)], f, p), `+`)
+  end, [op(`vars/1` (f) minus `b/var/s`)], f, p), `+`)
 end:
 
 # Compute the Tonti lagrangian
@@ -2913,7 +3475,7 @@ end:
 
 `BT/list` := []:
 
-# Test whether BT is a Bäcklund transformation  
+# Test whether BT is a Backlund transformation  
 
 testBT := proc()
   global `eqn/list`,`n/var/list`,`BT/list`;
@@ -2922,7 +3484,7 @@ testBT := proc()
   op(map(
     proc(e,qs) 
       if member(op(1,[op(1,e)]),`n/var/list`) then NULL
-      else simpl(`convert/TD/1`('jet'(op(1,e)) - op(2,e), qs))
+      else Simpl(`convert/TD/1`('jet'(op(1,e)) - op(2,e), qs))
       fi
     end,el,`BT/list`))
 end:
@@ -3267,7 +3829,1213 @@ lprint(cat(`Blimit = `,Blimit,
 `  putsize = `,putsize,
 `  maxsize = `,maxsize)): 
 
-# save `Jets.m`;
+
+##############################################################################
+### auxiliary
+##############################################################################
+
+inc := proc (var::evaln, val := 1 ) assign(var, `if`(type(eval(var),name), 0, eval(var)) + val); end:
+
+# mapmap := proc(f, A, B) 
+#   local ff; 
+#   ff := rcurry(f, args[4..-1]); 
+#   map(a-> op(map(b -> ff(a,b), B)), A) 
+# end:
+# 
+# push := proc(L::uneval, x) L := [op(eval(L)),x] end:
+# pop  := proc(L::uneval) local x; x := L[-1]; L := L[1..-2];  x; end:
+# 
+# 
+# CallByOpt := proc(CallByOpt::uneval)
+#   # CallByOpt(`function`) 
+#   # returns `function/opt/actual_strategy`
+#   # where actual_strategy is the value assigned to `function/opt`
+#   option inline;
+#   cat('CallByOpt', `/opt/`, eval(cat(uneval('CallByOpt'), `/opt`)));
+# end:
+
+##############################################################################
+# Developer internal notes:
+# based on #print(`as of 14 May 2008`);
+# Merged with old Jets.s 14. 05. 2008
+# print(`26. 6. 2006: derive bugfix revised`);
+# print("divideout exp and nonzero polynomials by MM 5. 5. 2008");
+# `derive/depth`
+##############################################################################
 
 
 
+
+
+
+
+###########################################################################################
+###########################################################################################
+# JetsCC - sufficient set of compatibility conditions implementation
+###########################################################################################
+###########################################################################################
+
+# This is an implementation of algorithms based on results published in
+#   M. Marvan, Sufficient set of integrability conditions of an orthonomic system. 
+#   Foundations of Computational Mathematics 9 (2009) 651-674.
+
+### partial derivatives ###
+pd1 := proc (f, ATC(p,{`ar/count`, identical(1)}))
+  option inline;
+  `if`(p=1, f, pd(f,p))
+end:
+
+### jcounts ###
+
+# Jcount is a count in jet variables, i. e. a product of nonnegative integer powers of symbols and jets
+# here jet variables MUST be in J[u,x] format
+
+TypeTools[AddType](Jcount,  proc(m) option inline; type(m,monomial) and m<>1 end): 
+ 
+TypeTools[AddType](Jcount1, proc(m) option inline; type(m,monomial)  end): 
+  
+# jetcount is a count in jet variables, i. e. a product of nonnegative integer powers of symbols and jets
+# here jet variables MUST be in jet(u,x) format
+# this implementation is VERY slow
+  
+TypeTools[AddType](jetcount, 
+    proc(m) `if`( type(m, `*`),  andmap(`jetcount/not1`, [op(m)]), `jetcount/not1`(m) ) end):
+
+TypeTools[AddType](jetcount1, 
+    proc(m) `if`( type(m, `*`),  andmap(`jetcount/1`, [op(m)]), `jetcount/1`(m) ) end):
+
+`jetcount/1` := proc(s) option inline; `if` (type(s,`^`),  type(op(2,s), posint), true) end:
+`jetcount/not1` := proc(s) option inline; `jetcount/1`(s) and  s<>1 end:
+
+
+### jet variables implementation conversions ###
+
+# jet(u,x) to J[u,x]
+
+j2J := proc()
+  description "Converts jet(u,x) to J[u,x]";
+	eval(args, jet = j2JE);
+end:
+
+j2JE := proc(u,x) J[u,x] end:
+
+# J[u,x] to jet(u,x)
+
+J2j := proc()
+  description "Converts J[u,x] to jet(u,x)";
+	global J2jE;
+	eval(args, J = J2jE);
+end:
+
+`index/J2jEInd` := proc(Idx,Tbl,Entry)  jet(op(Idx)) end proc:
+J2jE := table(J2jEInd):
+
+#
+# Fast list operations againts the given 'size' (or price) function
+#
+
+# see http://www.mapleprimes.com/blog/joe-riel/sorting-with-attributes
+
+sizesort := proc(ATC(L,list), sizeFun)
+  description "Given a list L and size function sizeFun, \
+               sorts L by sizeFun sizes of its elements";
+  option inline;
+  map(attributes,sort(attLBySize(L, sizeFun),`<`));
+end proc:
+
+sizemin := proc(ATC(L,list), sizeFun)
+  option inline;
+  attributes(min(attLBySize(L, sizeFun)));
+end proc:
+
+sizemax := proc(ATC(L,list), sizeFun)
+  option inline;
+  attributes(max(attLBySize(L, sizeFun)));
+end proc:
+
+attLBySize := proc(ATC(L,list), sizeFun)::list(complex(float));
+  description "Given a list, returns a list of its sizes with original entries as attributes";
+  local l;
+  [seq](setattribute(HFloat(sizeFun(l)), l), l=L) 
+end:
+
+
+###################################################################################################
+# Generalized or improved routines from Jets
+###################################################################################################
+
+#
+# Dealing with monomials (in jet variables, ie. Jcounts/jetcounts) 
+#
+
+# We have two variants of the same routines for different jets implementations
+
+# J[] implementation: In this module, jet variables MUST be in J[u,x] format
+module `JetMonomTools/J` ()
+  option package; 
+  export 
+    vars, 
+    divide1, divide1f, divideNot1, divideNot1f,
+    min, max, rmin, rmax, hull, sets;
+
+  vars := op(indets): # Returns vars of count (fast)
+
+  divideNot1  := proc(u,v,q) option inline; divide(u,v,q) and eval(q)<>1 end:
+  divideNot1f := proc(u,v) local q; divide(u,v,q) and q<>1 end: 
+  
+  divide1  := op(divide): 
+  divide1f := op(divide):
+  
+  min := proc(ATC(S,sequential(Jcount1)), $)
+    remove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(s,t) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  max := proc(ATC(S,sequential(Jcount1)), $)
+    remove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(t,s) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  rmin := proc(ATC(S,sequential(Jcount1)), $)
+    selectremove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(s,t) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  rmax := proc(ATC(S,sequential(Jcount1)), $)
+    selectremove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(t,s) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+      
+  hull := proc()
+    local M,N,A,MA; 
+    M := {args};
+    N := {};
+    while M <> N do
+      N := M;
+      for A in M do
+        MA := select(proc(B,A) evalb(A intersect B <> {}) end, M, A);
+        M := M minus MA union {`union`(op(MA))};
+      od
+    od; 
+    M
+  end:
+  
+  sets := proc(ATC(p,Jcount1), ATC(S,sequential(Jcount1)), $)
+    local s,b;
+    b := [seq(p/s, s = S)];
+    op(map(vars, select(type,b,Jcount)));
+  end:
+  
+end module:
+
+
+# jet() implementation: In this module, jet variables MUST be in jet(u,x) format
+module `JetMonomTools/jet` ()
+  option package; 
+  export 
+    vars,
+    divide1, divide1f, divideNot1, divideNot1f,
+    min, max, rmin, rmax, hull, sets;
+
+  vars := proc(f) 
+    description "Returns vars of count (as fast as possible)"; # still slow
+    assert([type(f,count), "%a is not count", f], level=3);
+    if type (f,'name') then {f}
+    elif type (f,`*`) then `union`(op(map(procname,[op(f)])))
+    elif type (f,`^`) then procname(op(1,f))
+    elif type (f, specfunc(anything,jet)) then {f}
+    else  ERROR (`unexpected object`, f) 
+    fi
+  end:
+  
+  divideNot1  := proc(u,v,q::evaln) local qq; qq := u/v; assign(q, qq); type(qq, jetcount) end:
+  divideNot1f := proc(u,v) option inline; type(u/v, jetcount) end: 
+  
+  divide1  := proc(u,v,q::evaln) local qq; qq := u/v; assign(q, qq); qq=1 or type(qq, jetcount) end: 
+  divide1f := proc(u,v) option inline; u=v or type(u/v, jetcount)  end:  
+  
+  min := proc(ATC(S,sequential(jetcount1)), $)
+    remove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(s,t) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  max := proc(ATC(S,sequential(jetcount1)), $)
+    remove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(t,s) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  rmin := proc(ATC(S,sequential(jetcount1)), $)
+    selectremove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(s,t) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+  
+  rmax := proc(ATC(S,sequential(jetcount1)), $)
+    selectremove(
+      proc(s,S)
+        local t;
+        for t in S do if divideNot1f(t,s) then RETURN(true) fi; false od
+      end, S, S);
+  end:
+      
+  hull := proc()
+    local M,N,A,MA; 
+    M := {args};
+    N := {};
+    while M <> N do
+      N := M;
+      for A in M do
+        MA := select(proc(B,A) evalb(A intersect B <> {}) end, M, A);
+        M := M minus MA union {`union`(op(MA))};
+      od
+    od; 
+    M
+  end:
+  
+  sets := proc(ATC(p,jetcount), ATC(S,sequential(jetcount)), $)
+    local s,b;
+    b := [seq(p/s, s = S)];
+    op(map(vars, select(type,b,jetcount)));
+  end:
+  
+end module:
+
+###################################################################################################
+# General (algebraic) cc routines
+###################################################################################################
+
+module CC ()
+  option package;
+  export 
+    classess,
+    markFF,
+    cc,
+    init,
+    getHS;
+  local 
+    `cs/H/node`,
+    `cs/I`, `cs/I/1`,
+    `cs/II`, `cs/II/classes`, 
+    `cs/II/hull`,
+    `cs/combine`, `cs/combine/1`,
+    `cs/H/checktype`,
+		 `markFF/2`,
+		`cc/attr/priced`,
+    `cc/repr/chooser`, 
+		`cc/1/attr/ass`, `combinePrices/+`,
+		`cc/repr/chooser/1/attr/rhs`,
+		`member/CI`,
+    stupidSidePrice, `stupidSidePrice/PrintWarning`,
+    CI, # the auxiliary symbol for variables of empty direction
+    HS, # table of hypergraphs
+    rprintf, rlprint;
+  
+  # uses `JetMonomTools/J`;  
+  
+  # cc's classess sets are of the form 
+  # {p = { class_1, class_2, ... }, q={...}, ...}
+  # where p is the monomial where the cc sits
+  # and class_i = {m[i,1], m[i,2], ...} consists of monomial(s) from which p can be reached
+  # ie. for all i,j exists suitable monomial r[i,j] such that p = r[i,j]*m[i,j]
+  # (r[i,j]=1 ie. p=m[i,j] for fist kind cc whereas r[i,j]<>1 for second kind cc)
+  TypeTools[AddType](`CC/class`, Jcount=set(set(Jcount1))); 
+  
+  init := proc()
+    rprintf(10, ["CC hypergraph table initialized."]);
+    HS := table();
+  end:
+  
+  init();
+  
+  getHS := proc()
+    eval(HS);
+  end:
+      
+  #
+  # Generating CC classess sets
+  #
+    
+  classess := proc(ATC(L,sequential(Jcount1)), ATC(H,{table, identical(NULL)}):=NULL, $)::list(`CC/class`);
+    description "Returns the minimal set of cc's of givel monomial set L (in the list)";
+    local res, H1, R, M;
+    if H=NULL then H1 := table() else H1 := H fi; # create temporary table if not given as argument    
+    R, M := `JetMonomTools/J`:-rmin(L);
+    `cs/I`(L, R, M, H1);
+    `cs/II`(L, R, M, H1);
+    res := `cs/combine`(L, H1);
+    rprintf(2, ["classess(%a)\n=%a.", L, res]);  
+    DOE(map(`cs/H/checktype`, [indices(H1, nolist)], H1, level=5));  
+    return res;
+  end:
+  
+	`cs/H/node` := proc(u, H, $)
+	  description "Returns the node H[u] and creates empty node if H[u] does not exist yet";
+	  if not(assigned(H[u])) then 
+	    H[u] := [{}, {}, {}];
+	  else
+     `cs/H/checktype`(u, H);
+	    H[u];
+	  fi:
+	end:
+	
+	`cs/H/checktype` := proc (u, H, {level::integer:=2}, $)
+    assert([assigned(H[u]),
+            "Missing hypergraph item H[%a]", u], 
+           'level'=level, callstackskip=1),	
+    assert([type(H[u], [set,set,set]),
+            "Invalid hypergraph item type H[%a]=%q", u, H[u]], 
+           'level'=level, callstackskip=1),
+    assert([type(H[u][1], set(set(Jcount1))),
+            "Invalid hypergraph item [1], H[%a]=%q", u, H[u]], 
+           'level'=level, callstackskip=1),
+    assert([type(H[u][2], set(set({name, identical(CI)}))),
+            "Invalid hypergraph item [2], H[%a]=%q", u, H[u]], 
+           'level'=level, callstackskip=1),	  
+    assert([andmap(`>`, map(nops, H[u][2]), 0),
+            "Invalid hypergraph item [2], there is an empty class, H[%a]=%q", u, H[u]], 
+           'level'=level, callstackskip=1),	            
+    assert([type(H[u][3], set(Jcount)),
+            "Invalid hypergraph item [3], H[%a]=%q", u, H[u]], 
+           'level'=level, callstackskip=1);	 
+	end:
+
+  `cs/I` := proc(ATC(L,sequential(Jcount1)), ATC(R,set(Jcount)), ATC(M,set(Jcount1)), ATC(H,{table}), $)
+    rprintf(6, ["L=%a is R=%a union minimal elements M=%a", L, R, M]);
+    map(
+      proc(u)
+        local res, N, G; 
+					G := `cs/H/node`(u, H);
+					N := nops(G[1]);
+  				if   N=0 then 
+  				  res := `cs/I/1`(M, u, H);
+  				  H[u][1] := {{u}, res};
+  					assert([not(ormap(`member/CI`, G[2])), # 1 must not be member
+	        				   "There already is 1 in hypergraph H[%a]=%q.", u, G]); 
+	        	H[u][2] := G[2] union {{'CI'}};			  
+  				  return u = G[1] 
+					elif N=1 then return NULL 
+					elif N=2 then return u = G[1] 
+					else error "`cs/I`: Wrong hypergraph implementation, H[%1]=[i,ii,M]=%2", u, G;
+					fi;
+      end, R);   
+  end:
+		
+	`cs/I/1` := proc(M, u, H)::set(Jcount1);
+	   local res;
+	   res := select((u,v)->`JetMonomTools/J`:-divideNot1f(v,u), M, u);
+		 rprintf(5, ["looking for cci: u=%a, M=%a, res=%a, H[%a]=%q", 
+									u, M, res, u, H[u]]);
+		 res;
+	end:
+      
+  `cs/II` := proc(ATC(L,sequential(Jcount1)), ATC(R,set(Jcount)), ATC(M,set(Jcount1)), ATC(H,{table}), $)
+    local C, u, v;
+    C := {seq(seq(`if`(u <> v, lcm(u,v), NULL), u=M), v=M)};
+    rprintf(6, ["L=%a has minimal elements M=%a and lcm's are C=%q", L, M, C]);
+    map(`cs/II/hull`, C, M, H);  
+  end:
+  
+   
+  `cs/II/hull` := proc(u, M, ATC(H,table), $) 
+    local i, h, oldh, oldM, S, G, r, cr, rr;
+    uses `JetMonomTools/J`;
+    G := `cs/H/node`(u, H);
+    i, oldh, oldM := op(G);
+    S := sets(u, M minus oldM);  rprintf(7, ["%a: oldM=%a, oldH=%a, sets(%a, %a)=(%q)", 
+                                               u,      oldM,    oldh,     u, M minus oldM, S]);
+    h := hull(S , op(oldh));   rprintf(6, ["%a: <%a, %a> = %q", u, S,  oldh, h]);  
+    #print(OLDH, u, H[u]);
+    H[u][3] := M;
+    H[u][2] := h;
+    #print(NEWH, u, H[u]);
+    return h;
+  end:
+  
+  `cs/II/classes` := proc(ATC(rs,set), ATC(u,Jcount), ATC(L,set), $)
+    option inline;
+    select(proc(s) local q; evalb(`JetMonomTools/J`:-divideNot1(u,s,q) and (`JetMonomTools/J`:-vars(q) subset rs)) end, L)  
+  end:
+  
+  `cs/combine` := proc(ATC(L,sequential(Jcount1)), ATC(H,table), $)
+    map(`cs/combine/1`, [indices(H,nolist)], L, H);
+  end:
+  
+  `cs/combine/1` := proc(ATC(u,Jcount), ATC(L,sequential(Jcount1)), ATC(H,table), $)
+    local M, i, ii, h, res, N1, N2, r, cr, rr;
+    assert(assigned(H[u]));
+    i, h, M := op(H[u]);
+    ii := map(`cs/II/classes`, map(`minus`, h minus {{'CI'}}, {'CI'}), u, L) minus {{}}; # 'CI' is auxiliary item signalizing 1-st kind cc
+    N1 := nops(i);
+    N2 := nops(ii);     
+    if N1 = 0 then 
+      if N2 > 1 then # second kind only
+        res := u = ii 
+      else
+        res := NULL;
+      fi
+    elif N1 = 1 then 
+      if N2 > 1 then # already resolved first kind and second kind
+        r := op(op(i) minus {u});
+        #cr, rr := selectremove(curry(`subset`, {r}), ii);
+        cr, rr := selectremove(proc(a) `subset`({r}, a) end, ii);
+        rprintf(1, ["Looking for class containing %a in %a and joining %a to it. Found %a, remains %q",
+                                                  r,    ii,            u,              cr,         rr]);
+        assert([nops(cr)=1, "Inconsistent hypergraph item %q", H[u]]);        
+        res := u = {op(cr) union {u}} union rr;
+      else
+        res := NULL;
+      fi      
+    else 
+      if N2 = 0 then # first kind only
+        res :=  u = i;
+      else # (unresolved) first and second kind
+        res :=  u = ii union {{u}};
+      fi;
+    fi;
+    rprintf(5, ["cc at %a created: %a; combined from i=%a, ii=%a.", u, [res], i, ii]);    
+    return res;
+  end;
+	
+	#
+	# marking cc's as fulfilled (by joining their classess in hypergraph H)
+	#
+  markFF := proc(ATC(u,Jcount), ATC(r,Jcount1), ATC(s,Jcount1), ATC(H,table), $)
+	  description 
+		  "Marks in hypergraph H the cc at u of r and sas fulfilled so no more generated.\
+		   The return value is not defined.";
+		# is it cc of first or second kind?
+		local t, cr, cr1, rest, N, ip;
+  	`cs/H/checktype`(u, H, level=1);
+  	assert([`JetMonomTools/J`:-divide1f(u, r), "Wrong arguments, r=%a must divide u=%a", r, u ]);
+  	assert([`JetMonomTools/J`:-divide1f(u, s), "Wrong arguments, s=%a must divide u=%a", s, u ]);
+  	assert([r<>s, "Wrong arguments, r and s must differ but are equal %a", r]);
+		if u=r or u=s then 
+			N := nops(H[u][1]);
+		  t := `if`(u=r, s, r); # choose t as the smaller of r,s (u is the bigger)			
+			if   N=0 then 
+			  error "No first kind cc in hypergraph at %1", u;
+			elif N=1 then # SECOND kind (with resolved first kind cond. in the class - mixed)  	
+        `markFF/2`(u, r, s, H);        
+			elif N=2 then	# FIRST kind
+			  assert([ {u} in H[u][1], "Wrong hypergraph implementation, missing {%a} in H[%a][1]=%a", u, u, H[u][1]]);  
+			  assert([ member(t, op(H[u][1] minus {{u}})), 
+			           "Monomial %a is not member of first kind cc classess at %a, H[%a][1]=%a", t, u, u, H[u][1]]);			  			  
+			  H[u][1] := {{r,s}};			  
+			  #cr, rest := selectremove(curry(`subset`, `JetMonomTools/J`:-vars(u/t)), H[u][2]);
+			  cr, rest := selectremove(proc(a) `subset`(`JetMonomTools/J`:-vars(u/t), a) end, H[u][2]);
+			  assert(nops(cr)<=1);
+			  if cr = {} then cr1 := `JetMonomTools/J`:-vars(u/t) else cr1 := op(cr) fi;
+		    H[u][2] := map(p -> if p={'CI'} then ip:= true; {'CI', op(cr1)} else p fi, H[u][2]);			 
+			  if ip=true then # first kind only
+			    rprintf(7, ["joined %a and %a, H[%a][1]=%q", r, s, u, H[u][1]]);
+			    H[u][1];
+			  else # mixed     
+          rprintf(7, ["(1) at H[%a][2]=%a, joining %a=%a: found class %a, remains %q", 
+                                u,     H[u][2],    r, s,              cr,         rest]);
+          assert(nops(cr)=1);
+          H[u][2] := (rest minus {{'CI'}}) union {op(cr) union {'CI'}};
+        fi;
+			else
+			  error "Hypergraph implementation error, too much first kind classess, H[%1]=%2", u, H[u]; 
+			fi;
+		else # SECOND kind
+      `markFF/2`(u, r, s, H);
+		fi;
+	end:
+	
+	`markFF/2` := proc(ATC(u,Jcount), ATC(r,Jcount1), ATC(s,Jcount1), ATC(H,table), $)
+  	local cr, cs, rest;
+    # find classes whose r and s are representatives 
+    if u/r <> 1 then
+      #cr, rest := selectremove(curry(`subset`, `JetMonomTools/J`:-vars(u/r)), H[u][2]);
+      cr, rest := selectremove(proc(a) `subset`(`JetMonomTools/J`:-vars(u/r), a) end, H[u][2]);
+    else
+      #cr, rest := selectremove(curry(member, 'CI'), H[u][2]);
+      cr, rest := selectremove(`member/CI`, H[u][2]);
+    fi;
+    if u/s <> 1 then 
+      #cs, rest := selectremove(curry(`subset`, `JetMonomTools/J`:-vars(u/s)), rest);
+      cs, rest := selectremove(proc(a) `subset`(`JetMonomTools/J`:-vars(u/s), a) end, rest);
+    else
+      #cs, rest := selectremove(curry(member, 'CI'), rest);  
+      cs, rest := selectremove(`member/CI`, rest);   
+    fi;
+    rprintf(7, ["(2) at H[%a,2][2]=%a, joining %a=%a: found classess %a and %a, remains %q", 
+                u,  H[u][2], r, s, cr, cs, rest]);
+    assert([nops(cr)=1 and nops(cs)=1, 
+            "Implementation error, u=%a, r=%a, s=%a, H[u]=%a, cr=%a, cs=%a, rest=%a", u, r, s, H[u], cr, cs, rest]);
+    # join the classes found and put the result back to H
+    H[u][2] := rest union {op(cr) union op(cs)};	
+	end:
+	
+  #
+  # assembling cc's from generating classess
+  #
+  cc := proc(Ls::uneval, # {unknown={Jcount1, ...}, ...}
+             Hs::table:=HS, # Hs is table of hypergraph tables
+              {##  keywords for selection of a "portion" of cc's returned:
+                 maxnum::{posint,identical(-1)} := -1, # total maximum number of returned cc's
+                 maxnumP::{posint,identical(-1)} := -1, # return maxnumP items and add all cc's of same prices as last item
+                 maxprice::{numeric,infinity} := infinity, # maximal price of cc's to be returned
+                 # in all above parameters, -1 means no limitation
+						   ## marking:
+						     pop::truefalse:=false, # mark the returned portion as fullfilled
+						   ## pricing funstions:
+                 sidePriceFunction := stupidSidePrice,
+                 combinePriceFunction := `combinePrices/+`,
+							 ## aditional return information
+							   totalNumber::symbol:='None' # total number of actual cc's
+						   }, $) 
+     description 
+		   "Returns a portion (limited by selection keywords preffering the cheapest one's)\
+        of still not fulfilled cc's (sorted by its prices)\
+        If 'pop' keyword given, marks the portion returned as fulfilled.";
+     # at least 1 cc (if exists) is ALWAYS returned regardless of any selecting criteria
+     # [] is returned ONLY if NO cc of any price at all exists 
+     # the total number of actually existing cc's (regardless of selection) may be returned via 'totalNumber' keyword
+		 # the order of returned cc's of the same prices is not defined
+     # default values of selecting criteria may change in future versions
+	   local LT, Us, prcs, selprcs, ccs, p, N;
+	   # parse the first argument to table format and do some type checks
+	   if type(Ls, table) then
+	     Us := [indices(Ls, nolist)];
+	     assert(andmap(U -> if type(Ls[U], sequential(Jcount1)) then true 
+                          else
+                             error "Wrong first argument: there is entry Ls[%1]=%2 of wrong type in the table Ls.", U, Ls[U]
+                          fi, eval(Us,1)));
+	     LT := Ls;
+	   elif type(eval(Ls, 2), equation) then
+	     assert([type(Ls, anything=sequential(Jcount1)), "Wrong first argument %a format", Ls]);
+	     LT := table([eval(Ls,2)]);
+	     Us := [lhs(eval(Ls,2))];
+	   elif type(eval(Ls, 2), sequential) then
+	     assert([type(Ls, sequential(anything=sequential(Jcount1))), "Wrong first argument %a format", Ls]);
+	     LT := table(eval(Ls,2));
+	     Us := [indices(LT, nolist)];
+     else
+ 	     error "Wrong first argument Ls=%1, "\
+ 	           "it must be of the form {unknown={Jcount1, ...}, ...} "\
+ 	           "or table([unknown={Jcount1, ...}, ...])", eval(Ls,2);
+ 	   fi;
+ 	   # check whether input is of correct jet implemantatio J[...], i.e. NOT of the jet(...) format 
+ 	   assert([not(has(LT, jet)), "Implementation error, jet variables must be in J[] format!"], level=3);
+ 	   # check the second argument (table of hypergraph tables)
+     assert([type(Hs, table), "Wrong argument: H must be table."], level=0);
+     # add missing empty hypergraphs to Hs
+     map(U -> if not assigned(Hs[evaln(U)]) then Hs[evaln(U)] := table(); fi,  Us);
+     ### find sufficient cc's - get the complete list of cc's (prices attributed by the cc's)
+     rprintf(3, ["Lets find cc's of %q", op(map(U -> ''U''=LT[U], Us))]);
+     prcs := map(U -> `cc/attr/priced`(LT[U], evaln(U), eval(Hs), 
+                                       ':-sidePriceFunction'=sidePriceFunction, 
+                                       ':-combinePriceFunction'=combinePriceFunction),
+                       Us);
+     ### select a portion of cc's to be returned (specified by keyword parameters)
+     N := nops(prcs);
+		 totalNumber := N;
+     rprintf(3, ["Found totally %a cc's of %q, lets do some selection.", N, op(map(U -> ''U''=LT[U], Us))]); 
+     selprcs := prcs;
+     if   N=0 then return [] 
+     # elif N=1 then nothing to select, take this single cc
+     elif N>1 then 
+       # do the selection
+       if maxprice <> infinity then 
+         selprcs := select(`<=`, selprcs, maxprice);
+       fi;
+       if maxnumP <> -1 then 
+           p := setattribute(selprcs[maxnumP]);
+           selprcs := select(`<=`, prcs, p) 
+       fi;
+       if maxnum <> -1 and nops(selprcs) > 1 and nops(selprcs) > maxnum then
+         selprcs :=  selprcs[1..maxnum];
+       fi;
+     fi;
+     # return at least 1 cc regardless of filtering criteria
+     if nops(selprcs) = 0 then selprcs := [prcs[1]] fi; 
+     # forget the prices and take the cc's instead
+	   ccs := map(attributes, selprcs);	 
+	   # mark selected cc's as fullfilled
+	   if pop then map(c -> markFF(c[2], lhs(c[3]), rhs(c[3]), eval(Hs['c'[1]])), ccs) fi;
+	   # return selected cc's
+     rprintf(2, ["Returning %a (of totally %a) cc's of %q", nops(ccs), N, op(map(U -> ''U''=LT[U], Us))]); 
+	   return ccs;
+	 end:
+	 
+	 `cc/attr/priced` := proc(ATC(L,sequential(Jcount1)), U:='NotSpec', ATC(Hs,{table, identical(NULL)}):=NULL, 
+              {sidePriceFunction:= stupidSidePrice,
+						   combinePriceFunction:= `combinePrices/+`}, $)
+	   local ccs, prcs;
+ 	   rprintf(3, ["Computing cc(%q)...", args]);
+	   ccs := convert(classess(L, `if`(Hs=NULL, NULL, Hs[U])), list);
+	   prcs := map(`cc/1/attr/ass`, ccs, U, _options);
+	   rprintf(2, ["cc(%a,%a)=%a", L, U, map(r -> attributes(r)=r, prcs)]);
+	   return op(prcs);
+	 end:
+
+	 
+	#
+	# assembling cc's of given unknown U at given point p from generating classess stored in H[U][p]
+	#
+	`cc/1/attr/ass` := proc(ATC(c,`CC/class`), U:='NotSpec', 
+													{sidePriceFunction:= stupidSidePrice,
+													 combinePriceFunction:= `combinePrices/+`},$)
+		description 
+		"Assembles all cc's at given point.\
+		H[p] is the set of cc classess of the unknown U at given point p.\
+		This function chooses representatives of each class, assembles the all cc's and\
+		returns the sequence of prices attributed by assembled cc's of the form\
+		[U, p, i, j]";
+		
+		local p, rs, ars, r;
+		p := lhs(c);
+		rs := rhs(`cc/repr/chooser/1/attr/rhs`(c, U, sidePriceFunction));
+		# prices are known, assemble cc's
+		if nops(rs)=0 then
+			error "empty cc class of %1 at %2", U, p; 
+		elif nops(rs)=1 then
+		  NULL # single class means no cc (or cc's already fulfilled)
+		else
+		  # assemble all cc's by rule fist <-> second, ..., fist <-> last
+			r := rs[1]; 
+			ars := map(s->setattribute(combinePriceFunction(U, p, r, s), attributes(r) = attributes(s)), 
+			           rs[2..-1]); 
+      # return sequence of prices attributed by cc records of the form [U, p, i, j]
+			op(map(a -> setattribute(a, [U, p, attributes(a)]), 
+			       ars))			
+		fi;
+  end;
+	
+	`combinePrices/+` := proc(U, p, ATC(r,numeric), ATC(s,numeric), $)::numeric; 
+		description 
+			"Given two prices r, s (attributed by sides of cc to be assembled, for unknown U at point p),\
+			returns the cost of that cc";  
+			option inline;
+			r+s;
+  end:	
+	# TODO: Smart combine functions may be useful
+	
+  `cc/repr/chooser/1/attr/rhs` := proc(ATC(c,`CC/class`), U, F, $)
+    description 
+      "Given single cc of the form p={{class1}, {class2}} and pricing function F,\
+       computes the computational price of each representative,\
+       chooses the minimal cost representative of each class\
+       and returns p = [price1, price2, ...] \
+       representatives attached as Maple attributes to each price";
+    local ccs, res, F1;
+    ccs := map(convert, rhs(c), list); # the clasess as lists
+    F1 := proc(a) F(U, lhs(c), a) end;  
+    #F2 := curry(F, U, lhs(c));
+    #print(aa,F1);
+    #print(bb,F2);
+    assert([andmap(`>`, map(nops, ccs), 0), "Empty item in cc class %q", map(attributes, ccs)]);
+    res := map(min@op@attLBySize, ccs, F1); 
+    res := sort(convert(res,list), `<`);
+    rprintf(9, ["Prices are %a.", map(p->p=map(F1, p), ccs)]);                      
+    rprintf(5, ["Representatives at %a of %a are\n %a.", lhs(c), ccs, map(r->attributes(r)=r, res)]);                      
+    return lhs(c) = res;                  
+  end:  
+
+  
+  stupidSidePrice:= proc(U, p, m)::numeric;
+    description 
+      "General procedure for computing computational cost of evaluating of ONE SIDE of cc.\
+      This general version is extremely noneffecctive,\
+      since does not use any information about the unknown in question nor its derivatives.\
+      Please give an appropriate specific cost function as argument to the assembling routines.";   
+   local q;
+   DOE(`stupidSidePrice/PrintWarning`());
+   
+   if `JetMonomTools/J`:-divide1(p,m,q) then degree(q) else error "Cannot compute price at %1: %2 |/ %3 ", U, p, m; fi; 
+  end:
+  
+  `stupidSidePrice/PrintWarning` := proc() 
+    option remember; # print this warning only once
+    WARNING("Using of the primitive general cost function is strongly noneffective.");
+  end:
+  
+  `member/CI` :=  proc(a) member('CI', a) end: # curry(member, 'CI')
+  
+  
+  # auxiliary logging
+  
+  rprintf := proc(level, msg_list::{uneval,list}) 
+    convert(procname,'`global`')(args, ':-levelName'='CC')
+  end:
+
+  rlprint := proc(level, msg_list::{uneval,list})
+    convert(procname,'`global`')(args, ':-levelName'='CC')
+  end:
+    
+    
+end module:
+
+
+###################################################################################################
+# General auxiliary utilities
+###################################################################################################
+
+#
+# assertions
+#
+
+AssertLevel := proc(n::integer)
+  description "Sets (the global) assertion level.";
+  global assert, `assertlevel/value`;
+  kernelopts('assertlevel'= max( min(n, 2),  kernelopts('assertlevel')));
+  `assertlevel/value` := n;
+  if n > -infinity then
+    assert := proc(c::uneval, {level::integer:=1, callstackskip::posint:=0})
+      description 
+        "Checks whether the given assertion condition is true.\
+         This test is run only if the given level is bellow the global assert level\
+         otherwise no evaluation is proceeded and nothing is tested.\
+         Argument c may be the condition itself or a list of the form \
+         c=[condition, message_format_string, message_opt_argument, ...]\
+         (the message is then created by calling sprintf(message_format_string, message_opt_argument, ...))";
+      global `assertlevel/value`;
+      local evc, s, message;
+      if level=0 or (assigned(`assertlevel/value`) and evalb(level <= `assertlevel/value`)) then 
+        if type(c, list) then
+          evc := eval(c[1]);
+        else
+          evc := eval(c);
+        fi;     
+        if evalb(evc) <> true then
+          s := debugopts('callstack')[5+3*callstackskip];
+          if type(c, list) and nops(c)>=2 then
+            message := sprintf(op(eval(c[2..-1])));
+            error "Assertion failed (in %1): %2", s, message;			  
+          else
+            printf("assert(unevalued): %q\n", c);
+            printf("assert(evalued):   %q\n", evc);
+            error "Assertion failed (in %1): %2, %3", s, c, evc; 
+          fi;    
+        else
+          if type(evc, equation) then lhs(evc) else evc fi;
+        fi;
+      else
+        "Assertion ignored"
+      fi;
+    end:
+    "Assertions level", n
+  else
+    assert := proc(c::uneval) "Assertions disabled" end:
+    "Assertions disabled"
+  fi;
+end:
+
+$ifdef jets_mode_debugging
+  AssertLevel(0):
+$else
+  assert := proc(c::uneval) "Assertions disabled" end:
+$endif
+
+#
+# logging and messaging
+#
+
+LogLevel := proc(n::{integer,identical(NULL)}:=NULL, Ls::seq(name=integer):=NULL)
+  description 
+   "Sets the log level(s).\
+    loglevel(n) sets the global (default) log level to n\
+    loglevel(m1=n1, ...) sets the 'm1'-named level to n1 etc";
+  global `loglevel/value`,  `assertlevel/value`;
+  if nops([n, Ls]) > 0 then 
+    if not(assigned( `assertlevel/value`)) then  `assertlevel/value` := n fi; # set the assert level too
+    if not(assigned(`loglevel/value`)) then `loglevel/value` := table() fi; # create empty level table if none exists
+    if n <> NULL then `loglevel/value`[`global`] := n; fi; # assign global level
+    map(m -> assign('`loglevel/value`[lhs(m)]', rhs(m)), [Ls]);  # assign local levels
+  fi;
+  if assigned(`loglevel/value`) then op(op(op(1,`loglevel/value`))); else NULL fi; # return actual settings
+end:
+
+`loglevel/test` := proc(levelValue, levelName:=`global`)
+  global `loglevel/value`;
+  if not(assigned(`loglevel/value`)) then
+    false
+  else 
+    if assigned(`loglevel/value`[levelName]) then
+      evalb(levelValue <= `loglevel/value`[levelName])
+    else
+       assigned(`loglevel/value`['`global`']) and evalb(levelValue <= `loglevel/value`['`global`'])  
+    fi;
+  fi;
+end:
+
+sprintCallingFunction := proc(n::posint)
+  description "sprints the name of calling function enquoted by as much spaces as call stack size plus n";
+  local CS, s, m, u, q; 
+  CS := debugopts('callstack');
+  q := sprintf(cat(" " $ (nops(CS)-1-3*(n+2))/3*2));
+  u := "";
+  for m from 0 to (nops(CS)-1)/3 by 1
+    while   s='s'
+            or convert(s,string)=convert(procname, string)
+            or convert(s,string)="rprintf"
+            or convert(s,string)="rlprint"
+            or convert(s,string)[1..8]="unknown/" 
+    do 
+      s := CS[2+3*m] ; 
+      if convert(s,string)[1..8]="unknown/" then u := cat(u, "*") fi;
+  od;
+  sprintf("%s%s%s: " , q, s, u);  
+end:
+
+rprintf := proc(level, msg_list::{uneval,list}, {levelName:=`global`}) 
+ global `loglevel/value`; # TODO: replace by report level
+ local cfs, msgle,qs, fs;
+ if `loglevel/test`(level, levelName) then
+   # enquote string for the first line 
+   cfs := sprintCallingFunction(2); 
+   # enquote string for the remaining lines
+   qs := cat("\n",  StringTools[Fill](" ", length(cfs)-2), ": ");
+   msgle := op(eval(msg_list));
+   # enqoute \n's by appropriate spaces (except the last \n) in formatting string
+   fs := StringTools[RegSubs]("((\n[^$]))"=qs, msgle[1]); 
+   printf("%s", cfs); # first line quotation
+   printf(fs, msgle[2..-1]); # message
+   printf("\n");
+ end:
+end:
+
+rlprint := proc(level, msg_list::{uneval,list}, {levelName:=`global`})
+ global `loglevel/value`; # TODO: replace by report level
+ if `loglevel/test`(level, levelName) then
+   lprint(sprintCallingFunction(2));
+   lprint(op(eval(msg_list)))
+ end:
+end:
+
+################################################################################
+################################################################################
+# Transactional i/o routines 
+################################################################################
+################################################################################
+
+
+module TransactionIOTools()
+  export    
+    removeFile, waitForFile, waitForRename, readFile;
+
+  removeFile := proc(f, {warning:=false})
+    if FileTools[Exists](f) then
+      if warning and FileTools[Size](f) > 0 then 
+         WARNING("Removing file %1", f); 
+      fi;
+      FileTools[Remove](f);
+    fi;  
+  end:
+
+  waitForFile := proc (f)
+    while not(FileTools[Exists](f)) do WARNING("waiting for file %1", f); ssystem("sleep 1") od;  # TODO(sysdep)
+  end:
+  
+  
+  waitForRename := proc(source, target, {maxAttemptsLimit:=5, afterLimit::identical(FAIL,ignore):=FAIL})
+    local d;
+    d := 0;
+    while d<maxAttemptsLimit do
+      try
+        FileTools:-Rename(source,target);
+        return true;
+      catch "source file does not exist":
+        if d=0 then WARNING("waiting for file %1", source);fi;
+        d := d+1;
+        ssystem("sleep 1") # TODO(sysdep)
+      end:
+    od;
+    if afterLimit=FAIL then 
+      FileTools:-Rename(source,target);
+      return true;
+    else
+      return FAIL;
+    fi;
+  end:
+
+  
+  readFile := proc(file::string, {skipEmptyLines::truefalse:=false})::list(string);
+    description "Returns a list of lines of a given file, each line as a string";
+    local s, r;
+    s := FileTools[Text][ReadFile](file);
+    if s<>0 then
+      r := StringTools[Split](s, "\n");
+      if skipEmptyLines then 
+        return remove(l -> length(l)=0, r);
+      else
+        return r;
+      fi; 
+    else
+      []
+    fi;
+  end:
+
+end module:
+
+TransactionWriter := proc(  BaseDirPath::string  := ".",  
+                            MainFileName::string := 
+                                  cat(op(2,ssystem("echo $HOSTNAME")) , `.`, kernelopts(pid)), # TODO(sysdep)
+                            {suppressCleanUp::truefalse := false,
+                             mode::name:='none',
+                             locking::identical(none,wait):='none'
+                             }, $)
+  description "Returns an initialized instance of transactional writer module.";
+  module ()
+    export 
+      baseDirPath,
+      mainFileName, mainFile, 
+      ModulePrint,
+      ModuleApply,
+      AppendLine;
+    local
+      Init,
+      newFile, oldFile;
+    uses TransactionIOTools;
+    
+    Init := proc ()
+      local fd;
+      # setup the directories and filenames
+      mainFileName := MainFileName;
+      baseDirPath  := `if`(BaseDirPath[-1]="/", BaseDirPath, cat(BaseDirPath, "/")); # TODO(sysdep)  
+      print(baseDirPath);
+      FileTools[MakeDirectory](baseDirPath, recurse=true);
+      mainFile := FileTools[AbsolutePath](mainFileName, baseDirPath);
+      oldFile  := FileTools[AbsolutePath](cat(mainFileName, ".bak"), baseDirPath);
+      newFile  := FileTools[AbsolutePath](cat(mainFileName, ".tmp"), baseDirPath);
+      # cleanup old files 
+      removeFile(oldFile, warning);
+      removeFile(newFile, warning);
+      if not suppressCleanUp then 
+        if FileTools[Exists](mainFile) then
+          if FileTools[Size](mainFile) > 0 then
+             WARNING("File %1 already exists, moving to %2", mainFile, oldFile);
+          fi;
+          FileTools[Rename](mainFile, oldFile);
+        fi;
+      fi;
+      # setup the mode, i. e. the default write function and its behavior
+      if mode = append then 
+        ModuleApply := AppendLine;
+        # touch the main file    
+        fd := FileTools[Text][Open](mainFile, create=true, overwrite=true);
+        FileTools[Text][WriteString](fd,""); 
+        FileTools[Text][Close](fd);     
+      elif mode = none then
+        ModuleApply := proc() error "Default mode not set, use the explicit call." end
+      else
+        error ("unknown mode %1", mode);
+      fi;
+    end:
+    
+    ModulePrint := proc()
+      print("writer:", mode, locking, baseDirPath, mainFileName, mainFile, newFile, oldFile);  
+    end:
+    
+    AppendLine := proc()
+      local fd;    
+      # grab the file      
+      removeFile(newFile, warning);
+      if locking=wait then
+        waitForRename(mainFile, newFile);
+      else
+        FileTools[Rename](mainFile, newFile);
+      fi;     
+      removeFile(oldFile);    
+      FileTools[Copy](newFile, oldFile);
+      # do the output
+      fd := FileTools[Text][Open](newFile, append=true);
+      map2(FileTools[Text][WriteLine], fd, map(convert, [args], string));
+      FileTools[Text][Close](fd);
+      # put the file on his place
+      FileTools[Rename](newFile,  mainFile);
+    end:
+    
+    Init(); # init the module    
+  end module;
+end:
+
+TransactionReader := proc(  BaseDirPath::string,  
+                            MainFileName::string,
+                            {locking::identical(none,wait):='none',
+                             skipOld::truefalse:=false, # skipping lines already readed (i.e. never return one line twice)
+                             skipEmptyLines::truefalse:=false
+                             }, $)
+  description "Returns an initialized instance of transactional reader module.";
+  module ()
+    export 
+      baseDirPath,
+      mainFileName, mainFile, 
+      ModulePrint,
+      ModuleApply,
+      ReadFile;
+    local
+      Init,
+      tempFile, actualLine;
+    uses TransactionIOTools;
+    
+    Init := proc ()
+      local fd;
+      # setup the directories and filenames
+      mainFileName := MainFileName;
+      baseDirPath  := `if`(BaseDirPath[-1]="/", BaseDirPath, cat(BaseDirPath, "/")); # TODO(sysdep)  
+      FileTools[MakeDirectory](baseDirPath, recurse=true);
+      mainFile := FileTools[AbsolutePath](mainFileName, baseDirPath);
+      tempFile  := FileTools[AbsolutePath](cat(mainFileName, ".locked"), baseDirPath);
+      if skipOld then actualLine := 0 fi;
+    end:
+    
+    ModulePrint := proc()
+      print("reader:", locking, skip, baseDirPath, mainFileName, mainFile, tempFile);  
+    end:
+    
+    ModuleApply := ReadFile;
+    
+    ReadFile := proc()
+      local s, n, N;
+      # read the whole main file
+      if locking=wait then
+        if waitForRename(mainFile, tempFile, afterLimit=ignore) = FAIL then
+          WARNING("Reading of unaccessible file %1 skipped", mainFile);
+          return;
+        fi;
+        s := readFile(tempFile, ':-skipEmptyLines'=skipEmptyLines);
+        FileTools[Rename](tempFile, mainFile);        
+      else
+        s := readFile(mainFile, ':-skipEmptyLines'=skipEmptyLines);
+      fi;
+      if not skipOld then
+        # return whole file
+        return s
+      else
+        # return just the new lines
+        n := nops(s);
+        if   n < actualLine then error "Missing lines in %1", mainFile 
+        elif n = actualLine then return []
+        else N := actualLine; actualLine := n; return s[N+1..n]
+        fi
+      fi;
+    end:
+    
+    Init(); # init the module    
+  end module;  
+end:  
+
+################################################################################
+################################################################################
+# Multiordering CC routines (optional code)
+################################################################################
+################################################################################
+
+# Routines to run a single computation in several instancies, each of them:
+# * Uses different variable ordering
+# * Exports obtained compatibility conditions
+# * Imports c.c. exported by others (and uses them)
+#
+# Such a sharing of c. c. is done on the fly within `run/l`() procedure.
+#
+# Implementation of the sharing is based on shared files, 
+# one file of exported cc per instance (names must not conflict)
+# plus one global file with list of instancies.
+# All the files resides in a common direcory 
+# and the computations may bu run on any computer(s) which has r/w access to this directory.
+#
+# Usage:
+#   `Jets/opts`["Optionals"]["Multiord"]) := true; # enable the optional source code
+#   read("Jets.s");
+#   MultiOrdCC("myExportFile.s", "WorkingDirectory"); # initialize
+# Caution: myExportFile.s must be UNIQUE for each instance
+
+
+if not(assigned(`Jets/opts`["Optionals"]["Multiord"])) then
+  module MultiOrdCC()
+    export Pop, Write, Init;
+    Write := proc() end:
+    Pop   := proc() end:
+    Init  := proc() error "Feature disabled." end: 
+  end:
+else
+  module MultiOrdCC()
+    export Pop, Write, Init,
+      RefreshReaders,
+      ModulePrint,
+      ModuleApply;
+    local
+      mCCDir, mCCProducersListFile,
+      writer,
+      readers;
+    uses TransactionIOTools;
+    
+    writer := proc() error "Module not initialized" end: 
+    Write := proc() end:
+    readers := {}:
+    
+    Init := proc(id::string:=NULL, dir:="CCData/")
+      local fd; 
+      mCCDir := dir;
+      mCCProducersListFile := cat(mCCDir, "Producers.txt"):
+      # create tranasctional writer
+      writer := TransactionWriter(mCCDir, id, mode=append, locking=wait);
+      # register the output to the global list of producers
+      if FileTools[Exists](mCCProducersListFile) 
+         and (has(readFile(mCCProducersListFile), writer:-mainFileName)) then
+        WARNING("The file %1 is already registered in %2.", writer:-mainFile, mCCProducersListFile);
+      else 
+        fd := FileTools[Text][Open](mCCProducersListFile, append=true, create=true);
+        FileTools[Text][WriteLine](fd, writer:-mainFileName);
+        FileTools[Text][Close](fd);
+      fi;
+      # printf("CC will output intermediate progress to %a\n", ccTW:-mainFile);
+      Write := writer;
+      writer:-mainFile;
+    end:
+    
+    ModuleApply := Init;
+    
+    ModulePrint := proc()
+      print(mCCDir, mCCProducersListFile);
+      print(writer);
+      map(print, readers);
+    end:
+  
+    RefreshReaders := proc()
+      local regs, aux, fs;
+      # read the file with registrations
+      regs := convert(readFile(mCCProducersListFile, skipEmptyLines), set);
+      # remove unregistered readers
+      readers, aux := selectremove(r -> r:-mainFileName in regs , readers);
+      if nops(aux) > 0 then printf("Removing unregistered readers %q\n", aux) fi;
+      # add new readers
+      fs := map(r -> r:-mainFileName, readers);
+      aux := remove(r -> r in fs, regs) minus {writer:-mainFileName};
+      if nops(aux)>0 then
+        printf("Adding new readers %q\n", aux);
+        readers := readers 
+          union map(r -> TransactionReader(mCCDir, r, locking=wait, skipOld, skipEmptyLines), aux);
+      fi;
+      map(r -> r:-mainFileName, readers);
+    end:
+    
+    Pop := proc()
+      RefreshReaders();
+      map(parse, map(r -> op(r:-ReadFile()), readers))
+    end:
+  end module:
+fi:

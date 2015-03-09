@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="16" minor="1"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false"></View-Properties>
+<MapleNet-Properties elisiondigitsbefore="100" labelling="true" indentamount="4" elisiontermsthreshold="10000" ansi="false" errorbreak="1" useclientjvm="true" echo="1" imaginaryunit="I" labelwidth="20" contextmenusize="automatic" plotdriver="opengl" elisiondigitsafter="100" plotoutput="terminal" helpbrowser="standard" rtablesize="10" elisiontermsbefore="100" elisiondigitsthreshold="10000" typesetting="standard" plotdevice="inline" verboseproc="1" showassumed="1" errorcursor="false" longdelim="true" plotoptions="" quiet="false" elisiontermsafter="100" screenwidth="120" preplot="" prettyprint="3" displayprecision="-1" screenpixelheight="1200" warnlevel="3" screenheight="25" latexwidth="6.0" postplot="" prompt="&gt; " ShowLabels="true"/>
+<Styles><Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Serif" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Serif" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Serif" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Serif" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Serif" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Serif" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+</Styles>
+<Task-table>
+    <Task-category name="&lt;default&gt;">
+    </Task-category>
+</Task-table>
+<Task>
+</Task>
+<Group labelreference="L3" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart;</Text-field>
+</Input>
+</Group>
+<Group labelreference="L935" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SWVuSmV0c341Ljc0fkFMUEhBfmZvcn5NYXBsZX4xNX5hc35vZn40flNlcH4yMDEyfi1+cmVzb2x2ZS52Mkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkTWFQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEjOj1GJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GLDYlUSRtYXBGJ0YvRjIvJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOQ==">SSRtYXBHJSpwcm90ZWN0ZWRH</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVErc2l6ZWZhY3RvckYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSSNtbkdGJDYkUSsxMDAwMDAwMDAwRidGOS8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5">IisrKysrNQ==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">`Blimit = 25000  ressize = 1000  putsize = 200  maxsize = 100`</Text-field>
+</Output>
+</Group>
+<Group labelreference="L936" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#read(&quot;/Volumes/Private/MichalMarvan/Public/Jets 5.0/Jets.s&quot;);</Text-field>
+</Input>
+</Group>
+<Group labelreference="L51" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L50" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">AssertLevel(15);</Text-field>
+</Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NiRRMUFzc2VydGlvbnN+bGV2ZWw2IiIjOg==</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L49" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L6" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#read `Jet.m`: </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u]): ;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Quiet := true:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#Quiet := false:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">printlevel := 4:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">OK := true:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T := proc (a,b,c)</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  global OK;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  if not Quiet then lprint(c) fi;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  if not a=b then</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`Incorrect result`, a);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`instead of`, b);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`while testing`, c);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint ();</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    OK := false</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  fi</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">end:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts := proc ()</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  local a,b,c; global OK;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  a := args[1]; b := {args[2..nargs-1]}; c := args[nargs];</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  if not Quiet then lprint(c) fi;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  if not member(a,b) then</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`Incorrect result`, a);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`neither of`, op(b));</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint (`while testing`, c);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    lprint ();</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">    OK := false</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  fi</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">end:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">time0 := time():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">##Quiet := false;</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sizesort([[2,1], [3,2,1], []], nops), [[], [2,1], [3,2,1]], `sizesort 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (reduceprod(3*a^m*b^2*c/d), 3*a^m*b*c, `reduceprod 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (reduceprod((a + b)^2), a + b, `reduceprod 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">x := 'x': t := 't': u := 'u':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u]): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`b/var/s`, {x,t}, `base 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`b/dim`, 2, `base 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`f/var/s`, {u}, `fibre 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`f/dim`, 1, `fibre 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (x, `b/var`), true, `b/var`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (u, `f/var`), true, `f/var`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type ('jet(u,x^2*t^3)', `j/var`), true, `j/var`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">p := 'p': q := 'q':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (p*q^2, 'count'), true, `count 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (p/q^2, 'count'), false, `count 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (1, 'count'), false, `count 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (x^2*t^3, `b/count`), true, `b/count 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (u, `b/count`), false, `b/count 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (`count/f` (x^2*t^3), x, t, `count/f`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (`count/r` (x^2*t^3), x*t^3, x^2*t^2, `count/r`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f': g := 'g': h := 'h':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`dep/tab` := table([]):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (h(x)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({op(op(op(`dep/tab`)))}, {h={x}}, `dependence 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({op(op(op(`dep/tab`)))}, {}, `clear 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u,jet(u,t))):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({op(op(op(`dep/tab`)))}, {f={x,u,jet(u,t)}}, `dependence 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">a := 'a':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(a):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (h(a)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({op(op(op(`dep/tab`)))}, {h={a}}, `dependence 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter,dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`EVALTD/s` := {}: `EVALTD/b` := false:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f), f, `TD 0`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(x,x), 1, `TD 1a`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(t,x), 0, `TD 1b`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(u,x), 'jet(u,x)', `TD 2a`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(jet(u,x),t), 'jet'(u,x*t), `TD 2b`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u),h(x),k(u,jet(u,x))):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f,x), 'TD(f,x)', `TD 3a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(g,x), 'TD(g,x)', `TD 3b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(sin(f),x), 'cos(f)'*'TD(f,x)', `TD 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f+g,x), 'TD(f,x)'+'TD(g,x)', `TD 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f*g,x), 'TD(f,x)'*g+f*'TD(g,x)', `TD 6`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f,x^2*t), 'TD'(f,x^2*t), `TD 7a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(g,x^2*t), 'TD'(g,x^2*t), `TD 7b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f+g,x^2*t), 'TD'(f,x^2*t) + 'TD'(g,x^2*t), `TD 8`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f*g,x^2), 'TD'(f,x^2)*g + 2*'TD'(f,x)*'TD'(g,x) + f*'TD'(g,x^2), `TD 9`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (h(x)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,x), pd(h,x), `TD 10a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,x^2), pd(h,x^2), `TD 10b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,t), 0, `TD 10c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(pd(h,x),x), pd(h,x^2), `TD 11a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(f,t,x), TD(f,t*x), `TD 12a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(TD(f,t),x), TD(f,t*x), `TD 12b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(a):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(a,t), 0, `TD 13`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(h(a,x)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,x), pd(h,x), `TD 10d`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,x^2), pd(h,x^2), `TD 10e`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(h,t), 0, `TD 10f`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD(pd(h,x),x), pd(h,x^2), `TD 11b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter,dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (evalTD(TD(f,x)), pd(f,u)*jet(u,x), `evalTD 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (evalTD(TD(f,x) + TD(g,x), {f}), pd(f,u)*jet(u,x) + TD(g,x), `evalTD 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD[x](g), TD(g,x), `TD[] 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (TD[t*x^2](g), TD(g,t*x^2), `TD[] 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(a):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f), f, `pd 0`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,jet(u,x)), 'pd(f,jet(u,x))', `pd 1a`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a), 'pd(f,a)', `pd 1b`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(u,u), 1, `pd 2a`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(u,jet(u,x)), 0, `pd 2b`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(jet(u,x),u), 0, `pd 2c`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(a,a), 1, `pd 2d`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(a,x), 0, `pd 2e`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,x,u), pd(f,x,u), `pd 2f`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a,u), pd(f,a,u), `pd 2g`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u,jet(u,x))):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,jet(u,t)), 0, `pd 3a`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a), 0, `pd 3b`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(sin(f),u), 'cos(f)'*'pd(f,u)', `pd 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f+g,u), 'pd(f,u)'+'pd(g,u)', `pd 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f*g,u), 'pd(f,u)'*g+f*'pd(g,u)', `pd 6`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f+g,u^2*jet(u,x)), 'pd(f,u^2*jet(u,x))'+'pd(g,u^2*jet(u,x))',</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"> `pd 7`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f*g,u^2), 'pd(f,u^2)'*g + 2*'pd(f,u)'*'pd(g,u)' + f*'pd(g,u^2)',</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"> `pd 8`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a), 0, `pd 9a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(a,x,u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a), 'pd(f,a)', `pd 9b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,a,u), 'pd(f,a*u)', `pd 9c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(a):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(a,x,u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,x), jet(u,x)), 'pd(f,u)', `pdTD 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,t*x), jet(u,x)), 'TD(pd(f,u),t)', `pdTD 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,x), a), 'TD(pd(f,a),x)', `pdTD 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter,dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(u), {u}, `vars 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(f), {x,u}, `vars 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(jet(u,x)), {jet(u,x)}, `vars 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(sin(u)), {u}, `vars 4a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(sin(f)), {x,u}, `vars 4b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(pd(f,x)), {x,u}, `vars 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(TD(f,x)), {x,u,jet(u,x)}, `vars/TD 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(TD(f,x^3)), {x,u,jet(u,x),jet(u,x^2),jet(u,x^3)}, `vars/TD 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ('jet(u,t)' = jet(u,x^3) + 6*u*jet(u,x)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`eqn/list`, [(u,t) = jet(u,x^3) + 6*u*jet(u,x)], `equations 0`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (jet(u,x*t), 'jet(u,x^4) + 6*jet(u,x)^2 + 6*u*jet(u,x^2)', `equations 1`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (jet(u,t^2), 'jet(u,x^6) + 12*u*jet(u,x^4) + 30*jet(u,x)*jet(u,x^3)</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"> + 18*jet(u,x^2)^2 + 36*u^2*jet(u,x^2) + 72*u*jet(u,x)^2', `equations 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(TD(f,x)), {u,jet(u,x)}, `vars/TD 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(TD(f,t)), {u,jet(u,x),jet(u,x^3)}, `vars/TD 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (vars(TD(f,t*x)), {u,jet(u,x),jet(u,x^2),jet(u,x^3),jet(u,x^4)}, `vars/TD 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (evalTD (TD(f,x)), 'pd(f,u)*jet(u,x)', `evalTD 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (evalTD (TD(f,t)), 'pd(f,u)*(jet(u,x^3) + 6*u*jet(u,x))', `evalTD 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,t), jet(u,x)), 6*u*pd(f,u), `pd/TD 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,t), jet(u,x^3)), 'pd(f,u)', `pd/TD 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,x*t), jet(u,x^3)), 'TD(pd(f,u),x)', `pd/TD 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,x*t), jet(u,x^2)), '6*u*pd(f,u)', `pd/TD 6`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(TD(f,t^2), jet(u,x^4)), '12*u*pd(f,u)', `pd/TD 7`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">U := 'U': </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([symmetries(u = U)], [TD(U,t) - TD(U,x^3) - 6*TD(U,x)*u - 6*jet(u,x)*U], </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `symmetries 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">F := 'F':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([laws(1 = F)], [-TD(F,t) + TD(F,x^3) + 6*u*TD(F,x)], `laws 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u,v]): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ('jet(u,t)' = jet(v,x^2) + u^2, 'jet(v,t)' = -jet(u,x^2) + v^2):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">V := 'V':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([symmetries(u = U, v = V)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  [TD(U,t) - TD(V,x^2) - 2*u*U, TD(V,t) + TD(U,x^2) - 2*v*V], `symmetries 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">G := 'G':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([laws(1 = F, 2 = G)], </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  [-TD(F,t) + TD(G,x^2) - 2*u*F, -TD(G,t) - TD(F,x^2) - 2*v*G], `laws 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ('jet(u,t*x)' = jet(v,t)*jet(v,x), 'jet(v,t*x)' = -jet(u,t)*jet(u,x)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([symmetries(u = U, v = V)], </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  [TD(U,t*x) - jet(v,x)*TD(V,t) - jet(v,t)*TD(V,x), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  TD(V,t*x) + jet(u,t)*TD(U,x) + jet(u,x)*TD(U,t)], `symmetries 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([laws(1 = F, 2 = G)], </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  [TD(F,t*x) - jet(u,t)*TD(G,x) - jet(u,x)*TD(G,t) - 2*jet(v,t)*jet(v,x)*G,</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   TD(G,t*x) + jet(v,x)*TD(F,t) + jet(v,t)*TD(F,x) - 2*jet(u,t)*jet(u,x)*F],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `laws 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (unks(F*pd(G,u)), {F,G}, `unks 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(F(),G(jet(u,x))):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations('jet(u,t*x^2)' = F):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (unks(TD(G,x)), {G}, `unks/TD 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (unks(TD(G,t)), {G}, `unks/TD 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (unks(TD(G,t*x)), {F,G}, `unks/TD 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x)' = x^3): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,x), x^3, `put 1a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,x^2), 3*x^2, `put 1b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,x^4), 6, `put 1c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,u)' = f^2):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,u), f^2, `put 2a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (pd(f,u^2), 2*f^3, `put 2b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(x,u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x)' = 0):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ([`pd/tab`[f][x],`dep/tab`[f]], [`pd/tab`[f][x],{u}], `put 2c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">h := 'h':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(x,u)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put(h = pd(f,x^2)):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (h, 'pd(f,x^2)', `put 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x)' = pd(f,u), 'pd(f,u)' = f): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({reduce()}, {'pd(f,x) = f', 'pd(f,u) = f'}, `reduce 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = 0):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(u)): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({reduce()}, {}, `reduce 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = u, 'pd(f,x*u)' = x, 'pd(f,x^2*u)' = 1):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({reduce()}, {'pd(f,x^2) = u', 'pd(f,x*u) = x'}, `reduce 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L8" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = u, 'pd(f,x*u)' = x, 'pd(f,x^2*u)' = 1):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (cc(), {}, `cc 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L942" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f': g := 'g': h := 'h':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">unknowns(f,g,h):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L944" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = g, 'pd(f,x*u)' = h):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L946" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {pd(g,u) - pd(h,x)}, {pd(h,x) - pd(g,u)}, `cc 2`):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L10" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L953" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L12" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x)' = f):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := u:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {-u}, {u}, `cc 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L14" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = x):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(u)): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {x}, {-x}, `cc 4`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L16" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">put('pd(f,x^2)' = u^2):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(x)): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {2*u}, {-2*u},`cc 5`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L18" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(f(x)): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := x*u^2:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {2*x*u}, {-2*x*u}, `cc 6`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L20" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L22" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(a,{})}, {a}, `divideout 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(a,{a})}, {1}, `divideout 1a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(a*b*c,{a,b})}, {c}, `divideout 1b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(x*u*a*b,{a,b})}, {1}, `divideout 1c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(x*u*a*b,{a,b})}, {1}, `divideout 1d`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L24" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout((1+a)*(1+b),{1+a})}, {1+b}, `divideout 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout((1+a)/(1+b),{1+a})}, {1/(1+b)}, `divideout 2a`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout((1+a)^3,{1+a})}, {1}, `divideout 2b`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout((1+a)^3*(1+b)^2,{1+a})}, {1+b}, `divideout 2c`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout((1+a)^r*(1+b)^2,{1+a,1+b})}, {(1+a)^r}, `divideout 2d`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L26" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({divideout(a*b + a/b,{a})}, {(b^2 + 1)/b}, `divideout 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(nonzero):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L28" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (nonzero(a*b), {a,b}, `nonzero 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(nonzero):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L30" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (nonzero(a*e,a*f), {a,e,f}, `nonzero 2`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(nonzero):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L32" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (nonzero(1 + a + b + a*b, 1 + a, 1 + b), {1 + a, 1 + b}, `nonzero 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(nonzero):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L954" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type(1 + a,nonzero), false, `type/nonzero 1`):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L956" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">### T (type({1 + a},nonzero), false, `type/nonzero 1`):</Text-field>
+</Input>
+</Group>
+<Group labelreference="L34" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(nonzero):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L36" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`resolve/lin`({a + b}, [a,b]), a = -b, `resolve 1`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({`resolve/lin`({a + b, a + c}, [a,b,c])}, {a = -c, b = c},`resolve 2`): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (`resolve/lin`({c*a + b + 2, b + 5}, [a,b]), b = -5, `resolve 3`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L38" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"># sort vars</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u,v]): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">fvarord(u,v):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">bvarord(t,x):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">L := [jet(v,x^2), jet(v,t*x), jet(v,t^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">      jet(u,x^2), jet(u,t*x), jet(u,t^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">      jet(v,x), jet(v,t), jet(u,x), jet(u,t), v, u, x, t]:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">      </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['degree','function','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `vars/&lt;&lt;`), [t, x, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  u, v, jet(u,t), jet(u,x), jet(v,t), jet(v,x), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(u,t^2), jet(u,t*x), jet(u,x^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(v,t^2), jet(v,t*x), jet(v,x^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `vars/&lt;&lt; dfc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['degree','count','function']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `vars/&lt;&lt;`), [t, x, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  u, v, jet(u,t), jet(v,t), jet(u,x), jet(v,x), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(u,t^2), jet(v,t^2), jet(u,t*x), jet(v,t*x), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(u,x^2), jet(v,x^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `vars/&lt;&lt; dcf`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['function','degree','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `vars/&lt;&lt;`), [t, x, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  u, jet(u,t), jet(u,x), jet(u,t^2), jet(u,t*x), jet(u,x^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  v, jet(v,t), jet(v,x), jet(v,t^2), jet(v,t*x), jet(v,x^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `vars/&lt;&lt; fdc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['function','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `vars/&lt;&lt;`), [t, x,</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  u, jet(u,t), jet(u,t^2), jet(u,x), jet(u,t*x), jet(u,x^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  v, jet(v,t), jet(v,t^2), jet(v,x), jet(v,t*x), jet(v,x^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `vars/&lt;&lt; fc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['count','function']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `vars/&lt;&lt;`), [t, x,</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  u, v, jet(u,t), jet(v,t), jet(u,t^2), jet(v,t^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(u,x), jet(v,x), jet(u,t*x), jet(v,t*x), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  jet(u,x^2), jet(v,x^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `vars/&lt;&lt; cf`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L40" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"># sort Vars</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">coordinates([t,x],[u,v],2): </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">fvarord(u,v):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">bvarord(t,x):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">unknowns(U,V):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`var/&lt;&lt;/opt` := ['degree','function','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">L := [pd(V,jet(v,t)^2), pd(V, v*jet(v,t)), pd(V,v^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">      pd(U,jet(v,t)^2), pd(U, v*jet(v,t)), pd(U,v^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">      pd(V,jet(v,t)), pd(V,v), pd(U,jet(v,t)), pd(U,v), V, U]:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`Var/&lt;&lt;/opt` := ['degree','function','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `Vars/&lt;&lt;`), [U, V, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v), pd(U,jet(v,t)), pd(V,v), pd(V,jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v^2), pd(U, v*jet(v,t)), pd(U,jet(v,t)^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(V,v^2), pd(V, v*jet(v,t)), pd(V,jet(v,t)^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `Vars/&lt;&lt; dfc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`Var/&lt;&lt;/opt` := ['degree','count','function']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `Vars/&lt;&lt;`), [U, V, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v), pd(V,v), pd(U,jet(v,t)), pd(V,jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v^2), pd(V,v^2), pd(U, v*jet(v,t)), pd(V, v*jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,jet(v,t)^2), pd(V,jet(v,t)^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `Vars/&lt;&lt; dcf`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`Var/&lt;&lt;/opt` := ['function','degree','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `Vars/&lt;&lt;`), [U, pd(U,v), pd(U,jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v^2), pd(U, v*jet(v,t)), pd(U,jet(v,t)^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  V, pd(V,v), pd(V,jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(V,v^2), pd(V, v*jet(v,t)), pd(V,jet(v,t)^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `Vars/&lt;&lt; fdc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`Var/&lt;&lt;/opt` := ['function','count']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `Vars/&lt;&lt;`), [U, pd(U,v),  pd(U,v^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,jet(v,t)), pd(U, v*jet(v,t)), pd(U,jet(v,t)^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  V, pd(V,v),  pd(V,v^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(V,jet(v,t)), pd(V, v*jet(v,t)), pd(V,jet(v,t)^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `Vars/&lt;&lt; fc`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">`Var/&lt;&lt;/opt` := ['count','function']:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (sort(L, `Vars/&lt;&lt;`), [U,  V, </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,v),  pd(V,v), pd(U,v^2), pd(V,v^2), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,jet(v,t)),  pd(V,jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U, v*jet(v,t)), pd(V, v*jet(v,t)), </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  pd(U,jet(v,t)^2), pd(V,jet(v,t)^2)],</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  `Vars/&lt;&lt; cf`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">f := 'f':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence (f(x,u,jet(u,x*t))):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (convert(jet(u,x) + pd(f,jet(u,x*t)^2*u*x^2), TD, u=h^2),</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  '2*h*TD(h,x) + pd(f,jet(u,x*t)^2*u*x^2)', `convert/TD`):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations():</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L48" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">A := 'A': B := 'B': C := 'C':</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(w):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({vectorfield(A,B,C)}, {A,B,C}, `vectorfield 0`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (0, vectorfield), true, `vectorfield 1`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A, vectorfield), true, `vectorfield 2`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd(A,x), vectorfield), true, `vectorfield 3`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD(A,x), vectorfield), true, `vectorfield 4`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (-A, vectorfield), true, `vectorfield 5`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (2*A, vectorfield), true, `vectorfield 6a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A*B, vectorfield), false, `vectorfield 6b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A*x*w, vectorfield), true, `vectorfield 6c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A^2, vectorfield), false, `vectorfield 6d`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A + B, vectorfield), true, `vectorfield 7a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A + 1, vectorfield), false, `vectorfield 7b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[x], vectorfield), true, `vectorfield 8a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[w], vectorfield), true, `vectorfield 8b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[x^2], vectorfield), false, `vectorfield 8b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD[x], vectorfield), true, `vectorfield 9a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD[x^2], vectorfield), false, `vectorfield 9b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (comm(A,B), vectorfield), true, `vectorfield 10`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L46" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(w): nonlocal(w):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (w, nonlocal), true, `nonlocal 1`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T ({tail(E,F)}, {E,F}, `tail 0`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (0, tail), true, `tail 1`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A, tail), false, `tail 2a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (E, tail), true, `tail 2b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd(E,x), tail), true, `tail 3a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd(A,x), tail), false, `tail 3b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD(E,x), tail), true, `tail 4a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD(A,x), tail), false, `tail 4b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (-E, tail), true, `tail 5`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (2*E, tail), true, `tail 6a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A*E, tail), false, `tail 6b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (E*x*w, tail), true, `tail 6c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (E^2, tail), false, `tail 6c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (E + F, tail), true, `tail 7a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (A + F, tail), false, `tail 7a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (E + 1, tail), false, `tail 7b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[x], tail), false, `tail 8a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[w], tail), true, `tail 8b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (pd[w^2], tail), false, `tail 8c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD[x], tail), false, `tail 9a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (TD[x^2], tail), false, `tail 9b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (comm(E,F), tail), true, `tail 10a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (type (comm(A,F), tail), false, `tail 10b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(parameter,nonlocal):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L44" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">parameter(w): nonlocal(w):</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(0,f), 0, `apply 1`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(A + B, f), 'apply(A,f)' + 'apply(B,f)', `apply 2`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(2*A, f), 2*'apply(A, f)', `apply 3a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(x*A, f), x*'apply(A, f)', `apply 3b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(x*w*A, f), x*w*'apply(A, f)', `apply 3c`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[x],f), pd(f,x), `apply 4a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[x],pd[u]), 0, `apply 4b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[w],TD[x]), 0, `apply 4c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],TD[x]), 'apply'(pd[u],TD[x]), `apply 4d`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(TD[x],f), TD(f,x), `apply 5`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(comm(A,B), f), apply(A,apply(B,f))</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">     - apply(B,apply(A,f)), `apply 6`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],2*TD[x]), 2*'apply'(pd[u],TD[x]), `apply 4e`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (apply(pd[u],2*pd[x]), 0, `apply 4f`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L42" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A,A), 0, `comm 1a`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A,0), 0, `comm 1b`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(0,B), 0, `comm 1c`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A + B, C), comm(A, C) + comm(B, C), `comm 2a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, B + C), comm(A, B) + comm(A, C), `comm 2b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(2*A, B), 2*comm(A, B), `comm 3a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, 2*B), 2*comm(A, B), `comm 3b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(x*A, B), x*comm(A, B) - 'apply'(B,x)*A, `comm 4a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, x*B), x*comm(A, B) + 'apply'(A,x)*B, `comm 4b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(2*x*A, B), 2*x*comm(A, B) - 2*'apply'(B,x)*A, `comm 4c`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, 2*x*B), 2*x*comm(A, B) + 2*'apply'(A,x)*B, `comm 4d`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(TD[x], TD[t]), 0, `comm 5a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(TD[x], A), 'comm'(TD[x], A), -'comm'(A,TD[x]), `comm 5b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(pd[x], A), apply(pd[x],A), `comm 6a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, pd[x]), -apply(pd[x],A), `comm 6b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(A,B), 'comm'(A,B), -'comm'(B,A), `comm 7`); </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(A,comm(B,C)), 'comm(A,comm(B,C))', '-comm(A,comm(C,B))',</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   'comm(B,comm(A,C)) - comm(C,comm(A,B))',</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   `comm 8a`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (comm(comm(A,B),C), 'comm(C,comm(B,A))', '-comm(C,comm(A,B))', </Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   'comm(B,comm(C,A)) - comm(A,comm(C,B))',</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   `comm 8b`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(A, comm(B,C)) + comm(B, comm(C,A))  + comm(C, comm(A,B)),</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   0, `comm 9c`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">T (comm(comm(A,B), C) + comm(comm(B,C), A)  + comm(comm(C,A), B),</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">   0, `comm 9d`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">if OK then lprint(`O.K.`);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">  print(cat(floor(time() - time0),` sec.`))</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">fi:</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">`O.K.`</Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SScwfnNlYy5HNiI=</Equation></Text-field>
+</Output>
+</Group>
+<Group labelreference="L4" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>
