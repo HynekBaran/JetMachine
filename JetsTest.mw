@@ -96,16 +96,11 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SWVuSmV0c341Ljc0fkFMUEhBfmZvcn5NYXBsZX4xNX5hc35vZn40flNlcH4yMDEyfi1+cmVzb2x2ZS52Mkc2Ig==</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SVBKZXRzfjUuNzh+Zm9yfk1hcGxlfjE1fmFzfm9mfk9jdH4yNix+MjAxMn5QT0tVU0c2Ig==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVEkTWFQRicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEjOj1GJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRj0vJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EsMC4yNzc3Nzc4ZW1GJy8lJ3JzcGFjZUdGTC1GLDYlUSRtYXBGJ0YvRjIvJStmb3JlZ3JvdW5kR1EoWzAsMCwwXUYnLyUpcmVhZG9ubHlHRj1GOQ==">SSRtYXBHJSpwcm90ZWN0ZWRH</Equation></Text-field>
-</Output>
-<Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYoLUkjbWlHRiQ2JVErc2l6ZWZhY3RvckYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSSNtbkdGJDYkUSsxMDAwMDAwMDAwRidGOS8lK2ZvcmVncm91bmRHUShbMCwwLDBdRicvJSlyZWFkb25seUdGPUY5">IisrKysrNQ==</Equation></Text-field>
-</Output>
-<Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">`Blimit = 25000  ressize = 1000  putsize = 200  maxsize = 100`</Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">
+Using the new implementation of resolve (nod well tested yet!)</Text-field>
 </Output>
 </Group>
 <Group labelreference="L936" drawlabel="true">
@@ -784,7 +779,7 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SScwfnNlYy5HNiI=</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L4" drawlabel="true">
+<Group labelreference="L958" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
