@@ -32,10 +32,11 @@
 #
 # History of changes
 #
-# Based on Jets code v. 5.6 as of 20 Jan 2010
+# v. 5.7  rel. 8 Dec 2010
+# * Based on Jets code v. 5.6 as of 20 Jan 2010
 #
-#
-#
+# v. 5.71 rel. 4 Jan 2011
+# * `divideout/unks/1` approved, better handling of polynomials
 #
 
 
@@ -47,14 +48,14 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets.s for Maple 13 as of 8 Dec 2010`);
+print(`Jets 5.71 for Maple 13 as of 4 Jan 2011`);
 
 #
 # Source code configuration, options and parameters
 #
 
 ### version info
-`Jets/opts`["Version", "core"]  := [5,7]:
+`Jets/opts`["Version", "core"]  := [5,7,1]:
 `Jets/opts`["Version", "CC"]    := ["MM_SSICOS", 2, 0] :
 `Jets/opts`["Version", "Maple"] := table(["Tested"={13}, "Minimal"=13]):
 
@@ -1935,7 +1936,7 @@ end:
       RETURN(op(as)) # TODO: co vratime???
 		fi;       
 
-    # take cc's from the outside
+    ## take cc's from the outside
     #aux1 := MultiOrdCC:-Pop(); 
     ##aux := map(simpl, aux1); ### ???
     #aux := aux1; ### ???
@@ -2461,7 +2462,7 @@ end:
 
 # `type/divideout` := {specfunc(anything,exp)}: 
 `type/divideout` := proc(a) # HB 14. 5. 2008
-  if type(a, positive) then true
+  if type(a, positive) or type(a,negative) then true
   elif type(a, specop(anything, `+`))  
     or type(a, specop(anything, `*`)) then
     andmap(type, [op(a)],  divideout)
@@ -2474,14 +2475,20 @@ end:
 
 
 `divideout/unks/1` := proc(a)
-  local us,vs,aux;
+  local us,vs,aux, cs, v1, v2;
   us := unks(a);
-  vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
+  # MM # vs := `vars/1`(a, noWarn) minus vars(op(us), noWarn);
+  # HB:
+  v1 := `vars/1`(a, noWarn) ;
+  v2 := select(e -> type(a, polynom(anything, e)), v1);
+  vs := v2 minus vars(op(us), noWarn);
+  DOE(if v1 <> v2 then lprint('procname', v1<>v2, a) fi);
+  # :HB
   if vs = {} then a # presumably a = 0 can have a solution
-  elif type(a,polynom(anything,vs)) then
+  elif type(a, polynom(anything,vs)) then
     aux := collect(a, vs, distributed, simpl);
-    #if select(type, {coeffs(aux, vs)}, nonzero) <> {} then 1
-    if ormap(type, [coeffs(aux, vs)], nonzero) then 1
+    cs := coeffs(aux, vs);
+    if ormap(type, [cs], nonzero) then 1
     else a # all coeffs can be zero
     fi
   else a # does not know
