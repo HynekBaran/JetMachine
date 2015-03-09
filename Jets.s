@@ -36,8 +36,12 @@
 # * Based on Jets code v. 5.6 as of 20 Jan 2010
 #
 # v. 5.71 rel. 4 Jan 2011
-# * `divideout/unks/1` approved, better handling of polynomials
+# * `divideout/unks/1`(): approved, better handling of polynomials
 #
+# v 5.72
+# * `index/traceless` matrix index function added
+# * store(): formatting of output of assignments changed (each on separate line now)
+# * new `jet/gen/all` and `count/gen/all` functions 
 
 
 
@@ -48,7 +52,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.71 for Maple 13 as of 4 Jan 2011`);
+print(`Jets 5.72 for Maple 13 as of 01 Feb 2011`);
 
 #
 # Source code configuration, options and parameters
@@ -318,6 +322,20 @@ end:
 
 `transform/count` := op(numer):
 
+`count/gen/all` := proc(b::list, m::{posint,0})::seq(count); # HB
+  description "Generates all counts in variables b up to m-th order";
+  `count/gen/all/1`(b,m)[2..-1]; # 1 is not a count
+end:
+
+`count/gen/all/1` := proc(b::list, m::{posint,0}) # HB
+  if nops(b) = 0 or m<=0 then 
+    1
+  else
+    seq(seq(i*j, j in [procname(b[2..-1], m-`count/length`(i))]), i in seq(b[1]^i, i=0..m));
+  fi
+end:
+
+
 # Jet order of a variable q
 
 varorder := proc(q)
@@ -350,8 +368,9 @@ end:
   if not type (`b/var/list`,'list'(symbol)) then
     ERROR (`base variables must be symbols`) 
   fi;
-  aux := expand((1 + convert(`b/var/s`,`+`))^r - 1);
-  aux := map(proc(a) a/coeffs(a) end, [op(sort(aux, `b/var/list`))]);
+  #aux := expand((1 + convert(`b/var/s`,`+`))^r - 1);  
+  #aux := map(proc(a) a/coeffs(a) end, [op(sort(aux, `b/var/list`))]);
+  aux := sort([`count/gen/all`(`b/var/list`, r)]); # HB
   alias(op(map(proc(u,aux) if type(u,symbol) then
         op(map(proc(x,u) cat(u,'_',`bcount//str`(x)) = 'jet'(u,x) end,
           aux, u))
@@ -1511,6 +1530,28 @@ end:
 
 `simpl/jet` := op(simpl):
 
+
+`jet/gen/all` := proc() # HB
+  description "Generates all internal jets of f up to n-th order";
+  global `f/var/list`, `b/var/list`, `eqn/list`;   
+  local f, n, cs, es;
+  if nargs=1 and type(args[1], {posint,0}) then
+    map(procname, `f/var/list`, n);
+  elif nargs=2 and type(args[1],`f/var`) and type(args[2], {posint,0}) then
+    f := args[1];
+    n := args[2];
+    es := map(e -> [lhs(e)],`eqn/list`);
+    es := select(e -> e[1]=f, es);
+    es := map(e -> e[2], es); # counts of all assigned jets of f
+    cs := [`count/gen/all`(`b/var/list`, n)]; # all counts up ti n-th order
+    cs := remove(c-> ormap(e -> divide(c,e), es, c) , cs); # remove assigned jets
+    f, op(sort(map2(jet,f,cs), `vars/<<`));
+  else
+    error "Wrong argument(s)"
+  fi;
+end:
+
+
 #
 #   E q u a t i o n s
 #
@@ -1857,7 +1898,7 @@ run := proc()
 end:
 
 `run/1` := proc(a)  # applies run/l to entries of lists, sets, and matrices
-  if type (a,{'list','set'}) then op(map(`run/1`,a))
+  if type (a,sequential) then op(map(`run/1`,a))
   elif type (a,'matrix') then
     if type (a,'name') then
       op(map(proc(x) op(2,x) end, op(3,op(a))))
@@ -2055,36 +2096,34 @@ end:
 store := proc(file)
   # HB: 
   local fd;
-  fd := fopen(file, WRITE, TEXT):
-  try
-    print(cat(`storing in `, file));
-    if nargs = 0 then error "Missing file, cannot store to terminal." fi;
-    #fprintf(fd, "\n# assign begin : \n");
-    fprintf(fd, "put(%q);\n", `unks/assignments`());
-    #map (
-    #  proc (x)  
-    #      lprint('`put`'(x));  
-    #      printf(";\n");
-    #  end proc, 
-    #  {`unks/assignments`()}): 
-    #fprintf(fd,"# : assign end\n");
-    # HB  
-    fprintf(fd, "dependence(%q);\n", dependence());
+  print(cat(`storing in `, file));
+  if nargs = 0 then 
+    # storing in terminal
+    error "Sorry, storing in terminal not implemented yet."; # TODO: implement it
+  else
+    # storing in file
+    fd := fopen(file, WRITE, TEXT):
+    try
+      fprintf(fd, "dependence(%q);\n\n", dependence());
+        
+      map(e->fprintf(fd, "put(%q);\n", e), [`unks/assignments`()]);
+      fprintf(fd, "\n");
   
-    fprintf(fd, "put(\n");
-    `store/pds`(fd);
-    fprintf(fd, "\n);\n");
-    
-    fprintf(fd,"nonzero(%q);\n", op(nonzero()));
-    
-    # TODO: Varodering must be stored here
-   
-    #fprintf(fd,"\n# RESOLVE=%a\n",RESOLVE); # store also RESOLVE var as a comment
-    #cannot be here, becouse when RESOLVE is too long, is printed to several lines 
-    #(but only the first one begins with # what causes syntax error when reading later)
-  finally
-    fclose(fd);
-  end
+      fprintf(fd, "put(\n");
+      `store/pds`(fd);
+      fprintf(fd, "\n);\n");
+      
+      fprintf(fd,"nonzero(%q);\n\n", op(nonzero()));
+
+      # TODO: Varodering must be stored here
+     
+      #fprintf(fd,"\n# RESOLVE=%a\n",RESOLVE); # store also RESOLVE var as a comment
+      #cannot be here, becouse when RESOLVE is too long, is printed to several lines 
+      #(but only the first one begins with # what causes syntax error when reading later)
+    finally
+      fclose(fd);
+    end;
+  fi
   # :HB
 end:
 
@@ -5046,3 +5085,54 @@ else
     end:
   end module:
 fi:
+
+
+################################################################################
+################################################################################
+# General utilities
+################################################################################
+################################################################################
+
+`index/traceless` := proc( idx :: list( posint ), M::Matrix, val::list ) 
+  description "Index function of traceless matrices";
+  local i, j, init_val, N;
+         if nops(idx) <> 2 then
+             error "Matrix indexing requires exactly 2 indices";
+         end if;
+         i, j :=  op(idx);
+         N := op(2,rtable_dims(M)[1]);
+         if nargs = 2 then
+             # retrieval
+                 if i=j and i=N then
+                 -add(M[k,k], k=1..N-1)                 
+             else
+                 # get value from storage
+                 M[i,j];
+             end if;
+         else
+             # storage
+             if  i=j and i=N then
+                 # indexing function determines value, i.e.,
+                 # location is not mutable
+                 if op( val ) <> -add(M[k,k], k=1..N-1) then
+                     # invalid value
+                     error "invalid assignment";
+                 else
+                     # be sure to do explicit write, but catch
+                     # this if the storage fails, as storage
+                     # for non-mutable locations need not be
+                     # allocated
+                     try
+                         M[i,j] := op( val );
+                     catch "unable to store":
+                         # couldn't write, return value (as if
+                         # the write succeeded)
+                         op( val );
+                     end try;
+                 end if;
+             else
+                 # general value
+                 M[i,j] := op( val );
+             end if;
+         end if;
+     end proc:
