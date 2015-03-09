@@ -86,9 +86,33 @@
 # * `jet/gen/all` fixed
 # * `convert/crack` introduced
 # * reenabled Vars to accept sequential arguments
-# * uncomment the directive bellow to enable the new resolve implementation
-#$define jets_new_resolve_enable 
-
+# * uncomment the line bellow to enable the new resolve implementation
+# jets_new_resolve_enable := true;
+#
+#
+# v 5.79
+# * fixed missing local declaration in size() 
+# * `resolve/nonresrat` reimplemented, resolve() FAILs when size condition is triggered
+# * minor reporting improvements in `run/l`()
+# * JetsProfiler introduced
+# * BasisExtractor function to symmetries/laws basis extraction introduced
+# * `divideout/unks` improved (treating exponents)
+# * `resolve/lin` unifyed
+# * reporting in `resolve/lin` (lin resolvable/nonres. / nonlin)
+# * CC:-markFF assertion commented out as a first aid, this issuie is to be resolved carefully
+# * `TestUnkOrd/vars` weakened to report strong unknown ordering suspicients only
+# * `run/l/extraders` introduced allowing to derive also subsets of cc in run (but none implementations besides empty)
+# * fixed `AmICons/dependence` bug
+# * fixed revdeg
+# * putsize back
+#
+#
+# v 5.80 beta
+# * improved derive (noderives changed)
+#
+# 
+# v 5.81
+# * version mismatch cleanup
 
 ###########################################################################################
 ###########################################################################################
@@ -97,16 +121,11 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.78 for Maple 15 as of Oct 26, 2012`);
+print(`Jets 5.81 for Maple 15 as of Feb 25, 2014`);
 
 #
 # Source code configuration, options and parameters
 #
-
-### version info
-`Jets/opts`["Version", "core"]  := [5,7,8]:
-`Jets/opts`["Version", "CC"]    := ["MM_SSICOS", 2, 0] :
-`Jets/opts`["Version", "Maple"] := table(["Tested"={15}, "Minimal"=14]):
 
 ### optional features
 # Some parts of Jets source code is disbbled by default,
@@ -114,7 +133,7 @@ print(`Jets 5.78 for Maple 15 as of Oct 26, 2012`);
 # Use assignments bellow (before reading Jets.s in) to enable such additional code.
 
 #`Jets/opts`["Optionals"]["Multiord"] := true:
-#$define jets_new_resolve_enable 
+#jets_new_resolve_enable := true;
 
 #
 # Debugging
@@ -164,7 +183,9 @@ if assigned(cat(`jets/read/flag/`,__FILE__)) then `quit`(255); fi; # force immed
 assign(cat(`jets/read/flag/`,__FILE__), true):
 
 ### aux macros
-$define Report(l, m) if rt > l then report(lb,[cat('procname','`:`'), op(m)]) fi;
+$define Report(l, m)  if rt > l then report(lb,[cat('procname','`:`'), op(m)]) fi;
+$define Reportf(l, m) if rt > l then report(lb,sprintf(cat("%s: ", op(1,m)), procname, op(2..-1, m))) fi;
+
 
 
 ##############################
@@ -223,6 +244,7 @@ Call := proc(c,a) c||a end: # || replaces . since 6.0
 # sorting by size
 
 size := proc() # HB generalized size of any number of arguments
+  local a;
   #try 
     add(`size/1`(a), a in [args]);
   #catch:
@@ -295,6 +317,7 @@ coordinates := proc (blist,flist)
   `f/dim` := nops(`f/var/s`);
   `f/<</list` := `f/var/list`;
   noderives():
+  doderives();
   refresh ();
 # Result:
   if nargs > 2 then `jet/aliases`(`f/var/list`,args[3])
@@ -1488,7 +1511,11 @@ end:
   
   if rt > 1 then
     report(lb, "Dependences and `pd/tab` indices:");
-    map(a->lprint('a'(op(vars(a)))=indices(`pd/tab`[a], nolist)), [indices(`pd/tab`, nolist)]);
+    try
+      map(a->lprint('a'(op(vars(a)))=indices(`pd/tab`[a], nolist)), [indices(`pd/tab`, nolist)]);
+    catch:
+      printf("\n%q\n", lastexception);
+    end;
   fi;
   
   T := j2J(`cc/pd/listall`()); 
@@ -1507,10 +1534,10 @@ end:
 							 #':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice
 							 ); 
   as := map(`cc/ass`, J2j(cs));
-  rprintf(1, ["cc found %a are assembled as %a", cs, as]);
+  rprintf(2, ["cc found are assembled as %a", as]);
   as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+  rprintf(1, ["cc found %a are assembled and simplifyed as %a", cs, as]);  
   `cc/FF`(cs,as);
-  rprintf(1, ["cc found are %a", as]);
   inc(`cc/count/total`, nops(cs));
   if leaveTrivial then  
     ans := as;
@@ -1909,6 +1936,36 @@ laws := proc ()
   seq(aux[op(i,`f/var/list`)], i = 1..`f/dim`)
 end:
 
+# Symmetries/laws basis extraction # HB
+
+BasisExtractor := proc(U, Cs::sequential(symbol), {Indexer::symbol:=index})  
+  description 
+    "Transfoms a sum of elements the form U = C_1*E_1 + ... + C_i*E_i + ..."
+    "   where U (an sum of expressions or a linst of them)"
+    "         and coefficients list Cs = [C_1, ...] (constants or functions)"
+    "         are given"
+    "into a table of extracted basis elements E_i."
+    "Returns a table of the form [L_1 = E_1, ...]"
+    "where L_i is an index i (optionally, by setting Indexer=unkname), L_i is the unknown Cs[i]"
+    "  where for j<>i all C_j are substituted to 0"
+    "  and C_j set to 1 if is constant (and left untouched if function).";
+  if not(assigned(cat(`BasisExtractor/Indexer/`, Indexer))) then error "Unknown result type %1", Indexer fi;
+  return [eval(seq( cat(`BasisExtractor/Indexer/`, Indexer)(Cs,i) = `BasisExtractor/1`(U, Cs, i), i=1..nops(Cs)))];
+end:
+
+`BasisExtractor/Indexer/index` := proc(cs,i) i end: # indexed by integers
+`BasisExtractor/Indexer/unkname` := proc(cs,i) cs[i] end: # indexed by coefficients
+`BasisExtractor/Indexer/unknamedep` := proc(cs,i) cs[i](op(vars(cs[i]))) end: # ditto, dependences of coefficients included
+
+
+`BasisExtractor/1` := proc(U, cs, pos)
+  subs(seq(cs[i]=0, i = 1..pos-1),
+       `if`(nops(vars(cs[pos]))=0, cs[pos]=1, NULL),
+       seq(cs[i]=0, i = pos+1..nops(cs)),
+      U)
+end:
+
+
 # Zero curvature representations
 
 zcr := proc ()
@@ -2019,13 +2076,15 @@ end:
   local es, Vs;
   es := {args[2..nargs]};
   Vs := map(proc(v) if type(v, specfunc(anything,pd)) then op(1,v) else v fi end, Vars(f));
-  printf("load package ""crack"";\n");
+  printf("load_package ""crack"";\n");
   map(`convert/crack/f`, Vs, es);
-  printf("CRACK (%q);\n", 
+  printf("res := CRACK (%q);\n", 
       {`convert/diff/1`(crack, f,es)}, 
       {}, 
       Vs, 
       {});
+  printf("off nat;\nres;\n");    
+  printf(";END;\n%% in crack, you may load in files by IN \"filename\";\n");
 end:
 
 `convert/diff/f` := proc(g, es) 
@@ -2225,8 +2284,6 @@ end:
       #print(LOLO);
       #map(print,as);
       #`pd/tab/print/unk`(g11);
-
-      #print(LOLO);
       
       if rt > 1 then report(lb,[`cc sizes to be resolved(`, nops(as),`): `, op(sort(map(size,[op(as)])))]) fi;
       if rt > 2 then report(lb,[`cc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], as)]) fi;       
@@ -2236,10 +2293,13 @@ end:
 
     
     ### dc
-    if rt > 4 then report(lb,[`args to be derived:`, args]) fi;           
+    if rt > 0 then report(lb,[`We obtained `, nops(as),` compatibility conditions. Lets derive `, nops({args}) ,`args...`]) fi;    
     if rt > 3 then report(lb,[`args to be derived [size,LVar]:`, map(a->[LVar(a)=size(a)], [args])]) fi;       
+    if rt > 4 then report(lb,[`args to be derived:`, args]) fi;           
     
-    ders := {derive(args)};
+    ders := {derive(args, `run/l/extraders`(as))}; # we may derive also some result of cc
+    #ders := {derive(args)};
+    if rt > 2 then report(lb,`simpl`, nops(ders) ,`derive results...`) fi;    
     ders := map(simpl,ders); # TODO(eff): je to simpl nutne?
     ders := select(proc(a) evalb(a <> 0) end, ders); 
     if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(ders)])))]) fi;
@@ -2253,7 +2313,7 @@ end:
         if rt > 3 then report(lb,[`transformed c.c.: `], op(as)) fi;
       fi
     fi;
-    if rt > 5 then report(lb,[`all derived: `], op(ders)) fi;
+    if rt > 5 then report(lb,[`all derived: `, op(ders)]) fi;
 
     ### are we done?
     if nops(as)+nops(ders)=0 then 
@@ -2277,16 +2337,24 @@ end:
     #as := as union aux;
 
 		### resolve ALL compatibility conditions cc and some of differential consequences (dc)		
+    if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets resolve...`]) fi;    
 		if nops(ders)=0 then
       if rt > 1 then report(lb,[`no dc to be resolved`]) fi;
 		  res := resolve(op(as)); # TODO(eff): nestaci `resolve/1`?
 		else
+      
+      if rt > 0  and nops(as)*nops(ders)>0 then 
+        if size(ders[1]) <= size(as[1]) then 
+         report(lb, [sprintf("Derive beated cc, %a <= %a\nd=%a\nc=%a\n", size(ders[1]),size(as[1]), ders[1], as[1])]) 
+        fi;
+      fi; 
       aux := `size/*/<`(ders, ressize);
       if nops(aux)=0 then WARNING("ressize too low"); aux := {sizemin(ders, size)} fi; # TODO(eff): 
                                                                     # udelej nove rychle `size/*/<`
       if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
-      if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], aux)]) fi;       
-      if rt > 5 then report(lb,[`dc to be resolved: `, op(aux), `selected of totally`, nops(ders)]) fi;
+      if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
+      if rt > 5 then report(lb,[`dc to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]) fi;
+
       res := resolve(op(as),op(aux)); # TODO(eff): nestaci `resolve/1`?
     fi;  
       
@@ -2302,7 +2370,14 @@ end:
       # put the resolved results
       # lprint("BEFORE PUT");
       # `pd/tab/print/unk`(g11);
-      `run/put`(res);
+     
+      aux := `size/*/<`({res}, putsize);
+      if rt > 1 then 
+        report(lb,[`for put, selected`, nops(aux), `out of`, nops([res]), `of sizes`, op(sort(map(size,[op(aux)])))]) 
+      fi;
+      if aux = {} then ERROR(`putsize too low`) fi;
+
+      `run/put`(op(aux));
       #if as<>{} and map(simpl,as)<>{0} then print(CHYBA,as) fi;
       # lprint("AFTER  PUT");
       # `pd/tab/print/unk`(g11);
@@ -2311,6 +2386,8 @@ end:
     fi
   od;        
 end:
+
+`run/l/extraders` := proc() NULL end:
 
 `size/*/<` := proc(as,upb) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
   local aux,bs,ans,i,m,n;
@@ -2450,29 +2527,101 @@ maxsize := 100:
 
 #`derive/seq` := Threads[Seq]: #TODO:
 
+`doderive/s` := {}:
+
+
+`derive/version` :=  2: #  1 is old style, 2 current
+
+
 derive := proc()
-  local a, ans, time0;
-  global `derive/tab`,`derive/pd/tab`,`noderive/s`, `derive/time`;
+  local a, ans, time0, m, M, us, vs, ns, allvars, unksnum, ds;
+  global `derive/version`,
+         `derive/tab`,`derive/pd/tab`,`noderive/s`,`doderive/s`, 
+         rt, lb, `report/tab`, `derive/time`;
   time0 := time();
+  rt := `report/tab`[derive]; lb := `DERIVE:`;
   for a in [args] do
     if not assigned(`derive/tab`[a,1]) then 
-      `derive/tab`[a,1] := `vars/1`(a) minus `noderive/s`
+      Report(3, [vars=vars(a), unks=unks(a), map(u->u=vars(u),unks(a))]);
+      if `derive/version`=1 then # old style   
+        m := `noderive/s` union `doderive/s`;
+      elif `derive/version`=2 then # new style
+        us := convert(unks(a),list);
+        vs := map(vars, us);
+        allvars := convert(`union` (op(vs)), list); 
+        #members := map(v->map2(member, v, vs  ), allvars);
+        unksnum :=  map(v -> nops(select( d-> member(v,d), vs)), allvars); # number of unknows dependending on variables us
+        Report(2, ["variable = number of unknowns dependend on it:", zip(`=`, allvars, unksnum)]);
+        Report(3, ["union of all vars unknowns depending on:", `union`(op(map(vars,unks(a))))]);
+        M := zip((u,n) -> `if`(`derive/NoDeriveVar`( u, n,  unksnum), u, NULL), allvars, unksnum);  
+        Report(3, ["Automatic noderives:", M]);      
+        M := convert(M,set);
+        m := (M minus `doderive/s`) union `noderive/s`;
+      else
+       error "Unknown `derive/version` %1", `derive/version`;
+      fi;
+      ds := `vars/1`(a) minus  m;
+      Report(0, ["Final ", VarL(a)," noderives:", m, "Final derives:",  ds]);     
+      `derive/tab`[a,1] := ds;      
     fi;
     if not assigned(`derive/pd/tab`[a,1]) then 
       `derive/pd/tab`[a,1] := a
     fi
-  od;
+  od;  
   ans := seq(`derive/1`(a,1), a = [args]);
   inc(`derive/time`, time()-time0);
   return(ans);
 end:
+
+`derive/NoDeriveVar/min` := 2:
+
+`derive/NoDeriveVar` :=  proc(u, n, unksnum) 
+  description 
+  "Decides whether given variable u falls into noderives"
+  "n = number of unknowns which depends on variable u"
+  "unksnum = list, for each variable there is a number of unknowns which depends on this variable";
+  global `derive/NoDeriveVar/min`;
+  local N := nops(unksnum); # number of variables
+  evalb(n>=`derive/NoDeriveVar/min` and (n>=N/2 or n>=max(op(unksnum))/2 )) 
+end:
+
+
+
+#`vars/nonames` :=  proc(f, {noWarn::truefalse:=false})
+## option remember;
+#  if type (f,'constant') then {}
+#  elif type (f,'name') then 
+#    if type (f,{`b/var`,`f/var`}) then {f}
+#    elif type (f,'parameter') then {}
+#    elif type (f,'dep') then {} # ignore dependencies  
+#    else if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
+#         {f}
+#    fi
+#  elif type (f,{`+`,`*`,`^`,sequential}) then `union`(op(map(procname,[op(f)], _options))) # HB
+#  elif type (f,'function') then 
+#    if type (f, specfunc(anything,jet)) then {f}
+#    elif type (f, specfunc(anything,pd)) then procname(op(1,f), _options)
+#    elif type (f, specfunc(anything,TD)) then `vars/TD` (op(f))
+#    else `union`(op(map(procname,[op(f)], _options)))
+#    fi
+#  else error("unexpected object %1 in vars.", f);
+#  fi
+#end:
+
+
 
 noderives := proc()
   global `noderive/s`,`b/var/s`;
   `noderive/s` := {args} union `b/var/s`
 end:
 
+doderives := proc()
+  global `doderive/s`;
+  `doderive/s` := {args}
+end:
+
 noderives():
+doderives():
 
 `derive/1` := proc(a,c)
   local ds,us,ps,p,aux,t,ns,s,b,rt,lb, vs, Vs, cs, M;
@@ -2632,7 +2781,7 @@ resolve := proc()
   return (res);
 end:
 
-$ifndef jets_new_resolve_enable
+if not(assigned(jets_new_resolve_enable)) then
 
 #
 #  R e s o l v e - the old implementation
@@ -2643,11 +2792,14 @@ $ifndef jets_new_resolve_enable
   local as,bs,vl,i,rt,lb;
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
   as := map(numer,{args}) minus {0};
-  if rt > 3 then report(lb,cat(`input `, nops(as), ` eqns`), as) fi; 
+  if rt > 3 then report(lb, `input `, nops(as), ` eqns`) fi; 
+  if rt > 4 then report(lb, `input: `, as) fi; 
   as := map(divideout, as); # remove nonzero factors
-  if rt > 3 then report(lb,cat(`divideout `, nops(as), ` eqns `), as) fi; 
+  if rt > 3 then report(lb, `divideout `, nops(as), ` eqns `) fi; 
+  if rt > 4 then report(lb, `divideout: `, as) fi; 
   bs := select(type, as, nonzero);
-  if rt > 3 then report(lb,cat(`contradictory `, nops(bs), ` eqns `), bs) fi; 
+  if rt > 3 then report(lb,`contradictory `, nops(bs), ` eqns `) fi; 
+  if rt > 4 then report(lb,`contradictory: `, bs) fi; 
   if bs <> {} then print(op(map(proc(b) b = 0 end, bs)));
     ERROR(`there are contradictory equations`)
   fi;
@@ -2658,88 +2810,14 @@ $ifndef jets_new_resolve_enable
   `resolve/lin`(as,vl)
 end:
 
-`resolve/lin` := proc(as,vl)
-  local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb;
-  global maxsize, RESOLVE, `resolve/result/suppressedminsize`;
-  `resolve/result/suppressedminsize` := NULL;
-  
-  lb := `RESOLVE:`; rt := `report/tab`[resolve];
-  bs := map(Simpl, as, vl);
-  if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
-  bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
-  if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
-  if bs = {} then RETURN () fi;  # no eq.
-  ans := {}; rs := {}; 
-  # Correction: rvl removed 12.7.2007
-  for v in vl do # for v running through all Vars in reverse Varordering
-    if rt > 3 then report(lb,`resolving with respect to`, v) fi; 
-    bs := map(divideout, bs); # remove nonzero factors
-    bs := map(Simpl, bs, vl); # Simplify
-    bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
-    bs := map(reduceprod, bs);  # reduce products
-    cs := select(has, bs, v);  # cs = subset of bs with v 
-    if rt > 4 then report(lb,`resolving equations:`, cs) fi; 
-    bs := bs minus cs;  # bs = subset without v
-    ls := select(type, cs, linear(v));  # ls = subset of cs linear in v
-    if rt > 4 then report(lb,`of them linear:`, ls) fi; 
-    ps := select(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
-    if ps <> {} then                            # if solvable eqs,
-      qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
-      if rt > 4 then report(lb,`available solutions:`, qs) fi; 
-      qs := sizesort([op(qs)], size);
-      q := op(1,qs);
-      if rt > 4 then report(lb,`using solution:`, q) fi; 
-      bs := bs union map(`resolve/subs`, cs, v, q);
-      if rt > 4 then report(lb,`back substituted system:`, bs) fi; 
-      ans := {v = q} union map(
-        proc(a,v,q) op(1,a) = `resolve/subs`(op(2,a), v, q) end, ans, v, q)
-    else 
-      # try to subtract pairs of equations; not implemented yet
-      rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs
-    fi
-  od;
-  if rt > 2 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
-  if rt > 2 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
-  if rt > 2 then report(lb,cat(`left `, nops(bs), ` eq.`)) fi; 
-  ans := map(Simpl, map(eval,ans), vl);
-  rs := map(proc(r,vl) [Simpl(op(1,r), vl), op(2,r)] end, rs, vl);
-  rs := select(proc(r) evalb(op(1,r) <> 0) end, rs);
-  aux := ans;
-  ans := select(proc(a) size(a) < maxsize end, ans);
-  aux := aux minus ans;
-  if ans = {} then
-    if aux <> {} then lprint(`There are`, nops(aux),`suppressed solutions of sizes:`, op(map(size,aux)));
-        `resolve/result/suppressedminsize` := min(op(map(size,aux))); # HB
-    else
-       `resolve/result/suppressedminsize` := NULL : # HB
-    fi;
-    # HB: store what failed to the global variable RESOLVE
-    RESOLVE := map(
-      proc(r) 
-        if type(op(1,r), linear(op(2,r))) then 
-          tprint(`linear resolving failed for`, op(2,r));
-          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
-          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
-        else 
-          tprint(`resolving failed for`, op(2,r), `nonlinear `);
-          print (op(1,r));
-          [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
-        fi
-      end, rs);
-    # :HB
-    FAIL
-  else op(ans)
-  fi;
-end:
 
-
-$else
+else # jets_new_resolve_enable
 
 #
 #  R e s o l v e - the new implementation (not well tested yet)
 #
 
-printf("\nUsing the new implementation of resolve (nod well tested yet!)\n");
+printf("\nUsing the new implementation of resolve (not well tested yet!)\n");
 
 
 #`resolve/nonresrat` := 3;
@@ -2918,84 +2996,6 @@ end:
   print(a:-expr);
 end:
 
-`resolve/lin` := proc(as,vl,{ForceFail::truefalse:=false})
-  local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb;
-  global maxsize, RESOLVE, `resolve/result/suppressedminsize`;
-  `resolve/result/suppressedminsize` := NULL;
-  
-  lb := `RESOLVE:`; rt := `report/tab`[resolve];
-  bs := map(Simpl, as, vl);
-  if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
-  bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
-  if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
-  if bs = {} then RETURN () fi;  # no eq.
-  ans := {}; rs := {}; 
-  # Correction: rvl removed 12.7.2007
-  for v in vl do # for v running through all Vars in reverse Varordering
-    if rt > 4 then report(lb,`resolving with respect to`, v) fi; 
-    bs := map(divideout, bs); # remove nonzero factors
-    bs := map(Simpl, bs, vl); # Simplify
-    bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
-    bs := map(reduceprod, bs);  # reduce products
-    cs := select(has, bs, v);  # cs = subset of bs with v 
-    if rt > 4 then report(lb,`resolving equations:`, cs) fi; 
-    bs := bs minus cs;  # bs = subset without v
-    ls := select(type, cs, linear(v));  # ls = subset of cs linear in v
-    if rt > 4 then report(lb,`of them linear:`, ls) fi; 
-    if ForceFail=false then
-      ps := select(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
-      if ps <> {} then                            # if solvable eqs,
-        qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
-        if rt > 4 then report(lb,`available solutions:`, qs) fi; 
-        qs := sizesort([op(qs)], size);
-        q := op(1,qs);
-        if rt > 4 then report(lb,`using solution:`, q) fi; 
-        bs := bs union map(`resolve/subs`, cs, v, q);
-        if rt > 4 then report(lb,`back substituted system:`, bs) fi; 
-        ans := {v = q} union map(
-          proc(a,v,q) op(1,a) = `resolve/subs`(op(2,a), v, q) end, ans, v, q)
-      else 
-        # try to subtract pairs of equations; not implemented yet
-        rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs
-      fi
-    else
-      printf("Enforced linear failure (w. r. to %a).\n", v);
-      rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs
-    fi;
-  od;
-  if rt > 2 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
-  if rt > 2 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
-  if rt > 2 then report(lb,cat(`left `, nops(bs), ` eq.`)) fi; 
-  ans := map(Simpl, map(eval,ans), vl);
-  rs := map(proc(r,vl) [Simpl(op(1,r), vl), op(2,r)] end, rs, vl);
-  rs := select(proc(r) evalb(op(1,r) <> 0) end, rs);
-  aux := ans;
-  ans := select(proc(a) size(a) < maxsize end, ans);
-  aux := aux minus ans;
-  if ans = {} then
-    if aux <> {} then lprint(`There are`, nops(aux),`suppressed solutions of sizes:`, op(map(size,aux)));
-        `resolve/result/suppressedminsize` := min(op(map(size,aux))); # HB
-    else
-       `resolve/result/suppressedminsize` := NULL : # HB
-    fi;
-    # HB: store what failed to the global variable RESOLVE
-    RESOLVE := map(
-      proc(r) 
-        if type(op(1,r), linear(op(2,r))) then 
-          tprint(`linear resolving failed for`, op(2,r));
-          print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
-          [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvn’ho druhu
-        else 
-          tprint(`resolving failed for`, op(2,r), `nonlinear `);
-          print (op(1,r));
-          [op(1,r), op(2,r)] # [a,x1] FAIL druhŽho druhu
-        fi
-      end, rs);
-    # :HB
-    FAIL
-  else op(ans)
-  fi;
-end:
 
 reporters[resolve]:= []:  # no reporting by default
  
@@ -3087,9 +3087,135 @@ end:
 #  map(a->S[a], R), R;
 #end:
 
-$endif
+fi: # jets_new_resolve_enable
 
+#
 # Resolve - the common part
+#
+
+`resolve/lin` := proc(as,vl,{ForceFail::truefalse:=false})
+  local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb, rat, ns, ns1;
+  global maxsize, RESOLVE, `resolve/result/suppressedminsize` := NULL;
+  
+  lb := `RESOLVE:`; rt := `report/tab`[resolve];
+  bs := map(Simpl, as, vl);
+  if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
+  bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
+  if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
+  if bs = {} then RETURN () fi;  # no eq.
+  ans := {}; rs := {}; ns := {};
+  # Correction: rvl removed 12.7.2007
+  if ForceFail=true then tprint("Enforced linear failure.") fi;
+  if rt > 3 then report(lb,`resolving`, nops(bs), `eqns in `,nops(vl), `unknowns`) fi; 
+  for v in vl do # for v running through all Vars in reverse Varordering
+    if rt > 4 then report(lb,`resolving with respect to`, v) fi; 
+    bs := map(divideout, bs); # remove nonzero factors
+    bs := map(Simpl, bs, vl); # Simplify
+    bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
+    bs := map(reduceprod, bs);  # reduce products
+    cs := select(has, bs, v);  # cs = subset of bs with v 
+    if rt > 4 then report(lb,`resolving`, nops(cs), `equations`, `with respect to`, v, `: `, cs) fi; 
+    bs := bs minus cs;  # bs = subset without v
+    ls := select(type, cs, linear(v));  # ls = subset of cs linear in v
+    if ForceFail=true then
+      # printf("Enforced linear failure (w. r. to %a).\n", v);
+      rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs   
+    else   
+      if rt > 4 then report(lb,`of them linear:`, ls) fi; 
+      ps, ns1 := selectremove(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
+      ns := ns union ns1; # save linear but nonresolvable for future
+      if rt > 3 then report(lb, `Solving `, nops(bs),  `eqns w. r. to`,  v, nops(ls), ` of them linear`, nops(ps), ` of them resolvable.`) fi; 
+      if ps <> {} then                            # if solvable eqs,
+        qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
+        if rt > 4 then report(lb,`available solutions:`, qs) fi; 
+        qs := sizesort([op(qs)], size);
+        q := op(1,qs);
+        if rt > 4 then report(lb,`using solution:`, q) fi; 
+        bs := bs union map(`resolve/subs`, cs, v, q);
+        if rt > 4 then report(lb,`back substituted system:`, bs) fi; 
+        ans := {v = q} union map(
+          proc(a,v,q) op(1,a) = `resolve/subs`(op(2,a), v, q) end, ans, v, q)
+      else 
+        # try to subtract pairs of equations; not implemented yet
+        rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs
+      fi;
+    fi;
+  od;
+  if rt > 2 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
+  if rt > 2 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
+  if rt > 3 then report(lb,[`sizes: solved:`, op(sort(map(size,[op(ans)]))), `rejected:`, op(sort(map(size,[op(rs)])))]) fi;    
+  if rt > 2 then report(lb,cat(`left `, nops(bs), ` eq.`)) fi; 
+  ans := map(Simpl, map(eval,ans), vl);
+  rs := map(proc(r,vl) [Simpl(op(1,r), vl), op(2,r)] end, rs, vl);
+  rs := select(proc(r) evalb(op(1,r) <> 0) end, rs);
+  aux := ans;
+  ans := select(proc(a) size(a) < maxsize end, ans);
+  aux := aux minus ans;
+  rat := `resolve/nonresrat/test`(ns, map(lhs-rhs, ans));  
+  if rat > 1 then
+    # There are some nice but nonresolvable linear eqs
+    ns := map(proc(a) local e; e := Simpl(lhs(a) - rhs(a), vl); [e, LVar(e)] end, ans);
+    RESOLVE := 
+      map(`resolve/fail`, rs, `linear resolving failed for`)
+      union
+      map(`resolve/fail`, ns, `linear resolving omitted for`);
+    return FAIL;  
+  fi;
+  if ans = {} then
+    if aux <> {} then lprint(`There are`, nops(aux),`suppressed solutions of sizes:`, op(map(size,aux)));
+        `resolve/result/suppressedminsize` := min(op(map(size,aux))); # HB
+    else
+       `resolve/result/suppressedminsize` := NULL : # HB
+    fi;
+    # HB: store what failed to the global variable RESOLVE
+    RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`);
+    # :HB
+    FAIL
+  else op(ans)
+  fi;
+end:
+
+`resolve/fail` :=  proc(r, msg) 
+  if type(op(1,r), linear(op(2,r))) then 
+    tprint(msg, op(2,r));
+    print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
+    [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
+  else 
+    tprint(`resolving failed for`, op(2,r), `nonlinear `);
+    print (op(1,r));
+    [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
+  fi
+end:
+
+`resolve/nonresrat/test` := proc (l, r)
+  global  `resolve/nonresrat`;
+  local  L, R, Ls, Rs, Lv, Rv, Ls0, Rs0, lb, rt, aux, rat;
+  lb := `RESOLVE:`; rt := `report/tab`[resolve];
+  if assigned(`resolve/nonresrat`) and nops(l)>0 and nops(r)>0 then
+    # find nice but non-resolvable linear eqs  
+    L   := convert(l, list); R   := convert(r, list);
+    Ls  := map (size, L);    Rs  := map (size, R);    
+    Ls0 := min(op(Ls));      Rs0 := min(op(Rs));
+    rat := Rs0/Ls0;    
+    if (rat > `resolve/nonresrat`) then
+      # some reporting
+      if rt>0 then
+        L := sizesort(L, size);  
+        Reportf(0, ["There are %a nonresolvable and %a resolvable lin. eqs., minimal sizes are %a, resp. %a, ratio is %a",  nops(L), nops(R), Ls0, Rs0, rat]) ;
+        if rt>1 then
+          Lv := map (LVar, L);    
+          Rv := map (LVar, R);              
+          Reportf(1, ["\nNonresolvables: %a, \nResolvables: %a", zip(`=`, Lv, Ls), zip(`=`, Rv, Rs)]);     
+          Reportf(2, ["Minimal nonresolvable is %a", L[-1]]);
+          Reportf(3, ["Minimal resolvable is %a", sizesort(R, size)[-1]]);
+        fi;
+      fi;       
+    fi;    
+    return rat/`resolve/nonresrat`; # normalize the ratio, the result > 1 triggers FAIL   
+  else
+    return 0;
+  fi;
+end:
 
 `type/nounks` := proc(a) evalb(unks(a) = {}) end:
 
@@ -3228,7 +3354,7 @@ end:
  elif type (a, `divideout`) then 1
  elif type (a,`*`) then map(procname,a)
  elif type (a,`^`) then
-   if type (op(2,a), positive) then procname(op(1,a)) else a fi # H.B. 2004
+   if not(type (op(2,a), negative)) then procname(op(1,a)) else a fi # H.B. 2004, MM 2013
  else `divideout/unks/1`(a)
  fi
 end:
@@ -3379,7 +3505,7 @@ end:
   local x1,x2,u1,u2,o;
   global `b/<</list`,`var/<</opt`;
   if type (q2,`b/var`) then 
-    if type (q1,`b/var`) then RETURN (`list/<<`(q1,q2,`b/<</list`))
+    if type (q1,`b/var`) then RETURN (`list/<<`(q1,q2,`b/<</list`)) ### `b/<</list`
     else RETURN (false)
     fi
   elif type (q1,`b/var`) then RETURN (true)
@@ -3533,14 +3659,11 @@ end:
   fi 
 end:
 
-`Vars/<</revdeg` := proc(u1,x1,u2,x2)
-  `Vars/<</rd/1`(x2/x1);
-end:
- 
-`Vars/<</rd/1` := proc(x)
-  local y;
-  y := convert(`vars/1`(x),`*`)^degree(x)/x;
-  return degree(y)>0;
+`Vars/<</revdeg` := proc(u1,x1,u2,x2) # MM
+  if `count/length`(x1) < `count/length`(x2) then true
+  elif `count/length`(x1) > `count/length`(x2) then false
+  else `Vars/<</c/1`(x1/x2)
+  fi
 end:
 
 `Var/<</opt` := ['function','degree','reverse']:
@@ -3619,7 +3742,8 @@ TestUnkOrd := proc(L::list:=select(type, `unk/<</list`, symbol))
 end:
 
 `TestUnkOrd/vars` := proc(U, V)
-  if not( vars(U) subset vars(V) ) then
+  local UU := vars(U), VV := vars(V); 
+  if (VV<>UU) and (VV subset UU) then
     printf("The unknown %a of variables %a is followed by the unknown %a of fewer variables %a\n", 
             U, vars(U), V, vars(V));
     U
@@ -5151,7 +5275,7 @@ module CC ()
         cr, rr := selectremove(proc(a) `subset`({r}, a) end, ii);
         rprintf(1, ["Looking for class containing %a in %a and joining %a to it. Found %a, remains %q",
                                                   r,    ii,            u,              cr,         rr]);
-        assert([nops(cr)=1, "Inconsistent hypergraph item %q", H[u]]);        
+        assert([nops(cr)=1, "Inconsistent hypergraph item H[%a]=%q", u, H[u]]);        
         res := u = {op(cr) union {u}} union rr;
       else
         res := NULL;
@@ -5189,8 +5313,9 @@ module CC ()
         `markFF/2`(u, r, s, H);        
 			elif N=2 then	# FIRST kind
 			  assert([ {u} in H[u][1], "Wrong hypergraph implementation, missing {%a} in H[%a][1]=%a", u, u, H[u][1]]);  
-			  assert([ member(t, op(H[u][1] minus {{u}})), 
-			           "Monomial %a is not member of first kind cc classess at %a, H[%a][1]=%a", t, u, u, H[u][1]]);			  			  
+			  # ??? 
+        #assert([ member(t, op(H[u][1] minus {{u}})), 
+			  #         "Monomial %a is not member of first kind cc classess at %a, H[%a][1]=%a", t, u, u, H[u][1]]);			  			  
 			  H[u][1] := {{r,s}};			  
 			  #cr, rest := selectremove(curry(`subset`, `JetMonomTools/J`:-vars(u/t)), H[u][2]);
 			  cr, rest := selectremove(proc(a) `subset`(`JetMonomTools/J`:-vars(u/t), a) end, H[u][2]);
@@ -5575,6 +5700,46 @@ rlprint := proc(level, msg_list::{uneval,list}, {levelName:=`global`})
    lprint(sprintCallingFunction(2));
    lprint(op(eval(msg_list)))
  end:
+end:
+
+#
+# Profiling
+#
+
+JetsProfiler := module ()
+  export 
+      Print,
+      ModuleApply;  
+  local printer, profilername, profiledprocs;    
+  global `cc/time`, `derive/time`, `resolve/time`;
+  
+  ModuleApply := proc(profiler::symbol:='none')   
+    if assigned(profilername) and profilername <> profiler then
+    	 error "Profiler change not implemented. Please do it manually."
+    end;
+    profiledprocs := [`run/l`, cc, `derive/1`, `resolve/lin`, _rest];
+    #profiledprocs := map(convert, profiledprocs, `global`);
+    if profiler='none' then
+      # nothing to do
+    elif profiler='profile' then
+      profilername := profiler;
+      profile(op(profiledprocs));
+      printer := showprofile;
+      return profiler, profiledprocs;
+    elif profiler='Profile' then
+      profilername := profiler;
+      CodeTools[Profiling][Profile](op(profiledprocs));
+      printer := CodeTools[Profiling][PrintProfiles];
+      return profiler, profiledprocs;
+    else
+      error "Unknown profiler name %1. Use 'profile' or 'Profile'.", profiler;
+    fi;
+  end;
+
+  Print := proc()
+	  printer(_rest);
+	  printf("cc: %f s,  derive: %f s, resolve: %f s\n", `cc/time`, `derive/time`, `resolve/time`);
+  end;
 end:
 
 ################################################################################
@@ -6094,6 +6259,7 @@ module JetMachine ()
       d2 := map(lhs, {args});
       if not(d1 subset d2)  then # do we have all unknowns?
         printf("Missing dependencies: %a is not subset of %a\n", d1, d2);
+        return (false); # missing false fixed HB 10. 5. 2013
       else # does dependences match?
         andmap(proc(a) 
                  local v ;
