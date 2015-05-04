@@ -120,6 +120,12 @@
 # * jetorder() uses max()
 # * `size/*/<`() at lest one result is always returned (low ressize and putsize settings do not cause error)
 # * derive reporting slightly changed
+#
+#
+# v 5.82
+# * coordinates() and `jet/aliases`() has new option separator:="_" ()
+# * using coordinates(..., separator="__"), jets are prettyprinted as subscripts (prior Maple 17)
+# * TestUnkOrd() functionality limited to simple dependecy test (memory leak in second part of the test found)
 
 
 ###########################################################################################
@@ -129,7 +135,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.81 for Maple 15 as of Mar 9, 2015`);
+print(`Jets 5.82 for Maple 15 as of May 4, 2015`);
 
 #
 # Source code configuration, options and parameters
@@ -300,7 +306,7 @@ end:
 
 # Declaration of coordinates (only plural form):
 
-coordinates := proc (blist,flist)
+coordinates := proc (blist,flist, MaxAliasDegree::integer:=0, {separator::string:="_"})
   global `b/var/list`,`b/var/s`,`b/dim`,`b/<</list`,
     `f/var/list`,`f/var/s`,`f/dim`,`f/<</list`;
   if nargs = 0 then
@@ -328,7 +334,7 @@ coordinates := proc (blist,flist)
   doderives();
   refresh ();
 # Result:
-  if nargs > 2 then `jet/aliases`(`f/var/list`,args[3])
+  if MaxAliasDegree > 0 then `jet/aliases`(`f/var/list`, MaxAliasDegree, ':-separator'=separator)
   else `b/var/list`, `f/var/list`
   fi
 end:
@@ -467,12 +473,12 @@ end:
 # f1,...,fn,r, where r = jet order and 
 # f's are fibre variables (optional)
 
-`jet/aliases` := proc ()
+`jet/aliases` := proc ({separator::string:="_"})
   global `b/var/list`;
   local aux,flist,r;
-  r := args[nargs];
-  if nargs = 1 then flist := `f/var/list` 
-  else flist := args[1..nargs-1] 
+  r := _rest[-1];
+  if _nrest = 1 then flist := `f/var/list` 
+  else flist := _rest[1..-2] 
   fi;
   if not type (`b/var/list`,'list'(symbol)) then
     ERROR (`base variables must be symbols`) 
@@ -481,31 +487,31 @@ end:
   #aux := map(proc(a) a/coeffs(a) end, [op(sort(aux, `b/var/list`))]);
   aux := sort([`count/gen/all`(`b/var/list`, r)]); # HB
   alias(op(map(proc(u,aux) if type(u,symbol) then
-        op(map(proc(x,u) cat(u,'_',`bcount//str`(x)) = 'jet'(u,x) end,
+        op(map(proc(x,u) cat(u, separator, `bcount//str`(x, separator)) = 'jet'(u,x) end,
           aux, u))
       else
         op(map(proc(x,u)
-            cat(op(0,u),'_',`bcount//str`(x))[op(u)] = 'jet'(u,x)
+            cat(op(0,u), separator, `bcount//str`(x, separator))[op(u)] = 'jet'(u,x)
           end, aux, u))
       fi
     end, flist, aux)));
 end:
 
-`bcount//str` := proc (x)
+`bcount//str` := proc (x, separator)
   if type (x,'name') then x
   elif type (x,`^`) then 
     if op(2,x) > 3 then cat(op(2,x),op(1,x)) else op(1,x) $ op(2,x) fi
-  elif type (x,`*`) then `bcount//str/_`(op(map(`bcount//str`, [op(x)])))
+  elif type (x,`*`) then `bcount//str/_`(op(map(`bcount//str`, [op(x)], separator)), ':-separator'=separator)
   else ERROR (`not a count`, x)
   fi 
 end:
 
-`bcount//str/_` := proc ()
+`bcount//str/_` := proc ({separator::string:="_"})
   local i,a,b,ans;
-  ans := args[1];
-  for i from 2 to nargs do
-    a := args[i-1]; b := args[i];
-    if length(a) + length(b) > 2 then ans := ans,`_`,b else ans := ans,b fi
+  ans := _rest[1];
+  for i from 2 to _nrest do
+    a := _rest[i-1]; b := _rest[i];
+    if length(a) + length(b) > 2 then ans := ans,separator,b else ans := ans,b fi
   od 
 end:
 
@@ -513,7 +519,7 @@ end:
   if type (x,`^`) then `count//seq`(op(1,x)) $ op(2,x)
   elif type (x,`*`) then op(map(`count//seq`,[op(x)]))
 #  elif type (x,symbol) then x
-#  else cat(op(1,x),'_',`bcount//str`(op(2,x))) 
+#  else cat(op(1,x),'_',`bcount//str`(op(2,x), separator)) 
   else x
   fi
 end:
@@ -2383,8 +2389,10 @@ end:
       `run/put`(op(aux));
        
       #if Bytes() > Blimit then reduce() fi # HB 2015: This was a bug (causing loosing of compatibility conditions)
+      if rt > 0 then report(lb,[`Next run...`]) fi;    
     fi
-  od;        
+  od; 
+ tprint();       
 end:
 
 `run/l/extraders` := proc() NULL end:
@@ -3735,21 +3743,23 @@ TestUnkOrd := proc(L::list:=select(type, `unk/<</list`, symbol))
     if nops(r)>0 then 
       WARNING("suspicious unknowns ordering found in variables %1", r) 
     fi;
-    # dependences in pd/tab
-    T := `cc/pd/listall`();
-    s := select(U -> assigned(`pd/tab`[U]) and (T[U] minus {indices(`pd/tab`[U], nolist)} <> {}), L);
-    if nops(s)>0 then 
-      WARNING ("suspicious `pd/tab` dependences %1:", s);
-      map(proc(U)  
-            printf("Unknown %a: vars(%a) = %a but:\n", U, U, vars(U));
-            map(proc(m) local vs := vars(`pd/tab`[U][m]);
-                  if not(vs subset vars(U)) then printf("  pd(%a,%a):  vars = %a,   Vars = %a\n",  
-                                                         U, m, vs, Vars(`pd/tab`[U][m])) fi;
-                end, [indices(`pd/tab`[U], nolist)]);
-          end, s);
-    fi;
-    # the result
-    return r, s;
+    return r;
+    ## memory leak in second part of the test found so it is commented out (may be still used with a care)
+    ## dependences in pd/tab
+    #T := `cc/pd/listall`();
+    #s := select(U -> assigned(`pd/tab`[U]) and (T[U] minus {indices(`pd/tab`[U], nolist)} <> {}), L);
+    #if nops(s)>0 then 
+    #  WARNING ("suspicious `pd/tab` dependences %1:", s);
+    #  map(proc(U)  
+    #        printf("Unknown %a: vars(%a) = %a but:\n", U, U, vars(U));
+    #        map(proc(m) local vs := vars(`pd/tab`[U][m]);
+    #              if not(vs subset vars(U)) then printf("  pd(%a,%a):  vars = %a,   Vars = %a\n",  
+    #                                                     U, m, vs, Vars(`pd/tab`[U][m])) fi;
+    #            end, [indices(`pd/tab`[U], nolist)]);
+    #      end, s);
+    #fi;
+    ## the result
+    #return r, s;
   catch:
     printf("TestUnkord failed: %q\n", 
            StringTools[FormatMessage](lastexception[2..-1]))
