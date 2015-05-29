@@ -123,10 +123,11 @@
 #
 #
 # v 5.82
-# * coordinates() and `jet/aliases`() has new option separator:="_" ()
+# * coordinates(), newfibre() and `jet/aliases`() has new option separator:="_" ()
 # * using coordinates(..., separator="__"), jets are prettyprinted as subscripts (prior Maple 17)
+# * `jet/aliases/mainseparator` is a global variant of the above option
 # * TestUnkOrd() functionality limited to simple dependecy test (memory leak in second part of the test found)
-
+# * BasisExtractor: unknown U collected in the result
 
 ###########################################################################################
 ###########################################################################################
@@ -135,7 +136,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.82 for Maple 15 as of May 4, 2015`);
+print(`Jets 5.82.1 for Maple 15 as of May 26, 2015`);
 
 #
 # Source code configuration, options and parameters
@@ -306,9 +307,10 @@ end:
 
 # Declaration of coordinates (only plural form):
 
-coordinates := proc (blist,flist, MaxAliasDegree::integer:=0, {separator::string:="_"})
+coordinates := proc (blist,flist, MaxAliasDegree::integer:=0, {separator::string:=`jet/aliases/mainseparator`})
   global `b/var/list`,`b/var/s`,`b/dim`,`b/<</list`,
     `f/var/list`,`f/var/s`,`f/dim`,`f/<</list`;
+  local res;
   if nargs = 0 then
     ERROR(`arguments should be:\n
 [list of base variables], [list of fibre variables], optional maxorder`) 
@@ -334,7 +336,12 @@ coordinates := proc (blist,flist, MaxAliasDegree::integer:=0, {separator::string
   doderives();
   refresh ();
 # Result:
-  if MaxAliasDegree > 0 then `jet/aliases`(`f/var/list`, MaxAliasDegree, ':-separator'=separator)
+  if MaxAliasDegree > 0 then 
+    res := `jet/aliases`(`f/var/list`, MaxAliasDegree, ':-separator'=separator);
+    if separator <> "_" then # for backward compatibility, allways alias u_x
+       `jet/aliases`(`f/var/list`, MaxAliasDegree, ':-separator'="_") 
+    fi; 
+    res;
   else `b/var/list`, `f/var/list`
   fi
 end:
@@ -468,6 +475,19 @@ end:
 jetorders := proc(f) # HB
   map(varorder,`vars/1`(f))
 end:
+
+# If you assign
+# `jet/aliases/mainseparator` := "__" ;
+# BEFORE reading-in jets.s
+# jets will be pretyprinted using subscripts, i. e. aliased using "__" instead of "_"
+# jet(u,x) = u__x
+# and old fashion jet aliases will be still available for backward compatibility
+# jet(u,x)=u__x=u_x
+if not(assigned(`jet/aliases/mainseparator`)) then `jet/aliases/mainseparator` := "_" fi:
+
+# Creating aliases for jet variables. Arguments are:
+# f1,...,fn,r, where r = jet order and 
+# f's are fibre variables (optional)
 
 # Creating aliases for jet variables. Arguments are:
 # f1,...,fn,r, where r = jet order and 
@@ -1950,7 +1970,7 @@ end:
 
 # Symmetries/laws basis extraction # HB
 
-BasisExtractor := proc(U, Cs::sequential(symbol), {Indexer::symbol:=index})  
+BasisExtractor := proc(U, Cs::sequential(symbol):=unks(U), {Indexer::symbol:=index})  
   description 
     "Transfoms a sum of elements the form U = C_1*E_1 + ... + C_i*E_i + ..."
     "   where U (an sum of expressions or a linst of them)"
@@ -1962,7 +1982,9 @@ BasisExtractor := proc(U, Cs::sequential(symbol), {Indexer::symbol:=index})
     "  where for j<>i all C_j are substituted to 0"
     "  and C_j set to 1 if is constant (and left untouched if function).";
   if not(assigned(cat(`BasisExtractor/Indexer/`, Indexer))) then error "Unknown result type %1", Indexer fi;
-  return map(simpl, [eval(seq( cat(`BasisExtractor/Indexer/`, Indexer)(Cs,i) = `BasisExtractor/1`(U, Cs, i), i=1..nops(Cs)))]);
+  return map(collect, 
+            [eval(seq( cat(`BasisExtractor/Indexer/`, Indexer)(Cs,i) = `BasisExtractor/1`(U, Cs, i), i=1..nops(Cs)))], 
+            Cs, simpl);
 end:
 
 `BasisExtractor/Indexer/index` := proc(cs,i) i end: # indexed by integers
@@ -4388,30 +4410,34 @@ parameter(_htt):
 
 # Introducing additional fibre variables
 
-newfibre := proc ()
-  local flist;
+newfibre := proc (Flist, MaxAliasDegree::integer:=0, {separator::string:=`jet/aliases/mainseparator`})
   global `f/var/list`,`f/var/s`,`f/dim`,`f/<</list`,
     `b/var/list`,`n/var/list`;
+  local flist, res;
   if nargs = 0 then
     ERROR(`arguments should be:\n
-[list of additional fibre variables], optional maxorder`) 
+[list of additioal fibre variables], optional maxorder`) 
   fi;
-  flist := args[1];
-  if not type(flist, list(name)) then
+  if not type(Flist, list(name)) then
     ERROR(`fibre coordinates must be unassigned names`)
   fi;
   if nops([op(`b/var/list`),op(flist)])
      <> nops({op(`b/var/list`),op(flist)}) then
     ERROR(`coordinates must be mutually different`)
   fi;
-  flist := select(proc(f) not type(f,`f/var`) end, flist);
+  flist := select(proc(f) not type(f,`f/var`) end, Flist);
   `f/var/list` := [op(`f/var/list`), op(flist)];
   `f/var/s` := {op(`f/var/list`)};
   `f/dim` := nops(`f/var/s`);
   `f/<</list` := `f/var/list`;
   `n/var/list` := [`n/var/list`, op(flist)]; 
   noderive(op(`n/var/list`));
-  if nargs > 1 then `jet/aliases`(flist,args[2])
+  if MaxAliasDegree > 0 then #`jet/aliases`(flist,args[2])
+    res := `jet/aliases`(flist,MaxAliasDegree, ':-separator'=separator);
+    if separator <> "_" then # for backward compatibility, allways alias u_x
+       `jet/aliases`(flist,MaxAliasDegree, ':-separator'="_")
+    fi;  
+    res;
   else `n/var/list`
   fi
 end:
