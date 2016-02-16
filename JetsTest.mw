@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet>
-<Version major="17" minor="2"/>
+<Version major="2015" minor="1"/>
 <Label-Scheme value="2" prefix=""/>
-<View-Properties presentation="false" autoexpanding_sections="true">
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false">
 </View-Properties>
-<MapleNet-Properties elisiondigitsbefore="100" labelling="true" indentamount="4" elisiontermsthreshold="10000" ansi="false" errorbreak="1" useclientjvm="true" echo="1" imaginaryunit="I" labelwidth="20" contextmenusize="automatic" plotdriver="opengl" elisiondigitsafter="100" plotoutput="terminal" helpbrowser="standard" rtablesize="10" elisiontermsbefore="100" elisiondigitsthreshold="10000" typesetting="standard" plotdevice="inline" verboseproc="1" showassumed="1" errorcursor="false" longdelim="true" plotoptions="" quiet="false" elisiontermsafter="100" screenwidth="120" preplot="" prettyprint="3" displayprecision="-1" screenpixelheight="1200" warnlevel="3" screenheight="25" latexwidth="8.0" postplot="" prompt="&gt; " ShowLabels="false"/>
+<MapleNet-Properties elisiondigitsbefore="100" labelling="true" indentamount="4" elisiontermsthreshold="10000" ansi="false" errorbreak="1" useclientjvm="true" echo="1" imaginaryunit="I" labelwidth="20" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" contextmenusize="automatic" plotdriver="opengl" elisiondigitsafter="100" plotoutput="terminal" helpbrowser="standard" rtablesize="10" elisiontermsbefore="100" elisiondigitsthreshold="10000" typesetting="standard" plotdevice="inline" verboseproc="1" showassumed="1" quiet="false" errorcursor="false" longdelim="true" plotoptions="" elisiontermsafter="100" screenwidth="120" preplot="" prettyprint="3" displayprecision="-1" screenpixelheight="1200" warnlevel="3" screenheight="25" latexwidth="8.0" postplot="" prompt="&gt; " ShowLabels="false"/>
 <Styles>
 <Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
@@ -83,14 +83,15 @@
 <Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
 <Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
 </Styles>
+<Startup-Code startupcode=""/>
 <Metadata-table>
     <Metadata-category name="&lt;default&gt;"/>
     <Metadata-tag id="0" category="&lt;default&gt;" name="Document Properties">
         <Metadata-attribute name="Subject" value="&lt;default&gt;"/>
         <Metadata-attribute name="Author" value="&lt;default&gt;"/>
         <Metadata-attribute name="Item List" value="true"/>
-        <Metadata-attribute name="Title" value="&lt;default&gt;"/>
         <Metadata-attribute name="Keywords" value="&lt;default&gt;"/>
+        <Metadata-attribute name="Title" value="&lt;default&gt;"/>
     </Metadata-tag>
 </Metadata-table>
 <Task-table>
@@ -107,7 +108,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">read(&quot;Jets.s&quot;);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUlKZXRzfjUuODJ+Zm9yfk1hcGxlfjE1fmFzfm9mfk1heX40LH4yMDE1RzYi</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUpKZXRzfjUuODN+Zm9yfk1hcGxlfjE1fmFzfm9mfkZlYn4xNix+MjAxNkc2Ig==</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L936" drawlabel="true">
@@ -394,6 +395,30 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L8" drawlabel="true">
 <Input>
@@ -402,6 +427,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L942" drawlabel="true">
 <Input>
@@ -423,6 +451,9 @@
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L953" drawlabel="true">
 <Input>
@@ -436,6 +467,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {-u}, {u}, `cc 3`):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L14" drawlabel="true">
 <Input>
@@ -446,6 +480,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {x}, {-x}, `cc 4`):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L16" drawlabel="true">
 <Input>
@@ -455,6 +492,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {2*u}, {-2*u},`cc 5`):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L18" drawlabel="true">
 <Input>
@@ -465,6 +505,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Ts (cc(), {2*x*u}, {-2*x*u}, `cc 6`):</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds,cc):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L20" drawlabel="true">
 <Input>
@@ -473,6 +516,9 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">equations ():</Text-field>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">clear(dependence,pds):</Text-field>
 </Input>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
+</Output>
 </Group>
 <Group labelreference="L22" drawlabel="true">
 <Input>

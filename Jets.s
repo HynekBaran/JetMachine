@@ -128,6 +128,10 @@
 # * `jet/aliases/mainseparator` is a global variant of the above option
 # * TestUnkOrd() functionality limited to simple dependecy test (memory leak in second part of the test found)
 # * BasisExtractor: unknown U collected in the result
+#
+#
+# v 5.83
+# * removed reduce() when store() is called (inside `store/pds`())
 
 ###########################################################################################
 ###########################################################################################
@@ -136,7 +140,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.82.1 for Maple 15 as of May 26, 2015`);
+print(`Jets 5.83 for Maple 15 as of Feb 16, 2016`);
 
 #
 # Source code configuration, options and parameters
@@ -1222,6 +1226,7 @@ end:
 
 reduce := proc()
   local ans1,ans2;
+  print(`Reducing...`);
   ans1 := `reduce/pd`();
   ans2 := `unks/assignments`();
   refresh();
@@ -2451,7 +2456,7 @@ Blimit := 25000:
 `run/put` := proc()
   put(args);
   tprint(`Put: `); map(`run/put/print`, [args]);
-  if `storing/b` then store(`store/file`) fi
+  if `storing/b` then store(`store/file`, reduce=false) fi
 end:
 
 miniprint := proc(p)
@@ -2461,12 +2466,12 @@ end:
 
 microprint := proc(p)
   option inline;
-  `if`(evalb(length (p) > 5000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
+  `if`(evalb(length (p) > 10000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
 end:
 
 smartprint := proc(p)
   option inline;
-  `if`(evalb(length (p) > 300),  microprint(p), print(p));
+  `if`(evalb(length (p) > 5000),  microprint(p), print(p));
 end:
 
 `run/put/print` := op(smartprint):
@@ -2488,7 +2493,8 @@ end:
   # HB:
   global `pd/tab`;
   local p,el,e,f,b; 
-  reduce(); b := false;
+  # reduce(); # HB 2016 - if storing is enabled, reduce() was called within run()
+  b := false;
   for p in op(2,op(`pd/tab`)) do
     el := op(2,op(2,p));
     f := op(1,p);
@@ -2500,7 +2506,7 @@ end:
   # :HB
 end:
 
-store := proc(file)
+store := proc(file, { reduce::truefalse := true })
   # HB: 
   local fd;
   print(cat(`storing in `, file));
@@ -2511,6 +2517,8 @@ store := proc(file)
     # storing in file
     fd := fopen(file, WRITE, TEXT):
     try
+      if reduce then ':-reduce'(); fi; # HB 2016
+    
       fprintf(fd, "dependence(%q);\n\n", dependence());
         
       map(e->fprintf(fd, "put(%q);\n", e), [`unks/assignments`()]);
