@@ -132,6 +132,11 @@
 #
 # v 5.83
 # * removed reduce() when store() is called (inside `store/pds`())
+#
+#
+# v 5.84
+# fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
+# linderive() introduced (but not used yet) 
 
 ###########################################################################################
 ###########################################################################################
@@ -140,7 +145,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.83 for Maple 15 as of Feb 16, 2016`);
+print(`Jets 5.84 for Maple 15 as of Mar 01, 2016`);
 
 #
 # Source code configuration, options and parameters
@@ -2981,9 +2986,8 @@ printf("\nUsing the new implementation of resolve (not well tested yet!)\n");
 #       sprintf("# LVars(nonlin)=%q\n", map(a->a:-Vars[1], AN))));
     
   if nops(A1) = 0 then
-    `resolve/fail`(AL,AN);  
-    #print("OLD FASHION RESOLVE failure handling");
-    B := A;
+    `resolve/reportfail`(AL,AN);  
+     B := A;
   #####                                                  
   else 
     B := A1S; # all simple
@@ -3025,20 +3029,20 @@ end:
 
 `resolve/lin/price` := proc(r)  option inline; size(r) end:
 
-`resolve/fail` := proc(AL, AN)
-  #map(`resolve/fail/report/lin`, AL);
-  #map(`resolve/fail/report/nonlin`, AN);
+`resolve/reportfail` := proc(AL, AN)
+  map(`resolve/reportfail/lin`, AL);
+  map(`resolve/reportfail/nonlin`, AN);
   tprint(sprintf("Resolve failed (%a linear, %a NONlinear).", nops(AL), nops(AN)));  
   FAIL;
 end:
 
-`resolve/fail/report/lin` := proc(a)
+`resolve/reportfail/lin` := proc(a)
   tprint(sprintf("Linear resolving failed in %a:", a:-Vars[1]));
   #print(a:-expr);
-  print(a:-leadLinCoeff*a:-Vars[1]=-a:-rest);
+  print(a:-leadLinCoeff*a:-Vars[1]="..."); # ... = -a:-rest
 end:
 
-`resolve/fail/report/nonlin` := proc(a)
+`resolve/reportfail/nonlin` := proc(a)
   tprint(sprintf("NONLinear resolving failed in %a:", a:-Vars[1]));
   print(a:-expr);
 end:
@@ -3141,7 +3145,7 @@ fi: # jets_new_resolve_enable
 #
 
 `resolve/lin` := proc(as,vl,{ForceFail::truefalse:=false})
-  local bs,v,cs,ls,ps,p,q,qs,ans,aux,rs,rt,lb, rat, ns, ns1;
+  local bs,v,cs,ls,ns,lns,ps,p,q,qs,ans,aux,rs,rt,lb, rat, os, os1;
   global maxsize, RESOLVE, `resolve/result/suppressedminsize` := NULL;
   
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
@@ -3150,7 +3154,7 @@ fi: # jets_new_resolve_enable
   bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
   if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
   if bs = {} then RETURN () fi;  # no eq.
-  ans := {}; rs := {}; ns := {};
+  ans := {}; rs := {}; os := {};
   # Correction: rvl removed 12.7.2007
   if ForceFail=true then tprint("Enforced linear failure.") fi;
   if rt > 3 then report(lb,`resolving`, nops(bs), `eqns in `,nops(vl), `unknowns`) fi; 
@@ -3161,16 +3165,19 @@ fi: # jets_new_resolve_enable
     bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
     bs := map(reduceprod, bs);  # reduce products
     cs := select(has, bs, v);  # cs = subset of bs with v 
-    if rt > 4 then report(lb,`resolving`, nops(cs), `equations`, `with respect to`, v, `: `, cs) fi; 
+    if rt > 3 then report(lb,`resolving`, nops(cs), `equations`, `with respect to`, v, `: `, cs) fi; 
     bs := bs minus cs;  # bs = subset without v
-    ls := select(type, cs, linear(v));  # ls = subset of cs linear in v
+    ls, ns := selectremove(type, cs, linear(v));  # ls = subset of cs linear in v
     if ForceFail=true then
       # printf("Enforced linear failure (w. r. to %a).\n", v);
       rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs   
     else   
       if rt > 4 then report(lb,`of them linear:`, ls) fi; 
-      ps, ns1 := selectremove(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
-      ns := ns union ns1; # save linear but nonresolvable for future
+      lns := `resolve/nonlin`(ns, v);
+      if rt > 0 then if nops(lns) > 0 then report(lb, [nops(ns), ` of nonlinear linderive-d to `, nops(lns), `linear. NOT USED!`]) fi fi;
+      #ls := ls union lns; # NO! cannot be used directly here since LVar is different than v!!!
+      ps, os1 := selectremove(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
+      os := os union os1; # save linear but nonresolvable for future
       if rt > 3 then report(lb, `Solving `, nops(bs),  `eqns w. r. to`,  v, nops(ls), ` of them linear`, nops(ps), ` of them resolvable.`) fi; 
       if ps <> {} then                            # if solvable eqs,
         qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
@@ -3198,14 +3205,14 @@ fi: # jets_new_resolve_enable
   aux := ans;
   ans := select(proc(a) size(a) < maxsize end, ans);
   aux := aux minus ans;
-  rat := `resolve/nonresrat/test`(ns, map(lhs-rhs, ans));  
+  rat := `resolve/nonresrat/test`(os, map(lhs-rhs, ans));  
   if rat > 1 then
     # There are some nice but nonresolvable linear eqs
-    ns := map(proc(a) local e; e := Simpl(lhs(a) - rhs(a), vl); [e, LVar(e)] end, ans);
+    os := map(proc(a) local e; e := Simpl(lhs(a) - rhs(a), vl); [e, LVar(e)] end, ans);
     RESOLVE := 
       map(`resolve/fail`, rs, `linear resolving failed for`)
       union
-      map(`resolve/fail`, ns, `linear resolving omitted for`);
+      map(`resolve/fail`, os, `linear resolving omitted for`);
     return FAIL;  
   fi;
   if ans = {} then
@@ -3220,6 +3227,19 @@ fi: # jets_new_resolve_enable
     FAIL
   else op(ans)
   fi;
+end:
+
+`resolve/nonlin` := proc(ns, LV)
+  `union`(op(map(`linderive/1`, ns, LV)))
+end:
+
+linderive := proc()
+  description "given expression(s) nonlinear in leading Var, derive them in order to obtain linear consequences";
+  `union`(op(map(`linderive/1`, [args])))
+end:
+
+`linderive/1` := proc (a, LV := LVar(a))
+  map2(pd, a, vars(LV))
 end:
 
 `resolve/fail` :=  proc(r, msg) 
