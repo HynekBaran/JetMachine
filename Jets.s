@@ -135,8 +135,28 @@
 #
 #
 # v 5.84
-# fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
-# linderive() introduced (but not used yet) 
+# * fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
+# * linderive() introduced (but not used yet) 
+#
+#
+# v 5.85
+# * clear() rewritten:
+#   + clear(pds) is also clearing cc's (unless `clear/pds/ccclearing`:='suppress' is assigned)
+#   + clear(puts) and clear(assignments) introduced
+#   + clear(..., output=eq) output format modifier
+# * `puts/assignments`() and `put/name/tab` defined (as an generalisation of `unks/assignments`() resp. `unk/tab`)
+# * store() is saving:
+#   + all put symbols (form `put/name/tab`) instead of unknowns only (`unk/tab`)
+#   + unknowns order (restored from `unk/tab`)
+#   + varordering and Varordering
+#   + terminal issue fixed  
+#
+#
+# v 5.86
+# * version mismatch (5.85) hopefully fixed 
+# * `put/sizelimit` and `size/1/DD` introduced
+# * run() refactored (cc's are derived)
+# * `put/1` distinguishes redundand and contradictory attempt of putting already assigned expressions
 
 ###########################################################################################
 ###########################################################################################
@@ -145,7 +165,10 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.84 for Maple 15 as of Mar 01, 2016`);
+#print(`Jets 5.85 for Maple 15 as of June 28, 2016`);
+#print(`Jets 5.85 RC 2 for Maple 15 as of Jan 10, 2016`);
+#print(`HB 2017.02.21 (+ size/1/pd fixDD at 2017.02.28 ) based on MM 2017.01.28 based on Jets 5.85 RC 1 for Maple 15 as of Jan 05, 2016`);
+print(`Jets 5.86 as of April 19, 2017`);
 
 #
 # Source code configuration, options and parameters
@@ -207,6 +230,8 @@ if assigned(cat(`jets/read/flag/`,__FILE__)) then `quit`(255); fi; # force immed
 assign(cat(`jets/read/flag/`,__FILE__), true):
 
 ### aux macros
+#$define Report(l, m)  if rt > l then report(lb,m) fi;
+#$define Reportf(l, m) if rt > l then report(lb,sprintf(op(m))) fi;
 $define Report(l, m)  if rt > l then report(lb,[cat('procname','`:`'), op(m)]) fi;
 $define Reportf(l, m) if rt > l then report(lb,sprintf(cat("%s: ", op(1,m)), procname, op(2..-1, m))) fi;
 
@@ -279,11 +304,19 @@ size := proc() # HB generalized size of any number of arguments
 end:
 
 sizefactor := 1000000000:
+
 `size/1` := proc(a) # MM size evaluator
   global sizefactor;
-  evalf(nops(Vars(a)) + length(a)/sizefactor)
+  local b;
+  b := eval(eval(a,  TD=`size/1/DD`), pd=`size/1/DD`);
+  evalf(nops(Vars(a)) + length(b)/sizefactor);
 end:
 
+`size/1/DD` := proc(f, p)
+  # do not count too much of pd(f,p) derivating monomial p
+	local d; # dummy 
+	'DD'(f, cat(d $ degree(p))) # slight penalty for higher derivatives
+end:
 
 #sizesort := proc(ql,pr)  # ql = list of expressions, pr = sizeing proc
 #  local qls;
@@ -585,18 +618,27 @@ end:
 
 # To clear a declaration from all names:
 
-clear := proc()
-  local a,aux,ans;
-  aux := select(type,{args},'name');
-  if aux <> {args} then
-    ERROR(`not a name`, op({args} minus aux)) 
-  fi;
-  aux := select(proc(a) Existing(`clear/`,a) end, aux);
-  if aux <> {args} then
-    ERROR(`invalid argument`, op({args} minus aux)) 
-  fi;
+clear := proc(opts::seq(name), {output::identical(expr, eq):=expr})
+  local a,aux,ans,nex;
+  aux := {opts};
+  #lprint(aux);
+  #if aux minus {} <> {args} then
+  #  ERROR(`not a name`, op({args} minus aux)) 
+  #fi;
+  
+  if has(aux, puts) then aux := aux union {cc, pds, assignments}
+  elif has(aux, pds) and `clear/pds/ccclearing`<>'suppress' then aux := aux union {cc} fi;
+  
+  aux, nex := selectremove(proc(a) Existing(`clear/`,a) end, aux);
+  
+  #lprint(aux,nex);
+  #if aux <> {args} then
+  #  ERROR(`invalid argument`, op({args} minus aux)) 
+  #fi;
   ans := NULL;
-  for a in aux do ans := ans, Call(`clear/`,a)() od;
+  aux := sort(convert(aux,list)); # assignments is the first in the alphabet :)
+  for a in aux do ans := ans, Call(`clear/`,a)(_options) od;
+  return [ans];
 end:
 
 #
@@ -628,6 +670,7 @@ end:
 `clear/parameter` := proc()
   local a,aux;
   global `name/tab`;
+  print(`Clearing parameter's.`);
   aux := {registered('parameter')};
   for a in aux do
     `name/tab`[a] := `name/tab`[a] minus {'parameter'} 
@@ -712,6 +755,7 @@ end:
 `clear/dependence` := proc()
   local e,el,ans;
   global `dep/tab`;
+  print(`Clearing dependence's.`);
   el := op(2,op(`dep/tab`));
   ans := {seq((op(1,e))(op(op(2,e))), e = el)};
   `dep/tab` := table([]);
@@ -1125,20 +1169,40 @@ put := proc()
 end:
 
 
+unassign('`put/sizelimit`'): # use with extreme care!
 
 `put/1` := proc(p,a)
-  global `unk/s`,`unk/<</list`,`dep/tab`,`pd/tab`;
+  global `unk/s`,`unk/<</list`,`dep/tab`,`pd/tab`, `put/name/tab`, `put/sizelimit`;
+  #if eval(p)<>p then
+  #  if eval(p) = a then 
+  #    printf("put: Ignoring already assigned argument %a=%a\n", p,a);
+  #  else
+  #   printf("put: Ignoring already assigned argument %a=%a, the old value is %a\n", p, eval(p), a);
+  #  fi;
   if type (p,'name') then
     `unk/s` := map(`put/1/remove`, `unk/s`, p);
     `unk/<</list` := map(`put/1/remove`, `unk/<</list`, p);
+     `put/name/tab`[p] := a;
     assign(p = a);
   elif type (p,specfunc(anything,'pd')) then
     if a = 0 and type (op(1,p),'dep') and type(op(2,p),'var') then 
       `dep/tab`[op(1,p)] := `dep/tab`[op(1,p)] minus {op(2,p)}
-    else 
-      `pd/tab`[op(1,p)][op(2,p)] := a
+    else     	  
+       if type(`put/sizelimit`, numeric) and size(a) > `put/sizelimit` then
+          printf("put: Ignoring too large (size=%a>%a, length=%a) argument %a=%a\n", size(a),`put/sizelimit`, length(a), p, a);          	  
+       else
+      	 if type(`put/sizelimit`, numeric) then 
+          	printf("put: Putting (size=%a<=%a, length=%a) %a=%a\n", size(a),`put/sizelimit`, length(a), p, a);  
+         fi;
+         `pd/tab`[op(1,p)][op(2,p)] := a;
+       fi;	
     fi;
-  else lprint (`ignoring unexpected input`, p = a)
+  else 
+    if simpl(p-a) = 0 then 
+      lprint (`ignoring redundand put of `, p);
+    else
+      error "Contradiction in put( %1 = %2 )", p, a;
+    fi;
   fi
 end:
 
@@ -1172,6 +1236,27 @@ end:
     end, `nonzero/s`);
 end:
 
+`puts/assignments` := proc()
+  global `put/name/tab`;
+  op(op(op(`put/name/tab`)));  # 'unk_i'=value_i, 'unk_j'=value_j, ... (unordered)
+end:
+
+`clear/assignments` := proc({output::identical(expr, eq):=expr})
+  description "unassign all symbols assigned by put()";
+  global `put/name/tab`;
+  local as;
+  print(`Clearing assignments.`);
+  as := `puts/assignments`();
+  map(unassign@op, [indices(`put/name/tab`)]);
+  if output=eq then 
+    return as;
+  elif output=expr then
+    return op(map(lhs-rhs, [as])) ;
+  else 
+    error "Unknown output type %1", output; 
+  fi;
+end:
+
 
 #`put/items/add` := proc(e)
 #  global `put/items/table`;
@@ -1197,8 +1282,6 @@ end:
 #
 #`clear/put/items`():
 
-
-
 # To convert the pd table into a list:
 
 pds := proc()
@@ -1215,19 +1298,26 @@ end:
 # To convert the pd table into a list of expressions while clearing all
 # assignments to pd's:
 
-`clear/pds` := proc()
+`clear/pds` := proc({output::identical(expr, eq):=expr})
+  description "unassign all pd's and cc's assigned by put()";
   local t,aux;
-  global `pd/tab`;
+  global `pd/tab`, `clear/pds/ccclearing`;
+  print(`Clearing pds.`);
   reduce();
   t := copy(`pd/tab`);
   `pd/tab` := table([]);
   refresh();
   #`clear/put/items`():
-  aux := op(map(`pds/1`, op(2,op(t))));
-  map(proc(e) op(1,e) - op(2,e) end, sizesort([aux], size)); # HB
+  aux := map(`pds/1`, op(2,op(t)));
+  aux := sizesort(aux, size);
+  if output=eq then 
+    return op(aux);
+  elif output=expr then
+    return op(map(lhs-rhs, aux)) ;
+  else 
+    error "Unknown output type %1", output; 
+  fi;
 end:
-
-
 
 reduce := proc()
   local ans1,ans2;
@@ -1242,7 +1332,7 @@ end:
   global `unk/tab`;
   local aux;
   aux := map(op,[entries(`unk/tab`)]);
-  op(map(proc(f) if f <> eval(f) then f = eval(f) fi end, aux))
+  op(map(proc(f) if f <> eval(f) then f = eval(f) fi end, aux)) # 1 = 'unk_1', 2='unk_2', ... (in the order of unknowns())
 end:
 
 `reduce/pd` := proc()
@@ -1420,12 +1510,11 @@ end:
 `clear/cc` := proc()
   global `cc/s`,`cc/tab`;
   local T;
+  print(`Clearing cc's.`);
   `cc/s` := {};
   `cc/tab` := table([]);  
-  if type(CC, `module`) then  ### new !
-    CC:-init():
-  fi;
-  NULL
+  CC:-init();
+  return NULL;
 end:
 
 ### New cc iplementation
@@ -1545,93 +1634,97 @@ end:
             maxnumP::{posint,identical(-1)} := -1, # return the first maxnumP items and add all cc's of equal prices
             maxprice::{numeric,infinity} := infinity # maximal price of cc's to be returned
            }, $)
-  local T, ans, time0, cs, as, i; 
-  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/time`, cctab;
+  local T, ans, time0, cs, as, i, a, aux, TN, trvcnt, trvcnt0; 
+  global rt, lb, `cc/count/total`, `cc/count/computed`, `cc/count/computed/trivial`, `cc/time`, cctab;
   lb := `CC:`; rt := `report/tab`[cc];
   time0 := time();
   
-  
+  if pop<>false then error "Unsupported pop option value %1", pop; fi;
+
   if rt > 1 then
     report(lb, "Dependences and `pd/tab` indices:");
     try
-      map(a->lprint('a'(op(vars(a)))=indices(`pd/tab`[a], nolist)), [indices(`pd/tab`, nolist)]);
+      aux := `cc/pd/listall`();
+      lprint(map(a -> 'a'(op(vars(a)))=aux[a] , [indices(aux, nolist)]));
     catch:
-      printf("\n%q\n", lastexception);
+      printf("\n%q\n", StringTools:-FormatMessage( lastexception[2..-1] ));
+      lprint("indices(pd/tab)"=indices(`pd/tab`, nolist));
+      lprint("`cc/pd/listall`()=", aux);
     end;
   fi;
   
   T := j2J(`cc/pd/listall`()); 
   
-  if rt > 2 then
+  if rt > 3 then
     report(lb, "Looking for cc for :");
-    map(t->lprint(op(t)=J2j(T[op(t)])), [indices(T)]);
+    map(a->lprint('a'(op(vars(a)))=J2j(T[a])), [indices(T, nolist)]);
   fi;
  
   
   forget(CCSidePrice1);
-  if pop<>false then error "Unsupported pop option value %1", pop; fi;
-  cs := CC:-cc(T 
-               #,  sidePriceFunction=CCSidePrice1,
-	             #':-totalNumber'=totalNumber, # TODO(eff): viz nize
-							 #':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice
-							 ); 
-  as := map(`cc/ass`, J2j(cs));
-  rprintf(2, ["cc found are assembled as %a", as]);
-  as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
-  rprintf(1, ["cc found %a are assembled and simplifyed as %a", cs, as]);  
-  `cc/FF`(cs,as);
-  inc(`cc/count/total`, nops(cs));
-  if leaveTrivial then  
-    ans := as;
-    if rt > 0 then report(lb,[`number of c.c.:`, nops(ans)]) fi;
-  else 
-	  # remove 1=1 unless prohibited by leaveTrivial
-    ans := remove(`=`, as, 0); 
-    if nops(ans)=0 and eval(totalNumber) > nops(cs) then 
-			# if all cc returned immediately, co bellow is no needed 
-			# # at least 1 cc must be returned
-			# i := 1;
-			# while nops(ans)=0 and eval(totalNumber) > nops(cs) do
-      #   cs := CC:-cc(T, sidePriceFunction=CCSidePrice1,
-			#                ':-totalNumber'=totalNumber, 
-			#                ':-maxnum'=maxnum+i);		
-			#     # TODO(eff): Pravdepodobne bude rychlejsi namisto opakovaneho volani CC:-cc(':-pop'=pop)		
-			#     # zavolat jen jednou cc(':-pop'=false), 
-			#     # vybrat z vysledku co je potreba  a nakonec zavolat CC:-markFF na zvoleny vyber            
-			#   as := map(`cc/ass`, J2j(cs));
-		  #   as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
-		  #   `cc/FF`(cs,as);
-			#   rprintf(1, ["additional cc found %a and assembled as %a", cs, as]);
-      #   inc(`cc/count/total`, nops(cs));
-			#   ans := remove(`=`, as, 0);				
-			#   if not(pop) then i := i+1 fi;				
-			# od;
-			if nops(ans)>0 then
-        if rt > 0 then report(lb,[`nontrivial cc (regardless of selecting criteria given) found`]) fi; 
-      else
-	      if rt > 0 then report(lb,[`None nontrivial cc (regardless of selecting criteria given) found`]) fi; 		  
-      fi;				
-	  else
-      if rt > 0 then report(lb,[`numbers of c.c.: nontrivial`, nops(ans), `trivial`, nops(as)-nops(ans)]) fi;   
-		fi;		
-  fi; 
+  
+  ### take some portions of cc's until something notrivial is found or no more cc's remains
+  ans := [];
+  TN := infinity; # last known total number of ccs (unknown yet)
+  trvcnt := 0; trvcnt0 := 0; # trivial cc counters (total, last step)
+  ###
+  ### This is not well tested yet!!! 
+  ###
+  while nops(ans)=0 and (TN-nops(ans)-trvcnt0)>0 do 
+  ###
+    cs := CC:-cc(T, 
+                 #####sidePriceFunction=CCSidePrice1, #### CCSidePrice1 is not a good idea :(
+                 ':-totalNumber'='TN', 
+                 ':-maxnum'=maxnum, ':-maxnumP'=maxnumP, ':-maxprice'=maxprice
+                 );                
+    as := map(`cc/ass`, J2j(cs));
+    rprintf(2, ["cc found are assembled as %a", as]);
+    as := map(Simpl@eval, as) ; # map(simplify, as, size); ### ???
+    rprintf(4, ["cc found %a are assembled and simplifyed as %a", cs, as]);  
+    `cc/FF`(cs,as);
+    inc(`cc/count/total`, nops(cs));
+    
+    # remove 1=1 unless prohibited by leaveTrivial
+    if leaveTrivial then  
+      ans := as;
+      trvcnt0 := nops(remove(`=`, as, 0)) - nops(ans);
+    else 
+     ans := remove(`=`, as, 0); 
+     trvcnt0 := nops(as) - nops(ans);	
+    fi; 
+    inc(trvcnt, trvcnt0);
+         
+    if rt > 1 then report(lb,[`number of nontrivial cc found: `, nops(ans), 
+                          `dropped trivial:`, trvcnt0, 
+                          `unprocessed remaining cc`, TN-nops(ans)-trvcnt0]) fi;   
+  ###  
+  od;
+  ###
   forget(CCSidePrice1);
   
+  ans := map(eval, convert(ans,resultType));
+      
   inc(`cc/count/computed`, nops(ans));
+  inc(`cc/count/computed/trivial`, trvcnt);
   inc(`cc/time`, time()-time0);
   rprintf(1, ["There are %a cc at the moment. We have had computed %a of totally %a.", 
               nops(ans),  `cc/count/computed`, `cc/count/total`]);
   rprintf(3, ["cc are %q", ans]);
   
-  if rt > 0 then report(lb,[`total c.c. number: `, `cc/count/total`, 
-                            `computed:`, `cc/count/computed`, `time:`, `cc/time`]) 
+  if rt > 0 then report(lb,[`number of returned c.c. (nontrivial): `, nops(ans), 
+                          `of totally remaining cc`, TN-trvcnt0]) fi;             
+  rprintf(3, ["cc are %q", ans]);
+  if rt > 1 then report(lb,[`total computed c.c. number: `, `cc/count/total`, 
+                            `computed in this step:`, `cc/count/computed`, `time:`, `cc/time`]) 
   fi;
   
-  map(eval, convert(ans,resultType));
+  if totalNumber<>'None' then totalNumber := TN - trvcnt0 fi; # output parameter  
+  return map(eval, convert(ans,resultType));
 end:
 
 
 `cc/FF` := proc(cs, as)
+  description "Mark 0 cc's as fullfilled";
   zip(`cc/FF/1`, cs, as)
 end:
 
@@ -1696,7 +1789,7 @@ end:
 
   #pd1( pd1(u,p), r/p) -  pd1( pd1(u,q), r/q);
   #lprint (u,r, p,q);
-  if rt > 2 then 
+  if rt > 3 then 
     report(lb, "assembling cc of variable %a(%a) at %a in %a, %a:\n
                pd(%a, %a) = pd( pd(%a, %a), %a) === pd( pd(%a, %a), %a) = pd(%a, %a)", 
                 u, vars(u), r, p, q, #[indices(`pd/tab`[u], nolist)],
@@ -1704,7 +1797,7 @@ end:
                 u, p, r/p, 
                 u, q, r/q,
                 [vars(`pd/noeval`(u,q)), Vars(`pd/noeval`(u,q))], r/q)     
-  elif rt > 1 then 
+  elif rt > 2 then 
     report(lb, "assembling cc of variable %a(%a) at %a in %a, %a:\n
                pd( pd(%a, %a), %a) = pd( pd(%a, %a), %a)", 
                 u, vars(u), r, p, q,
@@ -2254,12 +2347,13 @@ end:
 ars := proc(a) vars(a) union pars(a) end:
 
 run := proc()
-  global `cc/count/total`, `cc/count/computed`, `derive/time`, `cc/time`;
+  global `cc/count/total`, `cc/count/computed`, `derive/time`, `cc/time`, `put/sizelimit`;
   `cc/count/total`, `cc/count/computed` := 0,0;
    `derive/time`, `cc/time` := 0.0, 0.0;
   if nargs = 0 then
     error "Missing arguments"
   else
+   unassign('`put/sizelimit`');
    `run/l`(op(map(`run/1`,[args])))
   fi;
 end:
@@ -2286,7 +2380,7 @@ end:
 `run/currentstep` := 0:
 
 `run/l` := proc()
-  local as,eqs,aux,i,imax,ders, res,t,rt,lb,ncc, aux1;
+  local as,eqs,aux,i,imax,ders, res,t,rt,lb,ncc, aux1, dc;
   global `run/time`,`run/bytes`, putsize, ressize, runtransformations,
          RESOLVE, `run/currentstep`;
   if `unk/<</list` = [] then
@@ -2381,26 +2475,43 @@ end:
     #as := as union aux;
 
 		### resolve ALL compatibility conditions cc and some of differential consequences (dc)		
-    if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets resolve...`]) fi;    
-		if nops(ders)=0 then
-      if rt > 1 then report(lb,[`no dc to be resolved`]) fi;
-		  res := resolve(op(as)); # TODO(eff): nestaci `resolve/1`?
-		else
-      
-      if rt > 0  and nops(as)*nops(ders)>0 then 
-        if size(ders[1]) <= size(as[1]) then 
-         report(lb, [sprintf("Derive beated cc, %a <= %a\nd=%a\nc=%a\n", size(ders[1]),size(as[1]), ders[1], as[1])]) 
-        fi;
-      fi; 
-      aux := `size/*/<`(ders, ressize);
-      #if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders, size)} fi; # TODO(eff): 
-                                                                    # udelej nove rychle `size/*/<`
-      if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
-      if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
-      if rt > 5 then report(lb,[`dc to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]) fi;
+    #if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets resolve...`]) fi;    
+    ##if rt > 0  and nops(as)*nops(ders)>0 then 
+    ##  if size(ders[1]) <= size(as[1]) then 
+    ##   report(lb, [sprintf("Derive beated cc, %a <= %a; d=%a, c=%a", size(ders[1]),size(as[1]), ders[1], as[1])]) 
+    ##  fi;
+    ##fi; 
 
-      res := resolve(op(as),op(aux)); # TODO(eff): nestaci `resolve/1`?
-    fi;  
+    # MM 2017 moved "aux := `size/*/<`(ders, ressize);" below
+    #if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders, size)} fi; # TODO(eff): udelej nove rychle `size/*/<`
+    #if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
+    #if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
+    #if rt > 5 then report(lb,[`dc to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]) fi;
+    
+    if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets derive cc's...`]) fi;      
+    
+    dc := map(derive, as);
+    
+    ##if rt > 0  and nops(as)*nops(dc)>0 then 
+    ##  if size(dc[1]) <= size(as[1]) then 
+    ##   report(lb, [sprintf("Derived cc beated cc, %a <= %a; d=%a, c=%a", size(dc[1]),size(as[1]), dc[1], as[1])]) 
+    ##  fi;
+    ##fi; 
+
+    
+    if rt > 0 then report(lb,[`We obtained `, nops(dc),` derived cc's.  Lets resolve...`]) fi;    
+    if rt > 1 then report(lb,[`derived cc's sizes (`, nops(dc),`): `, op(sort(map(size,[op(dc)])))]) fi;
+    if rt > 2 then report(lb,[`derived cc's [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(dc)])]) fi;       
+    
+    
+    aux := `size/*/<`(ders union dc, ressize); # MM 2017 
+    if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders union dc, size)} fi; # TODO(eff): udelej nove rychle `size/*/<`
+    
+    if rt > 1 then report(lb,[`Selected eqs sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
+    if rt > 2 then report(lb,[`Selected eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
+    if rt > 5 then report(lb,[`Selected eqs to be resolved: `, [op(aux)], `selected of totally`, nops(ders union dc)]) fi;   
+
+    res := resolve(op(aux)); # TODO(eff): nestaci `resolve/1`?
       
     if res = FAIL then
       if ncc=0 and rt > 1 then WARNING("Cannot resolve differential consequence(s) only, no cc present."); fi;
@@ -2415,12 +2526,10 @@ end:
       if rt > 1 then 
         report(lb,[`for put, selected`, nops(aux), `out of`, nops([res]), `of sizes`, op(sort(map(size,[op(aux)])))]) 
       fi;
-      #if aux = {} then ERROR(`putsize %1 too low`, putsize) fi;
-      if aux = {} then ERROR(`Nothing to do, this shoud not happen`) fi;
+      if aux = {} then ERROR(`Nothing to do, this shoud not happen`) fi; # ERROR(`putsize %1 too low`, putsize) 
 
       `run/put`(op(aux));
        
-      #if Bytes() > Blimit then reduce() fi # HB 2015: This was a bug (causing loosing of compatibility conditions)
       if rt > 0 then report(lb,[`Next run...`]) fi;    
     fi
   od; 
@@ -2464,20 +2573,33 @@ Blimit := 25000:
   if `storing/b` then store(`store/file`, reduce=false) fi
 end:
 
-miniprint := proc(p)
-  option inline;
-  printf("%q\n\n", p)
+#
+# smartprint = printing large expressions in some readable way
+#
+
+smartprintlength := 1000:
+
+smartprint := proc()
+  map(print@smash, [args]);
 end:
 
-microprint := proc(p)
-  option inline;
-  `if`(evalb(length (p) > 10000), print(lhs(p)='`Too large object in`'(indets(rhs(p)))), miniprint(p));
+smash := proc(p)
+  if type(p, `=`) then 
+   `smash/1`(lhs(p)) = `smash/1` (rhs(p))
+  else 
+   `smash/1`(p)
+  fi
 end:
 
-smartprint := proc(p)
-  option inline;
-  `if`(evalb(length (p) > 5000),  microprint(p), print(p));
+`smash/1` := proc(p)
+  global smartprintlength;
+  if length(p) > smartprintlength then
+    return '`A large expression `'('size' = size(p), 'length' = length(p), 'Vars'=VarL(p))
+  else
+    return p
+  end
 end:
+
 
 `run/put/print` := op(smartprint):
 
@@ -2511,39 +2633,37 @@ end:
   # :HB
 end:
 
-store := proc(file, { reduce::truefalse := true })
+store := proc(file:='terminal', { reduce::truefalse := true })
   # HB: 
+  global `var/<</opt`, `Var/<</opt`, `unk/<</list`;
   local fd;
   print(cat(`storing in `, file));
-  if nargs = 0 then 
-    # storing in terminal
-    error "Sorry, storing in terminal not implemented yet."; # TODO: implement it
-  else
     # storing in file
     fd := fopen(file, WRITE, TEXT):
     try
       if reduce then ':-reduce'(); fi; # HB 2016
+      
+      fprintf(fd,"varordering(%q);\n", op(`var/<</opt`));
+      fprintf(fd,"Varordering(%q);\n", op(`Var/<</opt`));
+      fprintf(fd,"unknowns(%q);\n\n", op(`unk/<</list`)); 
     
       fprintf(fd, "dependence(%q);\n\n", dependence());
         
-      map(e->fprintf(fd, "put(%q);\n", e), [`unks/assignments`()]);
+      map(e->fprintf(fd, "put(%q);\n", e), [`puts/assignments`()]);
       fprintf(fd, "\n");
   
       fprintf(fd, "put(\n");
       `store/pds`(fd);
-      fprintf(fd, "\n);\n");
+      fprintf(fd, "\n);\n\n");
       
       fprintf(fd,"nonzero(%q);\n\n", op(nonzero()));
-
-      # TODO: Varodering must be stored here
-     
+      
       #fprintf(fd,"\n# RESOLVE=%a\n",RESOLVE); # store also RESOLVE var as a comment
       #cannot be here, becouse when RESOLVE is too long, is printed to several lines 
       #(but only the first one begins with # what causes syntax error when reading later)
     finally
-      fclose(fd);
+      if file <> 'terminal' then fclose(fd) fi;
     end;
-  fi
   # :HB
 end:
 
@@ -2564,6 +2684,7 @@ end:
 # ressize = the product of sizes of expressions to be resolved
 # maxsize = the maximal size of result of resolve
 # putsize = the product of sizes of expressions to be put
+# ccopts  = extra arguments to cc (maxnum, maxnumP, maxprice)
 
 ressize := 1000:
 putsize := 200:
@@ -2810,6 +2931,7 @@ end:
 
 `clear/derive` := proc()
   global `derive/tab`,`derive/pd/tab`;
+  print(`Clearing derives's.`);
   `derive/pd/tab` := table([]);
   `derive/tab` := table([]);
   NULL 
@@ -2823,7 +2945,6 @@ end:
 `resolve/normalizer` := op(normal):
 `resolve/time` := 0.0:
 
-#`resolve/nonresrat` := 3;
 
 resolve := proc()
   global `resolve/normalizer`, `resolve/time`;
@@ -2838,7 +2959,6 @@ if not(assigned(jets_new_resolve_enable)) then
 #
 #  R e s o l v e - the old implementation
 #
-
 
 `resolve/1` := proc()
   local as,bs,vl,i,rt,lb;
@@ -2870,7 +2990,6 @@ else # jets_new_resolve_enable
 #
 
 printf("\nUsing the new implementation of resolve (not well tested yet!)\n");
-
 
 #`resolve/nonresrat` := 3;
 
@@ -3145,7 +3264,7 @@ fi: # jets_new_resolve_enable
 #
 
 `resolve/lin` := proc(as,vl,{ForceFail::truefalse:=false})
-  local bs,v,cs,ls,ns,lns,ps,p,q,qs,ans,aux,rs,rt,lb, rat, os, os1;
+  local bs,v,cs,ls,ns,ps,p,q,qs,ans,aux,rs,rt,lb, rat, os, os1;
   global maxsize, RESOLVE, `resolve/result/suppressedminsize` := NULL;
   
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
@@ -3173,9 +3292,6 @@ fi: # jets_new_resolve_enable
       rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs   
     else   
       if rt > 4 then report(lb,`of them linear:`, ls) fi; 
-      lns := `resolve/nonlin`(ns, v);
-      if rt > 0 then if nops(lns) > 0 then report(lb, [nops(ns), ` of nonlinear linderive-d to `, nops(lns), `linear. NOT USED!`]) fi fi;
-      #ls := ls union lns; # NO! cannot be used directly here since LVar is different than v!!!
       ps, os1 := selectremove(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
       os := os union os1; # save linear but nonresolvable for future
       if rt > 3 then report(lb, `Solving `, nops(bs),  `eqns w. r. to`,  v, nops(ls), ` of them linear`, nops(ps), ` of them resolvable.`) fi; 
@@ -3221,9 +3337,7 @@ fi: # jets_new_resolve_enable
     else
        `resolve/result/suppressedminsize` := NULL : # HB
     fi;
-    # HB: store what failed to the global variable RESOLVE
     RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`);
-    # :HB
     FAIL
   else op(ans)
   fi;
@@ -3245,11 +3359,11 @@ end:
 `resolve/fail` :=  proc(r, msg) 
   if type(op(1,r), linear(op(2,r))) then 
     tprint(msg, op(2,r));
-    print (coeff(op(r),1)*op(2,r) = -coeff(op(r),0));
+    print (smash(factor(coeff(op(r),1)))*op(2,r) = -smash(coeff(op(r),0)));
     [coeff(op(r),1), op(2,r), -coeff(op(r),0)] # [a1,x1,-b1] FAIL prvního druhu
   else 
     tprint(`resolving failed for`, op(2,r), `nonlinear `);
-    print (op(1,r));
+    print (smash(op(1,r)));
     [op(1,r), op(2,r)] # [a,x1] FAIL druhého druhu
   fi
 end:
@@ -3508,6 +3622,7 @@ ZERO := {}:
 `clear/nonzero` := proc()
   local ans;
   global `nonzero/s`;
+  print(`Clearing nonzero's.`);
   ans := `nonzero/s`;
   `nonzero/s` := {};
   ans
@@ -3775,7 +3890,8 @@ end:
 
 `unk/<</list` := []:
 `unk/s` := {}:
-`unk/tab` := table([]):
+`unk/tab` := table([]): # 1 = 'unk_1', 2='unk_2', ... (in the order of unknowns())
+`put/name/tab` := table():   # 'unk_i'=value_i, 'unk_j'=value_j, ... (unordered)
 
 `type/Var` := {'name',specfunc(anything,pd)}:
 
@@ -3892,6 +4008,7 @@ end:
 `clear/nonlocal` := proc()
   local a,aux;
   global `name/tab`;
+  print(`Clearing nonlocal's.`);
   aux := {registered('nonlocal')};
   for a in aux do
     `name/tab`[a] := `name/tab`[a] minus {'nonlocal'} 

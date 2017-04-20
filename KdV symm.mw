@@ -1,146 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Worksheet>
-<Version major="2015" minor="1"/>
+<Version major="2015" minor="2"/>
 <Label-Scheme value="2" prefix=""/>
 <View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false">
 </View-Properties>
-<MapleNet-Properties elisiondigitsbefore="100" labelling="true" indentamount="4" elisiontermsthreshold="10000" ansi="false" errorbreak="1" useclientjvm="true" echo="1" imaginaryunit="I" labelwidth="20" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" contextmenusize="automatic" plotdriver="opengl" elisiondigitsafter="100" plotoutput="terminal" helpbrowser="standard" rtablesize="10" elisiontermsbefore="100" elisiondigitsthreshold="10000" typesetting="standard" plotdevice="inline" verboseproc="1" showassumed="1" quiet="false" errorcursor="false" longdelim="true" plotoptions="" elisiontermsafter="100" screenwidth="120" preplot="" prettyprint="3" displayprecision="-1" screenpixelheight="1200" warnlevel="3" screenheight="25" latexwidth="8.0" postplot="" prompt="&gt; " ShowLabels="false"/>
+<MapleNet-Properties prettyprint="3" warnlevel="3" preplot="" helpbrowser="standard" contextmenusize="automatic" displayprecision="-1" echo="1" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" screenwidth="120" indentamount="4" plotoutput="terminal" screenpixelheight="1200" rtablesize="10" useclientjvm="true" labelwidth="20" postplot="" typesetting="standard" ansi="false" elisiondigitsthreshold="10000" showassumed="1" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="false"/>
 <Styles>
-<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Variable" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Left Justified Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Maple Name" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[104,64,92]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Bold" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Menus" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="_pstyle6" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Fixed Width" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="_pstyle5" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="_pstyle2" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Plot Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="8" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Nonterminal" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Heading" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Variable" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Italic Bold" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Default" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Underlined Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="2D Math Bold Small" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Small" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Page Number" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="_cstyle1" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="_cstyle4" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Output Labels" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="8" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Plot Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Emphasized" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Symbol 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Maple Comment" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Italic Small201" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="9" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[64,128,64]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math Italic Small" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Comment" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Help Underlined Bold" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Copyright" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Help Underlined" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Prompt" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Math" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Bold" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Help Notes" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Heading 4" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="LaTeX" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Comment" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Popup" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
 <Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
 <Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
-<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
-<Font name="Left Justified Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Plot Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="8" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math Small" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math Bold Small" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Bold" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Menus" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Heading" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Fixed Width" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="9" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[64,128,64]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Page Number" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
 <Font name="Help Fixed" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Output Labels" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="8" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math Italic Small201" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Notes" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Underlined" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math Italic Small" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="1" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math Symbol 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Nonterminal" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Maple Name" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[104,64,92]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Monospaced" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Plot Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Underlined Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Italic Bold" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Default" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="LaTeX" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="_pstyle2" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Emphasized" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="_pstyle6" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="_cstyle1" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="_cstyle4" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="_pstyle5" background="[255,255,255]" bold="true" executable="true" family="Monospaced" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Help Italic" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Comment" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Prompt" background="[255,255,255]" bold="true" executable="false" family="Monospaced" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Math Bold" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Fixed Width" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Left Justified Maple Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Help" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Ordered List 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Ordered List 2" alignment="left" bullet="none" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Ordered List 3" alignment="left" bullet="none" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Ordered List 4" alignment="left" bullet="none" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Ordered List 5" alignment="left" bullet="none" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="_pstyle6" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="_pstyle5" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Fixed Width" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="_pstyle2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Help" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Dash Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Bullet Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="Left Justified Maple Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Layout name="List Item" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
-<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
-<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
-<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
-<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="_pstyle2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="_pstyle6" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="_pstyle5" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
 <Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
-<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
-<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
-<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
-<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
 <Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
 </Styles>
 <Startup-Code startupcode=""/>
 <Task-table>
     <Task-category name="&lt;default&gt;"/>
 </Task-table>
 <Task/>
-<Group labelreference="L49" drawlabel="true">
+<Group hide-input="false" labelreference="L49" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="_cstyle1" layout="_pstyle2">restart; read `Jets.s`;</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SUpKZXRzfjUuODN+Zm9yfk1hcGxlfjE1fmFzfm9mfkZlYn4xNix+MjAxNkc2Ig==</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">ST9KZXRzfjUuODZ+YXN+b2Z+QXByaWx+MTgsfjIwMTdHNiI=</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L175" drawlabel="true">
@@ -153,7 +153,7 @@
 <Text-field prompt="&gt; " style="_cstyle4" layout="_pstyle5">coordinates([t,x],  [u], 5):</Text-field>
 </Input>
 </Group>
-<Group labelreference="L55" drawlabel="true">
+<Group hide-input="false" labelreference="L55" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="_cstyle4" layout="_pstyle5">equation('u_t' = u_xxx + 6*u*u_x);</Text-field>
 </Input>
@@ -161,7 +161,7 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUkjbWlHRiQ2JVEkdV90RicvJSdpdGFsaWNHUSV0cnVlRicvJSxtYXRodmFyaWFudEdRJ2l0YWxpY0YnLUkjbW9HRiQ2LVEiPUYnL0YzUSdub3JtYWxGJy8lJmZlbmNlR1EmZmFsc2VGJy8lKnNlcGFyYXRvckdGPS8lKXN0cmV0Y2h5R0Y9LyUqc3ltbWV0cmljR0Y9LyUobGFyZ2VvcEdGPS8lLm1vdmFibGVsaW1pdHNHRj0vJSdhY2NlbnRHRj0vJSdsc3BhY2VHUSwwLjI3Nzc3NzhlbUYnLyUncnNwYWNlR0ZMLUYjNiYtRiM2KC1JI21uR0YkNiRRIjZGJ0Y5LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y5RjtGPkZARkJGREZGRkgvRktRJjAuMGVtRicvRk5GZW4tRiw2JVEidUYnRi9GMkZXLUYsNiVRJHVfeEYnRi9GMkY5LUY2Ni1RIitGJ0Y5RjtGPkZARkJGREZGRkgvRktRLDAuMjIyMjIyMmVtRicvRk5GYW8tRiw2JVEmdV94eHhGJ0YvRjJGOS8lK2ZvcmVncm91bmRHUShbMCwwLDBdRidGOQ==">L0kkdV90RzYiLCYqJkkidUdGJCIiIkkkdV94R0YkRigiIidJJnVfeHh4R0YkRig=</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L155" drawlabel="true">
+<Group hide-input="false" labelreference="L155" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">S := symmetries(u = U);</Text-field>
 </Input>
@@ -174,7 +174,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
-<Group labelreference="L152" drawlabel="true">
+<Group hide-input="false" labelreference="L152" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence(U(x,u,u_x,u_xx,u_xxx,u_4x, u_5x));
 </Text-field>
@@ -183,7 +183,7 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">L0kiVUc2IjwpSSJ1R0YkSSJ4R0YkSSR1X3hHRiRJJXVfeHhHRiRJJnVfeHh4R0YkSSV1XzR4R0YkSSV1XzV4R0Yk</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L151" drawlabel="true">
+<Group hide-input="false" labelreference="L151" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">unknowns(U);</Text-field>
 </Input>
@@ -191,7 +191,7 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSJVRzYi</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L150" drawlabel="true">
+<Group hide-input="false" labelreference="L150" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Varordering(degree, reverse, function);</Text-field>
 </Input>
@@ -199,279 +199,785 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYpLUkjbWlHRiQ2JVEiVUYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIixGJy9GM1Enbm9ybWFsRicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRjEvJSlzdHJldGNoeUdGPS8lKnN5bW1ldHJpY0dGPS8lKGxhcmdlb3BHRj0vJS5tb3ZhYmxlbGltaXRzR0Y9LyUnYWNjZW50R0Y9LyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdRLDAuMzMzMzMzM2VtRictRiM2Jy1JJm1mcmFjR0YkNigtRiM2JS1GNjYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnRjkvSSttc2VtYW50aWNzR0YkUSZpbmVydEYnRjsvRj9GPUZARkJGREZGRkhGSi9GTkZML0ZlblEoWzAsMCwwXUYnRjktRiM2JS1GIzYmRlctRiw2JVEidUYnRi9GMkZcb0Y5RlxvRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmpvLyUpYmV2ZWxsZWRHRj0tRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0ZqbkZARkJGREZGRkhGSkZbb0YrRlxvRjlGNS1GIzYnLUZTNigtRiM2JS1JJW1zdXBHRiQ2JUZXLUkjbW5HRiQ2JFEiMkYnRjkvJTFzdXBlcnNjcmlwdHNoaWZ0R1EiMEYnRlxvRjktRiM2JS1GIzYmRlctRmlwNiVGYm9GW3FGX3FGXG9GOUZcb0Y5RmVvRmhvRltwRl1wRl9wRitGXG9GOUZcb0Y5">NiVJIlVHNiItSSNwZEdGJDYkRiNJInVHRiQtRiY2JEYjKiRGKCIiIw==</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L160" drawlabel="true">
+<Group hide-input="false" labelreference="L160" drawlabel="true">
 <Input>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
-</Input>
-</Group>
-<Group labelreference="L176" drawlabel="true">
-<Input>
-<Text-field prompt="&gt; " style="Maple Input" layout="Normal">AddReporter[resolve](&quot;res&quot;, dir=&quot;reporter&quot;);</Text-field>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">reporting(run=1);</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">LSZJLEFkZFJlcG9ydGVyRzYiNiNJKHJlc29sdmVHRiU2JFEkcmVzRiUvSSRkaXJHRiVRKXJlcG9ydGVyRiU=</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NyMvSSRydW5HNiIiIiI=</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">`Reporting to terminal`</Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NygvSShub256ZXJvRzYiIiIhL0kkcnVuR0YlIiIiL0knZGVyaXZlR0YlRiYvSSNjY0dGJUYmL0kjcGRHRiVGJi9JKHJlc29sdmVHRiVGJg==</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L137" drawlabel="true">
+<Group hide-input="false" labelreference="L176" drawlabel="true">
+<Input>
+<Text-field prompt="&gt; " style="Maple Input" layout="Normal">#AddReporter[resolve](&quot;res&quot;, dir=&quot;reporter&quot;);</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L137" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="_cstyle4" layout="_pstyle5">time(run(S));</Text-field>
 </Input>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[1] &lt;0&gt; Put:  </Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SS9DbGVhcmluZ35jYydzLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">STRDbGVhcmluZ35kZXJpdmVzJ3MuRzYi</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[1] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfNXhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV81eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[2] &lt;0&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[2] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[3] &lt;0&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[3] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSZ1X3h4eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJJXVfNXhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[4] &lt;0&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[4] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[5] &lt;0&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[5] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1XzV4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[6] &lt;0&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[6] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[7] &lt;1&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[7] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[8] &lt;1&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[8] &lt;0&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfNHhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV80eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[9] &lt;1&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+
+RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[9] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEldV80eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkmdV94eHhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[10] &lt;1&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+
+RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[10] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkldV80eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[11] &lt;1&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+
+RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[11] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1XzR4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[12] &lt;2&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+
+RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[12] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV80eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[13] &lt;2&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+
+RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[13] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkieEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[14] &lt;2&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+
+RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[14] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJnVfeHh4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRlZGWkZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRl1wLyUpYmV2ZWxsZWRHRkQtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRmBvNiVRIlVGJ0Zjb0Zmb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGXHEtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJEkmdV94eHhHRiUiIiMiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[15] &lt;2&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `Next run...`
+
+RUN: &lt;1, 74112&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 74112&gt; Compatibility conditions ... 
+
+RUN: &lt;1, 74112&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;1, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[15] &lt;1&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEldV94eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkmdV94eHhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[16] &lt;3&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `Next run...`
+
+RUN: &lt;1, 74112&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;1, 74112&gt; Compatibility conditions ... 
+
+RUN: &lt;2, 74112&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;2, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;2, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[16] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEkdV94RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSZ1X3h4eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[17] &lt;3&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 74112&gt; `Next run...`
+
+RUN: &lt;2, 74112&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;2, 74112&gt; Compatibility conditions ... 
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[17] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRictRlc2JFEiMkYnRjxGWkZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GYG82JVEmdV94eHhGJ0Zjb0Zmb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmhwLyUpYmV2ZWxsZWRHRkRGW3AtRmBvNiVRIlVGJ0Zjb0Zmb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGZHEtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJInVHRiUiIiMiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[18] &lt;3&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+
+RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[18] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEidUYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GIzYmLUZXNiRRIzEwRidGPEZmby1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRl5vNiVRJXVfNXhGJ0Zhb0Zkb0ZnbkY8RmduRjxGXnBGYXBGZHBGZnBGZm9GaHBGZ25GPEY8RjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkmdV94eHhHRiVGKiwkLUYkNiRGJ0kldV81eEdGJSIjNQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[19] &lt;3&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+
+RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[19] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSZ1X3h4eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJInhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[20] &lt;4&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+
+RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[20] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfeHhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV94eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[21] &lt;4&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+
+RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;3, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;3, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;3, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[21] &lt;3&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJy1GVzYkUSIyRidGPEZaRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZgbzYlUSV1X3h4RidGY29GZm9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZocC8lKWJldmVsbGVkR0ZERltwLUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRmRxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkkdV94R0YlIiIjIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[22] &lt;4&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 78212&gt; `Next run...`
+
+RUN: &lt;3, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;3, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;3, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;3, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;3, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[22] &lt;3&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2KS1GIzYmRjUtSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGZ25GPC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GIzYmRjUtRl5vNiVRInVGJ0Zhb0Zkb0ZnbkY8RmZvLUYjNiZGNS1GXm82JVEldV94eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGaHAvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZkcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqKEkldV94eEdGJSIiIkkidUdGJUYqSSR1X3hHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[23] &lt;5&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 78212&gt; `Next run...`
+
+RUN: &lt;3, 78212&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;3, 78212&gt; Compatibility conditions ... 
+
+RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;3, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[23] &lt;3&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRiM2Ji1GVzYkUSMyMEYnRjxGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoLUYjNiVGNUZnbkY8LUYjNiUtRiM2JkY1LUZebzYlUSV1XzV4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1X3h4R0YlRiosJC1GJDYkRidJJXVfNXhHRiUiIz8=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[24] &lt;5&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 86408&gt; `Next run...`
+
+RUN: &lt;3, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;3, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;3, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[24] &lt;3&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRictRlc2JFEiMkYnRjxGWkZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GYG82JVEldV94eEYnRmNvRmZvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGaHAvJSliZXZlbGxlZEdGREZbcC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZkcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkidUdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[25] &lt;5&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 86408&gt; `Next run...`
+
+RUN: &lt;3, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;3, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[25] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUYjNiYtRlc2JFEiOEYnRjxGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoLUYjNiVGNUZnbkY8LUYjNiUtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV94eEdGJUYqLCQtRiQ2JEYnSSV1XzR4R0YlIiIp</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[26] &lt;6&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+
+RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[26] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkieEdGJUYqIiIh</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkldV94eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[27] &lt;6&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+
+RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[27] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZWRlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZdcC8lKWJldmVsbGVkR0ZELUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRlxxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkkdV94R0YlIiIkIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[28] &lt;6&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+
+RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[28] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUYzNiUtRl5vNiVRJHVfeEYnRmFvRmRvLUZXNiRRIjJGJ0Y8RlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZocC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRmRxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIjSSJ1R0YlIiIiIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[29] &lt;7&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+
+RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[29] &lt;5&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZWRlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZdcC8lKWJldmVsbGVkR0ZELUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRlxxLUYjNiYtRlc2JFEjMTJGJ0Y8RmJwLUkobWZlbmNlZEdGJDYkLUYjNictRi42KC1GIzYlRjVGZ25GPC1GIzYlLUYjNiZGNS1GYG82JVEldV80eEYnRmNvRmZvRmduRjxGZ25GPEZob0ZbcEZecEZgcEZicEZlcEZnbkY8RjxGPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkkdV94R0YlIiIjLCQtRiQ2JEYnSSV1XzR4R0YlIiM3</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[30] &lt;7&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+
+RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[30] &lt;5&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGZ25GPC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GIzYmRjUtRl5vNiVRInVGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRiM2Ji1GVzYkUSI2RidGPEZmby1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRl5vNiVRJnVfeHh4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkkdV94R0YlRiosJC1GJDYkRidJJnVfeHh4R0YlIiIn</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[31] &lt;8&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+
+RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[31] &lt;5&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSJ4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[32] &lt;8&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+
+RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[32] &lt;5&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjRGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiJSIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[33] &lt;9&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+
+RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[33] &lt;6&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GIzYmLUZXNiRRIzMyRidGPEZicC1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRmBvNiVRJXVfNHhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiJCwkLUYkNiRGJ0kldV80eEdGJSIjSw==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[34] &lt;9&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+
+RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[34] &lt;6&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GIzYnLUY2Ni1RKiZ1bWludXMwO0YnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yMjIyMjIyZW1GJy9GVUZkcS1GIzYoLUZXNiRRIzIwRidGPEZicC1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRmBvNiVRJXVfNXhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RmJwLUZgbzYlUSR1X3hGJ0Zjb0Zmb0Y8LUY2Ni1RIitGJ0Y8RkJGRUZHRklGS0ZNRk9GY3FGZXEtRiM2Ji1GVzYkUSI0RidGPEZicC1GXHI2JC1GIzYnLUYuNihGYnItRiM2JS1GIzYmRjUtRmBvNiVRJXVfeHhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RjxGPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiIywmKiYtRiQ2JEYnSSV1XzV4R0YlIiIiSSR1X3hHRiVGMCEjPy1GJDYkRidJJXVfeHhHRiUiIiU=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[35] &lt;10&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+
+RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[35] &lt;6&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkidUdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[36] &lt;10&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+
+RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[36] &lt;7&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUkjbW5HRiQ2JFEiMEYnRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJJXVfNHhHRiUiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[37] &lt;11&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+
+RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[37] &lt;7&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUYjNigtSSNtbkdGJDYkUSMyMEYnRjlGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjItRlo2JVEldV81eEYnRmduRmpuRlNGOUZTRjlGXG9GX29GYm9GZG9GZm9GaW9GU0Y5RjlGZm8tRlo2JVEkdV94RidGZ25Gam5GOUZTRjk=">Ly1JI3BkRzYiNiRJIlVHRiVJJXVfeHhHRiUsJComLUYkNiRGJ0kldV81eEdGJSIiIkkkdV94R0YlRi4iIz8=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[38] &lt;11&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+
+RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[38] &lt;7&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUYjNiYtRiM2KC1JI21uR0YkNiRRIjZGJ0Y5RmZvLUkobWZlbmNlZEdGJDYkLUYjNictRi42KEYwLUYjNiUtRiM2JkYyLUZaNiVRJnVfeHh4RidGZ25Gam5GU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZmby1GWjYlUSR1X3hGJ0ZnbkZqbkY5LUYzNi1RIitGJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjIyMjIyMmVtRicvRlJGX3ItRiM2KC1GZ3A2JFEjMTBGJ0Y5RmZvLUZbcTYkLUYjNictRi42KEYwLUYjNiUtRiM2JkYyLUZaNiVRJXVfNXhGJ0ZnbkZqbkZTRjlGU0Y5RlxvRl9vRmJvRmRvRmZvRmlvRlNGOUY5RmZvRmVxRjlGOUZTRjk=">Ly1JI3BkRzYiNiRJIlVHRiVJInVHRiUsJiomLUYkNiRGJ0kmdV94eHhHRiUiIiJJJHVfeEdGJUYuIiInKiYtRiQ2JEYnSSV1XzV4R0YlRi5GLUYuIiM1</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[39] &lt;12&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+
+RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
+
+RUN: &lt;8, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+
+[39] &lt;8&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GOlEnaXRhbGljRidGU0Y5RlNGOS8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGYW8vJSliZXZlbGxlZEdGQS1GMzYtUTEmSW52aXNpYmxlVGltZXM7RidGOUY/RkJGREZGRkhGSkZMRk5GUS1GWjYlUSJVRidGZ25Gam5GU0Y5LUYzNi1RIj1GJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjc3Nzc3OGVtRicvRlJGYHAtRiM2KS1GMzYtUSomdW1pbnVzMDtGJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjIyMjIyMmVtRicvRlJGaHAtRi42KC1GIzYnLUZaNiVRJnVfeHh4RidGZ25Gam5GZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjJGXnFGU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZTRjktRiM2JUZZRlNGOUZcb0Zfb0Zib0Zkby1GMzYtUSgmbWludXM7RidGOUY/RkJGREZGRkhGSkZMRmdwRmlwLUYuNigtRiM2Jy1GWjYlUSV1XzV4RidGZ25Gam5GZm8tRmJxNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjJGZXJGU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZTRjlGXHJGXG9GX29GYm9GZG8tRjM2LVEiK0YnRjlGP0ZCRkRGRkZIRkpGTEZncEZpcC1GLjYoLUYjNiVGaW9GU0Y5RlxyRlxvRl9vRmJvRmRvRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJJHVfeEdGJSwoKihJJnVfeHh4R0YlIiIiRighIiItRiQ2JEYnRitGLEYtKihJJXVfNXhHRiVGLEYoRi0tRiQ2JEYnRjFGLEYtKiZGJ0YsRihGLUYs</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[40] &lt;12&gt; Put:  </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;8, 86408&gt; `Next run...`
+
+RUN: &lt;8, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;8, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;8, 86408&gt; `We obtained `, 1, ` compatibility conditions. Lets derive `, 1, `args...`
+
+RUN: &lt;8, 86408&gt; &quot;Derive beated cc, 1.000000014 &lt;= 1.000000032; d=-6*pd(U,x), c=-pd(U,x)/u_x&quot;
+
+RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derives and`, 1, `cc's. Lets derive cc's...`
+
+RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derived cc's.  Lets resolve...`
+
+[40] &lt;8&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUkjbW5HRiQ2JFEiMEYnRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJInhHRiUiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[41] &lt;13&gt; Success! </Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;8, 86408&gt; `Next run...`
+
+RUN: &lt;8, 86408&gt; Guessing correctness of unknowns ordering... 
+
+RUN: &lt;8, 86408&gt; Compatibility conditions ... 
+
+RUN: &lt;8, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+
+[41] &lt;8&gt; Success! </Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">JCImM04iISIk</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">JCIlSykpISIk</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L138" drawlabel="true">
+<Group hide-input="false" labelreference="L138" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Z := clear(pds):</Text-field>
 </Input>
 <Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SS9DbGVhcmluZ35jYydzLkc2Ig==</Equation></Text-field>
+</Output>
+<Output>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SS5DbGVhcmluZ35wZHMuRzYi</Equation></Text-field>
+</Output>
+<Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">SSxSZWR1Y2luZy4uLkc2Ig==</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L158" drawlabel="true">
+<Group hide-input="false" labelreference="L158" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">dependence();</Text-field>
 </Input>
@@ -479,7 +985,7 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">L0kiVUc2IjwnSSJ1R0YkSSR1X3hHRiRJJXVfeHhHRiRJJnVfeHh4R0YkSSV1XzV4R0Yk</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L118" drawlabel="true">
+<Group hide-input="false" labelreference="L118" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">nops(Z);</Text-field>
 </Input>
@@ -487,12 +993,12 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">IiIn</Equation></Text-field>
 </Output>
 </Group>
-<Group labelreference="L119" drawlabel="true">
+<Group hide-input="false" labelreference="L119" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Z := (map(normal@simpl,Z));</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUkjbWlHRiQ2JVEiWkYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ly1GIzYnLUkmbWZyYWNHRiQ2KC1GIzYlLUklbXN1cEdGJDYlLUY2Ni9RKyZQYXJ0aWFsRDtGJy8lK2ZvcmVncm91bmRHUS5bMTQ0LDE0NCwxNDRdRidGOS9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RidGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZiby1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GXG9RKFswLDAsMF1GJ0Y5LUYjNiUtRiM2JkZobi1GZm42JS1GLDYlUSZ1X3h4eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRltxLyUpYmV2ZWxsZWRHRj0tRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSEZhb0Zjby1GLDYlUSJVRidGL0YyRltwRjktRjY2LVEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSEZhby9GTlEsMC4zMzMzMzMzZW1GJy1GIzYnLUZXNihGWS1GIzYlLUYjNiZGaG4tRmZuNiUtRiw2JVEldV81eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUZmcS1GIzYnLUZXNihGWS1GIzYnLUYjNiZGaG5GZnJGW3BGOUZgcS1GIzYmRmhuRmNwRltwRjlGW3BGOUZmcEZpcEZccUZecUZgcUZjcUZbcEY5RmZxLUYjNiYtRiM2Jy1GVzYoLUYjNiVGaG5GW3BGOS1GIzYlLUYjNiZGaG4tRiw2JVEldV94eEYnRi9GMkZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOS1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORmZ0LUYjNigtRmVvNiRRIzIwRidGOUZgcS1GUDYkLUYjNictRlc2KEZpcy1GIzYlRl9zRltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUY5RmBxLUYsNiVRJHVfeEYnRi9GMkY5RjlGZnEtRiM2KC1GIzYnLUZXNihGaXMtRiM2JS1GIzYmRmhuLUYsNiVRInVGJ0YvRjJGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGYnQtRiM2KC1GZW82JFEiNkYnRjlGYHEtRlA2JC1GIzYnLUZXNihGaXMtRiM2JUZhc0ZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5RmJ0LUYjNigtRmVvNiRRIzEwRidGOUZgcUZddUZgcUZjcEY5RjlGZnEtRlc2KC1GIzYlLUYjNiotRiM2Ji1GUDYkLUYjNictRlc2KEZpcy1GIzYlLUYjNiZGaG5GZXVGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5LUY2Ni1RIitGJ0Y5RjtGPkZARkJGREZGRkhGZXRGZ3QtRiM2JkZqdkZgcUZjcEY5Rml4LUYjNiZGXXVGYHFGZnJGOUZidEZjcUY5RltwRjktRiM2JUZldUZbcEY5RmZwRmlwRlxxRl5xRltwRjlGOS8lJW9wZW5HUSJbRicvJSZjbG9zZUdRIl1GJ0ZbcEY5">NygtSSNwZEc2IjYkSSJVR0YlKiRJJnVfeHh4R0YlIiIjLUYkNiRGJyokSSV1XzV4R0YlRiotRiQ2JEYnKiZGKSIiIkYuRjIsJi1GJDYkRidJJXVfeHhHRiVGMiomLUYkNiRGJ0YuRjJJJHVfeEdGJUYyISM/LCgtRiQ2JEYnSSJ1R0YlRjIqJi1GJDYkRidGKUYyRjpGMiEiJyomRjhGMkYpRjIhIzUqJiwqKiYtRiQ2JEYnRjpGMkY6RjJGMiomRkFGMkYpRjJGMiomRjhGMkYuRjJGMkYnISIiRjJGOkZN</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUkjbWlHRiQ2JVEiWkYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ly1GIzYnLUkmbWZyYWNHRiQ2KC1GIzYlLUklbXN1cEdGJDYlLUY2Ni9RKyZQYXJ0aWFsRDtGJy8lK2ZvcmVncm91bmRHUS5bMTQ0LDE0NCwxNDRdRidGOS9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RidGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZiby1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GXG9RKFswLDAsMF1GJ0Y5LUYjNiUtRiM2JkZobi1GZm42JS1GLDYlUSZ1X3h4eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRltxLyUpYmV2ZWxsZWRHRj0tRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSEZhb0Zjby1GLDYlUSJVRidGL0YyRltwRjktRjY2LVEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSEZhby9GTlEsMC4zMzMzMzMzZW1GJy1GIzYnLUZXNihGWS1GIzYlLUYjNiZGaG4tRmZuNiUtRiw2JVEldV81eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUZmcS1GIzYnLUZXNihGWS1GIzYnLUYjNiZGaG5GZnJGW3BGOUZgcS1GIzYmRmhuRmNwRltwRjlGW3BGOUZmcEZpcEZccUZecUZgcUZjcUZbcEY5RmZxLUYjNiYtRiM2Jy1GVzYoLUYjNiVGaG5GW3BGOS1GIzYlLUYjNiZGaG4tRiw2JVEldV94eEYnRi9GMkZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOS1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORmZ0LUYjNigtRmVvNiRRIzIwRidGOUZgcS1GUDYkLUYjNictRlc2KEZpcy1GIzYlRl9zRltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUY5RmBxLUYsNiVRJHVfeEYnRi9GMkY5RjlGZnEtRiM2KC1GIzYnLUZXNihGaXMtRiM2JS1GIzYmRmhuLUYsNiVRInVGJ0YvRjJGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGYnQtRiM2KC1GZW82JFEiNkYnRjlGYHEtRlA2JC1GIzYnLUZXNihGaXMtRiM2JUZhc0ZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5RmJ0LUYjNigtRmVvNiRRIzEwRidGOUZgcUZddUZgcUZjcEY5RjlGZnEtRlc2KC1GIzYlLUYjNiotRiM2JkZqdkZgcUZjcEY5LUY2Ni1RIitGJ0Y5RjtGPkZARkJGREZGRkhGZXRGZ3QtRiM2Ji1GUDYkLUYjNictRlc2KEZpcy1GIzYlLUYjNiZGaG5GZXVGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5Rl94LUYjNiZGZnJGYHFGXXVGOUZidEZjcUY5RltwRjktRiM2JUZldUZbcEY5RmZwRmlwRlxxRl5xRltwRjlGOS8lJW9wZW5HUSJbRicvJSZjbG9zZUdRIl1GJ0ZbcEY5">NygtSSNwZEc2IjYkSSJVR0YlKiRJJnVfeHh4R0YlIiIjLUYkNiRGJyokSSV1XzV4R0YlRiotRiQ2JEYnKiZGKSIiIkYuRjIsJi1GJDYkRidJJXVfeHhHRiVGMiomLUYkNiRGJ0YuRjJJJHVfeEdGJUYyISM/LCgtRiQ2JEYnSSJ1R0YlRjIqJi1GJDYkRidGKUYyRjpGMiEiJyomRjhGMkYpRjIhIzUqJiwqKiZGQUYyRilGMkYyKiYtRiQ2JEYnRjpGMkY6RjJGMiomRi5GMkY4RjJGMkYnISIiRjJGOkZN</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L168" drawlabel="true">
@@ -500,7 +1006,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">lprint(Z);</Text-field>
 </Input>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[pd(U, u_xxx^2), pd(U, u_5x^2), pd(U, u_xxx*u_5x), pd(U, u_xx)-20*pd(U, u_5x)*u_x, pd(U, u)-6*pd(U, u_xxx)*u_x-10*pd(U, u_5x)*u_xxx, (pd(U, u_x)*u_x+pd(U, u_xxx)*u_xxx+pd(U, u_5x)*u_5x-U)/u_x]</Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">[pd(U, u_xxx^2), pd(U, u_5x^2), pd(U, u_xxx*u_5x), pd(U, u_xx)-20*pd(U, u_5x)*u_x, pd(U, u)-6*pd(U, u_xxx)*u_x-10*pd(U, u_5x)*u_xxx, (pd(U, u_xxx)*u_xxx+pd(U, u_x)*u_x+u_5x*pd(U, u_5x)-U)/u_x]</Text-field>
 </Output>
 </Group>
 <Group labelreference="L171" drawlabel="true">
@@ -571,7 +1077,7 @@
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
 </Input>
 </Group>
-<Group labelreference="L159" drawlabel="true">
+<Group hide-input="false" labelreference="L159" drawlabel="true">
 <Input>
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">S := symmdiff(convert(Z,set), {pd(U, u_5x^2), pd(U, u_xxx^2), pd(U, u_xxx*u_5x), pd(U, u_xx)-20*pd(U, u_5x)*u_x, pd(U, u)-6*pd(U, u_xxx)*u_x-10*pd(U, u_5x)*u_xxx, (-U+pd(U, u_5x)*u_5x+pd(U, u_x)*u_x+pd(U, u_xxx)*u_xxx)/u_x} );</Text-field>
 </Input>
