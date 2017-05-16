@@ -1,0 +1,50 @@
+#!/bin/bash
+
+function MakeDir()
+{
+  if [ ! -d $1 ] ; then
+    mkdir $1
+  fi
+}
+
+
+if [[ $# = 0 ]] ; then
+  echo "Missing parameter (job base). There are following:"
+  ls  mc/*.init.mc
+elif [[ ! -f mc/$1.init.mc ]] ; then
+  echo "Invalid parameter '$1', mc/$1.init.mc does not exist. Use one of this:"
+  ls  mc/*.init.mc
+else
+
+  bin/DeleteAll $1
+  
+  echo **********
+  bin/CreateDirs .
+  MakeDir Logs
+  MakeDir Logs.Global
+  MakeDir InProgress
+  MakeDir InProgress/locks
+  MakeDir Errors
+  MakeDir Done
+  
+  # prepare stop file:
+  StopFile="InProgress/stop"
+  DisabledStopFile="InProgress/How to stop it"
+  if [[ -f $StopFile ]] ; then
+    rm $StopFile
+  fi
+  StopMessage='Rename me to "stop" and no more computations will be started.'
+  echo $StopMessage > "$DisabledStopFile"
+#  if [[ ${OSTYPE}="darwin7.0" ]] ; then
+#    setfflags -s true "$DisabledStopFile" > /dev/null
+#    setfcomment -c  "$StopMessage" "$DisabledStopFile" > /dev/null
+#    setlabel Red "$DisabledStopFile" > /dev/null
+#  fi
+  
+  # prepare user-friendly stop file
+  StopFile2="Open Me In Terminal To Stop"
+  cp "bin/${StopFile2}" "InProgress/${StopFile2}"
+  
+  # prepare startup empty but valid maple file:
+  echo "# Done" >> Ready/$1.runme
+fi

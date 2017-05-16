@@ -1,0 +1,31 @@
+#!/bin/bash 
+
+function MakeDir()
+{
+  if [ ! -d "${1}" ] ; then
+    mkdir "${1}"
+  fi
+}
+
+#echo "Creating dirs in `pwd` based on ${1}"
+
+MakeDir "${1}"
+if [ ! -d "${1}" ] ; then
+    echo " Error in CreateDirs: Cannot create the base directory ${1} in `pwd`"
+    exit 2
+elif [ ! -w "${1}" ] ; then
+    echo " Error in CreateDirs: The base directory ${1} is not writeable."
+    exit 1
+fi
+
+MakeDir "${1}/Results"
+MakeDir "${1}/States"
+MakeDir "${1}/Ready"
+MakeDir "${1}/Nonlinear"
+MakeDir "${1}/Abandoned"
+MakeDir "${1}/Logs.Detailed"
+
+ln -s "../../.."  "${1}/global" ### vyhodit do DoOneStep, ale jak?
+
+#echo "Directories created."
+#echo "`ls -la ${1}`"

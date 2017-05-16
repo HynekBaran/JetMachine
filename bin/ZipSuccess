@@ -1,0 +1,14 @@
+#!/bin/bash
+zipfile="ArchivedSuccessess$1_"`date +"%d.%m.%y_%H.%M"`".zip";
+echo "Zipping to $zipfile"
+
+for file in Results/$1*.success; do
+  #echo $file
+  filename=`basename $file .success`
+   zip $zipfile "${file}" "Logs/${filename}.log" "States/${filename}.state" 
+done
+
+
+zip $zipfile mc/*.mc
+zip $zipfile mc/*.s
+zip $zipfile Done/*.runme > /dev/null

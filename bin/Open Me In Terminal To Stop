@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# When this file sits in /InProgress directory,
+# it has GLOBAL effect.
+#
+# When it sits in /InProgress/<MachineName> directory,
+# it affects the PARICULAR MACHINE only.
+#
+#
+# If the name of this file is "stop", 
+# no more computations will be started.
+#
+# Only file name has an effect, the content of this file is here
+# for user convenience only.
+#
+
+name="`basename \"${0}\"`"
+dir="`dirname \"${0}\"`"
+if [[ "${name}" = "stop" ]] ; then
+	mv "${0}" "${dir}/Open Me In Terminal To Stop"
+	echo
+	echo "Computations are resumed."
+else 
+	mv "${0}" "${dir}/stop"
+	echo
+	echo "No more computations will be started."
+	echo "Please be patient and wait for current computation to be finished."
+fi

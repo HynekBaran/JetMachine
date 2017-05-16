@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Press enter to rerun errors"
+read a;
+#exit
+for ko in `ls Errors/$1*/*.runme` ; do mv ${ko} Ready/ ; done

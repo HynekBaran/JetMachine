@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Current time is              "`date +"%F %T"`
+#echo "Last change of Inprogress at "`stat -c "%y" InProgress/`
+#echo "Last change of Results at    "`stat -c "%y" Results/`
+
+newestResult=`ls -t Results/$1*.success | head -1`
+#if [[ -n "${MACHTYPE}" ]]  then ;
+  # mac
+  echo "Newest result time is        "`stat -f "%m%t%Sm %N" ${newestResult}`
+#else 
+  # linux
+  echo "Newest result time is        "`stat -c "%y" ${newestResult}` 
+  echo "Newest result is ${newestResult}"
+#fi
+
+echo "Total computed: `find Logs -name $1'*.log'            ! -path '*.AppleDouble*' | wc -l`"
+echo "  Done:         `find Done -name $1'*.runme'          ! -path '*.AppleDouble*' | wc -l`"
+echo "    Abandoned:  `find Abandoned -name $1'*.*' -type f ! -path '*.AppleDouble*' | wc -l`"
+echo "    Nonlinear:  `find Nonlinear -name $1'*.nonlinfail'    ! -path '*.AppleDouble*' | wc -l`"
+echo "    Success:    `find Results -name $1'*.success'     ! -path '*.AppleDouble*' | wc -l`"
+echo "  Errors:       `find Errors -name $1'*.runme'        ! -path '*.AppleDouble*' | wc -l`"
+echo "  In progress:  `find InProgress -name $1'*.runme'    ! -path '*.AppleDouble*' | wc -l`"
+echo ""                
+echo "Ready:          `find Ready -name $1'*.runme'         ! -path '*.AppleDouble*' | wc -l`"

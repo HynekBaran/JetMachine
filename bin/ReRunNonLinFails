@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Reruns all nonlinfails. Press enter.
+read b
+
+#ls Ready/${1}*.nonlinfail | while read a  ; do mv Done/`basename ${a/?.nonlinfail/}`.runme Ready ; rm $a ; done
+ls "Nonlinear/${1}*.nonlinfail" | while read a  ; do mv Done/`basename ${a/?.nonlinfail/}`.runme Ready ; rm $a ; done

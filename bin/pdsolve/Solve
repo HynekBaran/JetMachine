@@ -1,0 +1,16 @@
+#!/bin/bash
+PdsolveDir="Results/Pdsolve"
+
+PdsolveSourceDir=${PdsolveDir}
+
+PdsolveFileExt="pdsolve.mc"
+
+for ko in ${PdsolveSourceDir}/*.${PdsolveFileExt} ; do  
+  if [[ -f  ${ko}.log ]] ; then
+    echo  "SKIPPING \"`basename ${ko}`\", logfile exists."
+  else
+    echo -n "Solving  \"`basename ${ko}`\"..."
+    maple -q < ${ko} > ${ko}.log  2>&1
+    if [ $? -eq 0 ];then echo " Done."; else echo " FAILED ($?)"; fi 
+  fi
+done

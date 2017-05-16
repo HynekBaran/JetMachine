@@ -1,0 +1,13 @@
+#!/bin/bash
+# Calls DoOneStep passing all the parameters to it
+# and append all the output to global log file 
+
+bin/DoOneStep $* | tee Logs/$1.log
+exit $?
+
+### TODO:
+### Error here: 
+# exit $? returns a result of tee (as a last command in the pipe)
+# but the result of DoOneStep must be returned!!!
+#
+#

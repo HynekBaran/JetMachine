@@ -1,0 +1,23 @@
+#!/bin/bash
+# Does maple command line version call
+# maple directory depends on OS 
+echo "--------------------------------------------------------------------------------"
+echo `date`: Calling 
+echo maple $*
+echo "--------------------------------------------------------------------------------"
+
+if [[ ${OS} = "Windows_NT" ]] ; then
+  "/cygdrive/c/Program Files/Maple 9/bin.win/cmaple9.exe" $*
+else
+  maple $*
+  # "/Applications/Maple 9.5.app/Contents/MacOS/bin/maple" $*
+  # "/Applications/Maple 9.5/Maple 9.5.app/Contents/MacOS/bin/maple" $*
+  # "/Applications/Maple 9.app/Contents/MacOS/bin/maple" $*
+fi
+
+
+MapleResult=$?
+echo "--------------------------------------------------------------------------------"
+echo "Maple done at `date` with status ${MapleResult}."
+echo "--------------------------------------------------------------------------------"
+exit  ${MapleResult}

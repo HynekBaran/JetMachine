@@ -1,0 +1,6 @@
+#!/bin/bash
+for ko in `ls Results/*.success` ; do src="`basename ${ko/\.success/}`" ; echo mv Done/$src.runme Ready/$src.runme \; mv Results/$src.success Results/$src.success.bak; done
+echo "Be carefull, it is not tested, press ENTER to proceed"
+read a;
+#exit
+for ko in `ls Results/*.success` ; do src="`basename ${ko/\.success/}`" ; mv Done/$src.runme Ready/$src.runme ; mv Results/$src.success Results/$src.success.bak; done

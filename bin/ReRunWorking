@@ -1,0 +1,61 @@
+#!/bin/bash
+# this script moves all current jobs of current machine back to Ready directory
+
+host=`bin/hostname`
+wdir="InProgress/${host}"
+
+if [[  ! -d ${wdir} ]] ; then
+  echo "Our machine $host has no working directory in the tree."
+fi
+
+# enforce job name to be spec. as parameter
+if [[ $# = 0 ]] ; then 
+  echo "Missing parameters (job base). There are following:"
+  ls  mc/*.init.mc
+  exit 1
+fi
+
+echo -ne "ReRun all working jobs ${1}* in $wdir ? Press ENTER to proceed."
+read a;
+
+
+
+maplecount=`ps | grep -v grep | grep -c mserver`
+
+
+if [[ ! $maplecount = 0 ]] ; then 
+  ps | grep -v grep | grep mserver
+  echo "There are running maple processess, you cannot move job files while its processess are running."
+  echo "Please end them (you may run 'killall maple' or ignore)" 
+  echo -ne "When ready, enter 'killed<ENTER>'" 
+  while [ "$b" != "killed" ] ; do  read b; done
+ fi
+
+
+jobs=`find ${wdir} -name "${1}*.runme"`
+
+for j in ${jobs} ; do
+  echo -e "`dirname ${j}`/"'\t'"`basename ${j}`"
+done
+
+echo "For each job found, we going to move jobs back to Ready and delete all remains Inprogress..."
+
+tar -cjf InProgress/$host.$(date +%Y.%m.%d-%H.%M).tar ${wdir}
+
+for j in ${jobs} ; do
+  jd=`dirname ${j}`
+  jf=`basename ${j}`
+  echo -en "${jd}/"'\t'"${jf} (y/n)?"
+  read c;
+  if [ "$c" = "y" ] ; then
+    mkdir -p "Ready/tmp" 
+    mv "${j}" "Ready/tmp" && rm -r "${jd}" 
+    if [ $? = 0 ] ; then
+      rm -r "InProgress/locks/${jf/.runme/}"
+      mv "Ready/tmp/${jf}" "Ready"
+    else
+      "Something get wrong... trying to move job to Errors/"
+      mv "Ready/tmp/${jf}" "Errors"
+    fi
+  fi
+done

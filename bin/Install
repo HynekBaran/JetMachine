@@ -1,0 +1,41 @@
+#!/bin/bash 
+
+function MakeDir()
+{
+  if [ ! -d "${1}" ] ; then
+    mkdir "${1}"
+  fi
+}
+
+SOURCE="${BASH_SOURCE[0]}"
+# najdi absolutni cestu k mistu, kde je ulozen tento skript
+# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+#while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+#  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+#  SOURCE="$(readlink "$SOURCE")"
+#  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+#done
+#SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+SCRIPT_DIR="$( dirname "$SOURCE" )"
+
+#echo Skripty jsou zde $SCRIPT_DIR
+#echo Spusteno odtud $DIRSTACK
+
+# bin
+if [ -d "bin" ] ; then
+    rm "bin"
+fi
+ln -s $SCRIPT_DIR bin
+
+# mc
+if [ -d "mc" ] ; then
+    rm mc/*
+else
+	mkdir "mc"
+fi
+cd "mc"
+MC_DIR="$(dirname $SCRIPT_DIR)/mc/"
+#echo koko $MC_DIR
+ln -s "../$MC_DIR"*".mc" .
+ln -s "../$MC_DIR"*".s" .

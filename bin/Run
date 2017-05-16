@@ -1,0 +1,238 @@
+#!/bin/bash
+# runs given job
+# 
+# $1 optional job base path 
+GlobalLog="Logs.Global/`bin/hostname`.$$.log"
+
+### Stopping and quitting
+StopDir="InProgress"
+StopFiles=("${StopDir}/stop" "${StopDir}/`bin/hostname`.stop" "${StopDir}/$$.`bin/hostname`.stop" "${StopDir}/`bin/hostname`/stop")
+QuitFiles=("${StopDir}/quit" "${StopDir}/`bin/hostname`.quit" "${StopDir}/$$.`bin/hostname`.quit" "${StopDir}/`bin/hostname`/quit")
+
+TestFileExist() {
+  # test whether exist any of files given as arguments and print it
+  local item
+  for item in "$@"
+    do
+       #echo "Testing \"${item}\""
+        if [[  -f "${item}" ]] ; then
+            echo "File ${item} found."
+            return 1
+        fi
+    done
+  #echo "None found"
+  return 0
+}
+
+TestFileExistSilent() {
+  # test whether exist any of files given as arguments
+  local item
+  for item in "$@"
+    do
+       #echo "Testing \"${item}\""
+        if [[  -f "${item}" ]] ; then
+            #echo "File ${item} found."
+            return 1
+        fi
+    done
+  #echo "None found"
+  return 0
+}
+
+StopOrQuit() {
+  # stop or quit if stop/quit file exists
+  local r
+  
+  # quit?
+  TestFileExist ${QuitFiles[*]}
+  if [[ $? -gt 0 ]] ; then 
+    echo "Quit"
+    exit 0
+  fi
+  
+  # stop?
+  TestFileExist ${StopFiles[*]}
+  r=$?
+  if [[ $r -gt 0 ]] ; then 
+    echo "Stopped..."
+    while [[ $r -gt 0 ]] # wait until all stop files dismiss
+      do
+        sleep 1
+        TestFileExistSilent ${StopFiles[*]}
+        r=$?
+      done
+    echo "Continue"
+  fi
+  
+  # quit???
+  TestFileExist ${QuitFiles[*]}
+  if [[ $? -gt 0 ]] ; then 
+    echo "Quit"
+    exit 0
+  fi
+}
+
+###################################################################################################
+
+{ # Test whether the environment is correct
+
+    # Check maple
+    output=`echo 'lprint(diff(x^2,x)); quit();' | maple -q`
+    if [[ 0 -lt $? ]] ; then 
+      echo "FATAL ERROR: Cannot run Maple. ${output}"
+      exit $?
+    fi
+    if [[ ! $output == '2*x' ]] ; then
+      echo "WARNING: Maple is corrupted? diff(x^2,x) is not 2*x but $output."
+      #echo "FATAL ERROR: Maple is corrupted, diff(x^2,x) is not 2*x but $output."
+      #exit 254
+    fi
+
+    # check the existence of crucial global directories and files
+    if [ ! -d "mc/" ] ; then
+    	echo "FATAL ERROR: missing mc directory, cannot run maple."
+    	exit 255
+    fi
+    
+    for x in "mc/SingleStep.mc" "mc/CommonProc.mc" "mc/Jets.s"; do
+      if [ ! -f "$x" ]; then
+         echo "FATAL ERROR: Missing file ${x}." 
+         exit 255
+      fi
+    done
+
+    for x in "Results" "States" "Ready" "Errors" "Logs" "InProgress" "Done" "Abandoned"; do
+      if [ ! -d "$x" ]; then
+         echo "FATAL ERROR: Direcory ${x} doest not exists." 
+         exit 255
+      elif [ ! -w "$x" ]; then
+         echo "FATAL ERROR: Direcory ${x} is not writable." 
+         exit 255
+      fi
+    done
+
+
+    # create the base dir InProgress/<hostname> if neccessary
+    
+    BaseDir=`bin/hostname`
+    
+    if [ -f "InProgress/${BaseDir}" ] ; then
+    	echo "FATAL ERROR: The exists a file InProgress/${BaseDir}"
+    	echo "             in the place where directory of the same name is to be created:"
+    	echo "`ls -la InProgress`"
+    	exit 255
+    fi
+    if [ ! -d "InProgress/${BaseDir}" ] ; then
+    	mkdir "InProgress/${BaseDir}"
+    fi
+    
+    # check the base dir
+    if [ ! -d "InProgress/${BaseDir}" ] ; then
+    	echo "FATAL ERROR: Cannot create base directory InProgress/${BaseDir}"
+    	exit 255
+    elif [ ! -w "InProgress/${BaseDir}" ] ; then
+    	echo "FATAL ERROR: Base directory InProgress/${BaseDir} is not writeable."
+    	exit 255
+    fi
+        
+}
+
+  
+if [[  ! -f ${GlobalLog} ]] ; then
+  echo "Global log created at `date \"+%H:%M:%S %d/%m/%y\"`" > ${GlobalLog}
+fi
+
+###
+
+echo "Run $* started at `date \"+%H:%M:%S %d/%m/%y\"` on host `bin/hostname`, pid is $$" 
+echo "Run $* started at `date \"+%H:%M:%S %d/%m/%y\"` on host `bin/hostname`, pid is $$" >> ${GlobalLog}
+# open ${GlobalLog}
+while [[ 1=1 ]]
+  do 
+        StopOrQuit
+        {
+         
+          # take one file prefering *0.runme
+          
+          #myFile=`ls -1t Ready/$1*s*0*.runme | tail -1 ` # premature success take first
+          #if [[ $myFile = "" ]] ; then
+          #  myFile=`ls -1t Ready/$1*s*.runme | tail -1 `
+          #fi
+          #
+          #if [[ $myFile = "" ]] ; then
+          #  myFile=`ls -1t Ready/$1*0.runme | tail -1 `
+          #fi
+          #if [[ $myFile = "" ]] ; then
+          #  myFile=`ls -1t Ready/$1*0*.runme | tail -1 ` 
+          #fi
+          
+          #fileList=`ls -1t Ready/$1*.runme`
+          fileList=`ls -1S Ready/$1*.runme` # by size
+          
+          #myFile=`echo "${fileList}" | egrep "${1}[13579]*\.runme" | tail -1` # take nonzero only first 
+          #if [[ $myFile = "" ]] ; then
+          #  myFile=`echo "${fileList}" | egrep "${1}[0-9]*[13579]\.runme" | tail -1` # last nonzero first
+          #fi
+          #if [[ $myFile = "" ]] ; then
+            myFile=`echo "${fileList}" | tail -1 ` # no *0.runme, take any
+          #fi
+          
+          if [[ $myFile = "" ]] ; then # no runme file
+            echo -n "."
+            sleep 10
+          else
+            {
+              lastLine=`tail -1 $myFile`
+              if [[ -w $myFile &&  $lastLine = '# Done' ]] ; then
+                {
+                  myBase=`basename $myFile`
+                  myFileWithoutExt=${myBase/.runme/}
+                  echo -n "$myFileWithoutExt   (`date \"+%H:%M:%S %d/%m/%y\"`) "
+                  
+                  bin/RunOneStep $myFileWithoutExt "-q" 1>> ${GlobalLog} 2>&1
+                  result=$?
+                  {
+                  
+                      black='\E[30;50m'
+                      red='\E[31;50m'
+                      green='\E[32;50m'
+                      yellow='\E[33;50m'
+                      blue='\E[34;50m'
+                      magenta='\E[35;50m'
+                      cyan='\E[36;50m'
+                      white='\E[37;50m'
+                  
+                  echo -e $red
+                  grep -i "error" Logs/${myFileWithoutExt}.log                  
+                  if [[ $result -lt 10 ]] ; then                     
+                    echo -ne $black
+                    if [[ $result -eq 0 ]] ; then
+                      echo "done (`date \"+%H:%M:%S %d/%m/%y\"`)."
+                    elif [[ $result -eq 1 ]] ; then
+                      echo -ne $green
+                      echo "ignored, queued back  (`date \"+%H:%M:%S %d/%m/%y\"`)."
+                    else
+                      echo "done with maple result $result (`date \"+%H:%M:%S %d/%m/%y\"`)."
+                    fi                  
+                  else
+                    if [[ $result -lt 255 ]] ; then
+                      echo -ne $cyan
+                      echo "done with maple result $result (`date \"+%H:%M:%S %d/%m/%y\"`)."   
+                    else
+                      echo -ne $red
+                      echo "Fatal error in DoOneStep, exit (`date \"+%H:%M:%S %d/%m/%y\"`)."   
+                      exit 255                 
+                    fi                 
+                  fi
+                  
+                  tput sgr0
+                  }
+                  sleep 1
+                }
+              else
+                sleep 5        
+              fi
+            }
+          fi
+      }
+  done

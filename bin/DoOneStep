@@ -1,0 +1,246 @@
+#!/bin/bash
+# runs given job
+# 
+# $1 job base path
+# all additional params are passed to maple
+
+JobBasePath=$1
+JobBaseName=`basename ${JobBasePath}`
+
+shift
+
+BaseDir=`bin/hostname`
+MapleWorkDir="InProgress/${BaseDir}/${JobBasePath}"
+
+ErrorFile=${MapleWorkDir}/${JobBasePath}.err
+StopFile="InProgress/${BaseDir}/stop"
+QuitFile="InProgress/${BaseDir}/quit"
+
+###
+
+function CleanUpSubDir() 
+{ 
+  mv ${MapleWorkDir}/${1}/* 	${1}/
+  # mv  --backup=numbered ${MapleWorkDir}/${1}/* 	${1}/
+  rmdir ${MapleWorkDir}/${1}/ 
+}	
+
+function MoveToErrors()
+{
+  echo "Error: "$1" moving to Errors/${JobBasePath}"
+  echo
+  
+  SuccessFile="${MapleWorkDir}/Results/${JobBasePath}.success"
+ 
+  if [ -f "${SuccessFile}" ] ; then 
+     echo "Error raised but there is a result ${SuccessFile} !"
+     cp  "${SuccessFile}" "Results/"
+  fi
+  
+  if [ -d Errors/${JobBasePath} ] ; then
+      mv Errors/${JobBasePath} Errors/${JobBasePath}.backup
+      # mv --backup=numbered Errors/${JobBasePath} Errors/${JobBasePath}.backup
+  fi
+
+  #top -l 1 -n 60 -o vsize > "${ErrorFile}.memusage.txt" 
+ 
+  mv "${MapleWorkDir}/" "Errors/${JobBasePath}"
+  # mv  --backup=numbered "${MapleWorkDir}/" "Errors/${JobBasePath}"
+  if [[ ${MapleResult} == 0 ]] ; then 
+    MapleResult=100
+  fi
+
+}
+
+function FinalEcho()
+{
+  echo "${1}"
+  echo "(End of ${JobBasePath})"
+  echo
+}
+
+
+##################################################
+
+### look for stop/quit files
+if [[  -f ${StopFile} ]] ; then
+  {
+      echo "stopped by ${StopFile}"
+      while [[  -f ${StopFile} ]]
+      do
+        sleep 1
+        if [[  -f ${QuitFile} ]] ; then
+             echo "File ${QuitFile} found, quitting."
+            exit
+        fi
+      done
+      echo unstopped, lets go...
+      exit 1
+  }
+fi
+if [[  -f ${QuitFile} ]] ; then
+            echo  echo "File ${QuitFile} found, quitting."
+            exit
+          fi
+          
+          
+### lock job and trap signals
+
+JobLockRootDir="InProgress/locks"
+JobLockPath="${JobLockRootDir}/${JobBasePath}"
+
+MyTrap() {
+ local ECODE=$?
+ echo "exit(${ECODE}) TRAPped"
+ echo "freeing lock ${JobLockPath}"
+ rm -r ${JobLockPath}
+ exit ${ECODE}
+}
+
+mkdir -p "${JobLockRootDir}"
+
+if mkdir "${JobLockPath}"; then
+  echo "Locking succeeded ${JobLockPath}"
+  trap "MyTrap" INT TERM EXIT
+  ###trap 'ECODE=$?; echo "exit(${ECODE}) TRAPped, freeing lock ${JobLockPath}"; rm -r ${JobLockPath}; exit ${ECODE}' INT TERM EXIT
+else
+  echo "Lock of ${JobLockPath} failed, exiting ${JobBasePath} in $PWD directory on host $HOSTNAME pid $$ in ${MapleWorkDir}" >&2
+  exit 0
+fi
+
+##################################################          
+echo
+echo "================================================================================"
+echo "Computing ${JobBasePath} in $PWD directory on host $HOSTNAME pid $$ in ${MapleWorkDir}"
+echo
+
+# job file existence check
+if  [ ! -f  "Ready/${JobBasePath}.runme" ] ; then	
+	FinalEcho "Warning: Missing job file Ready/${JobBasePath}.runme."
+	exit 0	
+fi
+
+# InProgress/BaseDir
+if [ ! -d "InProgress/${BaseDir}" ] ; then
+	mkdir "InProgress/${BaseDir}"
+fi
+if [ ! -d "InProgress/${BaseDir}" ] ; then
+	FinalEcho "FATAL ERROR: Cannot create base directory InProgress/${BaseDir}"
+	exit 255
+elif [ ! -w "InProgress/${BaseDir}" ] ; then
+	FinalEcho "FATAL ERROR: Base directory InProgress/${BaseDir} is not writeable."
+	exit 255
+fi
+
+# InProgress/BaseDir/WorkDir
+if [ -d ${MapleWorkDir} ] ; then
+	echo "Warning: Working dir \'${MapleWorkDir}\' already exists! Removing..."  >&2
+	rmdir ${MapleWorkDir} 
+fi
+
+# Create work dirs
+bin/CreateDirs ${MapleWorkDir}
+if [ ! -d "${MapleWorkDir}" ] ; then
+	FinalEcho "FATAL ERROR: Cannot create work directory ${MapleWorkDir}"
+	exit 255
+fi
+#ln -s '../../..'  "${MapleWorkDir}/global"
+#if [[ 0 -lt $? ]] ; then 
+#	  FinalEcho "FATAL ERROR: Cannot create link ${MapleWorkDir}/global from work directory to global structures."
+#      exit 255	
+#fi
+
+# check the existence of crucial directories and files
+for x in "" "bin" "mc" ; do
+  if [ ! -d "${MapleWorkDir}/global/${x}" ]; then
+     echo "FATAL ERROR: Cannot resolve directory ${MapleWorkDir}/global/${x}" 
+     exit 255
+  fi
+done
+for x in "mc/SingleStep.mc" "mc/CommonProc.mc" "mc/Jets.s" "bin/cmaple"; do
+  if [ ! -f "${MapleWorkDir}/global/${x}" ]; then
+     echo "FATAL ERROR: Missing file ${MapleWorkDir}/global/${x}." 
+     exit 255
+  fi
+done
+
+# move .runme job file 
+mv Ready/${JobBasePath}.runme ${MapleWorkDir}/
+if [[ 0 -lt $? ]] ; then 
+    if  [ ! -f  "Ready/${JobBasePath}.runme" ] ; then	
+	  FinalEcho "Warning: Dissmissed job file Ready/${JobBasePath}.runme."
+	  exit 0
+	else  
+	  FinalEcho "FATAL ERROR: Cannot move job file to work directory, file ${MapleWorkDir}/${JobBasePath}.runme does not exist."
+      exit 255	
+    fi
+fi
+if  [ ! -f  "${MapleWorkDir}/${JobBasePath}.runme" ] ; then	
+    if  [ ! -f  "Ready/${JobBasePath}.runme" ] ; then	
+	  FinalEcho "Warning: Dissmissed job file Ready/${JobBasePath}.runme."
+	  exit 0
+	else  
+	  FinalEcho "FATAL ERROR: Cannot move job file to work directory, file ${MapleWorkDir}/${JobBasePath}.runme does not exist."
+      exit 255	
+    fi
+fi
+
+# Go to work dir
+pushd  ${MapleWorkDir}
+
+echo "`ls -la`"
+
+# run the computation
+global/bin/cmaple \
+  -c "restart" \
+  -c "parCD:=convert(\"${MapleWorkDir}\",string)" \
+  -c "parBaseFileName:=convert(\"${JobBasePath}\",string)" \
+  -c "parJobPrefix:=convert(\"${JobBaseName/[0-9\{\}]*/}\",string)" \
+  $* < "global/mc/SingleStep.mc"
+# Maple is not parsing {} properly but the fix bellow is causing DoOneStep to fail :(
+#global/bin/cmaple \
+#  -c "restart" \
+#  -c "parCD:=convert(\"\\\"${MapleWorkDir}\\\"\",string)" \
+#  -c "parBaseFileName:=convert(\"\\\"${JobBasePath}\\\"\",string)" \
+#  -c "parJobPrefix:=convert(\"\\\"${JobBaseName/[0-9\{\}]*/}\\\"\",string)" \  
+
+MapleResult=$?
+
+popd 
+
+# Cleanup:
+  
+if [[ 50 -lt ${MapleResult} ]] ; then 
+# maple reported error by return code
+  MoveToErrors " maple exited with error code ${MapleResult},"
+elif [ -f ${ErrorFile} ] ; then 
+# maple created an .error file
+  MoveToErrors " There is an error file ${ErrorFile},"
+elif [ ! -f ${MapleWorkDir}/States/${JobBasePath}.state ] ; then 
+# maple have not created .state file
+  echo "Error: States/${JobBasePath}.state does not exists." >> ${ErrorFile}
+  echo "Result of grep -i \"error\" Logs/${JobBasePath}.log :" >> ${ErrorFile}
+  grep -i "error" Logs/${JobBasePath}.log  >> ${ErrorFile}
+  MoveToErrors " States/${JobBasePath}.state does not exists,"  
+else 
+# successfully done
+  mv ${MapleWorkDir}/*.*	 	Done/
+  # mv --backup=numbered ${MapleWorkDir}/*.*	 	Done/
+  CleanUpSubDir Results
+  CleanUpSubDir States
+  CleanUpSubDir Ready
+  CleanUpSubDir Nonlinear
+  CleanUpSubDir Abandoned
+  CleanUpSubDir Logs.Detailed
+  rm ${MapleWorkDir}/global
+  rmdir ${MapleWorkDir} 
+fi 
+
+# free job lock - TODO: by TRAP
+#echo "freeing lock ${JobLockPath}"
+#rm -r ${JobLockPath}
+
+
+FinalEcho ""
+
+exit ${MapleResult}

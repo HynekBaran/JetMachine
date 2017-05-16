@@ -1,0 +1,19 @@
+#!/bin/bash
+if [[ $1 = "-a" ]] ; then
+  echo "Delete ALL ??? Press ENTER to proceed."
+  read a;
+  rm -r Abandoned	Errors Logs*	Ready	Consequences Results	global Done	InProgress States
+  exit 0;
+fi
+
+if [[ $# = 0 ]] ; then
+  echo "Missing parameter (job base). There are following:"
+  ls  mc/*.init.mc
+fi
+echo "Delete all $1 ? Press ENTER to proceed."
+read a;
+
+rm -f */$1*.{log,runme,state,err,ce,nonlinfail,divbyzero,nonimportant,non0to0,success}
+#rm *.log
+rm -rf InProgress/*/$1*
+rm -rf Errors/$1*

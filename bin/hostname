@@ -1,0 +1,8 @@
+#!/bin/bash
+BaseDir=${HOSTNAME//[-+]/_}
+if [[ ${BaseDir} != ${BaseDir//local/} ]] ; then
+  BaseDir=${BaseDir//local/}
+  echo "Warning: \$HOSTNAME='${HOSTNAME}' contains 'local', network is probably broken." >&2
+fi
+echo -n $BaseDir
+

@@ -1,0 +1,84 @@
+#!/bin/bash
+
+function MakeDir()
+{
+  if [ ! -d "${1}" ] ; then
+    mkdir "${1}"
+  fi
+}
+
+MakeDir "Consequences"
+pushd "Consequences"
+
+
+MyGlobalDir=".."
+myfilebase="consequeces_`date +"%d.%m.%y_%H.%M"`"
+zipfile="${myfilebase}.zip"
+logfile="${myfilebase}.log"
+
+echo "Zipping to `pwd`/$zipfile"
+
+n=0
+m=0
+
+    if [[ $# -eq 0 ]]; then
+      echo "Parsing jobname bases" # initFile will be parsed from job names
+    else
+      koko="${1}"
+      initFile="${koko/[0-9\{\}]*/}"
+      echo "Using globally ${initFile/[0-9\{\}]*/}"
+    fi
+
+#for ko in `ls  ${MyGlobalDir}/Results/${1}*.success | sort -r` ;
+for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
+  do 
+    n=`expr $n + 1`
+    src="`basename ${ko/\.success/}`"
+    if [[ $# -eq 0 ]]; then
+      initFile=${src/[0-9\{\}]*/} # parse jobname base
+    fi
+    maple -q \
+          -c "restart" \
+          -c "parBaseFileName:=convert(\"${src}\",string)" \
+          -c "parJobPrefix:=convert(\"${initFile}\",string)" \
+          >> ${logfile} <<END 
+              try
+                  print("***************************************************");
+                  printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);
+                  read("${MyGlobalDir}/mc/Jets.s"):
+                  read(cat("${MyGlobalDir}/mc/",parJobPrefix,".init.mc")):
+                  read(cat("${MyGlobalDir}/States/",parBaseFileName,".state")):
+                  #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
+                  #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
+                  r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", "${MyGlobalDir}", parJobPrefix);
+                  if r=false then print("General case") else print("This is a consequence. The generalisation is: ", r) fi;
+                  print("***************************************************");
+                  if r=false then \`quit\` (0) else \`quit\` (1) fi;
+              catch:
+                  printf("Error, cannot decide, supposing %a is a general case. %s\n", parBaseFileName, StringTools:-FormatMessage( lastexception[2..-1]));
+                  \`quit\` (0);
+              end try;
+END
+  result=$?
+  #echo "maple result is $result"
+  if [[ $result -eq 0 ]] ; then
+  	echo "${initFile}: $ko is general"
+  	m=`expr $m + 1`
+  	zip ${zipfile} $ko "${MyGlobalDir}/States/${src}.state" "${MyGlobalDir}/Logs/${src}.log" > /dev/null
+  elif [[ $result -eq 1 ]] ; then
+  	echo "${initFile}: $ko is a consequece"
+  else
+  	echo "ERROR testing of $ko by ${initFile}."
+  fi
+  done
+
+zip ${zipfile} ${logfile} > /dev/null
+
+find "${MyGlobalDir}/mc/" -name "*.mc"  -print | zip  ${zipfile} -@ > /dev/null
+find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@ > /dev/null
+
+find "${MyGlobalDir}/Done/" -name "*.runme" -print | zip  ${zipfile} -@ > /dev/null # job initial states are hidden here
+
+grep -i "error" ${logfile}
+
+echo "total $n, general $m"

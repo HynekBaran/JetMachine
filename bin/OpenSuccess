@@ -1,0 +1,26 @@
+#!/bin/bash
+
+grep -l '`Success!`' Logs/$1*.log | while read myFile
+  do
+    myBase=`basename $myFile`
+    myFileWithoutExt=${myBase/.log/}
+    
+    echo $myBase
+    
+    setlabel Green $myFile > /dev/null
+    setlabel Green Results/$myFileWithoutExt.success > /dev/null
+    setlabel Green States/$myFileWithoutExt.*state > /dev/null
+  done
+  
+if [[ $? = 0 ]] ; then
+  echo -n "Open it all?"
+  read koko 
+  
+  if [[ ! $koko = "n" ]] ; then 
+    grep -l '`Success!`' Logs/$1*.log | while  read koko 
+      do  
+        open $koko 
+      done
+  fi
+fi
+

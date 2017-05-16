@@ -1,0 +1,47 @@
+#!/bin/bash
+PdsolveDir="Results/Pdsolve"
+PdsolveFileExt="pdsolve.mc"
+
+function MakeDir()
+{
+  if [ ! -d $1 ] ; then
+    mkdir $1
+  fi
+}
+
+MakeDir ${PdsolveDir}
+
+
+if [ $(ls -1 ${PdsolveDir}/ | grep ${PdsolveFileExt} | wc -l)  != 0 ] ; then
+   echo "Warning: The directory  ${PdsolveDir} is not empty:" 
+   ls ${PdsolveDir}/ | grep ${PdsolveFileExt}
+   echo -n "Are you sure?"
+   read a
+   if [ $a != 'y' -a $a != 'Y' ] ; then 
+     echo "Nothing done, exitus." 
+     exit 
+   else
+     echo "Regenerating all files..."
+   fi
+fi
+ 
+for ko in Results/${1}*.success ; do  
+  outFile="${PdsolveDir}/`basename ${ko}`.${PdsolveFileExt}"
+  #stateFile="${PdsolveDir}/`basename ${ko}`.state"
+  stateFile="`basename ${ko}`.state"
+
+  touch "${outFile}"
+
+  echo "#!/usr/bin/maple -q" > ${outFile}
+  echo "print(\"`basename ${ko}`\");" >> ${outFile}
+    
+  grep diff  < ${ko} | sed s/"clear(pds)="/"Z:="/  >> "${outFile}"
+  
+  echo ":" >> ${outFile}
+  echo "sol := pdsolve(Z);" >> ${outFile}
+  echo "lprint(sol);" >> ${outFile}
+  #echo "save sol, \"${stateFile}\";" >> ${outFile}
+  echo "print(DONE);" >> ${outFile}
+
+  
+done
