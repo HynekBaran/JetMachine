@@ -157,6 +157,14 @@
 # * `put/sizelimit` and `size/1/DD` introduced
 # * run() refactored (cc's are derived)
 # * `put/1` distinguishes redundand and contradictory attempt of putting already assigned expressions
+#
+# v 5.87
+# * not deriving cc's by default (`run/l/extraders` used in slightly different mode)
+# * `run/1` reporting cleanup
+# * Report Reportf macros rewritten, rt, rb no more needed
+# * `size/1/DD` abandoned for a hidden bug
+# * `put/limit/length`, `put/limit/size` instead `put/sizelimit` 
+# * JetMachine[Consequences]:-AmICons: Using `AmICons/ignore`() for nonzero(), Varordering() and unknowns()
 
 ###########################################################################################
 ###########################################################################################
@@ -165,10 +173,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-#print(`Jets 5.85 for Maple 15 as of June 28, 2016`);
-#print(`Jets 5.85 RC 2 for Maple 15 as of Jan 10, 2016`);
-#print(`HB 2017.02.21 (+ size/1/pd fixDD at 2017.02.28 ) based on MM 2017.01.28 based on Jets 5.85 RC 1 for Maple 15 as of Jan 05, 2016`);
-print(`Jets 5.86 as of April 19, 2017`);
+print(`Jets 5.87 as of May 15, 2017`);
 
 #
 # Source code configuration, options and parameters
@@ -230,12 +235,15 @@ if assigned(cat(`jets/read/flag/`,__FILE__)) then `quit`(255); fi; # force immed
 assign(cat(`jets/read/flag/`,__FILE__), true):
 
 ### aux macros
+ProcBaseName := proc() option inline; StringTools:-Split(convert((debugopts('callstack')[2]), string), "/")[1] end:
+ProcBaseSymbol := proc() option inline; convert(ProcBaseName(), symbol) end:
+ProcBaseSYMBOL := proc() option inline; convert(StringTools:-UpperCase(ProcBaseName()), symbol) end:
 #$define Report(l, m)  if rt > l then report(lb,m) fi;
 #$define Reportf(l, m) if rt > l then report(lb,sprintf(op(m))) fi;
-$define Report(l, m)  if rt > l then report(lb,[cat('procname','`:`'), op(m)]) fi;
-$define Reportf(l, m) if rt > l then report(lb,sprintf(cat("%s: ", op(1,m)), procname, op(2..-1, m))) fi;
-
-
+#$define Report(l, m)  if rt > l then report(lb,[cat('procname','`:`'), `if`(type(m,list),op(m),m)]) fi;
+#$define Reportf(l, m) if rt > l then report(lb,sprintf(cat("%s: ", op(1,m)), procname, op(2..-1, m))) fi;
+$define Report(l, m)  if `report/tab`[ProcBaseSymbol()] > l then report(cat(ProcBaseSYMBOL(), '`:`'), [cat('procname','`:`'), `if`(type(m,list),op(m),m)]) fi;
+$define Reportf(l, m)  if `report/tab`[ProcBaseSymbol()] > l then report(cat(ProcBaseSYMBOL(), '`:`'), sprintf(cat("%s: ", op(1,m)), ProcBaseSYMBOL(), op(2..-1, m))) fi;
 
 ##############################
 #MaP := evalf(Threads[Map]);
@@ -308,15 +316,18 @@ sizefactor := 1000000000:
 `size/1` := proc(a) # MM size evaluator
   global sizefactor;
   local b;
-  b := eval(eval(a,  TD=`size/1/DD`), pd=`size/1/DD`);
-  evalf(nops(Vars(a)) + length(b)/sizefactor);
+  #b := eval(eval(a,  TD=`size/1/DD`), pd=`size/1/DD`);
+  evalf(nops(Vars(a)) + length(a)/sizefactor);
 end:
 
-`size/1/DD` := proc(f, p)
-  # do not count too much of pd(f,p) derivating monomial p
-	local d; # dummy 
-	'DD'(f, cat(d $ degree(p))) # slight penalty for higher derivatives
-end:
+## there was a hidden bug, consider
+## 1/(pd(F,u)-pd(F,v)) --> 1/(DD(F,d)-DD(F,d)) = 1/0
+##
+#`size/1/DD` := proc(f, p)
+#  # do not count too much of TD(f,p), pd(f,p) derivating monomial p
+#	local d; # dummy 
+#	'DD'(f, cat(d $ degree(p))) # slight penalty for higher derivatives
+#end:
 
 #sizesort := proc(ql,pr)  # ql = list of expressions, pr = sizeing proc
 #  local qls;
@@ -325,8 +336,8 @@ end:
 #  map (proc(a) op(1,a) end, qls)
 #end:
 sizesort := proc(L::list, sizef)
-local l;
-    return map(attributes,sort([seq](setattribute(SFloat(sizef(l),0),l), l=L),`<`));
+  local l;
+  return map(attributes,sort([seq](setattribute(SFloat(sizef(l),0),l), l=L),`<`));
 end proc:
 # see http://www.mapleprimes.com/blog/joe-riel/sorting-with-attributes
 
@@ -1160,7 +1171,7 @@ put := proc()
   if type ([args], 'list'(`=`)) then
     for e in args do 
     	#`put/items/add`(lhs(e));
-    	`put/1`(op(e)) 
+    	`put/1`(op(e), _rest) 
     od
   else ERROR (`wrong arguments`)
   fi;
@@ -1169,16 +1180,14 @@ put := proc()
 end:
 
 
-unassign('`put/sizelimit`'): # use with extreme care!
+unassign('`put/limit/size`', '`put/limit/length`'): # use with extreme care!
 
-`put/1` := proc(p,a)
-  global `unk/s`,`unk/<</list`,`dep/tab`,`pd/tab`, `put/name/tab`, `put/sizelimit`;
-  #if eval(p)<>p then
-  #  if eval(p) = a then 
-  #    printf("put: Ignoring already assigned argument %a=%a\n", p,a);
-  #  else
-  #   printf("put: Ignoring already assigned argument %a=%a, the old value is %a\n", p, eval(p), a);
-  #  fi;
+`put/1` := proc(p,a) # {`put/limit/size`::{numeric,infinity}:=infinity, `put/limit/length`::{numeric,infinity}:=infinity}
+  global `report/tab`, `unk/s`,`unk/<</list`,`dep/tab`,`pd/tab`, `put/name/tab`, `put/limit/size`, `put/limit/length`;
+  Report(0, [p]);
+  Report(1, [p=size(a)]);
+  Report(2, [p=[LVar(a),size(a)]]);
+  Report(4, [p=a]);
   if type (p,'name') then
     `unk/s` := map(`put/1/remove`, `unk/s`, p);
     `unk/<</list` := map(`put/1/remove`, `unk/<</list`, p);
@@ -1188,19 +1197,23 @@ unassign('`put/sizelimit`'): # use with extreme care!
     if a = 0 and type (op(1,p),'dep') and type(op(2,p),'var') then 
       `dep/tab`[op(1,p)] := `dep/tab`[op(1,p)] minus {op(2,p)}
     else     	  
-       if type(`put/sizelimit`, numeric) and size(a) > `put/sizelimit` then
-          printf("put: Ignoring too large (size=%a>%a, length=%a) argument %a=%a\n", size(a),`put/sizelimit`, length(a), p, a);          	  
+       if type(`put/limit/length`, numeric) and length(a) > `put/limit/length` then
+          printf("put: Ignoring too long (size=%a, length=%a>%a) argument %a=%a\n", size(a), length(a), `put/limit/length`, p, a);   
+       elif type(`put/limit/size`, numeric) and size(a) > `put/limit/size` then
+          printf("put: Ignoring too large (size=%a>%a, length=%a) argument %a=%a\n", size(a),`put/limit/size`, length(a), p, a);             	  
        else
-      	 if type(`put/sizelimit`, numeric) then 
-          	printf("put: Putting (size=%a<=%a, length=%a) %a=%a\n", size(a),`put/sizelimit`, length(a), p, a);  
-         fi;
+      	 if type(`put/limit/size`, numeric) or type(`put/limit/length`, numeric) then 
+      	   printf("put: Putting (size=%a<=%a, length=%a<=%a) %a=%a\n", size(a),`put/limit/size`, length(a), `put/limit/length`, p, a); 
+      	 fi;
          `pd/tab`[op(1,p)][op(2,p)] := a;
        fi;	
     fi;
   else 
     if simpl(p-a) = 0 then 
-      lprint (`ignoring redundand put of `, p);
+      printf ("ignoring redundand put of %q\n", p);
     else
+      lprint(p);
+      lprint(a);
       error "Contradiction in put( %1 = %2 )", p, a;
     fi;
   fi
@@ -2347,13 +2360,13 @@ end:
 ars := proc(a) vars(a) union pars(a) end:
 
 run := proc()
-  global `cc/count/total`, `cc/count/computed`, `derive/time`, `cc/time`, `put/sizelimit`;
+  global `cc/count/total`, `cc/count/computed`, `derive/time`, `cc/time`, `put/limit/size`, `put/limit/length`;
   `cc/count/total`, `cc/count/computed` := 0,0;
    `derive/time`, `cc/time` := 0.0, 0.0;
   if nargs = 0 then
     error "Missing arguments"
   else
-   unassign('`put/sizelimit`');
+   unassign('`put/limit/size`', '`put/limit/length`');
    `run/l`(op(map(`run/1`,[args])))
   fi;
 end:
@@ -2380,8 +2393,8 @@ end:
 `run/currentstep` := 0:
 
 `run/l` := proc()
-  local as,eqs,aux,i,imax,ders, res,t,rt,lb,ncc, aux1, dc;
-  global `run/time`,`run/bytes`, putsize, ressize, runtransformations,
+  local as,eqs,aux,i,imax,ders, res,t,ncc, aux1, ccders;
+  global `run/time`,`run/bytes`, `report/tab`, putsize, ressize, runtransformations,
          RESOLVE, `run/currentstep`;
   if `unk/<</list` = [] then
     ERROR (`please set unknowns(name1, name2, ...)`) 
@@ -2389,13 +2402,17 @@ end:
   clear(cc,derive);
   `run/time` := time();
   `run/bytes` := kernelopts(bytesalloc);
-  lb := `RUN:`; rt := `report/tab`[run];
   do i := 0;
     `run/currentstep` := `run/currentstep` + 1;
-    if rt > 0 then report(lb, `Guessing correctness of unknowns ordering...`); TestUnkOrd() fi;
-    if rt > 0 then report(lb,`Compatibility conditions ...`) fi;
-    
+
+    ### unknowns ordering test
+    if `report/tab`[run] > 0 then
+      Report(0, `Guessing correctness of unknowns ordering...`); 
+      TestUnkOrd();
+    fi;
+
     ### cc
+    Report(0, `Compatibility conditions ...`);
     #print(KOKO,CC:-HS[g11]);
     #as := cc(pop,maxnumP=1); 
     as := cc();
@@ -2415,32 +2432,44 @@ end:
         fi
       fi
     fi;
-    if nops(as) = 0 then
-      if rt > 1 then report(lb,[`no cc to be resolved`]) fi;
+    ncc := nops(as);
+    if ncc = 0 then
+      Report(1,[`no cc found`])
 	  else
       #print(BOBO,CC:-HS[g11]);
       #print(LOLO);
       #map(print,as);
       #`pd/tab/print/unk`(g11);
-      
-      if rt > 1 then report(lb,[`cc sizes to be resolved(`, nops(as),`): `, op(sort(map(size,[op(as)])))]) fi;
-      if rt > 2 then report(lb,[`cc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], as)]) fi;       
-      if rt > 5 then report(lb,[`cc to be resolved:`, as]) fi;       
+      Report(1,[`cc sizes found(`, ncc,`): `, op(sort(map(size,[op(as)])))]);
+      Report(2,[`cc [LVar=size] found:`, map(a->[LVar(a)=size(a)], as)]);       
+      Report(5,[`cc found:`, as]);       
     fi;
     MultiOrdCC:-Write(op(as)); # send intermediate cc's to the world   
 
+    ### derive arguments
+    Report(0,[`We obtained `, ncc,` compatibility conditions. Lets derive `, nops({args}) ,`args...`]);    
+    Report(2,[`args to be derived [LVar=size]:`, map(a->[LVar(a)=size(a)], [args])]);       
+    Report(5,[`args to be derived:`, args]);               
     
-    ### dc
-    if rt > 0 then report(lb,[`We obtained `, nops(as),` compatibility conditions. Lets derive `, nops({args}) ,`args...`]) fi;    
-    if rt > 3 then report(lb,[`args to be derived [size,LVar]:`, map(a->[LVar(a)=size(a)], [args])]) fi;       
-    if rt > 4 then report(lb,[`args to be derived:`, args]) fi;           
-    
-    ders := {derive(args, `run/l/extraders`(as))}; # we may derive also some result of cc
-    #ders := {derive(args)};
-    if rt > 2 then report(lb,`simpl`, nops(ders) ,`derive results...`) fi;    
+    ders := {derive(args)};
+    if rt > 1 then report(lb,`simpl`, nops(ders) ,`derive results...`) fi;    
     ders := map(simpl,ders); # TODO(eff): je to simpl nutne?
     ders := select(proc(a) evalb(a <> 0) end, ders); 
-    if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(ders)])))]) fi;
+        
+    ### derive cc's 
+    if assigned(`run/l/extraders`) then 
+      if rt > 0 then report(lb,[`Lets derive cc's...`]) fi;  
+      ccders := `run/l/extraders`(as, ders);
+      if rt > 1 then report(lb,`simpl`, nops(ders) ,`derive results...`) fi;    
+      ccders := map(simpl,ccders); # TODO(eff): je to simpl nutne?
+      ccders := select(proc(a) evalb(a <> 0) end, ccders); 
+      ders := ders union ccders;
+    else
+      ccders := {};
+    fi;
+    if rt > 1 then report(lb,[`derived: `, op(sort(map(size,[op(ders)]))), `including`, nops(ccders), `derives of cc's`]) fi;
+
+    ### transformations
     if runtransformations <> {} then
       for t in runtransformations do
         ders := ders union map(Simpl@t,ders)
@@ -2454,9 +2483,8 @@ end:
     if rt > 5 then report(lb,[`all derived: `, op(ders)]) fi;
 
     ### are we done?
-    if nops(as)+nops(ders)=0 then 
+    if ncc+nops(ders)=0 then 
       tprint(`Success!`);
-		  if nops(cc()) > 0 then error "Implementation error: There are remaining cc's" fi;
 		  RESOLVE := {};
       RETURN(op(as)) # TODO: co vratime???
 		fi;       
@@ -2471,57 +2499,39 @@ end:
     #  elif rt > 3 then report(lb,[`imported cc sizes: `], map(size, aux1)) 
     #  elif rt > 0 then report(lb,[`imported cc #: `, nops(aux1), `of them nontrivial #:`, nops(aux)] ) fi;
     #fi;
-    ncc := nops(as);
-    #as := as union aux;
-
-		### resolve ALL compatibility conditions cc and some of differential consequences (dc)		
-    #if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets resolve...`]) fi;    
-    ##if rt > 0  and nops(as)*nops(ders)>0 then 
-    ##  if size(ders[1]) <= size(as[1]) then 
-    ##   report(lb, [sprintf("Derive beated cc, %a <= %a; d=%a, c=%a", size(ders[1]),size(as[1]), ders[1], as[1])]) 
-    ##  fi;
-    ##fi; 
-
-    # MM 2017 moved "aux := `size/*/<`(ders, ressize);" below
-    #if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders, size)} fi; # TODO(eff): udelej nove rychle `size/*/<`
-    #if rt > 1 then report(lb,[`dc sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
-    #if rt > 2 then report(lb,[`dc [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
-    #if rt > 5 then report(lb,[`dc to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]) fi;
     
-    if rt > 0 then report(lb,[`We obtained `, nops(ders),` derives and`, ncc, `cc's. Lets derive cc's...`]) fi;      
-    
-    dc := map(derive, as);
-    
-    ##if rt > 0  and nops(as)*nops(dc)>0 then 
+    ##if rt > 0  and ncc*nops(dc)>0 then 
     ##  if size(dc[1]) <= size(as[1]) then 
     ##   report(lb, [sprintf("Derived cc beated cc, %a <= %a; d=%a, c=%a", size(dc[1]),size(as[1]), dc[1], as[1])]) 
     ##  fi;
     ##fi; 
 
+    ### take a bite   
+    Report(0,[`We obtained `, nops(ders),` derives.  Lets resolve...`]);    
+    Report(1,[`derived cc's sizes (`, nops(ders),`): `, op(sort(map(size,[op(ders)])))]);
+    Report(2,[`derived cc's [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(ders)])]);       
     
-    if rt > 0 then report(lb,[`We obtained `, nops(dc),` derived cc's.  Lets resolve...`]) fi;    
-    if rt > 1 then report(lb,[`derived cc's sizes (`, nops(dc),`): `, op(sort(map(size,[op(dc)])))]) fi;
-    if rt > 2 then report(lb,[`derived cc's [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(dc)])]) fi;       
-    
-    
-    aux := `size/*/<`(ders union dc, ressize); # MM 2017 
-    if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(ders union dc, size)} fi; # TODO(eff): udelej nove rychle `size/*/<`
-    
-    if rt > 1 then report(lb,[`Selected eqs sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]) fi;
-    if rt > 2 then report(lb,[`Selected eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]) fi;       
-    if rt > 5 then report(lb,[`Selected eqs to be resolved: `, [op(aux)], `selected of totally`, nops(ders union dc)]) fi;   
+    aux1 := ders union as;
+    if nops(aux1)=0 then error "This should not happen"; fi;
+    aux := `size/*/<`(aux1, ressize);    
+    if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(aux1)} fi; # TODO(eff): udelej nove rychle `size/*/<`
 
+    Report(1,[`Selected eqs sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]);
+    Report(2,[`Selected eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]);       
+    Report(5,[`Selected eqs to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]);   
+
+    ### resolve
     res := resolve(op(aux)); # TODO(eff): nestaci `resolve/1`?
-      
     if res = FAIL then
       if ncc=0 and rt > 1 then WARNING("Cannot resolve differential consequence(s) only, no cc present."); fi;
       RETURN (FAIL);
     else 
-      if rt > 1 then report(lb,[`cc+dc sizes resolved:`, op(sort(map(size,[res])))]) fi;
-      if rt > 2 then report(lb,[`cc+dc [LVar=size] resolved:`, op(map(a->[lhs(a)=size(a)], [res]))]) fi;    
-      if rt > 3 then report(lb,[`cc+dc LVar=[size,VarL] resolved:`, op(map(a->lhs(a)=[size(a),VarL(rhs(a))], [res]))]) fi;                            
-      if rt > 5 then report(lb,[`cc+dc resolved:`, res]) fi;
- 
+      Report(1,[`cc+ders sizes resolved:`, op(sort(map(size,[res])))]);
+      Report(2,[`cc+ders [LVar=size] resolved:`, op(map(a->[lhs(a)=size(a)], [res]))]);    
+      Report(3,[`cc+ders LVar=[size,VarL] resolved:`, op(map(a->lhs(a)=[size(a),VarL(rhs(a))], [res]))]);                            
+      Report(5,[`cc+ders resolved:`, res]);
+      
+      ### put
       aux := `size/*/<`({res}, putsize);
       if rt > 1 then 
         report(lb,[`for put, selected`, nops(aux), `out of`, nops([res]), `of sizes`, op(sort(map(size,[op(aux)])))]) 
@@ -2536,28 +2546,39 @@ end:
  tprint();       
 end:
 
-`run/l/extraders` := proc() NULL end:
+## if deriving of cc's is not needed, do not assign `run/l/extraders` or use
+# `run/l/extraders` := proc(ccs, ders) {} end: # not deriving cc's 
+
+## define `run/l/extraders` to be cc derivator if needed:
+# `run/l/extraders` := proc(ccs, ders) {derive(op(ccs))} end: # derive all cc's
+# `run/l/extraders` := proc(ccs, ders) if nops(ders) = 0 then {derive(op(ccs))} else {} fi; end: # derive all cc's if no derives available
 
 `size/*/<` := proc(as,upb_name::evaln) # TODO(eff): udelej nove rychle `size/*/<` s pouzitim sizesort
   local upb, aux,bs,ans,i,m,n;
-  upb := eval(upb_name);
-  n := 1;
-  ans := {};
-  aux := sort([op(map(size, as))]);
-  if aux[1] > upb then 
-    WARNING("`%1`: size bound %2=%3 reached by first expression of size %4 but returning of single result enforced", 'procname', upb_name, upb, aux[1]);
-    return {as[1]}; 
+  if nops(as) = 0 then 
+    return {}
   else
-    for m in aux do
-      bs := select(`size/=`, as, m);
-      for i to nops(bs) do
-        n := n*m;
-        if n > upb then RETURN(ans)
-        else ans := ans union {op(i,bs)}
-        fi      
-      od
-    od;
-  end;
+    upb := eval(upb_name);
+    n := 1;
+    ans := {};
+    aux := sort([op(map(size, as))]);
+    if aux[1] > upb then 
+      WARNING("`%1`: size bound %2=%3 reached by first expression of size %4 but returning of single result enforced", 'procname', upb_name, upb, aux[1]);
+      return {as[1]}; 
+    else
+      for m in aux do
+        bs := select(`size/=`, as, m);
+        for i to nops(bs) do
+          n := n*m;
+          if n > upb then 
+            RETURN(ans)
+          else 
+            ans := ans union {op(i,bs)}
+          fi;      
+        od;
+      od;
+    fi;
+  fi;
 end:
 
 `size/=` := proc(a,upb) evalb(size(a) = upb) end:
@@ -3269,32 +3290,33 @@ fi: # jets_new_resolve_enable
   
   lb := `RESOLVE:`; rt := `report/tab`[resolve];
   bs := map(Simpl, as, vl);
-  if rt > 2 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
+  if rt > 1 then report(lb,cat(`resolving `, nops(bs),` eq.`)) fi; 
   bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
-  if rt > 2 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
+  if rt > 1 then report(lb,cat(nops(bs), ` eq. nonzero`)) fi; 
   if bs = {} then RETURN () fi;  # no eq.
   ans := {}; rs := {}; os := {};
   # Correction: rvl removed 12.7.2007
   if ForceFail=true then tprint("Enforced linear failure.") fi;
-  if rt > 3 then report(lb,`resolving`, nops(bs), `eqns in `,nops(vl), `unknowns`) fi; 
+  if rt > 0 then report(lb,`resolving`, nops(bs), `eqns in `,nops(vl), `unknowns`) fi; 
   for v in vl do # for v running through all Vars in reverse Varordering
     if rt > 4 then report(lb,`resolving with respect to`, v) fi; 
     bs := map(divideout, bs); # remove nonzero factors
     bs := map(Simpl, bs, vl); # Simplify
     bs := remove(proc(a) evalb(a = 0) end, bs);  # remove zero eqs.
+    if rt > 4 then report(lb,`reducing `, nops(bs)) fi;    
     bs := map(reduceprod, bs);  # reduce products
     cs := select(has, bs, v);  # cs = subset of bs with v 
-    if rt > 3 then report(lb,`resolving`, nops(cs), `equations`, `with respect to`, v, `: `, cs) fi; 
+    if rt > 2 then report(lb,`resolving`, nops(cs), `equations`, `with respect to`, v, `: `, cs) fi; 
     bs := bs minus cs;  # bs = subset without v
     ls, ns := selectremove(type, cs, linear(v));  # ls = subset of cs linear in v
     if ForceFail=true then
       # printf("Enforced linear failure (w. r. to %a).\n", v);
       rs := rs union map(proc(a,v) [a,v] end, cs, v)  # move cs to rs   
     else   
-      if rt > 4 then report(lb,`of them linear:`, ls) fi; 
+      if rt > 4 then report(lb, nops(ls), `of them linear:`, ls) fi; 
       ps, os1 := selectremove(proc(a,v) type (coeff(a,v,1),'nonzero') end, ls, v);
       os := os union os1; # save linear but nonresolvable for future
-      if rt > 3 then report(lb, `Solving `, nops(bs),  `eqns w. r. to`,  v, nops(ls), ` of them linear`, nops(ps), ` of them resolvable.`) fi; 
+      if rt > 3 then report(lb, `Solving `, nops(cs),  `eqns w. r. to`,  v, nops(ls), ` of them linear`, nops(ps), ` of them resolvable.`) fi; 
       if ps <> {} then                            # if solvable eqs,
         qs := map(Simpl, map(`resolve/lin/1`, ps, v), vl); # solve all ps
         if rt > 4 then report(lb,`available solutions:`, qs) fi; 
@@ -3311,10 +3333,9 @@ fi: # jets_new_resolve_enable
       fi;
     fi;
   od;
-  if rt > 2 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
-  if rt > 2 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
-  if rt > 3 then report(lb,[`sizes: solved:`, op(sort(map(size,[op(ans)]))), `rejected:`, op(sort(map(size,[op(rs)])))]) fi;    
-  if rt > 2 then report(lb,cat(`left `, nops(bs), ` eq.`)) fi; 
+  if rt > 0 then report(lb,cat(`solved `, nops(ans), ` eq.`)) fi; 
+  if rt > 1 then report(lb,cat(`rejected `, nops(rs), ` eq.`)) fi; 
+  if rt > 2 then report(lb,[`sizes: solved:`, op(sort(map(size,[op(ans)]))), `rejected:`, op(sort(map(size,[op(rs)]))), `left `, nops(bs), ` eq.`]) fi;    
   ans := map(Simpl, map(eval,ans), vl);
   rs := map(proc(r,vl) [Simpl(op(1,r), vl), op(2,r)] end, rs, vl);
   rs := select(proc(r) evalb(op(1,r) <> 0) end, rs);
@@ -3673,6 +3694,8 @@ end:
 `report/tab`[cc] := 0:
 `report/tab`[pd] := 0:
 `report/tab`[nonzero] := 0: # HB
+`report/tab`[put] := 0: # HB
+
 
 lb := NULL:
 
@@ -6404,7 +6427,7 @@ module JetMachine ()
 
   module Consequences()
     export AmICons, ListGen, TestGen, ExportGen;
-    local `AmICons/put`, `AmICons/dependence`, `AmICons/nonzero`;
+    local `AmICons/put`, `AmICons/dependence`, `AmICons/ignore`;
    
     AmICons := proc(fileName)
       description "test whether the current jets environment is the consequence (a special case)"
@@ -6412,9 +6435,18 @@ module JetMachine ()
       local f, s, e, n, r, t;
       
       # read in the source file
-      f := FileTools[Text][Open](fileName, create=false, overwrite=false);
+      try
+        f := FileTools[Text][Open](fileName, create=false, overwrite=false);
+      catch:
+        printf("Error, cannot decide, supposing I am not a consequence. %s\n", StringTools:-FormatMessage( lastexception[2..-1]));
+        return false;
+      end;
+      
       try
         s := FileTools[Text][ReadFile](f);
+      catch:
+        printf("Error, cannot decide, supposing I am not a consequence. %s\n", StringTools:-FormatMessage( lastexception[2..-1]));
+        return false;
       finally
         FileTools[Text][Close](f);
       end;
@@ -6422,7 +6454,11 @@ module JetMachine ()
       # the procedures bellow must NOT be called directly, we have to tweak it in order to catch the the calls
       s := StringTools:-SubstituteAll(s, "put", "JetMachine[Consequences]:-`AmICons/put`");
       s := StringTools:-SubstituteAll(s, "dependence", "JetMachine[Consequences]:-`AmICons/dependence`");
-      s := StringTools:-SubstituteAll(s, "nonzero", "JetMachine[Consequences]:-`AmICons/nonzero`");
+      # ignore procedure calls bellow
+      s := StringTools:-SubstituteAll(s, "nonzero", "JetMachine[Consequences]:-`AmICons/ignore`");
+      s := StringTools:-SubstituteAll(s, "Varordering", "JetMachine[Consequences]:-`AmICons/ignore`");
+      s := StringTools:-SubstituteAll(s, "unknowns", "JetMachine[Consequences]:-`AmICons/ignore`");      
+      #printf(s);
   
       # parse tweaked version of source file
       n := 0;
@@ -6468,10 +6504,11 @@ module JetMachine ()
                [args]) ;
       fi
     end;
-    
-    `AmICons/nonzero` := proc() 
+
+    `AmICons/ignore` := proc() 
       true; # just ignore nonzero() calls
     end;
+    
       
     
    
@@ -6550,67 +6587,90 @@ module JetMachine ()
     end;
     
     # Note: Use the bash script bellow to test against all .Success files in a given directory:
-    # #!/bin/bash
-    # 
-    # function MakeDir()
-    # {
-    #   if [ ! -d "${1}" ] ; then
-    #     mkdir "${1}"
-    #   fi
-    # }
-    # 
-    # MakeDir "Consequences"
-    # pushd "Consequences"
-    # 
-    # 
-    # MyGlobalDir=".."
-    # myfilebase="consequeces_`date +"%d.%m.%y_%H.%M"`"
-    # zipfile="${myfilebase}.zip"
-    # logfile="${myfilebase}.log"
-    # 
-    # echo "Zipping to `pwd`$zipfile"
-    # 
-    # n=0
-    # m=0
-    # 
-    # for ko in `ls ${MyGlobalDir}/Results/$1*.success` ;
-    #   do 
-    #     n=`expr $n + 1`
-    #     src="`basename ${ko/\.success/}`"
-    #     maple -q \
-    #           -c "restart" \
-    #           -c "parBaseFileName:=convert(\"${src}\",string)" \
-    #           -c "parJobPrefix:=convert(\"${src/[0-9\{\}]*/}\",string)" \
-    #           >> ${logfile} <<END 
-    #               print("***************************************************");
-    #               print(parBaseFileName, parJobPrefix);
-    #               read("${MyGlobalDir}/mc/Jets.s"):
-    #               read(cat("${MyGlobalDir}/mc/",parJobPrefix,".init.mc")):
-    #               read(cat("${MyGlobalDir}/States/",parBaseFileName,".state")):
-    #               #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
-    #               #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
-    #               r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", "${MyGlobalDir}", parJobPrefix);
-    #               print("***************************************************");
-    #               if r=false then \`quit\` (0) else \`quit\` (1) fi;
-    # END
-    #   result=$?
-    #   #echo "maple result is $result"
-    #   if [[ $result -eq 0 ]] ; then
-    #   	echo "$ko is general"
-    #   	m=`expr $m + 1`
-    #   	zip ${zipfile} $ko "${MyGlobalDir}/States/${src}.state" "${MyGlobalDir}/Logs/${src}.log"
-    #   elif [[ $result -eq 1 ]] ; then
-    #   	echo "$ko is a consequece"
-    #   else
-    #   	echo "ERROR testing of $ko"
-    #   fi
-    #   done
-    # 
-    # zip ${zipfile} ${logfile}
-    # find "${MyGlobalDir}/mc/" -name "*.mc"  -print | zip  ${zipfile} -@
-    # find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@
-    # 
-    # echo "total $n, general $m"
+    ##!/bin/bash
+    #
+    #function MakeDir()
+    #{
+    #  if [ ! -d "${1}" ] ; then
+    #    mkdir "${1}"
+    #  fi
+    #}
+    #
+    #MakeDir "Consequences"
+    #pushd "Consequences"
+    #
+    #
+    #MyGlobalDir=".."
+    #myfilebase="consequeces_`date +"%d.%m.%y_%H.%M"`"
+    #zipfile="${myfilebase}.zip"
+    #logfile="${myfilebase}.log"
+    #
+    #echo "Zipping to `pwd`/$zipfile"
+    #
+    #n=0
+    #m=0
+    #
+    #    if [[ $# -eq 0 ]]; then
+    #      echo "Parsing jobname bases" # initFile will be parsed from job names
+    #    else
+    #      koko="${1}"
+    #      initFile="${koko/[0-9\{\}]*/}"
+    #      echo "Using globally ${initFile/[0-9\{\}]*/}"
+    #    fi
+    #
+    ##for ko in `ls  ${MyGlobalDir}/Results/${1}*.success | sort -r` ;
+    #for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
+    #  do 
+    #    n=`expr $n + 1`
+    #    src="`basename ${ko/\.success/}`"
+    #    if [[ $# -eq 0 ]]; then
+    #      initFile=${src/[0-9\{\}]*/} # parse jobname base
+    #    fi
+    #    maple -q \
+    #          -c "restart" \
+    #          -c "parBaseFileName:=convert(\"${src}\",string)" \
+    #          -c "parJobPrefix:=convert(\"${initFile}\",string)" \
+    #          >> ${logfile} <<END 
+    #              try
+    #                  print("***************************************************");
+    #                  printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);
+    #                  read("${MyGlobalDir}/mc/Jets.s"):
+    #                  read(cat("${MyGlobalDir}/mc/",parJobPrefix,".init.mc")):
+    #                  read(cat("${MyGlobalDir}/States/",parBaseFileName,".state")):
+    #                  #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
+    #                  #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
+    #                  r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", "${MyGlobalDir}", parJobPrefix);
+    #                  if r=false then print("General case") else print("This is a consequence. The generalisation is: ", r) fi;
+    #                  print("***************************************************");
+    #                  if r=false then \`quit\` (0) else \`quit\` (1) fi;
+    #              catch:
+    #                  printf("Error, cannot decide, supposing %a is a general case. %s\n", parBaseFileName, StringTools:-FormatMessage( lastexception[2..-1]));
+    #                  \`quit\` (0);
+    #              end try;
+    #END
+    #  result=$?
+    #  #echo "maple result is $result"
+    #  if [[ $result -eq 0 ]] ; then
+    #  	echo "${initFile}: $ko is general"
+    #  	m=`expr $m + 1`
+    #  	zip ${zipfile} $ko "${MyGlobalDir}/States/${src}.state" "${MyGlobalDir}/Logs/${src}.log" > /dev/null
+    #  elif [[ $result -eq 1 ]] ; then
+    #  	echo "${initFile}: $ko is a consequece"
+    #  else
+    #  	echo "ERROR testing of $ko by ${initFile}."
+    #  fi
+    #  done
+    #
+    #zip ${zipfile} ${logfile} > /dev/null
+    #
+    #find "${MyGlobalDir}/mc/" -name "*.mc"  -print | zip  ${zipfile} -@ > /dev/null
+    #find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@ > /dev/null
+    #
+    #find "${MyGlobalDir}/Done/" -name "*.runme" -print | zip  ${zipfile} -@ > /dev/null # job initial states are hidden here
+    #
+    #grep -i "error" ${logfile}
+    #
+    #echo "total $n, general $m"
 
     
   end module; # Consequences
