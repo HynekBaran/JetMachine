@@ -1,0 +1,4 @@
+#!/bin/bash 
+# $1 branch (default master)
+# $2 dest dir (default is branch default i. e. JetMachine)
+git clone -b ${1:-master} git@gitlab.slu.cz:bar0001/JetMachine.git ${2}

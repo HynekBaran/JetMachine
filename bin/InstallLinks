@@ -18,9 +18,11 @@ SOURCE="${BASH_SOURCE[0]}"
 #SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 SCRIPT_DIR="$( dirname "$SOURCE" )"
+MAIN_DIR="$(dirname $SCRIPT_DIR)"
 
-#echo Skripty jsou zde $SCRIPT_DIR
+#echo Skripty jsou zde SCRIPT_DIR=$SCRIPT_DIR hlavni adresar je MAIN_DIR=$MAIN_DIR
 #echo Spusteno odtud $DIRSTACK
+
 
 # bin
 if [ -d "bin" ] ; then
@@ -28,14 +30,26 @@ if [ -d "bin" ] ; then
 fi
 ln -s $SCRIPT_DIR bin
 
-# mc
+## Tests
+#if [ ! -d "Tests" ] ; then
+#    ln -s $MAIN_DIR/Tests .
+#fi
+
+# mc 
 if [ -d "mc" ] ; then
-    rm mc/*
+    echo "Directory mc/ already exists."
 else
-	mkdir "mc"
+    ln -s $MAIN_DIR/mc .
 fi
-cd "mc"
-MC_DIR="$(dirname $SCRIPT_DIR)/mc/"
-#echo koko $MC_DIR
-ln -s "../$MC_DIR"*".mc" .
-ln -s "../$MC_DIR"*".s" .
+
+## mc (link just existing files not the whole dir)
+#if [ -d "mc" ] ; then
+#    rm mc/*
+#else
+#	mkdir "mc"
+#fi
+#cd "mc"
+#MC_DIR="$(dirname $SCRIPT_DIR)/mc/"
+##echo koko $MC_DIR
+#ln -s "../$MC_DIR"*".mc" .
+#ln -s "../$MC_DIR"*".s" .
