@@ -165,6 +165,9 @@
 # * `size/1/DD` abandoned for a hidden bug
 # * `put/limit/length`, `put/limit/size` instead `put/sizelimit` 
 # * JetMachine[Consequences]:-AmICons: Using `AmICons/ignore`() for nonzero(), Varordering() and unknowns()
+# * fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
+# * linderive() introduced (but not used yet) 
+# * `unks/TD` uses forceError=true in `vars/1` calls
 
 ###########################################################################################
 ###########################################################################################
@@ -173,7 +176,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.87 as of May 15, 2017`);
+print(`Jets 5.87 as of Oct 25, 2017`);
 
 #
 # Source code configuration, options and parameters
@@ -1879,18 +1882,19 @@ end:
 #   F i n d i n g   d e p e n d e n c e   s e t 
 #
 
-vars := proc({noWarn::truefalse:=false})
+vars := proc({noWarn::truefalse:=false,  forceError::truefalse:=false})
   `union`(op(map(`vars/1`, [_rest], _options))); # HB multiple arguments
 end:
 
-`vars/1` := proc(f, {noWarn::truefalse:=false})
+`vars/1` := proc(f, {noWarn::truefalse:=false, forceError::truefalse:=false})
 # option remember;
   if type (f,'constant') then {}
   elif type (f,'name') then 
     if type (f,{`b/var`,`f/var`}) then {f}
     elif type (f,'parameter') then {}
     elif type (f,'dep') then select (type,`dep/tab`[f],'var')   
-    else if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
+    else if forceError then ERROR ("unknown dependence %1 in vars.", f) fi;
+         if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
          {f}
     fi
   elif type (f,{`+`,`*`,`^`,sequential}) then `union`(op(map(procname,[op(f)], _options))) # HB
@@ -2312,9 +2316,9 @@ end:
 `unks/TD` := proc(f,x)
   option remember;
   if type (x,'name') then
-    unks(f) union `union`(op(map(`unks/TD/1`,`vars/1`(f),x)))
+    unks(f) union `union`(op(map(`unks/TD/1`,`vars/1`(f, forceError=true),x)))
   else `unks/TD`(f,`count/r`(x)) union
-    `union`(op(map(`unks/TD/1`,`vars/TD`(f,`count/r`(x)), `count/f`(x))))
+    `union`(op(map(`unks/TD/1`,`vars/TD`(f,`count/r`(x), forceError=true), `count/f`(x))))
   fi
 end:
 
@@ -3358,7 +3362,7 @@ fi: # jets_new_resolve_enable
     else
        `resolve/result/suppressedminsize` := NULL : # HB
     fi;
-    RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`);
+    RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`); # HB
     FAIL
   else op(ans)
   fi;
@@ -4334,6 +4338,13 @@ end:
   fi
 end:
 
+CommComp := proc(X::vectorfield, Y::vectorfield) # HB
+  description "Components of commutator [ X,Y ] w. r. to the base pd[x1], pd[x2], ...]";
+  global `b/var/list`;
+  local Ds;
+  Ds := map(v -> pd[v], `b/var/list`);
+  map2(coeff, collect(comm(X, Y), Ds, normal), Ds);
+ end:
 
 # Evolutionary differentiation
 
