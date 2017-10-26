@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -i "error" Logs/$1*.log 
+grep -ia "error" Logs/$1*.log 

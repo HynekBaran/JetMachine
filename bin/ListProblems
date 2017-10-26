@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -i "error" Logs/$1*.log | grep -v 'Error, (in dependence) name(s) already used' | grep -v alloc | grep -v 53 | grep -v 54  |  grep -v 56 |  grep -v 60 | grep -v 158 | grep -v " while reading"
+grep -ia "error" Logs/$1*.log | grep -v 'Error, (in dependence) name(s) already used' | grep -v alloc | grep -v 53 | grep -v 54  |  grep -v 56 |  grep -v 60 | grep -v 158 | grep -v " while reading"

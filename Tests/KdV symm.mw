@@ -137,10 +137,10 @@
 <Task/>
 <Group hide-input="false" labelreference="L49" drawlabel="true">
 <Input>
-<Text-field prompt="&gt; " style="_cstyle1" layout="_pstyle2">restart; read `Jets.s`;</Text-field>
+<Text-field prompt="&gt; " style="_cstyle1" layout="_pstyle2">restart; read `../mc/Jets.s`;</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">ST9KZXRzfjUuODZ+YXN+b2Z+QXByaWx+MTgsfjIwMTdHNiI=</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">ST1KZXRzfjUuODd+YXN+b2Z+T2N0fjI1LH4yMDE3RzYi</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L175" drawlabel="true">
@@ -210,7 +210,7 @@
 <Text-field style="Line Printed Output" layout="Line Printed Output">`Reporting to terminal`</Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NygvSShub256ZXJvRzYiIiIhL0kkcnVuR0YlIiIiL0knZGVyaXZlR0YlRiYvSSNjY0dGJUYmL0kjcGRHRiVGJi9JKHJlc29sdmVHRiVGJg==</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">NykvSSNjY0c2IiIiIS9JKG5vbnplcm9HRiVGJi9JKHJlc29sdmVHRiVGJi9JI3BkR0YlRiYvSSRydW5HRiUiIiIvSSdkZXJpdmVHRiVGJi9JJHB1dEdGJUYm</Equation></Text-field>
 </Output>
 </Group>
 <Group hide-input="false" labelreference="L176" drawlabel="true">
@@ -229,15 +229,13 @@
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">STRDbGVhcmluZ35kZXJpdmVzJ3MuRzYi</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [1] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -245,17 +243,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfNXhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV81eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [2] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -263,17 +257,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [3] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -281,17 +271,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSZ1X3h4eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJJXVfNXhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [4] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -299,17 +285,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [5] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -317,17 +299,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1XzV4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [6] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -335,17 +313,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [7] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -353,17 +327,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzV4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkldV81eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [8] &lt;0&gt; Put:  </Text-field>
 </Output>
@@ -371,17 +341,13 @@ RUN: &lt;0, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfNHhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV80eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;0, 41344&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;0, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;0, 41344&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;0, 41344&gt; Compatibility conditions ... 
+RUN: &lt;0, 41344&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;0, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [9] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -389,17 +355,13 @@ RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEldV80eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkmdV94eHhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 74112&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [10] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -407,17 +369,13 @@ RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkldV80eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 74112&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [11] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -425,17 +383,13 @@ RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1XzR4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 74112&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 74112&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [12] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -443,17 +397,13 @@ RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV80eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 74112&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [13] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -461,17 +411,13 @@ RUN: &lt;1, 41344&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV80eEdGJSIiIkkieEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 41344&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 106880&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 41344&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 106880&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 41344&gt; Compatibility conditions ... 
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 41344&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [14] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -479,17 +425,13 @@ RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJnVfeHh4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRlZGWkZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRl1wLyUpYmV2ZWxsZWRHRkQtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRmBvNiVRIlVGJ0Zjb0Zmb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGXHEtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJEkmdV94eHhHRiUiIiMiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 106880&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 74112&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 106880&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 74112&gt; Compatibility conditions ... 
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;1, 74112&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;1, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;1, 106880&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [15] &lt;1&gt; Put:  </Text-field>
 </Output>
@@ -497,17 +439,13 @@ RUN: &lt;1, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEldV94eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkmdV94eHhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 74112&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;1, 106880&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;1, 74112&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;1, 106880&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;1, 74112&gt; Compatibility conditions ... 
+RUN: &lt;1, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;2, 74112&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;2, 74112&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;2, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [16] &lt;2&gt; Put:  </Text-field>
 </Output>
@@ -515,17 +453,13 @@ RUN: &lt;2, 74112&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEkdV94RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSZ1X3h4eEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 74112&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;2, 74112&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;2, 74112&gt; Compatibility conditions ... 
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [17] &lt;2&gt; Put:  </Text-field>
 </Output>
@@ -533,17 +467,13 @@ RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRictRlc2JFEiMkYnRjxGWkZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GYG82JVEmdV94eHhGJ0Zjb0Zmb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmhwLyUpYmV2ZWxsZWRHRkRGW3AtRmBvNiVRIlVGJ0Zjb0Zmb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGZHEtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJInVHRiUiIiMiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [18] &lt;2&gt; Put:  </Text-field>
 </Output>
@@ -551,17 +481,13 @@ RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSZ1X3h4eEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GXm82JVEidUYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GIzYmLUZXNiRRIzEwRidGPEZmby1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRl5vNiVRJXVfNXhGJ0Zhb0Zkb0ZnbkY8RmduRjxGXnBGYXBGZHBGZnBGZm9GaHBGZ25GPEY8RjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkmdV94eHhHRiVGKiwkLUYkNiRGJ0kldV81eEdGJSIjNQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [19] &lt;2&gt; Put:  </Text-field>
 </Output>
@@ -569,17 +495,13 @@ RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSZ1X3h4eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGY3AvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZfcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkmdV94eHhHRiUiIiJJInhHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [20] &lt;2&gt; Put:  </Text-field>
 </Output>
@@ -587,35 +509,27 @@ RUN: &lt;2, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJXVfeHhGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkldV94eEdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;2, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;2, 78212&gt; Compatibility conditions ... 
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;3, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;2, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;3, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;3, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[21] &lt;3&gt; Put:  </Text-field>
+[21] &lt;2&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJy1GVzYkUSIyRidGPEZaRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZgbzYlUSV1X3h4RidGY29GZm9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZocC8lKWJldmVsbGVkR0ZERltwLUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRmRxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkkdV94R0YlIiIjIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;2, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;3, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;2, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;3, 78212&gt; Compatibility conditions ... 
+RUN: &lt;3, 110980&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;3, 78212&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;3, 78212&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;3, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;3, 110980&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [22] &lt;3&gt; Put:  </Text-field>
 </Output>
@@ -623,17 +537,13 @@ RUN: &lt;3, 78212&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2KS1GIzYmRjUtSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGZ25GPC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GIzYmRjUtRl5vNiVRInVGJ0Zhb0Zkb0ZnbkY8RmZvLUYjNiZGNS1GXm82JVEldV94eEYnRmFvRmRvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGaHAvJSliZXZlbGxlZEdGREZmby1GXm82JVEiVUYnRmFvRmRvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZkcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqKEkldV94eEdGJSIiIkkidUdGJUYqSSR1X3hHRiVGKiIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 78212&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 110980&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;3, 78212&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;3, 110980&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;3, 78212&gt; Compatibility conditions ... 
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;3, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [23] &lt;3&gt; Put:  </Text-field>
 </Output>
@@ -641,17 +551,13 @@ RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRiM2Ji1GVzYkUSMyMEYnRjxGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoLUYjNiVGNUZnbkY8LUYjNiUtRiM2JkY1LUZebzYlUSV1XzV4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSV1X3h4R0YlRiosJC1GJDYkRidJJXVfNXhHRiUiIz8=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;3, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;3, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;3, 86408&gt; Compatibility conditions ... 
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;3, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [24] &lt;3&gt; Put:  </Text-field>
 </Output>
@@ -659,53 +565,41 @@ RUN: &lt;3, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRictRlc2JFEiMkYnRjxGWkZnbkY8LUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUYjNiZGNS1GYG82JVEldV94eEYnRmNvRmZvRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGaHAvJSliZXZlbGxlZEdGREZbcC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZkcS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkidUdGJSIiIyIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;3, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;3, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;3, 86408&gt; Compatibility conditions ... 
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;3, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[25] &lt;4&gt; Put:  </Text-field>
+[25] &lt;3&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ1RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUYjNiYtRlc2JFEiOEYnRjxGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoLUYjNiVGNUZnbkY8LUYjNiUtRiM2JkY1LUZebzYlUSV1XzR4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkldV94eEdGJUYqLCQtRiQ2JEYnSSV1XzR4R0YlIiIp</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;3, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;3, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+RUN: &lt;3, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [26] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkldV94eEdGJUYqIiIh</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSV1X3h4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkldV94eEdGJSIiIkkieEdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;4, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [27] &lt;4&gt; Put:  </Text-field>
 </Output>
@@ -713,17 +607,13 @@ RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZWRlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZdcC8lKWJldmVsbGVkR0ZELUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRlxxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkkdV94R0YlIiIkIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;4, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [28] &lt;4&gt; Put:  </Text-field>
 </Output>
@@ -731,35 +621,27 @@ RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUYzNiUtRl5vNiVRJHVfeEYnRmFvRmRvLUZXNiRRIjJGJ0Y8RlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZocC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRmRxLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIjSSJ1R0YlIiIiIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;4, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;4, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;4, 86408&gt; Compatibility conditions ... 
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;4, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;4, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[29] &lt;5&gt; Put:  </Text-field>
+[29] &lt;4&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRJHVfeEYnLyUnaXRhbGljR1EldHJ1ZUYnL0Y9USdpdGFsaWNGJ0ZWRlpGZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZdcC8lKWJldmVsbGVkR0ZELUY2Ni1RMSZJbnZpc2libGVUaW1lcztGJ0Y8RkJGRUZHRklGS0ZNRk9GUUZULUZgbzYlUSJVRidGY29GZm9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRlxxLUYjNiYtRlc2JFEjMTJGJ0Y8RmJwLUkobWZlbmNlZEdGJDYkLUYjNictRi42KC1GIzYlRjVGZ25GPC1GIzYlLUYjNiZGNS1GYG82JVEldV80eEYnRmNvRmZvRmduRjxGZ25GPEZob0ZbcEZecEZgcEZicEZlcEZnbkY8RjxGPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkkdV94R0YlIiIjLCQtRiQ2JEYnSSV1XzR4R0YlIiM3</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;4, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;4, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;4, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [30] &lt;5&gt; Put:  </Text-field>
 </Output>
@@ -767,17 +649,13 @@ RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGZ25GPC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GIzYmRjUtRl5vNiVRInVGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRiM2Ji1GVzYkUSI2RidGPEZmby1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRl5vNiVRJnVfeHh4RidGYW9GZG9GZ25GPEZnbkY8Rl5wRmFwRmRwRmZwRmZvRmhwRmduRjxGPEY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkidUdGJSIiIkkkdV94R0YlRiosJC1GJDYkRidJJnVfeHh4R0YlIiIn</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;5, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [31] &lt;5&gt; Put:  </Text-field>
 </Output>
@@ -785,17 +663,13 @@ RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSR1X3hGJ0Zhb0Zkb0ZnbkY8RmduRjwvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmNwLyUpYmV2ZWxsZWRHRkRGZm8tRl5vNiVRIlVGJ0Zhb0Zkb0ZnbkY8LUY2Ni1RIj1GJ0Y8RkJGRUZHRklGS0ZNRk8vRlJRLDAuMjc3Nzc3OGVtRicvRlVGX3EtRlc2JEZmbkY8RmduRjw=">Ly1JI3BkRzYiNiRJIlVHRiUqJkkkdV94R0YlIiIiSSJ4R0YlRioiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;5, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [32] &lt;5&gt; Put:  </Text-field>
 </Output>
@@ -803,35 +677,27 @@ RUN: &lt;5, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjRGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GVzYkRmZuRjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiJSIiIQ==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;5, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;5, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;5, 86408&gt; Compatibility conditions ... 
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;5, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[33] &lt;6&gt; Put:  </Text-field>
+[33] &lt;5&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjNGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GIzYmLUZXNiRRIzMyRidGPEZicC1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRmBvNiVRJXVfNHhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RjxGZ25GPA==">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiJCwkLUYkNiRGJ0kldV80eEdGJSIjSw==</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;5, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;5, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [34] &lt;6&gt; Put:  </Text-field>
 </Output>
@@ -839,17 +705,13 @@ RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2JS1GIzYmRjUtRjM2JS1JI21pR0YkNiVRInVGJy8lJ2l0YWxpY0dRJXRydWVGJy9GPVEnaXRhbGljRidGVkZaRmduRjxGZ25GPC8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGXXAvJSliZXZlbGxlZEdGRC1GNjYtUTEmSW52aXNpYmxlVGltZXM7RidGPEZCRkVGR0ZJRktGTUZPRlFGVC1GYG82JVEiVUYnRmNvRmZvRmduRjwtRjY2LVEiPUYnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yNzc3Nzc4ZW1GJy9GVUZccS1GIzYnLUY2Ni1RKiZ1bWludXMwO0YnRjxGQkZFRkdGSUZLRk1GTy9GUlEsMC4yMjIyMjIyZW1GJy9GVUZkcS1GIzYoLUZXNiRRIzIwRidGPEZicC1JKG1mZW5jZWRHRiQ2JC1GIzYnLUYuNigtRiM2JUY1RmduRjwtRiM2JS1GIzYmRjUtRmBvNiVRJXVfNXhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RmJwLUZgbzYlUSR1X3hGJ0Zjb0Zmb0Y8LUY2Ni1RIitGJ0Y8RkJGRUZHRklGS0ZNRk9GY3FGZXEtRiM2Ji1GVzYkUSI0RidGPEZicC1GXHI2JC1GIzYnLUYuNihGYnItRiM2JS1GIzYmRjUtRmBvNiVRJXVfeHhGJ0Zjb0Zmb0ZnbkY8RmduRjxGaG9GW3BGXnBGYHBGYnBGZXBGZ25GPEY8RjxGPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJEkidUdGJSIiIywmKiYtRiQ2JEYnSSV1XzV4R0YlIiIiSSR1X3hHRiVGMCEjPy1GJDYkRidJJXVfeHhHRiUiIiU=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;6, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;6, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [35] &lt;6&gt; Put:  </Text-field>
 </Output>
@@ -857,35 +719,27 @@ RUN: &lt;6, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSVtc3VwR0YkNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkQvJSlzdHJldGNoeUdGRC8lKnN5bW1ldHJpY0dGRC8lKGxhcmdlb3BHRkQvJS5tb3ZhYmxlbGltaXRzR0ZELyUnYWNjZW50R0ZELyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUy1JI21uR0YkNiRRIjJGJ0Y8LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GOlEoWzAsMCwwXUYnRjwtRiM2Jy1GIzYmRjUtSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRj1RJ2l0YWxpY0YnRmduRjwtRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjxGQkZFRkdGSUZLRk1GT0ZRRlQtRiM2JkY1LUZebzYlUSJ4RidGYW9GZG9GZ25GPEZnbkY8LyUubGluZXRoaWNrbmVzc0dRIjFGJy8lK2Rlbm9tYWxpZ25HUSdjZW50ZXJGJy8lKW51bWFsaWduR0ZjcC8lKWJldmVsbGVkR0ZERmZvLUZebzYlUSJVRidGYW9GZG9GZ25GPC1GNjYtUSI9RidGPEZCRkVGR0ZJRktGTUZPL0ZSUSwwLjI3Nzc3NzhlbUYnL0ZVRl9xLUZXNiRGZm5GPEZnbkY8">Ly1JI3BkRzYiNiRJIlVHRiUqJkkieEdGJSIiIkkidUdGJUYqIiIh</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;6, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;6, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;6, 86408&gt; Compatibility conditions ... 
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[36] &lt;7&gt; Put:  </Text-field>
+[36] &lt;6&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSV1XzR4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUkjbW5HRiQ2JFEiMEYnRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJJXVfNHhHRiUiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;6, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;6, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+RUN: &lt;6, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [37] &lt;7&gt; Put:  </Text-field>
 </Output>
@@ -893,17 +747,13 @@ RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSV1X3h4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUYjNigtSSNtbkdGJDYkUSMyMEYnRjlGZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjItRlo2JVEldV81eEYnRmduRmpuRlNGOUZTRjlGXG9GX29GYm9GZG9GZm9GaW9GU0Y5RjlGZm8tRlo2JVEkdV94RidGZ25Gam5GOUZTRjk=">Ly1JI3BkRzYiNiRJIlVHRiVJJXVfeHhHRiUsJComLUYkNiRGJ0kldV81eEdGJSIiIkkkdV94R0YlRi4iIz8=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;7, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
-
-RUN: &lt;7, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
 [38] &lt;7&gt; Put:  </Text-field>
 </Output>
@@ -911,56 +761,44 @@ RUN: &lt;7, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSJ1RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUYjNiYtRiM2KC1JI21uR0YkNiRRIjZGJ0Y5RmZvLUkobWZlbmNlZEdGJDYkLUYjNictRi42KEYwLUYjNiUtRiM2JkYyLUZaNiVRJnVfeHh4RidGZ25Gam5GU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZmby1GWjYlUSR1X3hGJ0ZnbkZqbkY5LUYzNi1RIitGJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjIyMjIyMmVtRicvRlJGX3ItRiM2KC1GZ3A2JFEjMTBGJ0Y5RmZvLUZbcTYkLUYjNictRi42KEYwLUYjNiUtRiM2JkYyLUZaNiVRJXVfNXhGJ0ZnbkZqbkZTRjlGU0Y5RlxvRl9vRmJvRmRvRmZvRmlvRlNGOUY5RmZvRmVxRjlGOUZTRjk=">Ly1JI3BkRzYiNiRJIlVHRiVJInVHRiUsJiomLUYkNiRGJ0kmdV94eHhHRiUiIiJJJHVfeEdGJUYuIiInKiYtRiQ2JEYnSSV1XzV4R0YlRi5GLUYuIiM1</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;7, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;7, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;7, 86408&gt; Compatibility conditions ... 
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;7, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derives and`, 0, `cc's. Lets derive cc's...`
-
-RUN: &lt;8, 86408&gt; `We obtained `, 0, ` derived cc's.  Lets resolve...`
-
-[39] &lt;8&gt; Put:  </Text-field>
+[39] &lt;7&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSR1X3hGJy8lJ2l0YWxpY0dRJXRydWVGJy9GOlEnaXRhbGljRidGU0Y5RlNGOS8lLmxpbmV0aGlja25lc3NHUSIxRicvJStkZW5vbWFsaWduR1EnY2VudGVyRicvJSludW1hbGlnbkdGYW8vJSliZXZlbGxlZEdGQS1GMzYtUTEmSW52aXNpYmxlVGltZXM7RidGOUY/RkJGREZGRkhGSkZMRk5GUS1GWjYlUSJVRidGZ25Gam5GU0Y5LUYzNi1RIj1GJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjc3Nzc3OGVtRicvRlJGYHAtRiM2KS1GMzYtUSomdW1pbnVzMDtGJ0Y5Rj9GQkZERkZGSEZKRkwvRk9RLDAuMjIyMjIyMmVtRicvRlJGaHAtRi42KC1GIzYnLUZaNiVRJnVfeHh4RidGZ25Gam5GZm8tSShtZmVuY2VkR0YkNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjJGXnFGU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZTRjktRiM2JUZZRlNGOUZcb0Zfb0Zib0Zkby1GMzYtUSgmbWludXM7RidGOUY/RkJGREZGRkhGSkZMRmdwRmlwLUYuNigtRiM2Jy1GWjYlUSV1XzV4RidGZ25Gam5GZm8tRmJxNiQtRiM2Jy1GLjYoRjAtRiM2JS1GIzYmRjJGZXJGU0Y5RlNGOUZcb0Zfb0Zib0Zkb0Zmb0Zpb0ZTRjlGOUZTRjlGXHJGXG9GX29GYm9GZG8tRjM2LVEiK0YnRjlGP0ZCRkRGRkZIRkpGTEZncEZpcC1GLjYoLUYjNiVGaW9GU0Y5RlxyRlxvRl9vRmJvRmRvRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJJHVfeEdGJSwoKihJJnVfeHh4R0YlIiIiRighIiItRiQ2JEYnRitGLEYtKihJJXVfNXhHRiVGLEYoRi0tRiQ2JEYnRjFGLEYtKiZGJ0YsRihGLUYs</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;8, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;8, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;7, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;8, 86408&gt; Compatibility conditions ... 
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 1, ` compatibility conditions. Lets derive `, 1, `args...`
 
-RUN: &lt;8, 86408&gt; `We obtained `, 1, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;7, 119176&gt; `run/l:`, `We obtained `, 1, ` derives.  Lets resolve...`
 
-RUN: &lt;8, 86408&gt; &quot;Derive beated cc, 1.000000014 &lt;= 1.000000032; d=-6*pd(U,x), c=-pd(U,x)/u_x&quot;
-
-RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derives and`, 1, `cc's. Lets derive cc's...`
-
-RUN: &lt;8, 86408&gt; `We obtained `, 1, ` derived cc's.  Lets resolve...`
-
-[40] &lt;8&gt; Put:  </Text-field>
+[40] &lt;7&gt; Put:  </Text-field>
 </Output>
 <Output>
 <Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUYjNictSSZtZnJhY0dGJDYoLUYjNiUtSSNtb0dGJDYvUSsmUGFydGlhbEQ7RicvJStmb3JlZ3JvdW5kR1EuWzE0NCwxNDQsMTQ0XUYnLyUsbWF0aHZhcmlhbnRHUSdub3JtYWxGJy9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RicvJSZmZW5jZUdRJmZhbHNlRicvJSpzZXBhcmF0b3JHRkEvJSlzdHJldGNoeUdGQS8lKnN5bW1ldHJpY0dGQS8lKGxhcmdlb3BHRkEvJS5tb3ZhYmxlbGltaXRzR0ZBLyUnYWNjZW50R0ZBLyUnbHNwYWNlR1EmMC4wZW1GJy8lJ3JzcGFjZUdGUC9GN1EoWzAsMCwwXUYnRjktRiM2JS1GIzYmRjItSSNtaUdGJDYlUSJ4RicvJSdpdGFsaWNHUSV0cnVlRicvRjpRJ2l0YWxpY0YnRlNGOUZTRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRmFvLyUpYmV2ZWxsZWRHRkEtRjM2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGP0ZCRkRGRkZIRkpGTEZORlEtRlo2JVEiVUYnRmduRmpuRlNGOS1GMzYtUSI9RidGOUY/RkJGREZGRkhGSkZML0ZPUSwwLjI3Nzc3NzhlbUYnL0ZSRmBwLUkjbW5HRiQ2JFEiMEYnRjlGU0Y5">Ly1JI3BkRzYiNiRJIlVHRiVJInhHRiUiIiE=</Equation></Text-field>
 </Output>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;8, 86408&gt; `Next run...`
+<Text-field style="Line Printed Output" layout="Line Printed Output">RUN: &lt;7, 119176&gt; `run/l:`, `Guessing correctness of unknowns ordering...`
 
-RUN: &lt;8, 86408&gt; Guessing correctness of unknowns ordering... 
+RUN: &lt;7, 119176&gt; `run/l:`, `Compatibility conditions ...`
 
-RUN: &lt;8, 86408&gt; Compatibility conditions ... 
-
-RUN: &lt;8, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
+RUN: &lt;8, 119176&gt; `run/l:`, `We obtained `, 0, ` compatibility conditions. Lets derive `, 1, `args...`
 
 [41] &lt;8&gt; Success! </Text-field>
 </Output>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">JCIlSykpISIk</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output">JCIlXiIpISIk</Equation></Text-field>
 </Output>
 </Group>
 <Group hide-input="false" labelreference="L138" drawlabel="true">
@@ -998,7 +836,7 @@ RUN: &lt;8, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">Z := (map(normal@simpl,Z));</Text-field>
 </Input>
 <Output>
-<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUkjbWlHRiQ2JVEiWkYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ly1GIzYnLUkmbWZyYWNHRiQ2KC1GIzYlLUklbXN1cEdGJDYlLUY2Ni9RKyZQYXJ0aWFsRDtGJy8lK2ZvcmVncm91bmRHUS5bMTQ0LDE0NCwxNDRdRidGOS9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RidGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZiby1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GXG9RKFswLDAsMF1GJ0Y5LUYjNiUtRiM2JkZobi1GZm42JS1GLDYlUSZ1X3h4eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRltxLyUpYmV2ZWxsZWRHRj0tRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSEZhb0Zjby1GLDYlUSJVRidGL0YyRltwRjktRjY2LVEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSEZhby9GTlEsMC4zMzMzMzMzZW1GJy1GIzYnLUZXNihGWS1GIzYlLUYjNiZGaG4tRmZuNiUtRiw2JVEldV81eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUZmcS1GIzYnLUZXNihGWS1GIzYnLUYjNiZGaG5GZnJGW3BGOUZgcS1GIzYmRmhuRmNwRltwRjlGW3BGOUZmcEZpcEZccUZecUZgcUZjcUZbcEY5RmZxLUYjNiYtRiM2Jy1GVzYoLUYjNiVGaG5GW3BGOS1GIzYlLUYjNiZGaG4tRiw2JVEldV94eEYnRi9GMkZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOS1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORmZ0LUYjNigtRmVvNiRRIzIwRidGOUZgcS1GUDYkLUYjNictRlc2KEZpcy1GIzYlRl9zRltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUY5RmBxLUYsNiVRJHVfeEYnRi9GMkY5RjlGZnEtRiM2KC1GIzYnLUZXNihGaXMtRiM2JS1GIzYmRmhuLUYsNiVRInVGJ0YvRjJGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGYnQtRiM2KC1GZW82JFEiNkYnRjlGYHEtRlA2JC1GIzYnLUZXNihGaXMtRiM2JUZhc0ZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5RmJ0LUYjNigtRmVvNiRRIzEwRidGOUZgcUZddUZgcUZjcEY5RjlGZnEtRlc2KC1GIzYlLUYjNiotRiM2JkZqdkZgcUZjcEY5LUY2Ni1RIitGJ0Y5RjtGPkZARkJGREZGRkhGZXRGZ3QtRiM2Ji1GUDYkLUYjNictRlc2KEZpcy1GIzYlLUYjNiZGaG5GZXVGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5Rl94LUYjNiZGZnJGYHFGXXVGOUZidEZjcUY5RltwRjktRiM2JUZldUZbcEY5RmZwRmlwRlxxRl5xRltwRjlGOS8lJW9wZW5HUSJbRicvJSZjbG9zZUdRIl1GJ0ZbcEY5">NygtSSNwZEc2IjYkSSJVR0YlKiRJJnVfeHh4R0YlIiIjLUYkNiRGJyokSSV1XzV4R0YlRiotRiQ2JEYnKiZGKSIiIkYuRjIsJi1GJDYkRidJJXVfeHhHRiVGMiomLUYkNiRGJ0YuRjJJJHVfeEdGJUYyISM/LCgtRiQ2JEYnSSJ1R0YlRjIqJi1GJDYkRidGKUYyRjpGMiEiJyomRjhGMkYpRjIhIzUqJiwqKiZGQUYyRilGMkYyKiYtRiQ2JEYnRjpGMkY6RjJGMiomRi5GMkY4RjJGMkYnISIiRjJGOkZN</Equation></Text-field>
+<Text-field style="2D Output" layout="Maple Output"><Equation executable="false" style="2D Output" display="LUklbXJvd0c2Iy9JK21vZHVsZW5hbWVHNiJJLFR5cGVzZXR0aW5nR0koX3N5c2xpYkdGJzYnLUkjbWlHRiQ2JVEiWkYnLyUnaXRhbGljR1EldHJ1ZUYnLyUsbWF0aHZhcmlhbnRHUSdpdGFsaWNGJy1JI21vR0YkNi1RIzo9RicvRjNRJ25vcm1hbEYnLyUmZmVuY2VHUSZmYWxzZUYnLyUqc2VwYXJhdG9yR0Y9LyUpc3RyZXRjaHlHRj0vJSpzeW1tZXRyaWNHRj0vJShsYXJnZW9wR0Y9LyUubW92YWJsZWxpbWl0c0dGPS8lJ2FjY2VudEdGPS8lJ2xzcGFjZUdRLDAuMjc3Nzc3OGVtRicvJSdyc3BhY2VHRkwtSShtZmVuY2VkR0YkNiYtRiM2Ly1GIzYnLUkmbWZyYWNHRiQ2KC1GIzYlLUklbXN1cEdGJDYlLUY2Ni9RKyZQYXJ0aWFsRDtGJy8lK2ZvcmVncm91bmRHUS5bMTQ0LDE0NCwxNDRdRidGOS9JK21zZW1hbnRpY3NHRiRRJmluZXJ0RidGO0Y+RkBGQkZERkZGSC9GS1EmMC4wZW1GJy9GTkZiby1JI21uR0YkNiRRIjJGJ0Y5LyUxc3VwZXJzY3JpcHRzaGlmdEdRIjBGJy9GXG9RKFswLDAsMF1GJ0Y5LUYjNiUtRiM2JkZobi1GZm42JS1GLDYlUSZ1X3h4eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjkvJS5saW5ldGhpY2tuZXNzR1EiMUYnLyUrZGVub21hbGlnbkdRJ2NlbnRlckYnLyUpbnVtYWxpZ25HRltxLyUpYmV2ZWxsZWRHRj0tRjY2LVExJkludmlzaWJsZVRpbWVzO0YnRjlGO0Y+RkBGQkZERkZGSEZhb0Zjby1GLDYlUSJVRidGL0YyRltwRjktRjY2LVEiLEYnRjlGOy9GP0YxRkBGQkZERkZGSEZhby9GTlEsMC4zMzMzMzMzZW1GJy1GIzYnLUZXNihGWS1GIzYlLUYjNiZGaG4tRmZuNiUtRiw2JVEldV81eEYnRi9GMkZkb0Zob0ZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUZmcS1GIzYnLUZXNihGWS1GIzYnLUYjNiZGaG5GZnJGW3BGOUZgcS1GIzYmRmhuRmNwRltwRjlGW3BGOUZmcEZpcEZccUZecUZgcUZjcUZbcEY5RmZxLUYjNiYtRiM2Jy1GVzYoLUYjNiVGaG5GW3BGOS1GIzYlLUYjNiZGaG4tRiw2JVEldV94eEYnRi9GMkZbcEY5RltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOS1GNjYtUSgmbWludXM7RidGOUY7Rj5GQEZCRkRGRkZIL0ZLUSwwLjIyMjIyMjJlbUYnL0ZORmZ0LUYjNigtRmVvNiRRIzIwRidGOUZgcS1GUDYkLUYjNictRlc2KEZpcy1GIzYlRl9zRltwRjlGZnBGaXBGXHFGXnFGYHFGY3FGW3BGOUY5RmBxLUYsNiVRJHVfeEYnRi9GMkY5RjlGZnEtRiM2KC1GIzYnLUZXNihGaXMtRiM2JS1GIzYmRmhuLUYsNiVRInVGJ0YvRjJGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGYnQtRiM2KC1GZW82JFEiNkYnRjlGYHEtRlA2JC1GIzYnLUZXNihGaXMtRiM2JUZhc0ZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5RmJ0LUYjNigtRmVvNiRRIzEwRidGOUZgcUZddUZgcUZjcEY5RjlGZnEtRlc2KC1GIzYlLUYjNiotRiM2Ji1GUDYkLUYjNictRlc2KEZpcy1GIzYlLUYjNiZGaG5GZXVGW3BGOUZbcEY5RmZwRmlwRlxxRl5xRmBxRmNxRltwRjlGOUZgcUZldUY5LUY2Ni1RIitGJ0Y5RjtGPkZARkJGREZGRkhGZXRGZ3QtRiM2JkZddUZgcUZmckY5Rml4LUYjNiZGanZGYHFGY3BGOUZidEZjcUY5RltwRjktRiM2JUZldUZbcEY5RmZwRmlwRlxxRl5xRltwRjlGOS8lJW9wZW5HUSJbRicvJSZjbG9zZUdRIl1GJ0ZbcEY5">NygtSSNwZEc2IjYkSSJVR0YlKiRJJnVfeHh4R0YlIiIjLUYkNiRGJyokSSV1XzV4R0YlRiotRiQ2JEYnKiZGKSIiIkYuRjIsJi1GJDYkRidJJXVfeHhHRiVGMiomLUYkNiRGJ0YuRjJJJHVfeEdGJUYyISM/LCgtRiQ2JEYnSSJ1R0YlRjIqJi1GJDYkRidGKUYyRjpGMiEiJyomRjhGMkYpRjIhIzUqJiwqKiYtRiQ2JEYnRjpGMkY6RjJGMiomRjhGMkYuRjJGMiomRkFGMkYpRjJGMkYnISIiRjJGOkZN</Equation></Text-field>
 </Output>
 </Group>
 <Group labelreference="L168" drawlabel="true">
@@ -1006,7 +844,7 @@ RUN: &lt;8, 86408&gt; `We obtained `, 0, ` compatibility conditions. Lets derive
 <Text-field prompt="&gt; " style="Maple Input" layout="Normal">lprint(Z);</Text-field>
 </Input>
 <Output>
-<Text-field style="Line Printed Output" layout="Line Printed Output">[pd(U, u_xxx^2), pd(U, u_5x^2), pd(U, u_xxx*u_5x), pd(U, u_xx)-20*pd(U, u_5x)*u_x, pd(U, u)-6*pd(U, u_xxx)*u_x-10*pd(U, u_5x)*u_xxx, (pd(U, u_xxx)*u_xxx+pd(U, u_x)*u_x+u_5x*pd(U, u_5x)-U)/u_x]</Text-field>
+<Text-field style="Line Printed Output" layout="Line Printed Output">[pd(U, u_xxx^2), pd(U, u_5x^2), pd(U, u_xxx*u_5x), pd(U, u_xx)-20*pd(U, u_5x)*u_x, pd(U, u)-6*pd(U, u_xxx)*u_x-10*pd(U, u_5x)*u_xxx, (pd(U, u_x)*u_x+pd(U, u_5x)*u_5x+pd(U, u_xxx)*u_xxx-U)/u_x]</Text-field>
 </Output>
 </Group>
 <Group labelreference="L171" drawlabel="true">

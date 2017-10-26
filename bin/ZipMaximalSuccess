@@ -43,6 +43,7 @@ for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
           -c "parJobPrefix:=convert(\"${initFile}\",string)" \
           >> ${logfile} <<END 
               try
+                  unassign('`put/limit/size`', '`put/limit/length`');
                   print("***************************************************");
                   printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);
                   read("${MyGlobalDir}/mc/Jets.s"):

@@ -1,4 +1,4 @@
-lprint("SingleStep.mc v. 0.2.h", __FILE__);
+lprint("SingleStep.mc v. 0.2.j", __FILE__);
 # Initialization
 StateFilePath := cat("States/", parBaseFileName, ".state"):
 printf ("\nParameters:\nparBaseFileName=%a, parCD=%a, parJobPrefix=%a\n\n", 
@@ -269,13 +269,16 @@ try #WSParser:Skip#
              
       # final computations
 
-      Z:=map(simpl,clear(pds)); ### zde by se na simpl mel dat jen nejaky rozumny cas pres timelimit a pokud se nestihne vypsat to bez sumpl-u
-      printf("clear(pds)=%q\n\n", Z);
-      #printf("clear(pds)=%q\n\n", map(convert, Z, diff));
+      clear_pds_res:=map(simpl,clear(pds)); ### zde by se na simpl mel dat jen nejaky rozumny cas pres timelimit a pokud se nestihne vypsat to bez sumpl-u
+      printf("clear(pds)=%q\n\n", clear_pds_res);
+      printf("#(clear(pds))=%q\n\n", nops(clear_pds_res));
+      
+      #printf("clear(pds)=%q\n\n", map(convert, clear_pds_res, diff));
      
       appendtofile(cat("Results/", parBaseFileName, ".success"), 
-                   sprintf("\nclear(pds)=%Q\n",Z),
-                   sprintf("\nclear(pds)=%Q\n",map(convert, Z, diff)));
+                   sprintf("\nclear(pds)=%Q\n",clear_pds_res),
+                   sprintf("\nclear(pds)=%Q\n",map(convert, clear_pds_res, diff)),
+                   sprintf("\n#(clear(pds))=%Q\n",nops(clear_pds_res)));
                    
                    
 
@@ -289,8 +292,8 @@ try #WSParser:Skip#
       # #  #printf("reading %s.runme again...\n", parBaseFileName); 
       # #  #read sprintf("%s.runme", parBaseFileName); #WSParser:Parse#
       # #  #printf("reading done\n");
-      #   S := Z; 
-      #   Z := 'Z';
+      #   S := clear_pds_res; 
+      #   clear_pds_res := 'clear_pds_res';
       #   run(S);
       #   reduce();
       #   store(cat("States/", parBaseFileName, ".frd.state"));
@@ -298,13 +301,13 @@ try #WSParser:Skip#
       #      printf("frd: RESOLVE=%q\n", RESOLVE);
       #   else # success
       #      ReportSuccessState(cat(parBaseFileName, ".frd"), 
-      #        "Done Varordering(function, reverse, degree): Run(Z):");  
+      #        "Done Varordering(function, reverse, degree): Run(clear_pds_res):");  
       #      
-      #      Z:=clear(pds);
+      #      clear_pds_res:=clear(pds);
       #      
       #      append2ft(cat("Results/", parBaseFileName, ".frd.success"), 
-      #        sprintf("\nclear(pds)=%Q\n",Z),
-      #        sprintf("\nclear(pds)=%Q\n",map(convert, Z, diff)));   
+      #        sprintf("\nclear(pds)=%Q\n",clear_pds_res),
+      #        sprintf("\nclear(pds)=%Q\n",map(convert, clear_pds_res, diff)));   
       #           
       #   fi;
      catch:
