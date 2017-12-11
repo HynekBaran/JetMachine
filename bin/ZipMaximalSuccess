@@ -41,17 +41,20 @@ for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
           -c "restart" \
           -c "parBaseFileName:=convert(\"${src}\",string)" \
           -c "parJobPrefix:=convert(\"${initFile}\",string)" \
-          >> ${logfile} <<END 
+          >> ${logfile} \
+          <<END 
               try
-                  unassign('`put/limit/size`', '`put/limit/length`');
                   print("***************************************************");
-                  printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);
-                  read("${MyGlobalDir}/mc/Jets.s"):
-                  read(cat("${MyGlobalDir}/mc/",parJobPrefix,".init.mc")):
-                  read(cat("${MyGlobalDir}/States/",parBaseFileName,".state")):
+                  printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);   
+                  printf("Current dir was %s and lets cahnge it to %s\n", currentdir(), "${MyGlobalDir}");             
+                  currentdir("${MyGlobalDir}");
+                  printf("Current dir is %s\n", currentdir());
+                  read("mc/Jets.s"):
+                  read(cat("mc/",parJobPrefix,".init.mc")):
+                  read(cat("States/",parBaseFileName,".state")):
                   #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
                   #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
-                  r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", "${MyGlobalDir}", parJobPrefix);
+                  r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", ".", parJobPrefix);
                   if r=false then print("General case") else print("This is a consequence. The generalisation is: ", r) fi;
                   print("***************************************************");
                   if r=false then \`quit\` (0) else \`quit\` (1) fi;
