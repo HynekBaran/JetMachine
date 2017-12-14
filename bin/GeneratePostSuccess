@@ -1,0 +1,49 @@
+#!/bin/bash
+destJobPrefix=$1
+sourceJobBase=$2 # may be omitted
+
+destDir="Ready"
+usedDir="Results/Used"
+
+currDate=`date`
+
+mkdir -p $destDir
+mkdir -p $usedDir
+
+n=0
+m=0
+for S in `ls Results/${sourceJobBase}*.success` ;
+  do
+    src="`basename ${S/\.success/}`"
+    destJobFile="${destDir}/${destJobPrefix}${src}.runme"
+    destSuccFile="${usedDir}/`basename ${S}`"
+    
+    if [[ -e "${destSuccFile}" ]]
+      then
+        m=`expr $m + 1`
+        echo "Already generated for $destSuccFile"
+      else
+        n=`expr $n + 1`
+        #echo $S $src 
+        
+        # parse .state file
+        srcState="States/${src}.state" 
+        destState="States/${destJobPrefix}${src}.state"
+        sed 's/varordering/#varordering/; s/Varordering/#Varordering/; s/unknowns/#unknowns/' ${srcState} > ${destState}
+                
+        # create .runme job file
+        echo "Generating $destJobFile"
+        echo "# $S $src $destJobFile $currDate" > $destJobFile
+        echo "lprint(\"Here is $destJobFile\");" >> $destJobFile      
+        
+        echo "read(\"global/${destState}\");" >> $destJobFile
+        
+        echo "lprint(\"$destJobFile finished\");" >> $destJobFile      
+        echo "# Done" >> $destJobFile
+        
+        # move .success file to other dir
+        mv $S $usedDir
+      fi
+  done;
+  
+echo "Generated: $n, omitted: $m"
