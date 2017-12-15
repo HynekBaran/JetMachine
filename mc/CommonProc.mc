@@ -1,5 +1,5 @@
 
-lprint("CommonProc.mc v. 0.2.i", __FILE__);
+lprint("CommonProc.mc v. 0.2.j", __FILE__);
 
 # Printing to file
 
@@ -534,8 +534,8 @@ PrintSuccessReport := proc (parBaseFileName::string, p2, $)
   printf("\n*** cc() = %q\n", cc());
   
   
-  printf("\n*** map(simpl@evalTD,[S]) =\n");
-  print(    map(simpl@evalTD,[S]));
+  printf("\n*** map(simpl@evalTD@eval,[S]) =\n");
+  print(    map(simpl@evalTD@eval,[S]));
   
   if assigned(PrintUserSuccessReport) then 
     printf("\n--------------------\n"); 
