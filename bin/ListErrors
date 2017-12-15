@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -ia "error" Logs/$1*.log 
+grep -ia  --binary-files=text "error" Logs/$1*.log 

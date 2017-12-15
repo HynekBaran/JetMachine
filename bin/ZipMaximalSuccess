@@ -83,6 +83,6 @@ find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@ > /dev/null
 
 find "${MyGlobalDir}/Done/" -name "*.runme" -print | zip  ${zipfile} -@ > /dev/null # job initial states are hidden here
 
-grep -i "error" ${logfile}
+grep -i  --binary-files=text "error" ${logfile}
 
 echo "total $n, general $m"
