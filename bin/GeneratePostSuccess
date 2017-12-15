@@ -3,7 +3,7 @@ destJobPrefix=$1
 sourceJobBase=$2 # may be omitted
 
 destDir="Ready"
-usedDir="Results/Used"
+usedDir="Results/Used/$destJobPrefix"
 
 currDate=`date`
 
@@ -36,8 +36,14 @@ for S in `ls Results/${sourceJobBase}*.success` ;
         echo "# $S $src $destJobFile $currDate" > $destJobFile
         echo "lprint(\"Here is $destJobFile\");" >> $destJobFile      
         
+        echo "originalSuccessFile:=$S;" >> $destJobFile      
+        echo "originalStateFile:=$srcState;" >> $destJobFile      
+        echo "parsedStateFile:=$destState;" >> $destJobFile      
+        echo "" >> $destJobFile      
+
         echo "read(\"global/${destState}\");" >> $destJobFile
-        
+
+        echo "" >> $destJobFile              
         echo "lprint(\"$destJobFile finished\");" >> $destJobFile      
         echo "# Done" >> $destJobFile
         
