@@ -534,8 +534,8 @@ PrintSuccessReport := proc (parBaseFileName::string, p2, $)
   printf("\n*** cc() = %q\n", cc());
   
   
-  printf("\n*** map(simpl@evalTD@eval,[S]) =\n");
-  print(    map(simpl@evalTD@eval,[S]));
+  #printf("\n*** map(simpl@evalTD@eval,[S]) =\n"); # if S is array or mytrix, does not work properly
+  #print(    map(simpl@evalTD@eval,[S]));
   
   if assigned(PrintUserSuccessReport) then 
     printf("\n--------------------\n"); 
