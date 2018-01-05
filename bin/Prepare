@@ -31,7 +31,8 @@ else
   StopFile="InProgress/stop"
   DisabledStopFile="InProgress/How to stop it"
   if [[ -f $StopFile ]] ; then
-    rm $StopFile
+    echo "$stopfile exists!"
+    #rm $StopFile
   fi
   StopMessage='Rename me to "stop" and no more computations will be started.'
   echo $StopMessage > "$DisabledStopFile"
