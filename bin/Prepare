@@ -39,7 +39,7 @@ else
 
   # remove quitfile
   QuitFile="InProgress/quit"
-  if [[ -f  $QuitFile]] ; then
+  if [[ -f  $QuitFile ]] ; then
     echo "Press ENTER to remove $QuitFile and continue..."
     read a;
     rm $QuitFile
