@@ -31,11 +31,20 @@ else
   StopFile="InProgress/stop"
   DisabledStopFile="InProgress/How to stop it"
   if [[ -f $StopFile ]] ; then
-    echo "$stopfile exists!"
+    echo "$StopFile exists!"
     #rm $StopFile
   fi
   StopMessage='Rename me to "stop" and no more computations will be started.'
   echo $StopMessage > "$DisabledStopFile"
+
+  # remove quitfile
+  QuitFile="InProgress/quit"
+  if [[ -f  $QuitFile]] ; then
+    echo "Press ENTER to remove $QuitFile and continue..."
+    read a;
+    rm $QuitFile
+  fi
+  
 #  if [[ ${OSTYPE}="darwin7.0" ]] ; then
 #    setfflags -s true "$DisabledStopFile" > /dev/null
 #    setfcomment -c  "$StopMessage" "$DisabledStopFile" > /dev/null
