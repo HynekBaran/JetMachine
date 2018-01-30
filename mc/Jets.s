@@ -171,6 +171,7 @@
 #
 # current
 # * JetMachine[Consequences] testing script changed (currentdir)
+# * `clear/assignments` is clearing `put/name/tab` properly
 
 ###########################################################################################
 ###########################################################################################
@@ -179,7 +180,8 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-print(`Jets 5.87 as of Oct 25, 2017 JetMachine[Consequences] changed at Dec 11, 2017`);
+lprint(`Jets 5.87 as of Oct 25, 2017 JetMachine[Consequences] changed at Dec 11, 2017`);
+lprint("Jan 30, 2018: `clear/assignments` is clearing `put/name/tab`");
 
 #
 # Source code configuration, options and parameters
@@ -1266,7 +1268,8 @@ end:
   local as;
   print(`Clearing assignments.`);
   as := `puts/assignments`();
-  map(unassign@op, [indices(`put/name/tab`)]);
+  map(unassign@op, [indices(`put/name/tab`)]); # unassign assigned symbols
+  `put/name/tab` := table(); # clear the table of assigned symbols
   if output=eq then 
     return as;
   elif output=expr then
