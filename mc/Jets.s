@@ -165,13 +165,6 @@
 # * `size/1/DD` abandoned for a hidden bug
 # * `put/limit/length`, `put/limit/size` instead `put/sizelimit` 
 # * JetMachine[Consequences]:-AmICons: Using `AmICons/ignore`() for nonzero(), Varordering() and unknowns()
-# * fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
-# * linderive() introduced (but not used yet) 
-# * `unks/TD` uses forceError=true in `vars/1` calls
-#
-# current
-# * JetMachine[Consequences] testing script changed (currentdir)
-# * `clear/assignments` is clearing `put/name/tab` properly
 
 ###########################################################################################
 ###########################################################################################
@@ -180,8 +173,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-lprint(`Jets 5.87 as of Oct 25, 2017 JetMachine[Consequences] changed at Dec 11, 2017`);
-lprint("Jan 30, 2018: `clear/assignments` is clearing `put/name/tab`");
+print(`Jets 5.87 as of May 15, 2017`);
 
 #
 # Source code configuration, options and parameters
@@ -1268,8 +1260,7 @@ end:
   local as;
   print(`Clearing assignments.`);
   as := `puts/assignments`();
-  map(unassign@op, [indices(`put/name/tab`)]); # unassign assigned symbols
-  `put/name/tab` := table(); # clear the table of assigned symbols
+  map(unassign@op, [indices(`put/name/tab`)]);
   if output=eq then 
     return as;
   elif output=expr then
@@ -1888,19 +1879,18 @@ end:
 #   F i n d i n g   d e p e n d e n c e   s e t 
 #
 
-vars := proc({noWarn::truefalse:=false,  forceError::truefalse:=false})
+vars := proc({noWarn::truefalse:=false})
   `union`(op(map(`vars/1`, [_rest], _options))); # HB multiple arguments
 end:
 
-`vars/1` := proc(f, {noWarn::truefalse:=false, forceError::truefalse:=false})
+`vars/1` := proc(f, {noWarn::truefalse:=false})
 # option remember;
   if type (f,'constant') then {}
   elif type (f,'name') then 
     if type (f,{`b/var`,`f/var`}) then {f}
     elif type (f,'parameter') then {}
     elif type (f,'dep') then select (type,`dep/tab`[f],'var')   
-    else if forceError then ERROR ("unknown dependence %1 in vars.", f) fi;
-         if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
+    else if not noWarn then WARNING ("unknown dependence %1 in vars.", f) fi; 
          {f}
     fi
   elif type (f,{`+`,`*`,`^`,sequential}) then `union`(op(map(procname,[op(f)], _options))) # HB
@@ -2322,9 +2312,9 @@ end:
 `unks/TD` := proc(f,x)
   option remember;
   if type (x,'name') then
-    unks(f) union `union`(op(map(`unks/TD/1`,`vars/1`(f, forceError=true),x)))
+    unks(f) union `union`(op(map(`unks/TD/1`,`vars/1`(f),x)))
   else `unks/TD`(f,`count/r`(x)) union
-    `union`(op(map(`unks/TD/1`,`vars/TD`(f,`count/r`(x), forceError=true), `count/f`(x))))
+    `union`(op(map(`unks/TD/1`,`vars/TD`(f,`count/r`(x)), `count/f`(x))))
   fi
 end:
 
@@ -3368,7 +3358,7 @@ fi: # jets_new_resolve_enable
     else
        `resolve/result/suppressedminsize` := NULL : # HB
     fi;
-    RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`); # HB
+    RESOLVE := map(`resolve/fail`, rs, `linear resolving failed for`);
     FAIL
   else op(ans)
   fi;
@@ -4344,13 +4334,6 @@ end:
   fi
 end:
 
-CommComp := proc(X::vectorfield, Y::vectorfield) # HB
-  description "Components of commutator [ X,Y ] w. r. to the base pd[x1], pd[x2], ...]";
-  global `b/var/list`;
-  local Ds;
-  Ds := map(v -> pd[v], `b/var/list`);
-  map2(coeff, collect(comm(X, Y), Ds, normal), Ds);
- end:
 
 # Evolutionary differentiation
 
@@ -6604,94 +6587,90 @@ module JetMachine ()
     end;
     
     # Note: Use the bash script bellow to test against all .Success files in a given directory:
-    # #!/bin/bash
-    # 
-    # function MakeDir()
-    # {
-    #   if [ ! -d "${1}" ] ; then
-    #     mkdir "${1}"
-    #   fi
-    # }
-    # 
-    # MakeDir "Consequences"
-    # pushd "Consequences"
-    # 
-    # 
-    # MyGlobalDir=".."
-    # myfilebase="consequeces_`date +"%d.%m.%y_%H.%M"`"
-    # zipfile="${myfilebase}.zip"
-    # logfile="${myfilebase}.log"
-    # 
-    # echo "Zipping to `pwd`/$zipfile"
-    # 
-    # n=0
-    # m=0
-    # 
-    #     if [[ $# -eq 0 ]]; then
-    #       echo "Parsing jobname bases" # initFile will be parsed from job names
-    #     else
-    #       koko="${1}"
-    #       initFile="${koko/[0-9\{\}]*/}"
-    #       echo "Using globally ${initFile/[0-9\{\}]*/}"
-    #     fi
-    # 
-    # #for ko in `ls  ${MyGlobalDir}/Results/${1}*.success | sort -r` ;
-    # for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
-    #   do 
-    #     n=`expr $n + 1`
-    #     src="`basename ${ko/\.success/}`"
-    #     if [[ $# -eq 0 ]]; then
-    #       initFile=${src/[0-9\{\}]*/} # parse jobname base
-    #     fi
-    #     maple -q \
-    #           -c "restart" \
-    #           -c "parBaseFileName:=convert(\"${src}\",string)" \
-    #           -c "parJobPrefix:=convert(\"${initFile}\",string)" \
-    #           >> ${logfile} \
-    #           <<END 
-    #               try
-    #                   print("***************************************************");
-    #                   printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);   
-    #                   printf("Current dir was %s and lets cahnge it to %s\n", currentdir(), "${MyGlobalDir}");             
-    #                   currentdir("${MyGlobalDir}");
-    #                   printf("Current dir is %s\n", currentdir());
-    #                   read("mc/Jets.s"):
-    #                   read(cat("mc/",parJobPrefix,".init.mc")):
-    #                   read(cat("States/",parBaseFileName,".state")):
-    #                   #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
-    #                   #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
-    #                   r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", ".", parJobPrefix);
-    #                   if r=false then print("General case") else print("This is a consequence. The generalisation is: ", r) fi;
-    #                   print("***************************************************");
-    #                   if r=false then \`quit\` (0) else \`quit\` (1) fi;
-    #               catch:
-    #                   printf("Error, cannot decide, supposing %a is a general case. %s\n", parBaseFileName, StringTools:-FormatMessage( lastexception[2..-1]));
-    #                   \`quit\` (0);
-    #               end try;
-    # END
-    #   result=$?
-    #   #echo "maple result is $result"
-    #   if [[ $result -eq 0 ]] ; then
-    #   	echo "${initFile}: $ko is general"
-    #   	m=`expr $m + 1`
-    #   	zip ${zipfile} $ko "${MyGlobalDir}/States/${src}.state" "${MyGlobalDir}/Logs/${src}.log" > /dev/null
-    #   elif [[ $result -eq 1 ]] ; then
-    #   	echo "${initFile}: $ko is a consequece"
-    #   else
-    #   	echo "ERROR testing of $ko by ${initFile}."
-    #   fi
-    #   done
-    # 
-    # zip ${zipfile} ${logfile} > /dev/null
-    # 
-    # find "${MyGlobalDir}/mc/" -name "*.mc"  -print | zip  ${zipfile} -@ > /dev/null
-    # find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@ > /dev/null
-    # 
-    # find "${MyGlobalDir}/Done/" -name "*.runme" -print | zip  ${zipfile} -@ > /dev/null # job initial states are hidden here
-    # 
-    # grep -i "error" ${logfile}
-    # 
-    # echo "total $n, general $m"
+    ##!/bin/bash
+    #
+    #function MakeDir()
+    #{
+    #  if [ ! -d "${1}" ] ; then
+    #    mkdir "${1}"
+    #  fi
+    #}
+    #
+    #MakeDir "Consequences"
+    #pushd "Consequences"
+    #
+    #
+    #MyGlobalDir=".."
+    #myfilebase="consequeces_`date +"%d.%m.%y_%H.%M"`"
+    #zipfile="${myfilebase}.zip"
+    #logfile="${myfilebase}.log"
+    #
+    #echo "Zipping to `pwd`/$zipfile"
+    #
+    #n=0
+    #m=0
+    #
+    #    if [[ $# -eq 0 ]]; then
+    #      echo "Parsing jobname bases" # initFile will be parsed from job names
+    #    else
+    #      koko="${1}"
+    #      initFile="${koko/[0-9\{\}]*/}"
+    #      echo "Using globally ${initFile/[0-9\{\}]*/}"
+    #    fi
+    #
+    ##for ko in `ls  ${MyGlobalDir}/Results/${1}*.success | sort -r` ;
+    #for ko in `ls  ${MyGlobalDir}/Results/*.success | sort -r` ;
+    #  do 
+    #    n=`expr $n + 1`
+    #    src="`basename ${ko/\.success/}`"
+    #    if [[ $# -eq 0 ]]; then
+    #      initFile=${src/[0-9\{\}]*/} # parse jobname base
+    #    fi
+    #    maple -q \
+    #          -c "restart" \
+    #          -c "parBaseFileName:=convert(\"${src}\",string)" \
+    #          -c "parJobPrefix:=convert(\"${initFile}\",string)" \
+    #          >> ${logfile} <<END 
+    #              try
+    #                  print("***************************************************");
+    #                  printf("Testing %s, the base is %s\n",parBaseFileName, parJobPrefix);
+    #                  read("${MyGlobalDir}/mc/Jets.s"):
+    #                  read(cat("${MyGlobalDir}/mc/",parJobPrefix,".init.mc")):
+    #                  read(cat("${MyGlobalDir}/States/",parBaseFileName,".state")):
+    #                  #r := JetMachine[Consequences]:-ExportGen( cat(parJobPrefix,".consequeces.txt"), parBaseFileName, "${MyGlobalDir}");
+    #                  #if nops(r)=0 then \`quit\` (0) else \`quit\` (1) fi;
+    #                  r := JetMachine[Consequences]:-TestGen(parBaseFileName, "${myfilebase}.ignore.data", "${MyGlobalDir}", parJobPrefix);
+    #                  if r=false then print("General case") else print("This is a consequence. The generalisation is: ", r) fi;
+    #                  print("***************************************************");
+    #                  if r=false then \`quit\` (0) else \`quit\` (1) fi;
+    #              catch:
+    #                  printf("Error, cannot decide, supposing %a is a general case. %s\n", parBaseFileName, StringTools:-FormatMessage( lastexception[2..-1]));
+    #                  \`quit\` (0);
+    #              end try;
+    #END
+    #  result=$?
+    #  #echo "maple result is $result"
+    #  if [[ $result -eq 0 ]] ; then
+    #  	echo "${initFile}: $ko is general"
+    #  	m=`expr $m + 1`
+    #  	zip ${zipfile} $ko "${MyGlobalDir}/States/${src}.state" "${MyGlobalDir}/Logs/${src}.log" > /dev/null
+    #  elif [[ $result -eq 1 ]] ; then
+    #  	echo "${initFile}: $ko is a consequece"
+    #  else
+    #  	echo "ERROR testing of $ko by ${initFile}."
+    #  fi
+    #  done
+    #
+    #zip ${zipfile} ${logfile} > /dev/null
+    #
+    #find "${MyGlobalDir}/mc/" -name "*.mc"  -print | zip  ${zipfile} -@ > /dev/null
+    #find "${MyGlobalDir}/mc/" -name "*.s"   -print | zip  ${zipfile} -@ > /dev/null
+    #
+    #find "${MyGlobalDir}/Done/" -name "*.runme" -print | zip  ${zipfile} -@ > /dev/null # job initial states are hidden here
+    #
+    #grep -i "error" ${logfile}
+    #
+    #echo "total $n, general $m"
 
     
   end module; # Consequences
