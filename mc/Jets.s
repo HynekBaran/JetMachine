@@ -165,14 +165,18 @@
 # * `size/1/DD` abandoned for a hidden bug
 # * `put/limit/length`, `put/limit/size` instead `put/sizelimit` 
 # * JetMachine[Consequences]:-AmICons: Using `AmICons/ignore`() for nonzero(), Varordering() and unknowns()
-
-
+#
 # v 5.88
 # * fixed `resolve/lin` new implementation reportfail bug (jets_new_resolve_enable only)
 # * linderive() introduced (but not used yet) 
 # * `unks/TD` uses forceError=true in `vars/1` calls
 # * JetMachine[Consequences] testing script changed (currentdir)
+# * `clear/assignments` is clearing `put/name/tab` properly# current
+# * JetMachine[Consequences] testing script changed (currentdir)
 # * `clear/assignments` is clearing `put/name/tab` properly
+#
+# v 5.89
+# * run: linear eqs are ALL passed to resolve
 
 ###########################################################################################
 ###########################################################################################
@@ -181,7 +185,7 @@
 ###########################################################################################
 
 interface(screenwidth=120):
-lprint(`Jets 5.88 as of Jan 30, 2018`);
+lprint(`Jets 5.89 as of Apr 19, 2018`);
 
 #
 # Source code configuration, options and parameters
@@ -2403,7 +2407,7 @@ end:
 `run/currentstep` := 0:
 
 `run/l` := proc()
-  local as,eqs,aux,i,imax,ders, res,t,ncc, aux1, ccders;
+  local as,eqs,aux,i,imax,ders, res,t,ncc, aux1, ccders, lins, nonlins, solvlins, unsolvlins;
   global `run/time`,`run/bytes`, `report/tab`, putsize, ressize, runtransformations,
          RESOLVE, `run/currentstep`;
   if `unk/<</list` = [] then
@@ -2517,21 +2521,38 @@ end:
     ##fi; 
 
     ### take a bite   
-    Report(0,[`We obtained `, nops(ders),` derives.  Lets resolve...`]);    
+    Report(0,[`We obtained `, nops(ders),` derives.  Lets choose eqs for resolve...`]);    
     Report(1,[`derived cc's sizes (`, nops(ders),`): `, op(sort(map(size,[op(ders)])))]);
     Report(2,[`derived cc's [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(ders)])]);       
     
     aux1 := ders union as;
-    if nops(aux1)=0 then error "This should not happen"; fi;
-    aux := `size/*/<`(aux1, ressize);    
-    if nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(aux1)} fi; # TODO(eff): udelej nove rychle `size/*/<`
+    
+    aux1 := map(proc(a) local V1 := VarL(a)[1]; return Simpl(a, [V1]);  end, aux1); # prepare for linearity test
+    lins, nonlins := selectremove(proc(a) local V1 := VarL(a)[1]; return type(a, linear(V1)) end, aux1); # preselect linear eqs
+    
+    ### TODO: použij všechny solvable a vybírej z unsolvable+nonlins  
+    #solvlins, unsolvlins := selectremove(proc(a) local V := VarL(a), LC := collect(coeff(a, V[1]), V, simpl, distributed);
+    #                                             return type(LC, nonzero);
+    #                                     end, 
+    #                                     lins);
+    #Report(0, [`We have`, nops(solvlins), `solvable and `, nops(unsolvlins), `unsolvable linear eqs`]);
+                                   
+    if nops(lins)+nops(nonlins)=0 then error "This should not happen"; fi;
+    aux := `size/*/<`(nonlins, ressize);    
+    if nops(lins)+nops(aux)=0 then WARNING("ressize %1 too low", ressize); aux := {sizemin(aux1)} fi; # TODO(eff): udelej nove rychle `size/*/<`
 
-    Report(1,[`Selected eqs sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]);
-    Report(2,[`Selected eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]);       
-    Report(5,[`Selected eqs to be resolved: `, [op(aux)], `selected of totally`, nops(ders)]);   
+    Report(1,[`Lin eqs sizes to be resolved(`, nops(lins),`): `, op(sort(map(size,[op(lins)])))]);
+    Report(2,[`Lin eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(lins)])]);       
+    Report(5,[`Lin eqs to be resolved: `, [op(lins)]]);   
+
+    Report(1,[`Selected nonlin eqs sizes to be resolved(`, nops(aux),`): `, op(sort(map(size,[op(aux)])))]);
+    Report(2,[`Selected nonlin eqs [LVar=size] to be resolved:`, map(a->[LVar(a)=size(a)], [op(aux)])]);       
+    Report(5,[`Selected nonlin eqs to be resolved: `, [op(aux)]]);   
+
+    Report(0, [`We have `, nops(lins), `linear eqs.`, `We have selected `, nops(aux), `out of`, nops(aux1), `nonlinear eqs.`, `Lets resolve...`, nops(lins)+nops(aux), `eqs.`]);
 
     ### resolve
-    res := resolve(op(aux)); # TODO(eff): nestaci `resolve/1`?
+    res := resolve(op(lins), op(aux)); # TODO(eff): nestaci `resolve/1`?
     if res = FAIL then
       if ncc=0 and rt > 1 then WARNING("Cannot resolve differential consequence(s) only, no cc present."); fi;
       RETURN (FAIL);
@@ -3053,7 +3074,8 @@ printf("\nUsing the new implementation of resolve (not well tested yet!)\n");
                 return NULL;
               fi;
               V1 := V[1];
-              a := Simpl(b, [V1]);
+              a := Simpl(b, [V1]); # this is probably not needed since already do in run
+              # if normal(a - b) <> 0 then error "Mam te!" fi;
               #if not(frontend(ispoly, [a, linear, V1, 'r', 'LC'])) then  # nonlinear or non-polynomial case              
               if not(type(a, linear(V1))) then  # nonlinear or non-polynomial case
                 if rt > 5 then printf("Nonlinear case, expr=%a, VarL=%a, LC=%a\n",a,V,LC); fi;
